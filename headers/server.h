@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sun May  3 17:47:57 2015 Serge Heitzler
+** Last update Sun May  3 17:52:57 2015 Serge Heitzler
 */
 
 #ifndef SERVER_H_
@@ -65,6 +65,10 @@ typedef struct s_map
   int		width;
   int		height;
   char		**plan;
+  /* list d'objet (player, rock, food)
+  **
+  **
+  ou tableau de list ? */
 }		t_map;
 
 typedef struct		s_serv_info
