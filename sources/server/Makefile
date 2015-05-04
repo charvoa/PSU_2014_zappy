@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sun May  3 17:33:00 2015 Serge Heitzler
+## Last update Tue May  5 00:01:24 2015 Nicolas Charvoz
 ##
 
 CC		= 	gcc
@@ -21,6 +21,8 @@ SRCS		= 	main.c	 			\
 			list.c	 			\
 			add_in_list.c		 	\
 			$(XDIR)xmalloc.c	 	\
+			xfonc.c				\
+			utilis.c
 
 NAME		= 	server
 
