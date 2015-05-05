@@ -5,13 +5,14 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Sun Mar 29 18:15:43 2015 Nicolas Charvoz
+** Last update Tue May  5 15:30:10 2015 Nicolas Girardot
 */
 
 #include "server.h"
 
 int	g_listener;
 int	g_fdmax;
+int	g_verbose = 0;
 
 void	handler_ctrl_c(int sig)
 {
@@ -61,6 +62,7 @@ void		loop_server(t_server *s, char **argv)
 int		main(int argc, char **argv)
 {
   t_server	*s;
+  int		c;
   int		port;
   char		path[4096];
 
@@ -69,6 +71,11 @@ int		main(int argc, char **argv)
     port = atoi(argv[1]);
   else
     port = 4242;
+  while ((c = getopt(argc, argv, "v")) != -1)
+    {
+      if (c == 'v')
+	g_verbose = 1;
+    }
   s = xmalloc(sizeof(*s));
   init_socket(s);
   bind_socket(s, port);
@@ -76,6 +83,7 @@ int		main(int argc, char **argv)
   FD_SET(s->listener, &(s->master));
   s->fdmax = s->listener;
   s->home = path;
+  my_printf("test\n");
   loop_server(s, argv);
   return (0);
 }
