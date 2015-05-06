@@ -25,11 +25,14 @@ def execute(s):
         s.close
 
 def main():
-    mc = ModuleConnect()
-    s = mc.connect(4242)
-    p = GetOptions()
-    p.parse_opt()
-    execute(s)
+    try:
+        p = GetOptions()
+        p.parse_opt()
+        mc = ModuleConnect()
+        s = mc.connect(p.getHost(), p.getPort())
+        execute(s)
+    except:
+        print('An Error as happened')
 
 if __name__ == "__main__":
     main()

@@ -1,12 +1,9 @@
 import socket
 
-class ModuleConnect():
+class ModuleConnect(object):
 
     """ Create connexion """
-
-    def connect(self, port):
+    def connect(self, host, port):
         s = socket.socket()
-        host = socket.gethostname()
-        port = port
-        s.connect((host, port))
+        s.connect((host, int(port)))
         return s

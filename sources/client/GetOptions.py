@@ -33,6 +33,8 @@ class GetOptions(object):
         
     def getName(self):
         return self.name
+    def getPort(self):
+        return self.port
     def getHost(self):
         return self.host
     def getVerbose(self):
