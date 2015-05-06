@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sun May  3 17:52:57 2015 Serge Heitzler
+** Last update Wed May  6 14:33:06 2015 Audibert Louis
 */
 
 #ifndef SERVER_H_
