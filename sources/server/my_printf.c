@@ -5,7 +5,7 @@
 ** Login   <girard_s@epitech.net>
 ** 
 ** Started on  Tue May  5 14:41:57 2015 Nicolas Girardot
-** Last update Tue May  5 15:30:32 2015 Nicolas Girardot
+** Last update Wed May  6 09:52:57 2015 Nicolas Girardot
 */
 
 #include <stdarg.h>
@@ -15,7 +15,7 @@
 void	my_printf(const char *format, ...)
 {
   va_list args;
-  
+
   if (g_verbose == 1)
     {
       va_start(args, format);

@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Tue May  5 15:30:10 2015 Nicolas Girardot
+** Last update Wed May  6 09:52:44 2015 Nicolas Girardot
 */
 
 #include "server.h"
@@ -83,7 +83,6 @@ int		main(int argc, char **argv)
   FD_SET(s->listener, &(s->master));
   s->fdmax = s->listener;
   s->home = path;
-  my_printf("test\n");
   loop_server(s, argv);
   return (0);
 }
