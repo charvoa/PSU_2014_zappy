@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Wed May  6 09:52:44 2015 Nicolas Girardot
+** Last update Wed May  6 14:50:26 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -59,30 +59,48 @@ void		loop_server(t_server *s, char **argv)
     }
 }
 
+t_server	*fill_struct_serv(int argc, char **argv)
+{
+  t_server	*s;
+  int		opt;
+
+  s = xmalloc(sizeof(*s));
+  while ((opt = getopt(argc, argv,"p:x:y:nc:t:")) != -1)
+    {
+      switch (opt) 
+	{
+	case 'p' : s->port = atoi(optarg);
+	  break;
+	case 'x' : s->Xmap = atoi(optarg);
+	  break;
+	case 'y' : s->Ymap = atoi(optarg); 
+	  break;
+	case 'n' : s->team_names = optarg; // récupérer tous les args et non pas qu'un seul...
+	  break;
+	case 'c' : s->nb_max_clients_by_team = atoi(optarg);
+	  break;
+	case 't' : s->time_action = atoi(optarg);
+	  break;
+	default :
+	  s->port = 4242;
+	  s->Xmap = 20;
+	  s->Ymap = 20;
+	  s->nb_max_clients_by_team = 2;
+	}
+    }
+  return (s);
+}
+
 int		main(int argc, char **argv)
 {
   t_server	*s;
-  int		c;
-  int		port;
-  char		path[4096];
 
-  getcwd(path, 4096);
-  if (argc >= 2)
-    port = atoi(argv[1]);
-  else
-    port = 4242;
-  while ((c = getopt(argc, argv, "v")) != -1)
-    {
-      if (c == 'v')
-	g_verbose = 1;
-    }
-  s = xmalloc(sizeof(*s));
+  s = fill_struct_serv(argc, argv);
   init_socket(s);
-  bind_socket(s, port);
+  bind_socket(s, 4242);
   xlisten(s->listener, 10);
   FD_SET(s->listener, &(s->master));
   s->fdmax = s->listener;
-  s->home = path;
   loop_server(s, argv);
   return (0);
 }

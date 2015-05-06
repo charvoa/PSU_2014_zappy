@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:19:26 2015 Nicolas Charvoz
-** Last update Tue May  5 15:25:25 2015 Nicolas Girardot
+** Last update Wed May  6 14:49:30 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -53,20 +53,39 @@
 # define		c500	"500 OOPS: "
 # define		c530	"530: Not logged in (Please login using 'user')"
 
-typedef struct		s_server {
-  fd_set		master;
-  fd_set		read_fds;
+typedef struct		s_serv_info
+{
+  struct protoent	*proto;
+  struct sockaddr_in	s_in;
+  int			socket;
+}			t_serv_info;
+
+typedef struct s_server
+{
+  unsigned int	port; // -p
+  unsigned int	Xmap; // -x
+  unsigned int	Ymap; // -y
+  char		*team_names; // -n
+  unsigned int	nb_max_clients_by_team; // -c
+  unsigned int	time_action; // -t
+  int		fdmax;
+  int		graph_launched;
+  t_serv_info	serv_info;
+  fd_set	read_fds;
+  fd_set	master;
+  //charvo_a struct
   struct sockaddr_in	serveraddr;
   struct sockaddr_in	clientaddr;
-  int			fdmax;
   int			listener;
   int			newfd;
   char			*buf;
   int			addrlen;
   char			**args;
   int			i;
-  char			*home;
-}			t_server;
+  //end
+  // List de client
+}		t_server;
+
 
 extern	int		g_verbose;
 extern	int		g_listener;
