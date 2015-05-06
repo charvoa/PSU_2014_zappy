@@ -5,13 +5,14 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Wed May  6 14:45:26 2015 Audibert Louis
+** Last update Wed May  6 14:50:26 2015 Audibert Louis
 */
 
 #include "server.h"
 
 int	g_listener;
 int	g_fdmax;
+int	g_verbose = 0;
 
 void	handler_ctrl_c(int sig)
 {

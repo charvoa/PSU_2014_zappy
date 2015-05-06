@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:19:26 2015 Nicolas Charvoz
-** Last update Wed May  6 14:45:54 2015 Audibert Louis
+** Last update Wed May  6 14:49:30 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -87,6 +87,7 @@ typedef struct s_server
 }		t_server;
 
 
+extern	int		g_verbose;
 extern	int		g_listener;
 extern	int		g_fdmax;
 
@@ -118,5 +119,6 @@ void			read_inf(int, int, FILE*);
 char			*base64encode(const void *, int);
 char			*base64decode(const void*, int);
 void			*xmalloc(int);
+void			my_printf(const char *, ...);
 
 #endif			/* !SERVER_H_ */
