@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Thu May  7 10:31:27 2015 Nicolas Girardot
+// Last update Thu May  7 15:52:55 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
@@ -56,23 +56,20 @@ void	Socket::selectSocket()
   const std::string tmp;
   char *end_of_put;
   char buffer[4096];
+  int connected = 0;
 
   while (42)
     {
+       if (connected == 0)
+	 {
+	   write(_socket, "graph_cli_connected\n", strlen("graph_cli_connected\n"));
+	   connected = 1;
+	 }
       my_connect();
-      if (FD_ISSET(STDIN_FILENO, &this->_rfds))
-	{
-	  if (fgets(buffer, 4096, stdin))
-	    {
-	      if ((end_of_put = (strchr(buffer, '\n'))))
-		buffer[end_of_put - buffer] = '\0';
-	    }
-	  write(_socket, buffer, strlen(buffer));
-	}
+      if (FD_ISSET(STDIN_FILENO, &this->_rfds));
       else if (FD_ISSET(this->_socket, &_rfds))
 	{
 	  readd << _socket;
-	  std::cout << readd << std::endl;
 	}
     }
 }
