@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu May  7 15:19:04 2015 Audibert Louis
+## Last update Thu May  7 15:27:43 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -31,6 +31,7 @@ SRCS		= 	main.c	 			\
 			my_printf.c			\
 			create_map.c			\
 			create_client.c			\
+			exec_cmd.c			\
 			write_to_client.c
 
 NAME		= 	server
