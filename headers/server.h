@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sun May  3 17:52:57 2015 Serge Heitzler
+** Last update Thu May  7 10:41:30 2015 Serge Heitzler
 */
 
 #ifndef SERVER_H_
@@ -20,6 +20,7 @@
 # include <sys/types.h>
 # include <sys/socket.h>
 # include "list.h"
+# include "xfuncs.h"
 
 # define RED "\x1b[31m"
 # define BLUE "\x1b[36m"
@@ -42,33 +43,40 @@ typedef enum e_orientation
     UP,
     RIGHT,
     DOWN,
-    LEFT
+    LEFT,
+    NONE
   }		e_orientation;
+
+typedef struct s_food
+{
+  int		pos_x;
+  int		pos_y;
+  e_orientation	orientation;
+}		t_food;
 
 typedef struct s_player
 {
   char		*team;
   int		level;
+  int		pos_x;
+  int		pos_y;
   e_orientation	orientation;
 }		t_player;
 
 typedef struct	s_client
 {
   int		fd;
+  int		nbr_players;
   char		*team_name;
-  t_player	**player;
-  // list de player
+  t_list	*players;
 }		t_client;
 
 typedef struct s_map
 {
   int		width;
   int		height;
-  char		**plan;
-  /* list d'objet (player, rock, food)
-  **
-  **
-  ou tableau de list ? */
+  char		**full;
+  t_list	**objects;
 }		t_map;
 
 typedef struct		s_serv_info
@@ -82,14 +90,17 @@ typedef struct s_server
 {
   int		port;
   int		fd_max;
-  int		graph_launched;
-  int		nbr_max_client_by_team;
-  int       	delay;
-  char		**teams_names;
   t_serv_info	serv_info;
   fd_set	readfds;
   fd_set	writefds;
-  // List de client
+
+
+  int		graph_launched;
+  unsigned int	nbr_max_client_by_team;
+  unsigned int	delay;
+  char		**teams_names;
+  t_map		*map;
+  t_list	*clients;
 }		t_server;
 
 #endif /* !SERVER_H_ */

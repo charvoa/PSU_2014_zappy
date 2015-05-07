@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun May  3 16:40:31 2015 Serge Heitzler
-** Last update Sun May  3 16:41:45 2015 Serge Heitzler
+** Last update Thu May  7 11:02:35 2015 Serge Heitzler
 */
 
 #ifndef LIST_H_
@@ -14,8 +14,16 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+typedef enum e_object_type
+  {
+    PLAYER,
+    ROCK,
+    FOOD
+  }		e_object_type;
+
 typedef struct s_node
 {
+  e_object_type	type;
   void		*data;
   struct s_node *next;
   struct s_node *prev;
@@ -29,12 +37,13 @@ typedef struct s_list
 }		t_list;
 
 /* list.c */
+void		show_list(t_list *);
 t_list		*create_list();
 void		free_my_list(t_list *);
 
 /* add_in_list.c */
 void		add_node(t_list *, t_node *);
-void		push_in_list(t_list *, void *);
+void		push_in_list(t_list *, void *, e_object_type);
 
 /* xmalloc.c */
 void		*xmalloc(size_t size);

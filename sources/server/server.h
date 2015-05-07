@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:19:26 2015 Nicolas Charvoz
-** Last update Tue May  5 15:25:25 2015 Nicolas Girardot
+** Last update Wed May  6 19:12:34 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -79,27 +79,6 @@ void			init_socket(t_server*);
 void			bind_socket(t_server*, int);
 void			accept_server(t_server*, char**);
 void			read_write_server(t_server*, int, char**);
-void			parser(t_server*, char *);
-void			exec_cmd(t_server*);
-int			user_server(t_server*);
-int			ls_server(t_server*);
-int			lls_server(t_server*);
-int			cd_server(t_server*);
-int			lcd_server(t_server*);
-int			get_server(t_server*);
-int			put_server(t_server*);
-int			pwd_server(t_server*);
-int			lpwd_server(t_server*);
-int			clear_client(t_server*);
-int			noopuser_client(t_server*);
-int			quit_server(t_server*);
-int			noop_server(t_server*);
-char			*read_file(char*);
-int			my_cd(char*, t_server*);
-void			read_inf(int, int, FILE*);
-char			*base64encode(const void *, int);
-char			*base64decode(const void*, int);
-void			*xmalloc(int);
 void			my_printf(const char *, ...);
 
 #endif			/* !SERVER_H_ */
