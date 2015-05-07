@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Thu May  7 13:56:38 2015 Serge Heitzler
+** Last update Thu May  7 15:14:27 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -27,7 +27,7 @@ char		**init_full_tab(int height)
   return (tab);
 }
 
-void		init_map(t_map *map, int width, int height)
+void		init_map(t_map *map, unsigned int width, unsigned int height)
 {
   int		x;
   int		y;
