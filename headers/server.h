@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu May  7 15:14:44 2015 Audibert Louis
+** Last update Thu May  7 15:25:51 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -151,5 +151,8 @@ void			write_to_client(t_server *, char *);
 /* CREATE_MAP.C */
 void			init_map(t_map *, unsigned int, unsigned int);
 char			**init_full_tab(int);
+
+/* EXEC_CMD.C */
+void			exec_cmd(t_server *s);
 
 #endif /* !SERVER_H_ */
