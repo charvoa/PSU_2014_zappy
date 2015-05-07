@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu May  7 15:14:44 2015 Audibert Louis
+** Last update Thu May  7 17:15:40 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -81,7 +81,7 @@ typedef struct s_map
   unsigned int	       	width; // -x
   unsigned int	       	height; // -y
   char			**full;
-  t_list		**objects;
+  t_list		***objects;
 }			t_map;
 
 typedef struct s_server
@@ -150,6 +150,6 @@ void			write_to_client(t_server *, char *);
 
 /* CREATE_MAP.C */
 void			init_map(t_map *, unsigned int, unsigned int);
-char			**init_full_tab(int);
+char			**init_full_tab(int, int);
 
 #endif /* !SERVER_H_ */
