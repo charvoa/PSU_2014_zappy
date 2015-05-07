@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu May  7 14:13:35 2015 Audibert Louis
+** Last update Thu May  7 14:43:05 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -127,21 +127,26 @@ void			my_printf(const char *, ...);
 
 /* SET_OPTIONS.C */
 
-void	init_opt(int (*options[5])(t_server *s));
-int	check_cmd(int opt);
-void	exec_option(t_server *s);
+void			init_opt(int (*options[5])(t_server *s));
+int			check_cmd(int opt);
+void			exec_option(t_server *s);
 
 /* OPTIONS.C */
 
-int	is_number(char *str);
-int	opt_port(t_server *s);
-int	opt_teams(t_server *s);
-int	opt_nb_client(t_server *s);
-int	opt_time_action(t_server *s);
+int			is_number(char *str);
+int			opt_port(t_server *s);
+int			opt_teams(t_server *s);
+int			opt_nb_client(t_server *s);
+int			opt_time_action(t_server *s);
 
 /* OPTIONS2.C */
 
-int	opt_x_map(t_server *s);
-int	opt_y_map(t_server *s);
+int			opt_x_map(t_server *s);
+int			opt_y_map(t_server *s);
+
+/* WRITE_TO_CLIENT.C */
+void			write_to_client(t_server *, char *);
+
+/* */
 
 #endif /* !SERVER_H_ */

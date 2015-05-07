@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu May  7 14:17:53 2015 Audibert Louis
+## Last update Thu May  7 14:44:01 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -25,6 +25,9 @@ SRCS		= 	main.c	 			\
 			$(XDIR)xbind.c		 	\
 			$(XDIR)xsocket.c	 	\
 			utilis.c			\
+			set_options.c			\
+			options.c			\
+			options2.c			\
 			my_printf.c			\
 			write_to_client.c
 
