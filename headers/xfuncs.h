@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 13:49:05 2015 Serge Heitzler
-** Last update Thu May  7 11:57:49 2015 Serge Heitzler
+** Last update Thu May  7 14:19:44 2015 Audibert Louis
 */
 
 #ifndef			XFUNCS_H_
@@ -15,12 +15,12 @@
 void			*xmalloc(size_t);
 
 /* xbind.c */
-void			*xbind(int);
+int			xbind(int);
 
 /* xlisten.c */
-void			*xlisten(int, int);
+int			xlisten(int, int);
 
 /* xsocket.c */
-void			*xsocket(int);
+int			xsocket(int);
 
 #endif			/* !XFUNCS_H_ */

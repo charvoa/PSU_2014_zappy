@@ -5,12 +5,12 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:24:41 2015 Nicolas Charvoz
-** Last update Wed May  6 13:19:14 2015 Serge Heitzler
+** Last update Thu May  7 14:19:17 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
 
-void	xlisten(int sockfd, int backlog)
+int	xlisten(int sockfd, int backlog)
 {
   if (listen(sockfd, backlog) == -1)
     {
@@ -18,4 +18,5 @@ void	xlisten(int sockfd, int backlog)
       exit(1);
     }
   printf("Server-listen() is OK ..\n");
+  return (0);
 }

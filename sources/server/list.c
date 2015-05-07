@@ -5,12 +5,12 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 17:45:21 2015 Serge Heitzler
-** Last update Thu May  7 09:45:14 2015 Serge Heitzler
+** Last update Thu May  7 14:16:41 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
 
-void            show_list(t_dlist *list)
+void            show_list(t_list *list)
 {
   t_node        *tmp;
   int		i;
@@ -50,7 +50,6 @@ void		free_my_list(t_list *list)
     {
       del = tmp;
       tmp = tmp->next;
-      free(del->type);
       free(del->data);
       free(del);
     }

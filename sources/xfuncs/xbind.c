@@ -5,16 +5,17 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 13:19:02 2015 Serge Heitzler
-** Last update Wed May  6 13:19:16 2015 Serge Heitzler
+** Last update Thu May  7 14:20:12 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
 
-void	xbind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
+int	xbind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)
 {
   if (bind(sockfd, addr, addrlen) == -1)
     {
       perror("Server-bind() error !");
       exit(1);
     }
+  return (0);
 }
