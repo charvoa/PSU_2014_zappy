@@ -5,7 +5,11 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
+<<<<<<< HEAD
 ** Last update Thu May  7 11:19:48 2015 Serge Heitzler
+=======
+** Last update Thu May  7 10:38:50 2015 Audibert Louis
+>>>>>>> 9793cefa869a6c2d6669acd8450402f3f1daf97e
 */
 
 #include "../../headers/server.h"
@@ -55,8 +59,13 @@ void	accept_server(t_server *s, char **argv)
 	  s->fdmax = s->newfd;
 	  g_fdmax = s->fdmax;
 	}
+<<<<<<< HEAD
 	my_printf("%s: New connection from %s on socket %d\n", argv[0],
+=======
+      printf("%s: New connection from %s on socket %d\n", argv[0],
+>>>>>>> 9793cefa869a6c2d6669acd8450402f3f1daf97e
 	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
+      write_to_client(s, "BIENVENUE\r\n");
     }
 }
 

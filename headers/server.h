@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu May  7 11:32:25 2015 Serge Heitzler
+** Last update Thu May  7 11:53:57 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -24,6 +24,8 @@
 # include		<fcntl.h>
 # include		<limits.h>
 # include		<signal.h>
+# include		"list.h"
+# include		"xfuncs.h"
 
 # define		RED "\x1b[31m"
 # define		BLUE "\x1b[36m"
@@ -76,21 +78,21 @@ typedef struct	s_client
 
 typedef struct s_map
 {
-  int			width;
-  int			height;
+  unsigned int	       	width; // -x
+  unsigned int	       	height; // -y
   char			**full;
   t_list		**objects;
 }			t_map;
 
-typedef struct		s_serv_info
-{
-  struct protoent	*proto;
-  struct sockaddr_in	s_in;
-  int			socket;
-}			t_serv_info;
-
 typedef struct s_server
 {
+  // Loulou's Work
+  unsigned int		port; // -p
+  char			*team_names; // -n
+  unsigned int		nb_max_clients_by_team; // -c
+  unsigned int		time_action; // -t
+
+  // Charvo's struct
   fd_set		master;
   fd_set		read_fds;
   struct sockaddr_in	serveraddr;
@@ -104,11 +106,11 @@ typedef struct s_server
   int			i;
   char			*home;
 
-
+  // Pontoise's Work
   int			graph_launched;
   unsigned int		nbr_max_client_by_team;
   unsigned int		delay;
-  char			**teams_names;
+  //  char			**teams_names;
   t_map			*map;
   t_list		*clients;
 }			t_server;
@@ -117,9 +119,6 @@ extern	int		g_verbose;
 extern	int		g_listener;
 extern	int		g_fdmax;
 
-int			xsocket(int, int, int);
-void			xbind(int, const struct sockaddr*, socklen_t);
-void			xlisten(int, int);
 void			init_socket(t_server*);
 void			bind_socket(t_server*, int);
 void			accept_server(t_server*, char**);
