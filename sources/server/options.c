@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:34:34 2015 Audibert Louis
-** Last update Thu May  7 14:12:50 2015 Audibert Louis
+** Last update Thu May  7 15:11:15 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -36,7 +36,8 @@ int	opt_port(t_server *s)
 
 int	opt_teams(t_server *s)
 {
-
+  (void)s;
+  return (0);
 }
 
 int	opt_nb_client(t_server *s)

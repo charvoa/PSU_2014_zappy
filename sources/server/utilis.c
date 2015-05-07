@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Thu May  7 14:43:06 2015 Serge Heitzler
+** Last update Thu May  7 15:24:20 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -79,11 +79,7 @@ void		read_write_server(t_server *s, int i, char **argv)
   else
     {
       s->i = i;
-      char buf[4096];
-      bzero(buf, 4096);
-      sprintf(buf, "I read : %s\n", s->buf);
-      write(s->i, buf, strlen(buf));
-      //exec_cmd(s);
+      exec_cmd(s);
     }
   free(s->buf);
 }

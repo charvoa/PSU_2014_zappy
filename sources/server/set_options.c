@@ -5,12 +5,12 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:16:33 2015 Audibert Louis
-** Last update Thu May  7 14:05:08 2015 Audibert Louis
+** Last update Thu May  7 14:56:07 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
 
-void	init_opt(int (*options[5])(t_server *s))
+void	init_opt(int (*options[6])(t_server *s))
 {
   options[0] = &opt_port;
   options[1] = &opt_x_map;
@@ -18,6 +18,7 @@ void	init_opt(int (*options[5])(t_server *s))
   options[3] = &opt_teams;
   options[4] = &opt_nb_client;
   options[5] = &opt_time_action;
+  options[6] = &opt_verbose;
 }
 
 int	check_cmd(int opt)
@@ -26,7 +27,7 @@ int	check_cmd(int opt)
   int	i;
 
   i = 0;
-  options = strcmp("pxynct");
+  options = strdup("pxynctv");
   while (i < 6)
     {
       if (opt == options[i])
@@ -42,13 +43,11 @@ void	exec_option(t_server *s)
   int	i;
 
   i = 0;
-  init_opt(s->opt);
-  while (i != 6)
+  init_opt(options);
+  while (i != 7)
     {
-      if (check_cmd(s->opt) == -1)
-	fprintf(stderr, "Bad opt: %c\n", (char)s->opt);
-      else
-	options[check_cmd(opt)](s);
+      if (check_cmd(s->opt) != -1)
+	options[check_cmd(s->opt)](s);
       i++;
     }
 }
