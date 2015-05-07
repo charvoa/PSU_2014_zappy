@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Thu May  7 10:27:05 2015 Audibert Louis
+** Last update Thu May  7 11:36:47 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -67,6 +67,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
   s = xmalloc(sizeof(*s));
   while ((opt = getopt(argc, argv,"p:x:y:nc:t:")) != -1)
     {
+      exec_option(s, opt, optarg);
       if (opt == 'p')
 	s->port = atoi(optarg);
       else if (opt == 'x')
