@@ -2,34 +2,46 @@ import signal
 
 from ModuleConnect import *
 from GetOptions import *
+from MessageClass import *
+from InterpretClass import *
+
+p = GetOptions()
+mess = MessageClass()
+ic = InterpretClass()
 
 def signal_handler(signal, frame):
     print('You pressed Ctrl+C')
     sys.exit(0)
 
-def send_message(s, var):
-    s.send(var.encode())
+def send_name_to_server(s):
+    var = 'TEAM ' 
+    var += p.getName()
+    mess.sendMessage(s, var)
 
-def get_message():
-    signal.signal(signal.SIGINT, signal_handler)
-    return input('$> ')
-
-def execute(s):
-    while True:
-        var = get_message()
-        send_message(s, var)
-        print(s.recv(1024))
-        if var == "exit":
-            print("Goodbye")
-            break
-        s.close
+def protocol(s):
+    rec = mess.readMessage(s)
+    ic.interpret_bienvenue(s, rec)
+    rec = mess.readMessage(s)
+    ic.interpret_num_client(s, rec)
+    rec = mess.readMessage(s)
+    ic.interpret_pos(s, rec)
+    s.close
 
 def main():
-    mc = ModuleConnect()
-    s = mc.connect(4242)
-    p = GetOptions()
-    p.parse_opt()
-    execute(s)
+    try:
+        p.parseOpt()
+        if not p.getName():
+            print('Exception : You need a name to start')
+            sys.exit()
+        mc = ModuleConnect()
+        s = mc.connect(p.getHost(), p.getPort())
+        protocol(s)
+    except ConnectionRefusedError:
+        print('Exception : The server has refused the connection')
+    except getopt.GetoptError:
+        print('Usage : client.py -n [NAME] -h [HOST] -p [PORT]')
+    except:
+        print('Exception : An error has occured')
 
 if __name__ == "__main__":
     main()

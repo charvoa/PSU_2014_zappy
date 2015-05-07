@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 16:42:37 2015 Serge Heitzler
-** Last update Sun May  3 16:43:06 2015 Serge Heitzler
+** Last update Wed May  6 19:10:39 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -32,11 +32,12 @@ void		add_node(t_list *list, t_node *node)
     }
 }
 
-void		push_in_list(t_list *list, void *data)
+void		push_in_list(t_list *list, void *data, e_object_type type)
 {
   t_node	*node;
 
   node = xmalloc(sizeof(*node));
   node->data = data;
+  node->type = type;
   add_node(list, node);
 }

@@ -5,10 +5,26 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 17:45:21 2015 Serge Heitzler
-** Last update Sun May  3 17:45:23 2015 Serge Heitzler
+** Last update Thu May  7 14:16:41 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
+
+void            show_list(t_list *list)
+{
+  t_node        *tmp;
+  int		i;
+
+  i = 0;
+  tmp = list->start;
+  printf("--*--\n[list length] = %zu\n--*--\n", list->length);
+  while (tmp)
+    {
+      printf("[item n°%d] = %p [ADRESS]\n", i, tmp->data);
+      tmp = tmp->next;
+      i++;
+    }
+}
 
 t_list		*create_list()
 {

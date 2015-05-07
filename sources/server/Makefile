@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue May  5 15:22:09 2015 Nicolas Girardot
+## Last update Thu May  7 16:36:04 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -21,9 +21,20 @@ SRCS		= 	main.c	 			\
 			list.c	 			\
 			add_in_list.c		 	\
 			$(XDIR)xmalloc.c	 	\
-			xfonc.c				\
+			$(XDIR)xlisten.c	 	\
+			$(XDIR)xbind.c		 	\
+			$(XDIR)xsocket.c	 	\
 			utilis.c			\
-			my_printf.c			
+			set_options.c			\
+			options.c			\
+			options2.c			\
+			my_printf.c			\
+			exec_cmd.c			\
+			commands.c			\
+			create_map.c			\
+			create_client.c			\
+			my_str_to_wordtab.c		\
+			write_to_client.c
 
 NAME		= 	server
 

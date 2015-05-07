@@ -1,16 +1,16 @@
 /*
 ** my_printf.c for zappy in /home/nicolas/verbose
-** 
+**
 ** Made by Nicolas Girardot
 ** Login   <girard_s@epitech.net>
-** 
+**
 ** Started on  Tue May  5 14:41:57 2015 Nicolas Girardot
-** Last update Wed May  6 09:52:57 2015 Nicolas Girardot
+** Last update Thu May  7 12:06:11 2015 Serge Heitzler
 */
 
 #include <stdarg.h>
 #include <stdio.h>
-#include "server.h"
+#include "../../headers/server.h"
 
 void	my_printf(const char *format, ...)
 {

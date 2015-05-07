@@ -5,10 +5,10 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Wed May  6 09:52:44 2015 Nicolas Girardot
+** Last update Thu May  7 15:35:52 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "../../headers/server.h"
 
 int	g_listener;
 int	g_fdmax;
@@ -20,7 +20,7 @@ void	handler_ctrl_c(int sig)
 
   i = 0;
   sig = sig;
-  printf("The server will close ...\n");
+  my_printf("The server will close ...\n");
   while (i < g_fdmax)
     {
       close(i);
@@ -44,7 +44,7 @@ void		loop_server(t_server *s, char **argv)
 	  perror("Server-select() error !");
 	  exit(1);
 	}
-      printf("Server-select() is OK...\n");
+      my_printf("Server-select() is OK...\n");
       while (i <= s->fdmax)
 	{
 	  if (FD_ISSET(i, &(s->read_fds)))
@@ -59,30 +59,33 @@ void		loop_server(t_server *s, char **argv)
     }
 }
 
+t_server	*fill_struct_serv(int argc, char **argv)
+{
+  t_server	*s;
+  int		opt;
+
+  s = xmalloc(sizeof(*s));
+  /* init_map(s->map, 20, 20); */
+  while ((opt = getopt(argc, argv,"p:x:y:nc:t:v")) != -1)
+    {
+      s->opt = opt;
+      s->optarg = optarg;
+      exec_option(s);
+    }
+  return (s);
+}
+
 int		main(int argc, char **argv)
 {
   t_server	*s;
-  int		c;
-  int		port;
-  char		path[4096];
-
-  getcwd(path, 4096);
-  if (argc >= 2)
-    port = atoi(argv[1]);
-  else
-    port = 4242;
-  while ((c = getopt(argc, argv, "v")) != -1)
-    {
-      if (c == 'v')
-	g_verbose = 1;
-    }
+  
+  s = fill_struct_serv(argc, argv);
   s = xmalloc(sizeof(*s));
   init_socket(s);
-  bind_socket(s, port);
+  bind_socket(s, 4242);
   xlisten(s->listener, 10);
   FD_SET(s->listener, &(s->master));
   s->fdmax = s->listener;
-  s->home = path;
   loop_server(s, argv);
   return (0);
 }
