@@ -13,7 +13,7 @@ def signal_handler(signal, frame):
 
 def send_name_to_server(s):
     var = p.getName()
-    mess.send_message(s, var)
+    mess.sendMessage(s, var)
 
 def interpret_bienvenue(s, rec):
     if (rec == b'BIENVENUE\r\n'):
@@ -22,7 +22,7 @@ def interpret_bienvenue(s, rec):
         send_name_to_server(s)
 
 def protocol(s):
-    rec = mess.read_message(s)
+    rec = mess.readMessage(s)
     interpret_bienvenue(s, rec)
     # while True:
     #     var = get_message()
@@ -36,7 +36,7 @@ def protocol(s):
 def main():
     try:
         #p = GetOptions()
-        p.parse_opt()
+        p.parseOpt()
         mc = ModuleConnect()
         s = mc.connect(p.getHost(), p.getPort())
         protocol(s)
