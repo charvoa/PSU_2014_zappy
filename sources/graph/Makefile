@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Sun May  3 17:32:54 2015 Serge Heitzler
+## Last update Thu May  7 15:22:47 2015 Florian PERU
 ##
 
 CC		= 	gcc
@@ -14,6 +14,8 @@ RM		= 	rm -f
 
 CFLAGS		+= 	-W -Wall -Werror -Wextra
 CFLAGS		+= 	-I.
+CFLAGS		+=	-llibGDL/includes/ -LlibGDL/libs/ -lgdl_gl -lGL -IGLEW \
+			-ldl -lrt -lfbxsdk -lSDL2 -lpthread
 
 XDIR		=	../xfuncs/
 

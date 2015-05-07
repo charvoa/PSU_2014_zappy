@@ -5,7 +5,11 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
+<<<<<<< HEAD
 ** Last update Thu May  7 17:15:40 2015 Serge Heitzler
+=======
+** Last update Thu May  7 16:37:44 2015 Audibert Louis
+>>>>>>> 74b218898bfbe51f965fb40c18f0217b30ce5029
 */
 
 #ifndef			SERVER_H_
@@ -93,6 +97,7 @@ typedef struct s_server
   unsigned int		time_action; // -t
   char			*optarg;
   int			opt;
+  char			**tab;
 
   // Charvo's struct
   fd_set		master;
@@ -128,7 +133,7 @@ void			my_printf(const char *, ...);
 /* SET_OPTIONS.C */
 
 void			init_opt(int (*options[5])(t_server *s));
-int			check_cmd(int opt);
+int			check_opt(int opt);
 void			exec_option(t_server *s);
 
 /* OPTIONS.C */
@@ -151,5 +156,14 @@ void			write_to_client(t_server *, char *);
 /* CREATE_MAP.C */
 void			init_map(t_map *, unsigned int, unsigned int);
 char			**init_full_tab(int, int);
+
+/* EXEC_CMD.C */
+void			exec_cmd(t_server *s);
+
+/* COMMANDS.C */
+int			cmd_team(t_server *s);
+
+/* MY_STR_TO_WORDTAB.C */
+char			**my_str_to_wordtab(char *);
 
 #endif /* !SERVER_H_ */
