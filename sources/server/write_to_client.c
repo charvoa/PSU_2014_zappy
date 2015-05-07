@@ -1,14 +1,14 @@
 /*
 ** write_to_client.c for zappy in /home/audibe_l/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Audibert Louis
 ** Login   <audibe_l@epitech.net>
-** 
+**
 ** Started on  Thu May  7 10:35:54 2015 Audibert Louis
-** Last update Thu May  7 10:41:03 2015 Audibert Louis
+** Last update Thu May  7 12:06:02 2015 Serge Heitzler
 */
 
-#include "server.h"
+#include "../../headers/server.h"
 
 void	write_to_client(t_server *s, char *str)
 {

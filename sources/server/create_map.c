@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Thu May  7 10:40:32 2015 Serge Heitzler
+** Last update Thu May  7 13:56:38 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -33,6 +33,7 @@ void		init_map(t_map *map, int width, int height)
   int		y;
 
   y = 0;
+  map = xmalloc(sizeof(t_map));
   map->width = width;
   map->height = height;
   while (y <= (height - 1))
