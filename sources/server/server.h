@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:19:26 2015 Nicolas Charvoz
-** Last update Wed May  6 19:12:34 2015 Serge Heitzler
+** Last update Thu May  7 11:32:27 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
