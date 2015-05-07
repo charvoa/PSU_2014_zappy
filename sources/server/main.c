@@ -5,10 +5,10 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Thu May  7 11:36:47 2015 Audibert Louis
+** Last update Thu May  7 13:38:50 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "../../headers/server.h"
 
 int	g_listener;
 int	g_fdmax;
@@ -20,7 +20,7 @@ void	handler_ctrl_c(int sig)
 
   i = 0;
   sig = sig;
-  printf("The server will close ...\n");
+  my_printf("The server will close ...\n");
   while (i < g_fdmax)
     {
       close(i);
@@ -44,7 +44,7 @@ void		loop_server(t_server *s, char **argv)
 	  perror("Server-select() error !");
 	  exit(1);
 	}
-      printf("Server-select() is OK...\n");
+      my_printf("Server-select() is OK...\n");
       while (i <= s->fdmax)
 	{
 	  if (FD_ISSET(i, &(s->read_fds)))

@@ -5,10 +5,14 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
+<<<<<<< HEAD
+** Last update Thu May  7 11:19:48 2015 Serge Heitzler
+=======
 ** Last update Thu May  7 10:38:50 2015 Audibert Louis
+>>>>>>> 9793cefa869a6c2d6669acd8450402f3f1daf97e
 */
 
-#include "server.h"
+#include "../../headers/server.h"
 
 void	init_socket(t_server *s)
 {
@@ -19,14 +23,14 @@ void	init_socket(t_server *s)
   FD_ZERO(&s->read_fds);
   s->listener = xsocket(AF_INET, SOCK_STREAM, 0);
   g_listener = s->listener;
-  printf("Server-socket() is OK ... \n");
+  my_printf("Server-socket() is OK ... \n");
   if (setsockopt(s->listener, SOL_SOCKET, SO_REUSEADDR, &yes,
 		 sizeof(int)) == -1)
     {
       perror("Server-setsockopt() erro !");
       exit(1);
     }
-  printf("Server-setsockopt() is OK ... \n");
+  my_printf("Server-setsockopt() is OK ... \n");
 }
 
 void	bind_socket(t_server *s, int port)
@@ -37,7 +41,7 @@ void	bind_socket(t_server *s, int port)
   memset(&(s->serveraddr.sin_zero), '\0', 8);
   xbind(s->listener, (struct sockaddr *)&(s->serveraddr),
 	sizeof(s->serveraddr));
-  printf("Server-bind() is OK ...\n");
+  my_printf("Server-bind() is OK ...\n");
 }
 
 void	accept_server(t_server *s, char **argv)
@@ -48,14 +52,18 @@ void	accept_server(t_server *s, char **argv)
       perror("Server-accept() error !");
   else
     {
-      printf("Server-accept() is OK...\n");
+      my_printf("Server-accept() is OK...\n");
       FD_SET(s->newfd, &(s->master));
       if (s->newfd > s->fdmax)
 	{
 	  s->fdmax = s->newfd;
 	  g_fdmax = s->fdmax;
 	}
+<<<<<<< HEAD
+	my_printf("%s: New connection from %s on socket %d\n", argv[0],
+=======
       printf("%s: New connection from %s on socket %d\n", argv[0],
+>>>>>>> 9793cefa869a6c2d6669acd8450402f3f1daf97e
 	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
       write_to_client(s, "BIENVENUE\r\n");
     }
@@ -70,7 +78,7 @@ void		read_write_server(t_server *s, int i, char **argv)
   if ((nbytes = read(i, s->buf, 4095)) <= 0)
     {
       if (nbytes == 0)
-	printf("%s: socket %d hung up\n", argv[0], i);
+	my_printf("%s: socket %d hung up\n", argv[0], i);
       else
 	perror("read() error!");
       close(i);
