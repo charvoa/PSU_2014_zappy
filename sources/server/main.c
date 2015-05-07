@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Thu May  7 15:14:00 2015 Audibert Louis
+** Last update Thu May  7 15:35:52 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -65,7 +65,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
   int		opt;
 
   s = xmalloc(sizeof(*s));
-  init_map(s->map, 20, 20);
+  /* init_map(s->map, 20, 20); */
   while ((opt = getopt(argc, argv,"p:x:y:nc:t:v")) != -1)
     {
       s->opt = opt;
