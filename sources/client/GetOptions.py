@@ -2,13 +2,15 @@ import getopt
 import sys
 
 class GetOptions(object):
+
+    """ Get the arguments and get the value of the arguments """
     
     verbose = False
     name = ''
     port = '4242'
     host = 'localhost'
 
-    def parse_opt(self):
+    def parseOpt(self):
         
         #print('ARGV :', sys.argv[1:])
         options, remainder = getopt.getopt(sys.argv[1:], 'n:p:h:v', ['name=',
