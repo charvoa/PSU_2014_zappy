@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue May  5 15:22:09 2015 Nicolas Girardot
+## Last update Thu May  7 10:39:37 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -23,7 +23,8 @@ SRCS		= 	main.c	 			\
 			$(XDIR)xmalloc.c	 	\
 			xfonc.c				\
 			utilis.c			\
-			my_printf.c			
+			my_printf.c			\
+			write_to_client.c
 
 NAME		= 	server
 

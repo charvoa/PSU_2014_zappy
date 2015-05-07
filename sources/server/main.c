@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Wed May  6 14:50:26 2015 Audibert Louis
+** Last update Thu May  7 10:27:05 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -67,21 +67,20 @@ t_server	*fill_struct_serv(int argc, char **argv)
   s = xmalloc(sizeof(*s));
   while ((opt = getopt(argc, argv,"p:x:y:nc:t:")) != -1)
     {
-      switch (opt) 
+      if (opt == 'p')
+	s->port = atoi(optarg);
+      else if (opt == 'x')
+	s->Xmap = atoi(optarg);
+      else if (opt == 'y')
+	s->Ymap = atoi(optarg);
+      else if (opt == 'n')
+	s->team_names = optarg; // récupérer tous les args et non pas qu'un seul...
+      else if (opt == 'c')
+	s->nb_max_clients_by_team = atoi(optarg);
+      else if (opt == 't')
+	s->time_action = atoi(optarg);
+      else
 	{
-	case 'p' : s->port = atoi(optarg);
-	  break;
-	case 'x' : s->Xmap = atoi(optarg);
-	  break;
-	case 'y' : s->Ymap = atoi(optarg); 
-	  break;
-	case 'n' : s->team_names = optarg; // récupérer tous les args et non pas qu'un seul...
-	  break;
-	case 'c' : s->nb_max_clients_by_team = atoi(optarg);
-	  break;
-	case 't' : s->time_action = atoi(optarg);
-	  break;
-	default :
 	  s->port = 4242;
 	  s->Xmap = 20;
 	  s->Ymap = 20;
