@@ -2,27 +2,18 @@ import signal
 
 from ModuleConnect import *
 from GetOptions import *
+from MessageClass import *
 
 p = GetOptions()
+mess = MessageClass()
 
 def signal_handler(signal, frame):
     print('You pressed Ctrl+C')
     sys.exit(0)
 
-def send_message(s, var):
-    s.send(var.encode())
-
-def get_message():
-    signal.signal(signal.SIGINT, signal_handler)
-    return input('$> ')
-
-def read_message(s) -> str:
-    received = s.recv(1024)
-    return received
-    
 def send_name_to_server(s):
     var = p.getName()
-    send_message(s, var)
+    mess.send_message(s, var)
 
 def interpret_bienvenue(s, rec):
     if (rec == b'BIENVENUE\r\n'):
@@ -31,7 +22,7 @@ def interpret_bienvenue(s, rec):
         send_name_to_server(s)
 
 def protocol(s):
-    rec = read_message(s)
+    rec = mess.read_message(s)
     interpret_bienvenue(s, rec)
     # while True:
     #     var = get_message()
