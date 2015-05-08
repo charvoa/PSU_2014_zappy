@@ -6,7 +6,7 @@
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
 <<<<<<< HEAD
-** Last update Thu May  7 17:15:40 2015 Serge Heitzler
+** Last update Fri May  8 11:10:45 2015 Audibert Louis
 =======
 ** Last update Thu May  7 16:37:44 2015 Audibert Louis
 >>>>>>> 74b218898bfbe51f965fb40c18f0217b30ce5029
@@ -165,5 +165,6 @@ int			cmd_team(t_server *s);
 
 /* MY_STR_TO_WORDTAB.C */
 char			**my_str_to_wordtab(char *);
+void			show_error(char *str);
 
 #endif /* !SERVER_H_ */

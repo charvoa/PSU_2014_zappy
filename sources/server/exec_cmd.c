@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 15:24:45 2015 Audibert Louis
-** Last update Thu May  7 16:38:08 2015 Audibert Louis
+** Last update Fri May  8 11:10:11 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -13,12 +13,6 @@
 void	init_cmd(int	(*cmd[12])(t_server *s))
 {
   cmd[0] = &cmd_team;
-}
-
-void	show_error(char *str)
-{
-  fprintf(stderr, "%s\n", str);
-  exit(-1);
 }
 
 char	**get_cmd_tab()

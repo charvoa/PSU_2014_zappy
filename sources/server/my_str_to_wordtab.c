@@ -5,10 +5,16 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Wed Mar 11 13:37:48 2015 Audibert Louis
-** Last update Sun Mar 22 18:19:12 2015 Audibert Louis
+** Last update Fri May  8 11:10:39 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "../../headers/server.h"
+
+void	show_error(char *str)
+{
+  my_printf("%s\n", str);
+  exit(-1);
+}
 
 int     my_count_word(char *s)
 {
