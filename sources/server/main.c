@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Thu May  7 15:35:52 2015 Audibert Louis
+** Last update Wed May 13 11:55:13 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -59,18 +59,30 @@ void		loop_server(t_server *s, char **argv)
     }
 }
 
+void	init_opt_server(t_server *s)
+{
+  s->port = 4242;
+  s->teams->nb_max_clients_by_team = 10;
+  s->time_action = 1;
+}
+
 t_server	*fill_struct_serv(int argc, char **argv)
 {
   t_server	*s;
   int		opt;
+  int		(*options[6])(t_server *s);
 
   s = xmalloc(sizeof(*s));
-  /* init_map(s->map, 20, 20); */
-  while ((opt = getopt(argc, argv,"p:x:y:nc:t:v")) != -1)
+  s->teams = xmalloc(sizeof(*(s->teams)));
+  init_map(s, 20, 20);
+  init_opt(options);
+  init_opt_server(s);
+  while ((opt = getopt(argc, argv,"p:x:y:n:c:t:v")) != -1)
     {
+      printf("opt = %d\n", opt);
       s->opt = opt;
       s->optarg = optarg;
-      exec_option(s);
+      exec_option(s, options);
     }
   return (s);
 }
