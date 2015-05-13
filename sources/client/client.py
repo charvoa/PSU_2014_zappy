@@ -27,6 +27,7 @@ def signal_handler(signal, frame):
 def send_name_to_server(s):
     var = 'TEAM '
     var += p.getName()
+    var += '\r\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
@@ -52,8 +53,8 @@ def main():
         print('Exception : The server has refused the connection')
     except getopt.GetoptError:
         print('Usage : client.py -n [NAME] -h [HOST] -p [PORT]')
-#    except:
-#print('Exception : An error has occured')
+    except:
+        print('Exception : An error has occured')
 
 if __name__ == "__main__":
     main()
