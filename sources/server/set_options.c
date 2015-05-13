@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:16:33 2015 Audibert Louis
-** Last update Thu May  7 16:33:29 2015 Audibert Louis
+** Last update Wed May 13 11:22:17 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -37,17 +37,8 @@ int	check_opt(int opt)
   return (-1);
 }
 
-void	exec_option(t_server *s)
+void	exec_option(t_server *s, int (*options[6])(t_server *s))
 {
-  int	(*options[6])(t_server *s);
-  int	i;
-
-  i = 0;
-  init_opt(options);
-  while (i != 7)
-    {
-      if (check_opt(s->opt) != -1)
-	options[check_opt(s->opt)](s);
-      i++;
-    }
+  if (check_opt(s->opt) != -1)
+    options[check_opt(s->opt)](s);
 }

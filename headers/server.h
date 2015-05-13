@@ -5,11 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-<<<<<<< HEAD
-** Last update Fri May  8 11:10:45 2015 Audibert Louis
-=======
-** Last update Thu May  7 16:37:44 2015 Audibert Louis
->>>>>>> 74b218898bfbe51f965fb40c18f0217b30ce5029
+** Last update Wed May 13 11:55:42 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -88,12 +84,19 @@ typedef struct s_map
   t_list		***objects;
 }			t_map;
 
+typedef struct s_teams
+{
+  char			**team_names; // -n
+  int			len_names;
+  unsigned int		nb_max_clients_by_team; // -c
+  int			slot_rest;
+}			t_teams;
+
 typedef struct s_server
 {
   // Loulou's Work
   unsigned int		port; // -p
-  char			**team_names; // -n
-  unsigned int		nb_max_clients_by_team; // -c
+  t_teams		*teams; // -n -c
   unsigned int		time_action; // -t
   char			*optarg;
   int			opt;
@@ -134,7 +137,7 @@ void			my_printf(const char *, ...);
 
 void			init_opt(int (*options[5])(t_server *s));
 int			check_opt(int opt);
-void			exec_option(t_server *s);
+void			exec_option(t_server *s, int (*options[6])(t_server *s));
 
 /* OPTIONS.C */
 
@@ -154,7 +157,7 @@ int			opt_verbose(t_server *s);
 void			write_to_client(t_server *, char *);
 
 /* CREATE_MAP.C */
-void			init_map(t_map *, unsigned int, unsigned int);
+void			init_map(t_server *, unsigned int, unsigned int);
 char			**init_full_tab(int, int);
 
 /* EXEC_CMD.C */

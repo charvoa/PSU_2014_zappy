@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:34:34 2015 Audibert Louis
-** Last update Thu May  7 15:11:15 2015 Audibert Louis
+** Last update Wed May 13 11:42:00 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -13,14 +13,15 @@
 
 int	is_number(char *str)
 {
-  int	i;
+  int   i;
 
   i = 0;
-  while (str[i])
+  while (str[i] != '\0')
     {
-      if (!isalnum(str[i]))
+      if (str[i] >= '0' && str[i] <= '9')
+        i = i + 1;
+      else
 	return (-1);
-      i++;
     }
   return (0);
 }
@@ -43,7 +44,7 @@ int	opt_teams(t_server *s)
 int	opt_nb_client(t_server *s)
 {
   if (is_number(s->optarg) != -1)
-    s->nb_max_clients_by_team = atoi(s->optarg);
+    s->teams->nb_max_clients_by_team = atoi(s->optarg);
   else
     return (-1);
   return (0);
