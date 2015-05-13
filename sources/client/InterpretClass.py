@@ -9,7 +9,9 @@ class InterpretClass():
             return 1
 
     def interpret_num_client(self, s, rec, p):
+        print(rec)
         print('NUMBER OF CLIENT')
 
     def interpret_size(self, s, rec, p):
+        print(rec)
         print('SIZE')

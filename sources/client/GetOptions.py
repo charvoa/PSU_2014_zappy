@@ -1,12 +1,15 @@
+import random
 import getopt
 import sys
+import re
 
 class GetOptions(object):
 
     """ Get the arguments and get the value of the arguments """
 
     verbose = False
-    name = ''
+    name = 'Team'
+    name += str(random.randint(1,10))
     port = '4242'
     host = 'localhost'
 
