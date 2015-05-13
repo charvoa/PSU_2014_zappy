@@ -5,14 +5,14 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu May  7 16:36:04 2015 Audibert Louis
+## Last update Wed May 13 16:22:18 2015 Audibert Louis
 ##
 
 CC		= 	gcc
 
 RM		= 	rm -f
 
-CFLAGS		+= 	-W -Wall -Werror -Wextra
+CFLAGS		+= 	-W -Wall -Werror -Wextra -g3
 CFLAGS		+= 	-I.
 
 XDIR		=	../xfuncs/

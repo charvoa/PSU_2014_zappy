@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Wed May 13 10:38:43 2015 Audibert Louis
+** Last update Wed May 13 16:19:54 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -15,6 +15,7 @@ int	cmd_team(t_server *s)
   char	trame[3];
 
   bzero(trame, 3);
+  //if s->tab[1] correspond a un nom de s->team_names alors OK else NTM
   if (s->teams->slot_rest >= 1)
     {
       sprintf(trame, "%d", s->teams->slot_rest);
