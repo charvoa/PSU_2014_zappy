@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 15:24:45 2015 Audibert Louis
-** Last update Wed May 13 16:28:38 2015 Audibert Louis
+** Last update Wed May 13 16:58:11 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -33,7 +33,7 @@ int	check_cmd(char *cmd)
 
   i = 0;
   tab = get_cmd_tab();
-  while (i < 7)
+  while (i < 1)
     {
       if (strcmp(tab[i], cmd) == 0)
 	return (i);
@@ -49,10 +49,11 @@ void	exec_cmd(t_server *s)
   int	i;
   
   i = 0;
-  s->tab = my_str_to_wordtab(s->buf);
+  s->tab = parser(s->tab, s->buf);
   init_cmd(cmd);
   while (s->tab[i])
     {
+      printf("tab[%d] = %s\n", i, s->tab[i]);
       if (check_cmd(s->tab[0]) == -1)
 	fprintf(stderr, "Bad cmd: %s\n", s->tab[0]);
       else

@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed May 13 11:55:42 2015 Audibert Louis
+** Last update Wed May 13 16:40:19 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -169,5 +169,8 @@ int			cmd_team(t_server *s);
 /* MY_STR_TO_WORDTAB.C */
 char			**my_str_to_wordtab(char *);
 void			show_error(char *str);
+
+/* TMP */
+char			**parser(char **, char *);
 
 #endif /* !SERVER_H_ */

@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Wed May 13 11:55:19 2015 Audibert Louis
+** Last update Wed May 13 16:47:15 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -16,7 +16,7 @@ char		**init_full_tab(int width, int height)
   int		y;
 
   y = 0;
-  tab = xmalloc(height * sizeof(char *));
+  tab = xmalloc((height + 1) * sizeof(char *));
   while (y <= (height - 1))
     {
       tab[y] = xmalloc((width + 1) * sizeof(char));

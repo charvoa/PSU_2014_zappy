@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Wed May 13 16:22:18 2015 Audibert Louis
+## Last update Wed May 13 16:39:08 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -34,6 +34,7 @@ SRCS		= 	main.c	 			\
 			create_map.c			\
 			create_client.c			\
 			my_str_to_wordtab.c		\
+			parser.c			\
 			write_to_client.c
 
 NAME		= 	server
