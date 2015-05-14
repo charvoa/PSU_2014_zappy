@@ -26,7 +26,6 @@ typedef struct s_node
   e_object_type	type;
   void		*data;
   struct s_node *next;
-  struct s_node *prev;
 }		t_node;
 
 typedef struct s_list

@@ -19,12 +19,10 @@ void		add_node(t_list *list, t_node *node)
 	  list->start = node;
 	  list->end = node;
 	  node->next = NULL;
-	  node->prev = NULL;
 	}
       else
 	{
 	  list->end->next = node;
-	  node->prev = list->end;
 	  node->next = NULL;
 	  list->end = node;
 	}

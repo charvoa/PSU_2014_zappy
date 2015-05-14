@@ -65,6 +65,7 @@ typedef struct		s_player
   int			level;
   int			pos_x;
   int			pos_y;
+  t_list		*inventory;
   e_orientation		orientation;
 }			t_player;
 
