@@ -24,6 +24,7 @@
 # include		<fcntl.h>
 # include		<limits.h>
 # include		<signal.h>
+# include		<math.h>
 # include		"list.h"
 # include		"xfuncs.h"
 
@@ -52,19 +53,23 @@ typedef enum		e_orientation
     NONE
   }			e_orientation;
 
+typedef struct		s_position
+{
+  unsigned int		x;
+  unsigned int		y;
+}			t_position;
+
 typedef struct		s_food
 {
-  int			pos_x;
-  int			pos_y;
+  t_position		pos;
   e_orientation		orientation;
 }			t_food;
 
 typedef struct		s_player
 {
   char			*team;
-  int			level;
-  int			pos_x;
-  int			pos_y;
+  unsigned int		level;
+  t_position		pos;
   t_list		*inventory;
   e_orientation		orientation;
 }			t_player;
@@ -76,6 +81,7 @@ typedef struct	s_client
   char			*team_name;
   t_list		*players;
 }			t_client;
+
 
 typedef struct s_map
 {
@@ -119,7 +125,6 @@ typedef struct s_server
 
   // Pontoise's Work
   int			graph_launched;
-  //  char			**teams_names;
   t_map			*map;
   t_list		*clients;
 }			t_server;
@@ -135,24 +140,28 @@ void			read_write_server(t_server*, int, char**);
 void			my_printf(const char *, ...);
 
 /* SET_OPTIONS.C */
+void			init_opt(int (*options[5])(t_server *));
+int			check_opt(int);
+void			exec_option(t_server *, int (*options[6])(t_server *));
 
-void			init_opt(int (*options[5])(t_server *s));
-int			check_opt(int opt);
-void			exec_option(t_server *s, int (*options[6])(t_server *s));
+/* DISTANCES.C */
+unsigned int   		calcul_length(unsigned int, unsigned int, t_map *);
+unsigned int   		calcul_width(unsigned int, unsigned int, t_map *);
+float			calcul_distance(int, int);
+unsigned int		calcul_limit(unsigned int);
+float			give_me_distance(t_map *, t_position *, t_position *);
 
 /* OPTIONS.C */
-
-int			is_number(char *str);
-int			opt_port(t_server *s);
-int			opt_teams(t_server *s);
-int			opt_nb_client(t_server *s);
-int			opt_time_action(t_server *s);
+int			is_number(char *);
+int			opt_port(t_server *);
+int			opt_teams(t_server *);
+int			opt_nb_client(t_server *);
+int			opt_time_action(t_server *);
 
 /* OPTIONS2.C */
-
-int			opt_x_map(t_server *s);
-int			opt_y_map(t_server *s);
-int			opt_verbose(t_server *s);
+int			opt_x_map(t_server *);
+int			opt_y_map(t_server *);
+int			opt_verbose(t_server *);
 
 /* WRITE_TO_CLIENT.C */
 void			write_to_client(t_server *, char *);
@@ -162,14 +171,14 @@ void			init_map(t_server *, unsigned int, unsigned int);
 char			**init_full_tab(int, int);
 
 /* EXEC_CMD.C */
-void			exec_cmd(t_server *s);
+void			exec_cmd(t_server *);
 
 /* COMMANDS.C */
-int			cmd_team(t_server *s);
+int			cmd_team(t_server *);
 
 /* MY_STR_TO_WORDTAB.C */
 char			**my_str_to_wordtab(char *);
-void			show_error(char *str);
+void			show_error(char *);
 
 /* TMP */
 char			**parser(char **, char *);

@@ -15,7 +15,13 @@ RM		= 	rm -f
 CFLAGS		+= 	-W -Wall -Werror -Wextra -g3
 CFLAGS		+= 	-I.
 
+EXTERNLIB	=	-lm
+
 XDIR		=	../xfuncs/
+
+CMDIA		=	./cmd_ia/
+
+CMDGR		=	./cmd_graph/
 
 SRCS		= 	main.c	 			\
 			list.c	 			\
@@ -30,6 +36,7 @@ SRCS		= 	main.c	 			\
 			options2.c			\
 			my_printf.c			\
 			exec_cmd.c			\
+			distances.c			\
 			commands.c			\
 			create_map.c			\
 			create_client.c			\
@@ -44,7 +51,7 @@ OBJS		= 	$(SRCS:.c=.o)
 all		: 	$(NAME)
 
 $(NAME)		: 	$(OBJS)
-			$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
+			$(CC) $(OBJS) -o $(NAME) $(LDFLAGS) $(EXTERNLIB)
 			cp $(NAME) ../../
 			@echo "\033[33;33m Compiling server binary\t\t\t[DONE]\033[1;37m"
 
