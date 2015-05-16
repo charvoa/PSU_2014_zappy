@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:16:33 2015 Audibert Louis
-** Last update Wed May 13 11:22:17 2015 Audibert Louis
+** Last update Sat May 16 18:31:07 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -13,12 +13,12 @@
 void	init_opt(int (*options[6])(t_server *s))
 {
   options[0] = &opt_port;
-  options[1] = &opt_x_map;
-  options[2] = &opt_y_map;
+  options[1] = &opt_height_map;
+  options[2] = &opt_width_map;
   options[3] = &opt_teams;
   options[4] = &opt_nb_client;
   options[5] = &opt_time_action;
-  options[6] = &opt_verbose;
+  //  options[6] = &opt_verbose;
 }
 
 int	check_opt(int opt)

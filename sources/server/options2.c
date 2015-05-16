@@ -5,18 +5,18 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 14:05:42 2015 Audibert Louis
-** Last update Wed May 13 11:46:11 2015 Audibert Louis
+** Last update Sat May 16 17:20:20 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
 
-int	opt_x_map(t_server *s)
+int	opt_width_map(t_server *s)
 {
   if (is_number(s->optarg) != -1)
     {
       printf("before atoi X\n");
       printf("s->map->width = %d\n", s->map->width);
-      /* s->map->width = atoi(s->optarg); */
+      s->map->width = atoi(s->optarg);
       printf("after atoi X\n");
     }
   else
@@ -24,7 +24,7 @@ int	opt_x_map(t_server *s)
   return (0);
 }
 
-int	opt_y_map(t_server *s)
+int	opt_height_map(t_server *s)
 {
   if (is_number(s->optarg) != -1)
     {

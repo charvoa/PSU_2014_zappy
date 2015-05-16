@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed May 13 16:40:19 2015 Audibert Louis
+** Last update Sat May 16 18:37:24 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -82,7 +82,6 @@ typedef struct	s_client
   t_list		*players;
 }			t_client;
 
-
 typedef struct s_map
 {
   unsigned int	       	width; // -x
@@ -139,8 +138,14 @@ void			accept_server(t_server*, char**);
 void			read_write_server(t_server*, int, char**);
 void			my_printf(const char *, ...);
 
+/* SERVER.C */
+void			handler_ctrl_c(int);
+void			loop_server(t_server *, char**);
+void			init_opt_server(t_server *);
+t_server		*fill_struct_serv(int, char **);
+
 /* SET_OPTIONS.C */
-void			init_opt(int (*options[5])(t_server *));
+void			init_opt(int (*options[6])(t_server *));
 int			check_opt(int);
 void			exec_option(t_server *, int (*options[6])(t_server *));
 
@@ -159,8 +164,8 @@ int			opt_nb_client(t_server *);
 int			opt_time_action(t_server *);
 
 /* OPTIONS2.C */
-int			opt_x_map(t_server *);
-int			opt_y_map(t_server *);
+int			opt_width_map(t_server *);
+int			opt_height_map(t_server *);
 int			opt_verbose(t_server *);
 
 /* WRITE_TO_CLIENT.C */
@@ -177,6 +182,8 @@ void			exec_cmd(t_server *);
 int			cmd_team(t_server *);
 
 /* MY_STR_TO_WORDTAB.C */
+int			my_count_word(char *);
+int			my_count_char(char *, int *);
 char			**my_str_to_wordtab(char *);
 void			show_error(char *);
 

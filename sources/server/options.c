@@ -8,8 +8,8 @@
 ** Last update Wed May 13 11:42:00 2015 Audibert Louis
 */
 
-#include "../../headers/server.h"
 #include <ctype.h>
+#include "../../headers/server.h"
 
 int	is_number(char *str)
 {
