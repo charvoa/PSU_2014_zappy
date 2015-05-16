@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Wed May 13 16:47:15 2015 Audibert Louis
+** Last update Sat May 16 19:05:56 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -20,7 +20,7 @@ char		**init_full_tab(int width, int height)
   while (y <= (height - 1))
     {
       tab[y] = xmalloc((width + 1) * sizeof(char));
-      memset(tab, 0, width);
+      memset(tab[y], 0, width + 1);
       y++;
     }
   tab[y] = NULL;
