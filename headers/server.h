@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sat May 16 18:37:24 2015 Serge Heitzler
+** Last update Sat May 16 19:38:02 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -25,6 +25,7 @@
 # include		<limits.h>
 # include		<signal.h>
 # include		<math.h>
+# include		<time.h>
 # include		"list.h"
 # include		"xfuncs.h"
 
@@ -61,7 +62,7 @@ typedef struct		s_position
 
 typedef struct		s_food
 {
-  t_position		pos;
+  t_position		*pos;
   e_orientation		orientation;
 }			t_food;
 
@@ -69,7 +70,7 @@ typedef struct		s_player
 {
   char			*team;
   unsigned int		level;
-  t_position		pos;
+  t_position		*pos;
   t_list		*inventory;
   e_orientation		orientation;
 }			t_player;
@@ -82,10 +83,15 @@ typedef struct	s_client
   t_list		*players;
 }			t_client;
 
-typedef struct s_map
+typedef struct s_size
 {
   unsigned int	       	width; // -x
-  unsigned int	       	height; // -y
+  unsigned int	       	height; // -y  
+}		t_size;
+
+typedef struct s_map
+{
+  t_size		*size;
   char			**full;
   t_list		***objects;
 }			t_map;

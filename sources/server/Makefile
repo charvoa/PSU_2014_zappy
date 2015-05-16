@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sat May 16 18:34:04 2015 Serge Heitzler
+## Last update Sat May 16 19:59:59 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -38,6 +38,7 @@ SRCS		= 	main.c	 			\
 			my_printf.c			\
 			exec_cmd.c			\
 			distances.c			\
+			rand_orientations.c		\
 			commands.c			\
 			create_map.c			\
 			create_client.c			\

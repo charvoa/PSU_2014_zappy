@@ -4,18 +4,18 @@ unsigned int	calcul_length(unsigned int f_pos_x,
 			      unsigned int s_pos_x, t_map *map)
 {
   if (f_pos_x < s_pos_x)
-    return (f_pos_x + (map->width - s_pos_x));
+    return (f_pos_x + (map->size->width - s_pos_x));
   else
-    return ((map->width - f_pos_x) + s_pos_x);
+    return ((map->size->width - f_pos_x) + s_pos_x);
 }
 
 unsigned int   	calcul_width(unsigned int f_pos_y,
 			     unsigned int s_pos_y, t_map *map)
 {
   if (f_pos_y < s_pos_y)
-    return (f_pos_y + (map->height - s_pos_y));
+    return (f_pos_y + (map->size->height - s_pos_y));
   else
-    return ((map->height - f_pos_y) + s_pos_y);
+    return ((map->size->height - f_pos_y) + s_pos_y);
 }
 
 float		calcul_distance(int w, int l)
@@ -41,12 +41,12 @@ float		give_me_distance(t_map *map, t_position *f_pos, t_position *s_pos)
   unsigned int	l;
   unsigned int	w;
 
-  limit = calcul_limit(map->width);
+  limit = calcul_limit(map->size->width);
   if ((unsigned int)abs(f_pos->x - s_pos->x) >= limit)
     l = calcul_length(f_pos->x, s_pos->x, map);
   else
     l = abs(f_pos->x - s_pos->x);
-  limit = calcul_limit(map->height);
+  limit = calcul_limit(map->size->height);
   if ((unsigned int)abs(f_pos->y - s_pos->y) >= limit)
     w = calcul_width(f_pos->y, s_pos->y, map);
   else

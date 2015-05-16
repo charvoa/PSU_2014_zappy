@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Sat May 16 18:34:44 2015 Serge Heitzler
+** Last update Sat May 16 19:19:57 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -14,6 +14,7 @@ int		main(int argc, char **argv)
 {
   t_server	*s;
   
+  srand(time(NULL));
   s = fill_struct_serv(argc, argv);
   init_socket(s);
   bind_socket(s, 4242);

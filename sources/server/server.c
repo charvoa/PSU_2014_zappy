@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sat May 16 18:33:48 2015 Serge Heitzler
+** Last update Sat May 16 20:00:04 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -74,6 +74,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
 
   s = xmalloc(sizeof(t_server));
   s->teams = xmalloc(sizeof(t_teams));
+  /* Init à la bonne taille si argument x et y ? */
   init_map(s, 20, 20);
   init_opt(options);
   init_opt_server(s);
