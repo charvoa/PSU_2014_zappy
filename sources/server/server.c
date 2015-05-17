@@ -5,10 +5,10 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sat May 16 20:00:04 2015 Serge Heitzler
+** Last update Sun May 17 11:39:12 2015 Serge Heitzler
 */
 
-#include "../../headers/server.h"
+#include "server.h"
 
 int	g_listener;
 int	g_fdmax;

@@ -5,10 +5,10 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 16:42:37 2015 Serge Heitzler
-** Last update Wed May  6 19:10:39 2015 Serge Heitzler
+** Last update Sun May 17 11:40:06 2015 Serge Heitzler
 */
 
-#include "../../headers/server.h"
+#include "server.h"
 
 void		add_node(t_list *list, t_node *node)
 {

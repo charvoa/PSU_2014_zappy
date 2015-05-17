@@ -5,10 +5,10 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 17:45:21 2015 Serge Heitzler
-** Last update Thu May  7 14:16:41 2015 Audibert Louis
+** Last update Sun May 17 11:39:38 2015 Serge Heitzler
 */
 
-#include "../../headers/server.h"
+#include "server.h"
 
 void            show_list(t_list *list)
 {

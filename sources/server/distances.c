@@ -1,4 +1,14 @@
-#include "../../headers/server.h"
+/*
+** distances.c for zappy in /home/heitzls/rendu/PSU_2014_zappy/sources/server
+** 
+** Made by Serge Heitzler
+** Login   <heitzls@epitech.net>
+** 
+** Started on  Sun May 17 11:39:43 2015 Serge Heitzler
+** Last update Sun May 17 11:39:47 2015 Serge Heitzler
+*/
+
+#include "server.h"
 
 unsigned int	calcul_length(unsigned int f_pos_x,
 			      unsigned int s_pos_x, t_map *map)

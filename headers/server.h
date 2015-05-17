@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sat May 16 19:38:02 2015 Serge Heitzler
+** Last update Sun May 17 11:52:42 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -47,10 +47,10 @@ typedef enum		e_rock
 
 typedef enum		e_orientation
   {
-    UP,
-    RIGHT,
-    DOWN,
-    LEFT,
+    UP = 0,
+    RIGHT = 1,
+    DOWN = 2,
+    LEFT = 3,
     NONE
   }			e_orientation;
 
@@ -144,16 +144,22 @@ void			accept_server(t_server*, char**);
 void			read_write_server(t_server*, int, char**);
 void			my_printf(const char *, ...);
 
-/* SERVER.C */
-void			handler_ctrl_c(int);
-void			loop_server(t_server *, char**);
-void			init_opt_server(t_server *);
-t_server		*fill_struct_serv(int, char **);
+/* $(CMDIA)CMD_LEFT.C */
+void			cmd_left(t_player *player);
 
-/* SET_OPTIONS.C */
-void			init_opt(int (*options[6])(t_server *));
-int			check_opt(int);
-void			exec_option(t_server *, int (*options[6])(t_server *));
+/* $(CMDIA)CMD_RIGHT.C */
+void			cmd_right(t_player *player);
+
+/* CREATE_PLAYERS.C */
+void			init_orientation(void(*orientation[4])(t_player *));
+void			init_player(t_player *, char *, t_size *);
+
+/* CREATE_MAP.C */
+void			init_map(t_server *, unsigned int, unsigned int);
+char			**init_full_tab(int, int);
+
+/* COMMANDS.C */
+int			cmd_team(t_server *);
 
 /* DISTANCES.C */
 unsigned int   		calcul_length(unsigned int, unsigned int, t_map *);
@@ -161,6 +167,15 @@ unsigned int   		calcul_width(unsigned int, unsigned int, t_map *);
 float			calcul_distance(int, int);
 unsigned int		calcul_limit(unsigned int);
 float			give_me_distance(t_map *, t_position *, t_position *);
+
+/* EXEC_CMD.C */
+void			exec_cmd(t_server *);
+
+/* MY_STR_TO_WORDTAB.C */
+int			my_count_word(char *);
+int			my_count_char(char *, int *);
+char			**my_str_to_wordtab(char *);
+void			show_error(char *);
 
 /* OPTIONS.C */
 int			is_number(char *);
@@ -174,26 +189,27 @@ int			opt_width_map(t_server *);
 int			opt_height_map(t_server *);
 int			opt_verbose(t_server *);
 
-/* WRITE_TO_CLIENT.C */
-void			write_to_client(t_server *, char *);
+/* RAND_ORIENTATIONS.C */
+void			ori_up();
+void			ori_right();
+void	       		ori_down();
+void			ori_left();
 
-/* CREATE_MAP.C */
-void			init_map(t_server *, unsigned int, unsigned int);
-char			**init_full_tab(int, int);
+/* SERVER.C */
+void			handler_ctrl_c(int);
+void			loop_server(t_server *, char**);
+void			init_opt_server(t_server *);
+t_server		*fill_struct_serv(int, char **);
 
-/* EXEC_CMD.C */
-void			exec_cmd(t_server *);
-
-/* COMMANDS.C */
-int			cmd_team(t_server *);
-
-/* MY_STR_TO_WORDTAB.C */
-int			my_count_word(char *);
-int			my_count_char(char *, int *);
-char			**my_str_to_wordtab(char *);
-void			show_error(char *);
+/* SET_OPTIONS.C */
+void			init_opt(int (*options[6])(t_server *));
+int			check_opt(int);
+void			exec_option(t_server *, int (*options[6])(t_server *));
 
 /* TMP */
 char			**parser(char **, char *);
+
+/* WRITE_TO_CLIENT.C */
+void			write_to_client(t_server *, char *);
 
 #endif /* !SERVER_H_ */

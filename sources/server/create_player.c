@@ -5,36 +5,29 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 10:55:38 2015 Serge Heitzler
-** Last update Sat May 16 20:12:29 2015 Serge Heitzler
+** Last update Sun May 17 11:38:24 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
 
-void		init_orientation(e_orientation (*orientation[5])(void))
+void		init_orientation(void (*orientation[4])(t_player *))
 {
-  orientations[0] = &ori_up;
-  orientations[1] = &ori_right;
-  orientations[2] = &ori_down;
-  orientations[3] = &ori_left;
-  orientations[4] = &ori_none;
-}
-
-
-e_orientation	give_orientation(int i,
-				 e_orientation (*orientation[5](void)))
-{
-  return (orientation[i]);
+  orientation[0] = &ori_up;
+  orientation[1] = &ori_right;
+  orientation[2] = &ori_down;
+  orientation[3] = &ori_left;
 }
 
 void		init_player(t_player *player,
 			    char *team, t_size *size)
 {
-  int		(*orientation[5])(void);
+  void	(*orientation[4])(t_player *);
 
   init_orientation(orientation);
   player->level = 1;
-  player->pos_x = rand() % size->width;
-  player->pos_y = rand() % size->height;
-  player->orientation = orientation[rand % 4];
+  player->team = strdup(team);
+  player->pos->x = rand() % size->width;
+  player->pos->y = rand() % size->height;
+  orientation[rand() % 4](player);
   player->inventory = create_list();
 }

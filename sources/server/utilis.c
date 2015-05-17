@@ -5,10 +5,10 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Wed May 13 16:12:49 2015 Audibert Louis
+** Last update Sun May 17 11:39:06 2015 Serge Heitzler
 */
 
-#include "../../headers/server.h"
+#include "server.h"
 
 void	init_socket(t_server *s)
 {

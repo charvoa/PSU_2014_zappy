@@ -5,10 +5,10 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Tue Mar 10 15:05:32 2015 Nicolas Charvoz
-** Last update Wed May 13 16:41:10 2015 Audibert Louis
+** Last update Sun May 17 11:39:18 2015 Serge Heitzler
 */
 
-#include "../../headers/server.h"
+#include "server.h"
 
 int     countchar2(char *str)
 {

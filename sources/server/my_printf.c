@@ -5,12 +5,12 @@
 ** Login   <girard_s@epitech.net>
 **
 ** Started on  Tue May  5 14:41:57 2015 Nicolas Girardot
-** Last update Thu May  7 12:06:11 2015 Serge Heitzler
+** Last update Sun May 17 11:39:31 2015 Serge Heitzler
 */
 
 #include <stdarg.h>
 #include <stdio.h>
-#include "../../headers/server.h"
+#include "server.h"
 
 void	my_printf(const char *format, ...)
 {

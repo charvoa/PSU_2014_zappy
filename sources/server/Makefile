@@ -5,15 +5,15 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sat May 16 19:59:59 2015 Serge Heitzler
+## Last update Sun May 17 11:49:26 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
 
-RM		= 	rm -f
+RM		= 	rm -rf
 
 CFLAGS		+= 	-W -Wall -Werror -Wextra -g3
-CFLAGS		+= 	-I.
+CFLAGS		+= 	-I ../../headers/
 
 EXTERNLIB	=	-lm
 
@@ -26,10 +26,6 @@ CMDGR		=	./cmd_graph/
 SRCS		= 	main.c	 			\
 			list.c	 			\
 			add_in_list.c		 	\
-			$(XDIR)xmalloc.c	 	\
-			$(XDIR)xlisten.c	 	\
-			$(XDIR)xbind.c		 	\
-			$(XDIR)xsocket.c	 	\
 			utilis.c			\
 			set_options.c			\
 			server.c			\
@@ -42,9 +38,16 @@ SRCS		= 	main.c	 			\
 			commands.c			\
 			create_map.c			\
 			create_client.c			\
+			create_player.c			\
 			my_str_to_wordtab.c		\
 			parser.c			\
-			write_to_client.c
+			write_to_client.c		\
+			$(XDIR)xmalloc.c	 	\
+			$(XDIR)xlisten.c	 	\
+			$(XDIR)xbind.c		 	\
+			$(XDIR)xsocket.c	 	\
+			$(CMDIA)cmd_right.c		\
+			$(CMDIA)cmd_left.c		\
 
 NAME		= 	server
 

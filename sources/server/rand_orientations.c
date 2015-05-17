@@ -5,32 +5,27 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 19:57:54 2015 Serge Heitzler
-** Last update Sat May 16 20:00:25 2015 Serge Heitzler
+** Last update Sun May 17 11:26:08 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
 
-e_orientation		ori_up()
+void		ori_up(t_player *player)
 {
-  return (UP);
+  player->orientation = UP;
 }
 
-e_orientation		ori_right()
+void		ori_right(t_player *player)
 {
-  return (RIGHT);
+  player->orientation = RIGHT;
 }
 
-e_orientation		ori_down()
+void		ori_down(t_player *player)
 {
-  return (DOWN);
+  player->orientation = DOWN;
 }
 
-e_orientation		ori_left()
+void		ori_left(t_player *player)
 {
-  return (LEFT);
-}
-
-e_orientation		ori_none()
-{
-  return (NONE);
+  player->orientation = LEFT;
 }

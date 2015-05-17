@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 10:35:54 2015 Audibert Louis
-** Last update Thu May  7 12:06:02 2015 Serge Heitzler
+** Last update Sun May 17 11:39:00 2015 Serge Heitzler
 */
 
-#include "../../headers/server.h"
+#include "server.h"
 
 void	write_to_client(t_server *s, char *str)
 {
