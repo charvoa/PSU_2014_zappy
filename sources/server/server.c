@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sun May 17 11:39:12 2015 Serge Heitzler
+** Last update Tue May 19 12:49:22 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -59,8 +59,27 @@ void		loop_server(t_server *s, char **argv)
     }
 }
 
+char	**get_tab(int argc, char **argv)
+{
+  char	**tab;
+  int	i;
+
+  tab = xmalloc(argc * sizeof(char*));
+  i = 0;
+  while (argv[i])
+    {
+      tab[i] = xmalloc((strlen(argv[i]) + 1) * sizeof(char));
+      bzero(tab[i], (strlen(argv[i]) + 1));
+      strcpy(tab[i], argv[i]);
+      i++;
+    }
+  tab[i] = NULL;
+  return (tab);
+}
+
 void	init_opt_server(t_server *s)
 {
+  s->o = xmalloc(sizeof(*s->o));
   s->port = 4242;
   s->teams->nb_max_clients_by_team = 10;
   s->time_action = 1;
@@ -79,13 +98,23 @@ t_server	*fill_struct_serv(int argc, char **argv)
   init_opt(options);
   init_opt_server(s);
   s->clients = create_list();
+  s->o->argc = argc;
+  s->o->argv = get_tab(argc, argv);
   while ((opt = getopt(argc, argv,"p:x:y:n:c:t:v")) != -1)
     {
       printf("opt = %d\n", opt);
-      s->opt = opt;
-      s->optarg = optarg;
+      s->o->opt = opt;
+      s->o->optarg = optarg;
+      s->o->optind = optind;
       exec_option(s, options);
     }
+      int	i = 0;
+      if (s->teams->team_names[i] == NULL)
+	printf("Teams[0] = NULL\n");
+      while (s->teams->team_names[i] != NULL)
+	{
+	  printf("Team[%d] : %s\n", i, s->teams->team_names[i]);
+	  i++;
+	}
   return (s);
 }
-

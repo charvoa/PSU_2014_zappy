@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sun May 17 11:52:42 2015 Serge Heitzler
+** Last update Tue May 19 09:57:12 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -104,14 +104,22 @@ typedef struct s_teams
   int			slot_rest;
 }			t_teams;
 
+typedef struct s_opt
+{
+  char			*optarg;
+  int			opt;
+  int			optind;
+  int			argc;
+  char			**argv;
+}		t_opt;
+
 typedef struct s_server
 {
   // Loulou's Work
   unsigned int		port; // -p
   t_teams		*teams; // -n -c
   unsigned int		time_action; // -t
-  char			*optarg;
-  int			opt;
+  t_opt			*o;
   char			**tab;
 
   // Charvo's struct

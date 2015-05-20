@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:16:33 2015 Audibert Louis
-** Last update Sat May 16 18:31:07 2015 Serge Heitzler
+** Last update Tue May 19 09:56:54 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -39,6 +39,6 @@ int	check_opt(int opt)
 
 void	exec_option(t_server *s, int (*options[6])(t_server *s))
 {
-  if (check_opt(s->opt) != -1)
-    options[check_opt(s->opt)](s);
+  if (check_opt(s->o->opt) != -1)
+    options[check_opt(s->o->opt)](s);
 }
