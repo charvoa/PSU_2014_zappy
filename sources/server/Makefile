@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sun May 17 11:49:26 2015 Serge Heitzler
+## Last update Thu May 21 20:47:25 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -24,23 +24,23 @@ CMDIA		=	./cmd_ia/
 CMDGR		=	./cmd_graph/
 
 SRCS		= 	main.c	 			\
-			list.c	 			\
 			add_in_list.c		 	\
-			utilis.c			\
-			set_options.c			\
-			server.c			\
-			options.c			\
-			options2.c			\
-			my_printf.c			\
-			exec_cmd.c			\
-			distances.c			\
-			rand_orientations.c		\
 			commands.c			\
 			create_map.c			\
 			create_client.c			\
-			create_player.c			\
+			distances.c			\
+			exec_cmd.c			\
+			list.c	 			\
+			my_printf.c			\
 			my_str_to_wordtab.c		\
+			options.c			\
+			options2.c			\
+			rand_orientations.c		\
 			parser.c			\
+			send_data.c			\
+			set_options.c			\
+			server.c			\
+			utilis.c			\
 			write_to_client.c		\
 			$(XDIR)xmalloc.c	 	\
 			$(XDIR)xlisten.c	 	\
