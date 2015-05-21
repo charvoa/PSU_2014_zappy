@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu May 21 20:47:25 2015 Serge Heitzler
+## Last update Thu May 21 21:22:13 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -48,6 +48,8 @@ SRCS		= 	main.c	 			\
 			$(XDIR)xsocket.c	 	\
 			$(CMDIA)cmd_right.c		\
 			$(CMDIA)cmd_left.c		\
+			$(CMDIA)cmd_advance.c		\
+			$(CMDIA)advance_funcs.c		\
 
 NAME		= 	server
 
