@@ -5,13 +5,14 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:17 2015 Nicolas Girardot
-// Last update Thu May 21 11:15:27 2015 Nicolas Girardot
+// Last update Thu May 21 12:09:43 2015 Florian PERU
 //
 
 #ifndef COMMAND_HH_
 # define COMMAND_HH_
 
 #include <fstream>
+#include <sstream>
 #include <iostream>
 #include <map>
 
