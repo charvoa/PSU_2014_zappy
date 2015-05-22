@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri May 22 11:56:46 2015 Serge Heitzler
+** Last update Fri May 22 13:34:55 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -100,7 +100,7 @@ typedef struct s_map
 
 typedef struct s_teams
 {
-  char			**team_names; // -n
+  char			**names; // -n
   int			len_names;
   unsigned int		nb_max_clients_by_team; // -c
   int			slot_rest;
@@ -175,6 +175,9 @@ void			adv_up(t_size *, t_client *);
 void			adv_right(t_size *, t_client *);
 void	       		adv_down(t_size *, t_client *);
 void			adv_left(t_size *, t_client *);
+
+/* count_teams.C */
+int			count_teams(t_server *);
 
 /* CREATE_CLIENT.C */
 void			init_orientation(void(*orientation[4])(t_client *));

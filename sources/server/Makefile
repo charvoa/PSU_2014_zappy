@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Fri May 22 11:26:43 2015 Serge Heitzler
+## Last update Fri May 22 13:34:34 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -26,6 +26,7 @@ CMDGR		=	./cmd_graph/
 SRCS		= 	main.c	 			\
 			add_in_list.c		 	\
 			commands.c			\
+			count_teams.c			\
 			create_map.c			\
 			create_client.c			\
 			distances.c			\

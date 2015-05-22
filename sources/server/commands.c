@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Wed May 20 18:49:11 2015 Audibert Louis
+** Last update Fri May 22 13:35:19 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -15,9 +15,9 @@ int	is_a_team(t_server *s)
   int	i;
 
   i = 0;
-  while (s->teams->team_names[i] != NULL)
+  while (s->teams->names[i] != NULL)
     {
-      if (strcmp(s->teams->team_names[i], s->tab[1]) == 0)
+      if (strcmp(s->teams->names[i], s->tab[1]) == 0)
 	return (0);
       i++;
     }
