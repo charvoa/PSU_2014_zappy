@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Tue May 19 12:49:22 2015 Audibert Louis
+** Last update Wed May 20 18:36:19 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -64,7 +64,7 @@ char	**get_tab(int argc, char **argv)
   char	**tab;
   int	i;
 
-  tab = xmalloc(argc * sizeof(char*));
+  tab = xmalloc((argc + 1) * sizeof(char*));
   i = 0;
   while (argv[i])
     {

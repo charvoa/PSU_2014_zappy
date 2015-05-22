@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:34:34 2015 Audibert Louis
-** Last update Wed May 20 15:19:34 2015 Audibert Louis
+** Last update Fri May 22 12:08:34 2015 Audibert Louis
 */
 
 #include <ctype.h>
@@ -44,10 +44,13 @@ int	opt_teams(t_server *s)
   s->teams->team_names = xmalloc(2 * sizeof(char*));
   while (s->o->optind < s->o->argc && *(s->o->argv[s->o->optind]) != '-')
     {
-      s->teams->team_names[i] = strdup(s->o->argv[s->o->optind]);
+      s->teams->team_names = realloc(s->teams->team_names, 1 * sizeof(char*));
+      s->teams->team_names[i] = xmalloc((strlen(s->o->argv[s->o->optind]) + 1) * sizeof(char)); // 93 characteres, enlever le sizeof char ?
+      bzero(s->teams->team_names[i], strlen(s->o->argv[s->o->optind]) + 1);
+      strcpy(s->teams->team_names[i], s->o->argv[s->o->optind]);
+      //     s->teams->team_names[i] = strdup(s->o->argv[s->o->optind]);
       s->o->optind++;
       i++;
-      s->teams->team_names = realloc(s->teams->team_names, sizeof(char*));
     }
   s->teams->team_names[i] = NULL;
   return (0);

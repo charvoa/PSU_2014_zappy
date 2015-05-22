@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Wed May 20 16:26:24 2015 Audibert Louis
+** Last update Wed May 20 18:49:11 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -17,7 +17,7 @@ int	is_a_team(t_server *s)
   i = 0;
   while (s->teams->team_names[i] != NULL)
     {
-      if (s->teams->team_names[i] == s->tab[1])
+      if (strcmp(s->teams->team_names[i], s->tab[1]) == 0)
 	return (0);
       i++;
     }
@@ -38,13 +38,10 @@ int	cmd_team(t_server *s)
 	  s->teams->slot_rest --;
 	}
       else
-	write_to_client(s, "NO_SLOT_REST");
+	write_to_client(s, "NO_SLOT_REST\r\n");
     }
   bzero(trame, 3);
-  sprintf(trame, "%d\r\n", s->map->size->width);
-  write_to_client(s, trame);
-  bzero(trame, 3);
-  sprintf(trame, "%d\r\n", s->map->size->height);
+  sprintf(trame, "%d-%d\r\n", s->map->size->width, s->map->size->height);
   write_to_client(s, trame);
   return (0);
 }
