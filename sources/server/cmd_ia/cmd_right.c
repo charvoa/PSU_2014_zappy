@@ -5,15 +5,18 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sun May 17 10:54:26 2015 Serge Heitzler
-** Last update Sun May 17 11:44:59 2015 Serge Heitzler
+** Last update Fri May 22 11:54:44 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-void		cmd_right(t_player *player)
+int		cmd_right(t_server *server, t_client *client)
 {
-  void	(*orientation[4])(t_player *);
+  void	(*orientation[4])(t_client *);
 
+  usleep((7 / server->time_action) * 1000);
   init_orientation(orientation);
-  orientation[(player->orientation + 1) % 4](player);
+  orientation[(client->orientation + 1) % 4](client);
+  send_data(client->fd, "ok");
+  return (SUCCESS);
 }

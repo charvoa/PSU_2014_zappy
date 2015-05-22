@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Thu May  7 15:52:55 2015 Nicolas Girardot
+// Last update Wed May 13 11:05:46 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
@@ -54,8 +54,6 @@ void	Socket::selectSocket()
 {
   std::stringstream readd;
   const std::string tmp;
-  char *end_of_put;
-  char buffer[4096];
   int connected = 0;
 
   while (42)

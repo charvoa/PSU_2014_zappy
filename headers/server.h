@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue May 19 09:57:12 2015 Audibert Louis
+** Last update Fri May 22 11:56:46 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -34,6 +34,8 @@
 # define		GREEN "\x1b[32m"
 # define		YELLOW "\x1b[33m"
 # define		RESET "\x1b[0m"
+# define		ERROR -1
+# define		SUCCESS 0
 
 typedef enum		e_rock
   {
@@ -54,6 +56,12 @@ typedef enum		e_orientation
     NONE
   }			e_orientation;
 
+typedef enum		e_bool
+  {
+    TRUE,
+    FALSE
+  }			e_bool;
+
 typedef struct		s_position
 {
   unsigned int		x;
@@ -66,20 +74,14 @@ typedef struct		s_food
   e_orientation		orientation;
 }			t_food;
 
-typedef struct		s_player
+typedef struct	s_client
 {
-  char			*team;
+  int			fd;
+  char			*team_name;
   unsigned int		level;
   t_position		*pos;
   t_list		*inventory;
   e_orientation		orientation;
-}			t_player;
-
-typedef struct	s_client
-{
-  int			fd;
-  int			nbr_players;
-  char			*team_name;
   t_list		*players;
 }			t_client;
 
@@ -113,6 +115,12 @@ typedef struct s_opt
   char			**argv;
 }		t_opt;
 
+typedef struct s_server_graph
+{
+  e_bool	connected;
+  int		fd;
+}		t_server_graph;
+
 typedef struct s_server
 {
   // Loulou's Work
@@ -137,9 +145,9 @@ typedef struct s_server
   char			*home;
 
   // Pontoise's Work
-  int			graph_launched;
   t_map			*map;
   t_list		*clients;
+  t_server_graph	*graph;
 }			t_server;
 
 extern	int		g_verbose;
@@ -152,15 +160,25 @@ void			accept_server(t_server*, char**);
 void			read_write_server(t_server*, int, char**);
 void			my_printf(const char *, ...);
 
-/* $(CMDIA)CMD_LEFT.C */
-void			cmd_left(t_player *player);
 
-/* $(CMDIA)CMD_RIGHT.C */
-void			cmd_right(t_player *player);
+int			cmd_left(t_server *, t_client *);
+int			cmd_right(t_server *, t_client *);
+int			cmd_set_time(t_server *, t_client *, const char *);
+int			cmd_get_time(t_server *, t_client *);
+int			cmd_advance(t_server *, t_client *);
 
-/* CREATE_PLAYERS.C */
-void			init_orientation(void(*orientation[4])(t_player *));
-void			init_player(t_player *, char *, t_size *);
+void			init_advance(void (*advance[4])(t_size *, t_client *));
+int			int_size_to_malloc(int);
+
+/* $(CMDIA)ADVANCE_FUNCS.C */
+void			adv_up(t_size *, t_client *);
+void			adv_right(t_size *, t_client *);
+void	       		adv_down(t_size *, t_client *);
+void			adv_left(t_size *, t_client *);
+
+/* CREATE_CLIENT.C */
+void			init_orientation(void(*orientation[4])(t_client *));
+void			create_client(t_client *, int, char *, t_size *);
 
 /* CREATE_MAP.C */
 void			init_map(t_server *, unsigned int, unsigned int);
@@ -198,16 +216,19 @@ int			opt_height_map(t_server *);
 int			opt_verbose(t_server *);
 
 /* RAND_ORIENTATIONS.C */
-void			ori_up();
-void			ori_right();
-void	       		ori_down();
-void			ori_left();
+void			ori_up(t_client *);
+void			ori_right(t_client *);
+void	       		ori_down(t_client *);
+void			ori_left(t_client *);
 
 /* SERVER.C */
 void			handler_ctrl_c(int);
 void			loop_server(t_server *, char**);
 void			init_opt_server(t_server *);
 t_server		*fill_struct_serv(int, char **);
+
+/* SEND_DATA.C */
+int			send_data(int, const char *);
 
 /* SET_OPTIONS.C */
 void			init_opt(int (*options[6])(t_server *));

@@ -5,27 +5,27 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 19:57:54 2015 Serge Heitzler
-** Last update Sun May 17 11:26:08 2015 Serge Heitzler
+** Last update Thu May 21 22:07:00 2015 Serge Heitzler
 */
 
-#include "../../headers/server.h"
+#include "server.h"
 
-void		ori_up(t_player *player)
+void		ori_up(t_client *client)
 {
-  player->orientation = UP;
+  client->orientation = UP;
 }
 
-void		ori_right(t_player *player)
+void		ori_right(t_client *client)
 {
-  player->orientation = RIGHT;
+  client->orientation = RIGHT;
 }
 
-void		ori_down(t_player *player)
+void		ori_down(t_client *client)
 {
-  player->orientation = DOWN;
+  client->orientation = DOWN;
 }
 
-void		ori_left(t_player *player)
+void		ori_left(t_client *client)
 {
-  player->orientation = LEFT;
+  client->orientation = LEFT;
 }

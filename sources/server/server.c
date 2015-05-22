@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed May 20 18:36:19 2015 Audibert Louis
+** Last update Fri May 22 12:11:52 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -93,6 +93,8 @@ t_server	*fill_struct_serv(int argc, char **argv)
 
   s = xmalloc(sizeof(t_server));
   s->teams = xmalloc(sizeof(t_teams));
+  s->graph = xmalloc(sizeof(t_server_graph));
+  s->graph->connected = FALSE;
   /* Init à la bonne taille si argument x et y ? */
   init_map(s, 20, 20);
   init_opt(options);
@@ -110,7 +112,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
     }
       int	i = 0;
       if (s->teams->team_names[i] == NULL)
-	printf("Teams[0] = NULL\n");
+	printf("Teams[%d] = NULL\n", i);
       while (s->teams->team_names[i] != NULL)
 	{
 	  printf("Team[%d] : %s\n", i, s->teams->team_names[i]);
