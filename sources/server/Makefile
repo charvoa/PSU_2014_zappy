@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu May 21 21:22:13 2015 Serge Heitzler
+## Last update Fri May 22 11:26:43 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -50,6 +50,9 @@ SRCS		= 	main.c	 			\
 			$(CMDIA)cmd_left.c		\
 			$(CMDIA)cmd_advance.c		\
 			$(CMDIA)advance_funcs.c		\
+			$(CMDIA)int_size_to_malloc.c	\
+			$(CMDIA)cmd_get_time.c		\
+			$(CMDIA)cmd_set_time.c		\
 
 NAME		= 	server
 

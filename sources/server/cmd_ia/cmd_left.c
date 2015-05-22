@@ -5,12 +5,12 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sun May 17 11:30:51 2015 Serge Heitzler
-** Last update Thu May 21 21:46:34 2015 Serge Heitzler
+** Last update Fri May 22 11:54:56 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-void		cmd_left(t_server *server, t_client *client)
+int		cmd_left(t_server *server, t_client *client)
 {
   void	(*orientation[4])(t_client *);
 
@@ -21,4 +21,5 @@ void		cmd_left(t_server *server, t_client *client)
   else
     orientation[(client->orientation - 1) % 4](client);
   send_data(client->fd, "ok");
+  return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu May 21 22:11:11 2015 Serge Heitzler
+** Last update Fri May 22 11:56:46 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -160,15 +160,15 @@ void			accept_server(t_server*, char**);
 void			read_write_server(t_server*, int, char**);
 void			my_printf(const char *, ...);
 
-/* $(CMDIA)CMD_LEFT.C */
-void			cmd_left(t_server *, t_client *);
 
-/* $(CMDIA)CMD_RIGHT.C */
-void			cmd_right(t_server *, t_client *);
+int			cmd_left(t_server *, t_client *);
+int			cmd_right(t_server *, t_client *);
+int			cmd_set_time(t_server *, t_client *, const char *);
+int			cmd_get_time(t_server *, t_client *);
+int			cmd_advance(t_server *, t_client *);
 
-/* $(CMDIA)CMD_ADVANCE.C */
-void			cmd_advance(t_server *, t_client *);
 void			init_advance(void (*advance[4])(t_size *, t_client *));
+int			int_size_to_malloc(int);
 
 /* $(CMDIA)ADVANCE_FUNCS.C */
 void			adv_up(t_size *, t_client *);
