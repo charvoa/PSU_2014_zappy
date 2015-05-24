@@ -1,4 +1,4 @@
-class CommandToine:
+class CommandToine():
 
     def prend_objet(self, s, p, mess):
         if (p.getVerbose()):
