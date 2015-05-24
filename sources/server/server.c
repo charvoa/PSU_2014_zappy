@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Fri May 22 13:37:02 2015 Serge Heitzler
+** Last update Fri May 22 13:50:00 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -82,6 +82,7 @@ void	init_opt_server(t_server *s)
   s->o = xmalloc(sizeof(*s->o));
   s->port = 4242;
   s->teams->nb_max_clients_by_team = 10;
+  s->teams->slot_rest = 5;
   s->time_action = 1;
 }
 
