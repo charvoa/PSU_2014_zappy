@@ -27,7 +27,6 @@ def signal_handler(signal, frame):
 def send_name_to_server(s):
     var = 'TEAM '
     var += p.getName()
-    var += '\r\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
