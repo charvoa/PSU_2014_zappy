@@ -21,4 +21,5 @@ class InterpretClass():
     def interpret_size(self, s, rec, p):
         if (p.getVerbose()):
             print(rec)
-        x, y = rec.split(' - ')
+        self.x, self.y = rec.split(' - ')
+

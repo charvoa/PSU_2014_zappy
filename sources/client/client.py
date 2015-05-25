@@ -37,7 +37,8 @@ def protocol(s):
     ic.interpret_num_client(s, rec, p)
     rec = mess.readMessage(s)
     ic.interpret_size(s, rec, p)
-    s.close
+    var = 'OK'
+    mess.sendMessage(s, var)
 
 def main():
     try:
@@ -50,10 +51,14 @@ def main():
         protocol(s)
     except ConnectionRefusedError:
         print('Exception : The server has refused the connection')
+        s.close
     except getopt.GetoptError:
         print('Usage : client.py -n [NAME] -h [HOST] -p [PORT]')
+        s.close
     except:
         print('Exception : An error has occured')
+        s.close
+    s.close
 
 if __name__ == "__main__":
     main()
