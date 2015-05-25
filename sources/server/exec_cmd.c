@@ -1,11 +1,11 @@
 /*
 ** exec_cmd.c for zappy in /home/audibe_l/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Audibert Louis
 ** Login   <audibe_l@epitech.net>
-** 
+**
 ** Started on  Thu May  7 15:24:45 2015 Audibert Louis
-** Last update Wed May 13 16:58:11 2015 Audibert Louis
+** Last update Mon May 25 16:40:06 2015 Nicolas Charvoz
 */
 
 #include "../../headers/server.h"
@@ -19,8 +19,7 @@ char	**get_cmd_tab()
 {
   char	**tab;
 
-  if ((tab = malloc(8 * sizeof(char*))) == NULL)
-    show_error("Malloc error.");
+  tab = xmalloc(13 * sizeof(char*));
   tab[0] = "TEAM";
   tab[1] = NULL;
   return (tab);
@@ -45,11 +44,11 @@ int	check_cmd(char *cmd)
 
 void	exec_cmd(t_server *s)
 {
-  int	(*cmd[12])(t_server *s);
+  int	(*cmd[13])(t_server *s);
   int	i;
-  
+
   i = 0;
-  s->tab = parser(s->tab, s->buf);
+  parser(s, s->buf);
   init_cmd(cmd);
   while (s->tab[i])
     {

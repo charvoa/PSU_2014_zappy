@@ -1,11 +1,11 @@
 /*
 ** server.c for zappy in /home/heitzls/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <heitzls@epitech.net>
-** 
+**
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Fri May 22 13:37:02 2015 Serge Heitzler
+** Last update Mon May 25 16:31:21 2015 Nicolas Charvoz
 */
 
 #include "server.h"
@@ -95,6 +95,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
   s->teams = xmalloc(sizeof(t_teams));
   s->graph = xmalloc(sizeof(t_server_graph));
   s->graph->connected = FALSE;
+  s->teams->slot_rest = 0;
   /* Init à la bonne taille si argument x et y ? */
   init_map(s, 20, 20);
   init_opt(options);
