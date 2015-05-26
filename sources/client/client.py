@@ -6,6 +6,7 @@ from ModuleConnect import *
 from GetOptions import *
 from MessageClass import *
 from InterpretClass import *
+from CommandClass import *
 
 __author__ = "Nicolas Charvoz"
 __copyright__ = "Copyright 2015, La Pintade"
