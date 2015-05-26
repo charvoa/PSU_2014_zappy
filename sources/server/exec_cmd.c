@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 15:24:45 2015 Audibert Louis
-** Last update Mon May 25 16:40:06 2015 Nicolas Charvoz
+** Last update Tue May 26 16:02:48 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -13,6 +13,7 @@
 void	init_cmd(int	(*cmd[12])(t_server *s))
 {
   cmd[0] = &cmd_team;
+  cmd[1] = &cmd_msz;
 }
 
 char	**get_cmd_tab()
@@ -21,7 +22,8 @@ char	**get_cmd_tab()
 
   tab = xmalloc(13 * sizeof(char*));
   tab[0] = "TEAM";
-  tab[1] = NULL;
+  tab[1] = "msz";
+  tab[2] = NULL;
   return (tab);
 }
 
