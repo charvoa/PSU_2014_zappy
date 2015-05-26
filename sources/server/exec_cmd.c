@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 15:24:45 2015 Audibert Louis
-** Last update Tue May 26 18:00:30 2015 Audibert Louis
+** Last update Tue May 26 18:26:03 2015 Audibert Louis
 */
 
 #include "../../headers/server.h"
@@ -52,13 +52,14 @@ void	exec_cmd(t_server *s)
   i = 0;
   parser(s, s->buf);
   init_cmd(cmd);
-  while (s->tab[i])
+  /* while (s->tab[i]) */
+  while (i < 1)
     {
       printf("tab[%d] = %s\n", i, s->tab[i]);
       if (check_cmd(s->tab[0]) == -1)
 	fprintf(stderr, "Bad cmd: %s\n", s->tab[0]);
       else
-	cmd[check_cmd(s->tab[0])](s);
+	cmd[check_cmd(s->tab[i])](s);
       i++;
     }
 }
