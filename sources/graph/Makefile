@@ -5,42 +5,59 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Wed May 13 10:48:39 2015 Nicolas Girardot
+## Last update Tue May 26 17:53:36 2015 Nicolas Girardot
 ##
 
-CC		= 	gcc
+MAIN		=	zappy_graph
 
-RM		= 	rm -f
+EXEC		=	$(MAIN)
 
-CFLAGS		+= 	-W -Wall -Werror -Wextra
-CFLAGS		+= 	-I.
-CFLAGS		+=	-llibGDL/includes/ -LlibGDL/libs/ -lgdl_gl -lGL -IGLEW \
-			-ldl -lrt -lfbxsdk -lSDL2 -lpthread
+SRC		+=	Socket.cpp					\
+			Command.cpp					\
 
-XDIR		=	../xfuncs/
+SRC_MAIN	=	$(SRC) main.cpp
 
-SRCS		= 	main.c 			\
-			$(XDIR)xmalloc.c	\
+OBJ_MAIN	=	$(SRC_MAIN:.cpp=.o)
 
-NAME		= 	graph
+LDFLAGS		=	-L./libGDL/libs/ -lgdl_gl	\
+			-lGLEW -lrt -lfbxsdk -lSDL2 -lpthread		\
+			-ldl -lGL -lGLU -lSDL_image			\
+			-L ./Sound/lib -lfmodex64 -lglut		\
 
-OBJS		= 	$(SRCS:.c=.o)
+CPPFLAGS	=	-Wall -Wextra -std=c++11 -Wno-ignored-qualifiers
+CPPFLAGS	+=	-I./libGDL/includes/
 
-all		: 	$(NAME)
+ifeq ($(DEBUG), YES)
+	CPPFLAGS = -g -std=c++11
+	CPPFLAGS += -I./libGDL/includes/
+	DEBUGFLAGS = -\033[1;31mDEBUG\033[0m-
 
-$(NAME)		: 	$(OBJS)
-			$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
-			cp $(NAME) ../../
-			@echo "\033[33;34m Compiling graph binary\t\t\t\t[DONE]\033[1;37m"
+endif
 
-clean		:
-			$(RM) $(OBJS)
-			$(RM) *~ *#
+CPP		=	g++
 
-fclean		: 	clean
-			$(RM) $(NAME)
-			$(RM) ../../$(NAME)
+DEL_FILE	=	rm -f
 
-re		: 	fclean all
+all:		$(EXEC)
+		@printf "\r[\033[2;35mMAKE\033[0m] Zappy Graphic Client\n"
 
-.PHONY		: 	all clean fclean re
+$(MAIN):	$(OBJ_MAIN)
+		@$(CPP) -o $@ $^ $(LDFLAGS)
+
+%.o:		%.cpp
+		@$(CPP) -o $@ -c $< $(CPPFLAGS)
+		@printf "\r$(DEBUGFLAGS)$(PROFILFLAGS)[\033[1;32mBUILD\033[0m] $<\n"
+
+clean:
+		@$(DEL_FILE) $(OBJ_MAIN)
+		@printf "\r[\033[1;31mDELETE\033[0m] *.o\n"
+		@$(DEL_FILE)
+		@printf "\r[\033[1;31mDELETE\033[0m] *~\n"
+
+fclean:		clean
+		@$(DEL_FILE) $(MAIN)
+		@printf "\r[\033[1;31mDELETE\033[0m] $(EXEC)\n"
+
+re:		fclean all
+
+.PHONY:		all clean fclean re

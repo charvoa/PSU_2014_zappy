@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue May 26 18:52:25 2015 Serge Heitzler
+** Last update Wed May 27 00:03:36 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -206,6 +206,7 @@ char			**init_full_tab(int, int);
 
 /* COMMANDS.C */
 int			cmd_team(t_server *);
+int			cmd_msz(t_server *);
 
 /* DISTANCES.C */
 unsigned int   		calcul_length(unsigned int, unsigned int, t_map *);
@@ -256,7 +257,8 @@ int			check_opt(int);
 void			exec_option(t_server *, int (*options[6])(t_server *));
 
 /* TMP */
-char			**parser(char **, char *);
+
+void	parser(t_server *, char *);
 
 /* WRITE_TO_CLIENT.C */
 void			write_to_client(t_server *, char *);

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu May 21 12:22:49 2015 Florian PERU
+// Last update Tue May 26 18:17:17 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -21,12 +21,12 @@ void Command::msz(std::string)
 {
   std::vector<std::string>	parse;
   std::string			current;
-  std::istringstream		ss(str);
+  std::istringstream		ss;
 
   while(std::getline(ss, current, ' '))
     parse.push_back(current);
 
-  createMap(parse);
+  //  createMap(parse);
 }
 
 void Command::Exec()
