@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Fri May 22 13:34:34 2015 Serge Heitzler
+## Last update Tue May 26 23:56:32 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -17,43 +17,54 @@ CFLAGS		+= 	-I ../../headers/
 
 EXTERNLIB	=	-lm
 
-XDIR		=	../xfuncs/
+X_DIR		=	../xfuncs/
 
-CMDIA		=	./cmd_ia/
+CMD_IA_DIR	=	./cmd_ia/
 
-CMDGR		=	./cmd_graph/
+CMD_GR_DIR	=	./cmd_graph/
 
-SRCS		= 	main.c	 			\
-			add_in_list.c		 	\
-			commands.c			\
-			count_teams.c			\
-			create_map.c			\
-			create_client.c			\
-			distances.c			\
-			exec_cmd.c			\
-			list.c	 			\
-			my_printf.c			\
-			my_str_to_wordtab.c		\
-			options.c			\
-			options2.c			\
-			rand_orientations.c		\
-			parser.c			\
-			send_data.c			\
-			set_options.c			\
-			server.c			\
-			utilis.c			\
-			write_to_client.c		\
-			$(XDIR)xmalloc.c	 	\
-			$(XDIR)xlisten.c	 	\
-			$(XDIR)xbind.c		 	\
-			$(XDIR)xsocket.c	 	\
-			$(CMDIA)cmd_right.c		\
-			$(CMDIA)cmd_left.c		\
-			$(CMDIA)cmd_advance.c		\
-			$(CMDIA)advance_funcs.c		\
-			$(CMDIA)int_size_to_malloc.c	\
-			$(CMDIA)cmd_get_time.c		\
-			$(CMDIA)cmd_set_time.c		\
+LIST_DIR	=	./list/
+
+SRCS		= 	main.c	 				\
+			commands.c				\
+			count_teams.c				\
+			create_map.c				\
+			create_client.c				\
+			distances.c				\
+			exec_cmd.c				\
+			my_printf.c				\
+			my_str_to_wordtab.c			\
+			options.c				\
+			options2.c				\
+			rand_orientations.c			\
+			parser.c				\
+			send_data.c				\
+			set_options.c				\
+			server.c				\
+			utilis.c				\
+			write_to_client.c			\
+			$(X_DIR)xmalloc.c	 		\
+			$(X_DIR)xlisten.c	 		\
+			$(X_DIR)xbind.c		 		\
+			$(X_DIR)xsocket.c		 	\
+			$(CMD_IA_DIR)cmd_right.c		\
+			$(CMD_IA_DIR)cmd_left.c			\
+			$(CMD_IA_DIR)cmd_advance.c		\
+			$(CMD_IA_DIR)advance_funcs.c		\
+			$(CMD_IA_DIR)int_size_to_malloc.c	\
+			$(CMD_IA_DIR)cmd_get_time.c		\
+			$(CMD_IA_DIR)cmd_set_time.c		\
+			$(LIST_DIR)push_back.c 			\
+			$(LIST_DIR)push_at_index.c 		\
+			$(LIST_DIR)push_front.c 		\
+			$(LIST_DIR)create_list.c		\
+			$(LIST_DIR)get_node_at_index.c		\
+			$(LIST_DIR)free_list.c			\
+			$(LIST_DIR)size_list.c			\
+			$(LIST_DIR)show_list.c			\
+			$(LIST_DIR)remove_at_index.c		\
+			$(LIST_DIR)remove_front.c		\
+			$(LIST_DIR)remove_back.c		\
 
 NAME		= 	server
 

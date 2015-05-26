@@ -1,11 +1,11 @@
 /*
 ** exec_cmd.c for zappy in /home/audibe_l/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Audibert Louis
 ** Login   <audibe_l@epitech.net>
-** 
+**
 ** Started on  Thu May  7 15:24:45 2015 Audibert Louis
-** Last update Wed May 13 16:58:11 2015 Audibert Louis
+** Last update Tue May 26 19:50:26 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -47,7 +47,7 @@ void	exec_cmd(t_server *s)
 {
   int	(*cmd[12])(t_server *s);
   int	i;
-  
+
   i = 0;
   s->tab = parser(s->tab, s->buf);
   init_cmd(cmd);

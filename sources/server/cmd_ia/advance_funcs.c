@@ -1,11 +1,11 @@
 /*
 ** advance_funcs.c for zappy in /home/heitzls/rendu/PSU_2014_zappy/sources/server/cmd_ia
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <heitzls@epitech.net>
-** 
+**
 ** Started on  Thu May 21 21:08:42 2015 Serge Heitzler
-** Last update Thu May 21 21:21:39 2015 Serge Heitzler
+** Last update Tue May 26 15:04:54 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -23,7 +23,7 @@ void		adv_right(t_size *size, t_client *client)
   if (client->pos->x == (size->width -1))
     client->pos->x = 0;
   else
-    client->pos->x++;  
+    client->pos->x++;
 }
 
 void		adv_down(t_size *size, t_client *client)
