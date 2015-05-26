@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Tue Mar 10 15:05:32 2015 Nicolas Charvoz
-** Last update Sun May 17 11:39:18 2015 Serge Heitzler
+** Last update Mon May 25 16:39:48 2015 Nicolas Charvoz
 */
 
 #include "server.h"
@@ -37,32 +37,31 @@ int     count_word2(char *str)
   return (n);
 }
 
-char	**parser(char **tab, char *str)
+void	parser(t_server *s, char *str)
 {
-  int   i;
-  int   b;
-  int   a;
+   int   i;
+   int   b;
+   int   a;
 
-  b = 0;
-  i = 0;
-  a = 0;
-  tab = xmalloc((count_word2(str) + 1) * sizeof(char*));
-  while (str[i] != '\n' && str[i] != '\0')
-    {
-      if (str[i] == ' ' || str[i] == '\n')
-        while (str[i] == ' ')
-          i++;
-      if (str[i] != '\0')
-        {
-          tab[a] = xmalloc(((countchar2(str + i) + 1)) * sizeof(char));
-          tab[a] = memset(tab[a], 0, ((countchar2(str + i) + 1)));
-          while ((str[i] != ' ')  && (str[i] != '\n') && (str[i] != '\0'))
-            tab[a][b++] = str[i++];
-          tab[a][b] = '\0';
-          a = a + 1;
-          b = 0;
-        }
-    }
-  tab[a] = NULL;
-  return tab;
+   b = 0;
+   i = 0;
+   a = 0;
+   s->tab = xmalloc((count_word2(str) + 1) * sizeof(char*));
+   while (str[i] != '\n' && str[i] != '\0')
+     {
+       if (str[i] == ' ' || str[i] == '\n')
+	 while (str[i] == ' ')
+	   i++;
+       if (str[i] != '\0')
+	 {
+	   s->tab[a] = xmalloc(((countchar2(str + i) + 1)) * sizeof(char));
+	   s->tab[a] = memset(s->tab[a], 0, ((countchar2(str + i) + 1)));
+	   while ((str[i] != ' ')  && (str[i] != '\n') && (str[i] != '\0'))
+	     s->tab[a][b++] = str[i++];
+	   s->tab[a][b] = '\0';
+	   a = a + 1;
+	   b = 0;
+	 }
+     }
+   s->tab[a] = NULL;
 }

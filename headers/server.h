@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri May 22 13:34:55 2015 Serge Heitzler
+** Last update Mon May 25 16:40:59 2015 Nicolas Charvoz
 */
 
 #ifndef			SERVER_H_
@@ -88,7 +88,7 @@ typedef struct	s_client
 typedef struct s_size
 {
   unsigned int	       	width; // -x
-  unsigned int	       	height; // -y  
+  unsigned int	       	height; // -y
 }		t_size;
 
 typedef struct s_map
@@ -239,7 +239,8 @@ int			check_opt(int);
 void			exec_option(t_server *, int (*options[6])(t_server *));
 
 /* TMP */
-char			**parser(char **, char *);
+
+void	parser(t_server *, char *);
 
 /* WRITE_TO_CLIENT.C */
 void			write_to_client(t_server *, char *);
