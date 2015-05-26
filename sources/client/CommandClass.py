@@ -8,6 +8,11 @@ class CommandClass():
         var = 'avance'
         var += '\n'
         mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == b'OK'):
+            return 1
+        else:
+            return 0
 
     def droite_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -15,6 +20,10 @@ class CommandClass():
         var = 'droite'
         var += '\n'
         mess.sendMessage(s, var)
+        if (rec == b'OK'):
+            return 1
+        else:
+            return 0
 
     def gauche_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -22,6 +31,10 @@ class CommandClass():
         var = 'gauche'
         var += '\n'
         mess.sendMessage(s, var)
+        if (rec == b'OK'):
+            return 1
+        else:
+            return 0
 
     def voir_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -29,6 +42,10 @@ class CommandClass():
         var = 'voir'
         var += '\n'
         mess.sendMessage(s, var)
+        if (rec == b'OK'):
+            return 1
+        else:
+            return 0
 
     def inventaire_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -36,6 +53,10 @@ class CommandClass():
         var = 'inventaire'
         var += '\n'
         mess.sendMessage(s, var)
+        if (rec == b'OK'):
+            return 1
+        else:
+            return 0
 
     def mort_cmd(self, s, p, mess):
         if (p.getVerbose()):
