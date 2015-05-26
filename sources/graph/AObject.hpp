@@ -1,11 +1,11 @@
 //
 // AObject.hpp for Zappy in /home/florian/rendu/SystemeUnix/PSU_2014_zappy/sources/graph
-// 
+//
 // Made by Florian PERU
 // Login   <florian@epitech.eu>
-// 
+//
 // Started on  Thu May  7 15:30:04 2015 Florian PERU
-// Last update Thu May  7 15:55:53 2015 Florian PERU
+// Last update Tue May 26 18:16:43 2015 Nicolas Girardot
 //
 
 #ifndef _AOBJECT_HPP_
@@ -14,6 +14,7 @@
 #include <SdlContext.hh>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <BasicShader.hh>
 #include <iostream>
 
 class	AObject
@@ -34,8 +35,13 @@ public:
     return true;
   }
 
-  virtual void	update(gdl::Clock const & clock, gdl::Input & input) {}
-  virtual void	draw(dfl::AShader & shader, gdl::Clock const & clock) = 0;
+  virtual void	update(gdl::Clock const & clock, gdl::Input & input)
+  {
+    (void) clock;
+    (void) input;
+  }
+
+  virtual void	draw(gdl::BasicShader & shader, gdl::Clock const & clock) = 0;
 
   void	translate(glm::vec3 const & vect)
   {
@@ -65,6 +71,6 @@ public:
 
     return transform;
   }
-}
+};
 
 #endif

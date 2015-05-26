@@ -1,18 +1,17 @@
 //
 // Game.hh for Zappy in /home/florian/rendu/SystemeUnix/PSU_2014_zappy/sources/graph
-// 
+//
 // Made by Florian PERU
 // Login   <florian@epitech.eu>
-// 
+//
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Wed May 20 14:15:57 2015 Florian PERU
+// Last update Tue May 26 18:35:37 2015 Nicolas Girardot
 //
 
 #ifndef _GAMEENGINE_HPP_
 #define _GAMEENGINE_HPP_
 
 #include <iostream>
-#include <OpenGl.hh>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <Game.hh>
@@ -20,29 +19,31 @@
 #include <Input.hh>
 #include <SdlContext.hh>
 #include <Geometry.hh>
+#include <SDL/SDL.h>
+#include <SDL.h>
 #include <Texture.hh>
-#include <BasicShader.hh>
 #include <Model.hh>
+#include "Map.hpp"
 
 class	GameEngine : public gdl::Game
 {
 public:
-  GameEngine::GameEngine() {}
-  GameEngine::~GameEngine() {
+  GameEngine() {}
+  ~GameEngine() {
     for (size_t i = 0; i < _object.size(); i++)
       delete _object[i];
   }
 
-  void	GameEngine::init_object()
+  void	init_object()
   {
-    AObject	*map = new Map;
+    AObject	*map = new Map();
 
     if (map->initialize() == true)
       _object.push_back(map);
-    /* Ajouter les autres Object TODO */
+    //Ajouter les autres Object TODO
   }
 
-  bool	GameEngine::initialize()
+  bool	initialize()
   {
     glm::mat4	projection;
     glm::mat4	transform;
@@ -56,19 +57,20 @@ public:
       return false;
 
     projection = glm::perspective(60.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-    transform = glm::lookAt(glm::vec3(à, 10, -30), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+    transform = glm::lookAt(glm::vec3(0, 10, -30), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
 
     _shader.bind();
     _shader.setUniform("view", transform);
     _shader.setUniform("projection", projection);
 
+    while(42);
     init_object();
     return true;
   }
 
-  bool	GameEngine::update()
+  bool	update()
   {
-    if (_input.getKey(SDLK_ESCAPE) || _input.getKey(SDLK_QUIT))
+    if (_input.getKey(SDLK_ESCAPE))
       return false;
 
     _context.updateClock(_clock);
@@ -80,14 +82,21 @@ public:
     return true;
   }
 
-  void	GameEngine::draw()
+  void	draw()
   {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    _shader.bind();
     for (size_t i = 0; i < _object.size(); i++)
-      _object[i].draw(_shader, _clock);
+      _object[i]->draw(_shader, _clock);
 
-    _context.flush()
+    _context.flush();
+  }
+
+  void	run()
+  {
+    initialize();
+    while (this->update())
+      draw();
   }
 
 private:
@@ -96,6 +105,6 @@ private:
   gdl::BasicShader		_shader;
   gdl::Input			_input;
   std::vector<AObject *>	_object;
-}
+};
 
 #endif
