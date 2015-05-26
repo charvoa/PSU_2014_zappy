@@ -19,6 +19,7 @@ __status__ = "Dev"
 p = GetOptions()
 mess = MessageClass()
 ic = InterpretClass()
+s = None
 
 def signal_handler(signal, frame):
     print('You pressed Ctrl+C')
@@ -27,6 +28,7 @@ def signal_handler(signal, frame):
 def send_name_to_server(s):
     var = 'TEAM '
     var += p.getName()
+    #var += '\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
@@ -40,6 +42,9 @@ def protocol(s):
     var = 'OK'
     mess.sendMessage(s, var)
 
+def act_command(s):
+    avance_cmd(s, p, mess)
+
 def main():
     try:
         p.parseOpt()
@@ -49,16 +54,14 @@ def main():
         mc = ModuleConnect()
         s = mc.connect(p.getHost(), p.getPort())
         protocol(s)
+        act_command(s)
+        s.close()
     except ConnectionRefusedError:
         print('Exception : The server has refused the connection')
-        s.close
     except getopt.GetoptError:
         print('Usage : client.py -n [NAME] -h [HOST] -p [PORT]')
-        s.close
     except:
         print('Exception : An error has occured')
-        s.close
-    s.close
 
 if __name__ == "__main__":
     main()
