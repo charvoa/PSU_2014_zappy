@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 15:24:45 2015 Audibert Louis
-** Last update Tue May 26 18:26:03 2015 Audibert Louis
+** Last update Wed May 27 00:03:08 2015 Serge Heitzler
 */
 
 #include "../../headers/server.h"
@@ -52,7 +52,6 @@ void	exec_cmd(t_server *s)
   i = 0;
   parser(s, s->buf);
   init_cmd(cmd);
-  /* while (s->tab[i]) */
   while (i < 1)
     {
       printf("tab[%d] = %s\n", i, s->tab[i]);

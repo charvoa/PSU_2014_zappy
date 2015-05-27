@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue May 26 16:10:14 2015 Audibert Louis
+** Last update Wed May 27 00:03:36 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -62,6 +62,9 @@ typedef enum		e_bool
     FALSE
   }			e_bool;
 
+/* FAIRE UNE STRUCTURE DES TABLEAUX DE POINTEURS SUR
+   FONCTIONS A METTRE DANS LA STRUCTURE SERVEUR */
+
 typedef struct		s_position
 {
   unsigned int		x;
@@ -74,31 +77,45 @@ typedef struct		s_food
   e_orientation		orientation;
 }			t_food;
 
-typedef struct	s_client
+typedef struct		s_cmd
+{
+  char			*cmd;
+  char			*options;
+  int			delay;
+  /* "delay" à diviser par t au moment du calcul
+     du delay si changement de t par le client */
+  time_t		received_at;
+  time_t		send_at;
+  int			precision;
+}			t_cmd;
+
+typedef struct		s_client
 {
   int			fd;
-  char			*team_name;
   unsigned int		level;
+  e_orientation		orientation;
+  char			*team_name;
+
   t_position		*pos;
   t_list		*inventory;
-  e_orientation		orientation;
-  t_list		*players;
+  t_list		*request;
+  char			*buffer;
 }			t_client;
 
-typedef struct s_size
+typedef struct		s_size
 {
   unsigned int	       	width; // -x
   unsigned int	       	height; // -y
-}		t_size;
+}			t_size;
 
-typedef struct s_map
+typedef struct		s_map
 {
   t_size		*size;
   char			**full;
   t_list		***objects;
 }			t_map;
 
-typedef struct s_teams
+typedef struct		s_teams
 {
   char			**names; // -n
   int			len_names;
@@ -106,22 +123,22 @@ typedef struct s_teams
   int			slot_rest;
 }			t_teams;
 
-typedef struct s_opt
+typedef struct		s_opt
 {
   char			*optarg;
   int			opt;
   int			optind;
   int			argc;
   char			**argv;
-}		t_opt;
+}			t_opt;
 
-typedef struct s_server_graph
+typedef struct		s_server_graph
 {
   e_bool	connected;
   int		fd;
-}		t_server_graph;
+}			t_server_graph;
 
-typedef struct s_server
+typedef struct		s_server
 {
   // Loulou's Work
   unsigned int		port; // -p
@@ -161,8 +178,8 @@ void			read_write_server(t_server*, int, char**);
 void			my_printf(const char *, ...);
 
 
-int			cmd_left(t_server *, t_client *);
-int			cmd_right(t_server *, t_client *);
+int			cmd_left(t_client *);
+int			cmd_right(t_client *);
 int			cmd_set_time(t_server *, t_client *, const char *);
 int			cmd_get_time(t_server *, t_client *);
 int			cmd_advance(t_server *, t_client *);
@@ -176,7 +193,7 @@ void			adv_right(t_size *, t_client *);
 void	       		adv_down(t_size *, t_client *);
 void			adv_left(t_size *, t_client *);
 
-/* count_teams.C */
+/* COUNT_TEAMS.C */
 int			count_teams(t_server *);
 
 /* CREATE_CLIENT.C */

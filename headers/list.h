@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun May  3 16:40:31 2015 Serge Heitzler
-** Last update Thu May  7 11:55:28 2015 Serge Heitzler
+** Last update Tue May 26 20:28:11 2015 Serge Heitzler
 */
 
 #ifndef LIST_H_
@@ -18,13 +18,16 @@ typedef enum e_object_type
   {
     PLAYER,
     ROCK,
-    FOOD
+    FOOD,
+    CMD
   }		e_object_type;
 
 typedef struct s_node
 {
+  size_t	id;
   e_object_type	type;
   void		*data;
+  struct s_node *prev;
   struct s_node *next;
 }		t_node;
 
@@ -35,13 +38,13 @@ typedef struct s_list
   t_node	*end;
 }		t_list;
 
-/* list.c */
 void		show_list(t_list *);
 t_list		*create_list();
-void		free_my_list(t_list *);
-
-/* add_in_list.c */
-void		add_node(t_list *, t_node *);
-void		push_in_list(t_list *, void *, e_object_type);
+void		free_list(t_list *);
+int		push_back(t_list *, void *, e_object_type);
+int		push_front(t_list *, void *, e_object_type);
+int		push_at_index(t_list *, void *, e_object_type, size_t);
+t_node		*get_node_at_index(t_list *, size_t);
+size_t		size_list(t_list *);
 
 #endif  /* !LIST_H_ */
