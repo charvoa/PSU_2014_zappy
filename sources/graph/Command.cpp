@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Wed May 27 10:39:29 2015 Florian PERU
+// Last update Wed May 27 10:45:16 2015 Florian PERU
 //
 
 #include "Command.hh"
@@ -63,7 +63,7 @@ void	Command::tna(std::string cmd)
     {
       std::istringstream	iss(singleCmd);
       while (std::getline(iss, name, ' '))
-	if (nae != "tna")
+	if (name != "tna")
 	  vecName.push_back(name);
     }
 }
@@ -102,7 +102,7 @@ void	Command::plv(std::string cmd)
   std::istringstream		ss(cmd);
 
   while (std::getline(ss, current, ' '))
-    if (current != plv)
+    if (current != "plv")
       lvlPlayer.push_back(current);
 
   // defLVL(lvlPlayer);
