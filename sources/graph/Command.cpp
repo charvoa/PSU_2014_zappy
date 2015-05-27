@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Wed May 27 10:13:58 2015 Florian PERU
+// Last update Wed May 27 10:39:29 2015 Florian PERU
 //
 
 #include "Command.hh"
@@ -54,7 +54,58 @@ void	Command::mct(std::string cmd)
 
 void	Command::tna(std::string cmd)
 {
-  // TODO
+  std::string			singleCmd;
+  std::string			name;
+  std::istringstream		ss(cmd);
+  std::vector<std::string>	vecName;
+
+  while (std::getline(ss, singleCmd, '\n'))
+    {
+      std::istringstream	iss(singleCmd);
+      while (std::getline(iss, name, ' '))
+	if (nae != "tna")
+	  vecName.push_back(name);
+    }
+}
+
+
+void	Command::pnw(std::string cmd)
+{
+  std::string			param;
+  std::vector<std::string>	detPlayer;
+  std::istringstream		ss(cmd);
+
+  while (std::getline(ss, param, ' '))
+    if (param != "pnw")
+      detPlayer.push_back(param);
+
+  // affPlayer(param);
+}
+
+void	Command::ppo(std::string cmd)
+{
+  std::string			param;
+  std::vector<std::string>	detPlayer;
+  std::istringstream		ss(cmd);
+
+  while (std::getline(ss, param, ' '))
+    if (param != "ppo")
+      detPlayer.push_back(param);
+
+  // affPlayer(param);
+}
+
+void	Command::plv(std::string cmd)
+{
+  std::string			current;
+  std::vector<std::string>	lvlPlayer;
+  std::istringstream		ss(cmd);
+
+  while (std::getline(ss, current, ' '))
+    if (current != plv)
+      lvlPlayer.push_back(current);
+
+  // defLVL(lvlPlayer);
 }
 
 void Command::Exec()
@@ -63,6 +114,9 @@ void Command::Exec()
   _functions["bct"] = &Command::bct;
   _functions["mct"] = &Command::mct;
   _functions["tna"] = &Command::tna;
+  _functions["pnw"] = &Command::pnw;
+  _functions["ppo"] = &Command::ppo;
+  _functions["plv"] = &Command::plv;
   /* faire de même pour chaque fonctions */
 }
 
