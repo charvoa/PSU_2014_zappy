@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Wed May 13 11:05:46 2015 Nicolas Girardot
+// Last update Tue May 26 19:41:27 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
@@ -38,6 +38,8 @@ void	Socket::my_connect()
 {
   int	fd;
 
+  this->initSocket();
+  this->connectSocket();
   FD_ZERO(&_rfds);
   FD_ZERO(&_wfds);
   FD_SET(STDIN_FILENO, &_rfds);

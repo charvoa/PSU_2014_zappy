@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:07 2015 Nicolas Girardot
-// Last update Wed May  6 16:37:56 2015 Nicolas Girardot
+// Last update Tue May 26 19:41:55 2015 Nicolas Girardot
 //
 
 #ifndef SOCKET_HH_
@@ -39,7 +39,6 @@ public:
   void	initSocket();
   void	connectSocket();
   void	selectSocket();
-private:
   void	my_connect();
 };
 

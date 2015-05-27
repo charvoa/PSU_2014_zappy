@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 13:23:08 2015 Serge Heitzler
-// Last update Tue May 26 18:35:28 2015 Nicolas Girardot
+// Last update Wed May 27 11:15:15 2015 Nicolas Girardot
 */
 
 #include "AObject.hpp"
@@ -16,10 +16,10 @@
 int	main(int ac, char **av)
 {
   (void) ac;
-  (void) av;
-
+  Socket *connect = new Socket(av[1], atoi(av[2]));
   GameEngine *test = new GameEngine();
   test->run();
+  connect->my_connect();
 
   return (0);
 }
