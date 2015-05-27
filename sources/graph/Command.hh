@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:17 2015 Nicolas Girardot
-// Last update Tue May 26 18:15:53 2015 Nicolas Girardot
+// Last update Wed May 27 10:36:58 2015 Florian PERU
 //
 
 #ifndef COMMAND_HH_
@@ -32,6 +32,12 @@ public:
   void	Exec();
   void	Parse(std::string);
   void	msz(std::string);
+  void	bct(std::string);
+  void	mct(std::string);
+  void	tna(std::string);
+  void	pnw(std::string);
+  void	ppo(std::string);
+  void	plv(std::string);
 };
 
 #endif
