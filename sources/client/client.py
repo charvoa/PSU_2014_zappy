@@ -24,14 +24,10 @@ ic = InterpretClass()
 cc = CommandClass()
 s = None
 
-def signal_handler(signal, frame):
-    print('You pressed Ctrl+C')
-    sys.exit(0)
-
 def send_name_to_server(s):
     var = 'TEAM '
     var += p.getName()
-    #var += '\r\n'
+    var += '\r\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
@@ -39,9 +35,14 @@ def protocol(s):
     if (ic.interpret_bienvenue(s, rec, p) == 1):
         send_name_to_server(s)
     rec = mess.readMessage(s)
-    ic.interpret_num_client(s, rec, p)
+    if (ic.interpret_num_client(s, rec, p) == -1):
+        print('Cannot connect to the server, too many teamate already connected')
+        s.close()
+        sys.exit(0)
     rec = mess.readMessage(s)
     ic.interpret_size(s, rec, p)
+    var = 'OK'
+    mess.sendMessage(s, var)
 
 #def act_command(s):
 #    cc.droite_cmd(s, p, mess)
@@ -66,11 +67,17 @@ def main():
                 for i in inputready:
                     if i == 0:
                         data = sys.stdin.readline().strip()
-                        if data: mess.sendMessage(s, data)
+                        if data:
+                            cc.gauche_cmd(s, p, mess)
+                            #mess.sendMessage(s, data)
                     elif i == s:
                         data = mess.readMessage(s)
                         if not data:
                             print('Shutting down.')
+                            flag = True
+                            break
+                        elif data == 'mort':
+                            print('You died')
                             flag = True
                             break
                         else:
