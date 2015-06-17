@@ -1,6 +1,7 @@
 #!/usr/bin/env python3.4
 
 import signal
+import select
 
 from ModuleConnect import *
 from GetOptions import *
@@ -11,7 +12,7 @@ from CommandClass import *
 __author__ = "Nicolas Charvoz"
 __copyright__ = "Copyright 2015, La Pintade"
 __credits__ = ["Nicolas Charvoz", "Louis Audibert", "Serge Heitzler",
-               "Antoine Garcia", "Florian Peru"]
+               "Antoine Garcia"]
 __license__ = "GPL"
 __versione__ = "1.1.1"
 __email__ = "nicolas.charvoz@epitech.eu"
@@ -44,9 +45,10 @@ def protocol(s):
     var = 'OK'
     mess.sendMessage(s, var)
 
-def act_command(s):
-    cc.avance_cmd(s, p, mess)
-    cc.voir_cmd(s, p, mess)
+#def act_command(s):
+#    cc.droite_cmd(s, p, mess)
+#   cc.avance_cmd(s, p, mess)
+#    cc.voir_cmd(s, p, mess)
 
 def main():
     try:
@@ -56,15 +58,39 @@ def main():
             sys.exit()
         mc = ModuleConnect()
         s = mc.connect(p.getHost(), p.getPort())
+        flag = False
         protocol(s)
-        act_command(s)
-        s.close()
+        while not flag:
+            try:
+                sys.stdout.write('$> ')
+                sys.stdout.flush()
+                inputready, outputready, execptready = select.select([0, s], [], [])
+                for i in inputready:
+                    if i == 0:
+                        data = sys.stdin.readline().strip()
+                        if data: mess.sendMessage(s, data)
+                    elif i == s:
+                        data = mess.readMessage(s)
+                        if not data:
+                            print('Shutting down.')
+                            flag = True
+                            break
+                        else:
+                            sys.stdout.write(data + '\n')
+                            sys.stdout.flush()
+            except KeyboardInterrupt:
+                print('Interrupted.')
+                s.close()
+                break
+
+#        act_command(s)
+#        s.close()
     except ConnectionRefusedError:
         print('Exception : The server has refused the connection')
     except getopt.GetoptError:
         print('Usage : client.py -n [NAME] -h [HOST] -p [PORT]')
-#    except:
- #       print('Exception : An error has occured')
+    #except:
+     #   print('Exception : An error has occured')
 
 if __name__ == "__main__":
     main()

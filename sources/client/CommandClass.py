@@ -4,7 +4,7 @@ class CommandClass():
 
     def avance_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('avance')
+            print('avance >>')
         var = 'avance'
         var += '\n'
         mess.sendMessage(s, var)
@@ -16,7 +16,7 @@ class CommandClass():
 
     def droite_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('droite')
+            print('droite >> ')
         var = 'droite'
         var += '\n'
         mess.sendMessage(s, var)
@@ -28,7 +28,7 @@ class CommandClass():
 
     def gauche_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('gauche')
+            print('gauche >>')
         var = 'gauche'
         var += '\n'
         mess.sendMessage(s, var)
@@ -40,7 +40,7 @@ class CommandClass():
 
     def voir_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('voir')
+            print('voir >>')
         var = 'voir'
         var += '\n'
         mess.sendMessage(s, var)
@@ -52,7 +52,7 @@ class CommandClass():
 
     def inventaire_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('inventaire')
+            print('inventaire >>')
         var = 'inventaire'
         var += '\n'
         mess.sendMessage(s, var)
@@ -64,7 +64,7 @@ class CommandClass():
 
     def prend_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('prend')
+            print('prend >>')
         var = 'pose'
         var += '\n'
         mess.sendMessage(s, var)
@@ -76,7 +76,7 @@ class CommandClass():
 
     def pose_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('pose')
+            print('pose >>')
         var = 'pose'
         var += '\n'
         mess.sendMessage(s, var)
@@ -88,7 +88,7 @@ class CommandClass():
 
     def expulse_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('expulse')
+            print('expulse >>')
         var = 'expulse'
         var += '\n'
         mess.sendMessage(s, var)
@@ -100,7 +100,7 @@ class CommandClass():
 
     def broadcast_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('broadcast')
+            print('broadcast >>')
         var = 'broadcast'
         var += '\n'
         mess.sendMessage(s, var)
@@ -112,7 +112,7 @@ class CommandClass():
 
     def incantation_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('incantation')
+            print('incantation >>')
         var = 'incantation'
         var += '\n'
         mess.sendMessage(s, var)
@@ -124,7 +124,7 @@ class CommandClass():
 
     def fork_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('fork')
+            print('fork >>')
         var = 'fork'
         var += '\n'
         mess.sendMessage(s, var)
@@ -136,7 +136,7 @@ class CommandClass():
 
     def connect_nbr_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('connect_nbr')
+            print('connect_nbr >>')
         var = 'connect_nbr'
         var += '\n'
         mess.sendMessage(s, var)
@@ -148,7 +148,12 @@ class CommandClass():
 
     def mort_cmd(self, s, p, mess):
         if (p.getVerbose()):
-            print('mort')
+            print('mort >>')
         var = '-'
         var += '\n'
         mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
+            return 1
+        else:
+            return 0

@@ -4,6 +4,6 @@ class ModuleConnect(object):
 
     """ Create connexion """
     def connect(self, host, port):
-        s = socket.socket()
-        s.connect((host, int(port)))
-        return s
+            self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.s.connect((host, int(port)))
+            return self.s
