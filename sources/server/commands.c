@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Mon Jun 22 11:15:48 2015 Audibert Louis
+** Last update Mon Jun 22 15:58:43 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -15,12 +15,15 @@ int	is_a_team(t_server *s, char *team)
   int	i;
 
   i = 0;
-  while (s->teams->names[i] != NULL)
+  if (s->teams->names != NULL)
     {
-      printf("s->teams->names[%d] = %s\n", i, s->teams->names[i]);
-      if (strcmp(s->teams->names[i], team) == 0)
-	return (0);
-      i++;
+      while (s->teams->names[i] != NULL)
+	{
+	  printf("s->teams->names[%d] = %s\n", i, s->teams->names[i]);
+	  if (strcmp(s->teams->names[i], team) == 0)
+	    return (0);
+	  i++;
+	}
     }
   return (-1);
 }
