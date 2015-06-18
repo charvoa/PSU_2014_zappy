@@ -9,7 +9,7 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
-        if (rec == b'OK'):
+        if (rec == 'OK'):
             return 1
         else:
             return 0
@@ -20,7 +20,8 @@ class CommandClass():
         var = 'droite'
         var += '\n'
         mess.sendMessage(s, var)
-        if (rec == b'OK'):
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
             return 1
         else:
             return 0
@@ -31,7 +32,8 @@ class CommandClass():
         var = 'gauche'
         var += '\n'
         mess.sendMessage(s, var)
-        if (rec == b'OK'):
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
             return 1
         else:
             return 0
@@ -42,10 +44,11 @@ class CommandClass():
         var = 'voir'
         var += '\n'
         mess.sendMessage(s, var)
-        if (rec == b'OK'):
-            return 1
-        else:
-            return 0
+        rec = mess.readMessage(s)
+        voir_list = []
+        voir_list = [string(x) for x in rec.split(', ')]
+        for p in voir_list:
+            print(p)
 
     def inventaire_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -53,7 +56,92 @@ class CommandClass():
         var = 'inventaire'
         var += '\n'
         mess.sendMessage(s, var)
-        if (rec == b'OK'):
+        rec = mess.readMessage(s)
+        inventaire_list = []
+        inventaire_list = [string(x) for x in rec.split(', ')]
+        for p in inventaire_list:
+            print(p)
+
+    def prend_cmd(self, s, p, mess):
+        if (p.getVerbose()):
+            print('prend')
+        var = 'pose'
+        var += '\n'
+        mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
+            return 1
+        else:
+            return 0
+
+    def pose_cmd(self, s, p, mess):
+        if (p.getVerbose()):
+            print('pose')
+        var = 'pose'
+        var += '\n'
+        mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
+            return 1
+        else:
+            return 0
+
+    def expulse_cmd(self, s, p, mess):
+        if (p.getVerbose()):
+            print('expulse')
+        var = 'expulse'
+        var += '\n'
+        mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
+            return 1
+        else:
+            return 0
+
+    def broadcast_cmd(self, s, p, mess):
+        if (p.getVerbose()):
+            print('broadcast')
+        var = 'broadcast'
+        var += '\n'
+        mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
+            return 1
+        else:
+            return 0
+
+    def incantation_cmd(self, s, p, mess):
+        if (p.getVerbose()):
+            print('incantation')
+        var = 'incantation'
+        var += '\n'
+        mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
+            return 1
+        else:
+            return 0
+
+    def fork_cmd(self, s, p, mess):
+        if (p.getVerbose()):
+            print('fork')
+        var = 'fork'
+        var += '\n'
+        mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
+            return 1
+        else:
+            return 0
+
+    def connect_nbr_cmd(self, s, p, mess):
+        if (p.getVerbose()):
+            print('connect_nbr')
+        var = 'connect_nbr'
+        var += '\n'
+        mess.sendMessage(s, var)
+        rec = mess.readMessage(s)
+        if (rec == 'OK'):
             return 1
         else:
             return 0
