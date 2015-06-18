@@ -27,6 +27,7 @@
 # include		<math.h>
 # include		<time.h>
 # include		"list.h"
+# include		"ring_buffer.h"
 # include		"xfuncs.h"
 
 # define		RED "\x1b[31m"
@@ -34,10 +35,12 @@
 # define		GREEN "\x1b[32m"
 # define		YELLOW "\x1b[33m"
 # define		RESET "\x1b[0m"
+# define		NO -1
+# define		YES 0
 # define		ERROR -1
 # define		SUCCESS 0
 
-typedef enum		e_rock
+typedef enum		e_rock_type
   {
     LIMEMATE,
     DERAUMERE,
@@ -45,7 +48,7 @@ typedef enum		e_rock
     MENDIANE,
     PHIRAS,
     THYSTAME
-  }			e_rock;
+  }			e_rock_type;
 
 typedef enum		e_orientation
   {
@@ -62,8 +65,12 @@ typedef enum		e_bool
     FALSE
   }			e_bool;
 
-/* FAIRE UNE STRUCTURE DES TABLEAUX DE POINTEURS SUR
-   FONCTIONS A METTRE DANS LA STRUCTURE SERVEUR */
+typedef struct		s_init_cmds
+{
+  char			*name;
+  int			(*ptr_func)();
+  int			delay;
+}			t_init_cmds;
 
 typedef struct		s_position
 {
@@ -74,8 +81,13 @@ typedef struct		s_position
 typedef struct		s_food
 {
   t_position		*pos;
-  e_orientation		orientation;
 }			t_food;
+
+typedef struct		s_rock
+{
+  t_position		*pos;
+  e_rock_type		type;
+}			t_rock;
 
 typedef struct		s_cmd
 {
@@ -99,7 +111,8 @@ typedef struct		s_client
   t_position		*pos;
   t_list		*inventory;
   t_list		*request;
-  char			*buffer;
+
+  t_ring_buffer		*buffer;
 }			t_client;
 
 typedef struct		s_size
@@ -134,8 +147,8 @@ typedef struct		s_opt
 
 typedef struct		s_server_graph
 {
-  e_bool	connected;
-  int		fd;
+  e_bool		connected;
+  int			fd;
 }			t_server_graph;
 
 typedef struct		s_server
@@ -178,14 +191,36 @@ void			read_write_server(t_server*, int, char**);
 void			my_printf(const char *, ...);
 
 
-int			cmd_left(t_client *);
-int			cmd_right(t_client *);
-int			cmd_set_time(t_server *, t_client *, const char *);
-int			cmd_get_time(t_server *, t_client *);
-int			cmd_advance(t_server *, t_client *);
+int			cmd_left(t_server *, t_client *, const char *);
+int			cmd_right(t_server *, t_client *, const char *);
+int			cmd_advance(t_server *, t_client *, const char *);
+int			cmd_view(t_server *, t_client *, const char *);
+int			cmd_inventory(t_server *, t_client *, const char *);
+int			cmd_take_object(t_server *, t_client *, const char *);
+int			cmd_drop_object(t_server *, t_client *, const char *);
+int			cmd_expel(t_server *, t_client *, const char *);
+int			cmd_incantation(t_server *, t_client *, const char *);
+int			cmd_fork(t_server *, t_client *, const char *);
+int			cmd_dead(t_server *, t_client *, const char *);
+int			cmd_broadcast(t_server *, t_client *, const char *);
+int			cmd_msz(t_server *, t_client *, const char *);
+int			cmd_sgt(t_server *, t_client *, const char *);
+int			cmd_sst(t_server *, t_client *, const char *);
+int			cmd_tna(t_server *, t_client *, const char *);
+int			cmd_bct(t_server *, t_client *, const char *);
+int			cmd_mct(t_server *, t_client *, const char *);
+int			cmd_ppo(t_server *, t_client *, const char *);
+int			cmd_plv(t_server *, t_client *, const char *);
+int			cmd_pin(t_server *, t_client *, const char *);
+
+
+int			is_ia_cmd(const char *);
+void			exec_ia_cmd(t_server *, t_client *, const char *);
 
 void			init_advance(void (*advance[4])(t_size *, t_client *));
 int			int_size_to_malloc(int);
+t_client		*get_client_by_id(t_list *, int);
+int			size_of_tab(char **);
 
 /* $(CMDIA)ADVANCE_FUNCS.C */
 void			adv_up(t_size *, t_client *);
@@ -206,7 +241,6 @@ char			**init_full_tab(int, int);
 
 /* COMMANDS.C */
 int			cmd_team(t_server *);
-int			cmd_msz(t_server *);
 
 /* DISTANCES.C */
 unsigned int   		calcul_length(unsigned int, unsigned int, t_map *);

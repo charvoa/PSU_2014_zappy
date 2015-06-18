@@ -45,13 +45,3 @@ int	cmd_team(t_server *s)
   send_data(s->newfd, trame);
   return (0);
 }
-
-int	cmd_msz(t_server *s)
-{
-  char	trame[3];
-
-  bzero(trame, 3);
-  sprintf(trame, "%d - %d", s->map->size->width, s->map->size->height);
-  send_data(s->newfd, trame);
-  return (0);
-}

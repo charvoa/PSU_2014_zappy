@@ -8,12 +8,11 @@
 ** Last update Wed May 27 00:03:08 2015 Serge Heitzler
 */
 
-#include "../../headers/server.h"
+#include "server.h"
 
 void	init_cmd(int	(*cmd[13])(t_server *s))
 {
   cmd[0] = &cmd_team;
-  cmd[1] = &cmd_msz;
 }
 
 char	**get_cmd_tab()
@@ -22,8 +21,7 @@ char	**get_cmd_tab()
 
   tab = xmalloc(13 * sizeof(char*));
   tab[0] = "TEAM";
-  tab[1] = "msz";
-  tab[2] = NULL;
+  tab[1] = NULL;
   return (tab);
 }
 

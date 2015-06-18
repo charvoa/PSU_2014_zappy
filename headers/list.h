@@ -14,18 +14,18 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef enum e_object_type
+typedef enum e_node_type
   {
     PLAYER,
     ROCK,
     FOOD,
     CMD
-  }		e_object_type;
+  }		e_node_type;
 
 typedef struct s_node
 {
   size_t	id;
-  e_object_type	type;
+  e_node_type	type;
   void		*data;
   struct s_node *prev;
   struct s_node *next;
@@ -41,9 +41,9 @@ typedef struct s_list
 void		show_list(t_list *);
 t_list		*create_list();
 void		free_list(t_list *);
-int		push_back(t_list *, void *, e_object_type);
-int		push_front(t_list *, void *, e_object_type);
-int		push_at_index(t_list *, void *, e_object_type, size_t);
+int		push_back(t_list *, void *, e_node_type);
+int		push_front(t_list *, void *, e_node_type);
+int		push_at_index(t_list *, void *, e_node_type, size_t);
 t_node		*get_node_at_index(t_list *, size_t);
 size_t		size_list(t_list *);
 

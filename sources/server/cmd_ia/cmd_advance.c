@@ -16,14 +16,17 @@ void		init_advance(void (*advance[4])(t_size *, t_client *))
   advance[1] = (void*)&adv_right;
   advance[2] = (void*)&adv_down;
   advance[3] = (void*)&adv_left;
+  advance[4] = NULL;
 }
 
-int			cmd_advance(t_server *server, t_client *client)
+int			cmd_advance(t_server *s,
+				    t_client *c, const char *cmd)
 {
+  (void)cmd;
   void			(*advance[4])(t_size *, t_client *);
 
   init_advance(advance);
-  advance[client->orientation](server->map->size, client);
-  send_data(client->fd, "ok");
+  advance[c->orientation](s->map->size, c);
+  send_data(c->fd, "ok");
   return (SUCCESS);
 }
