@@ -5,7 +5,7 @@
 ** Login   <antgar@epitech.net>
 **
 ** Started on  Sun Jun 14 23:53:51 2015 Antoine Garcia
-** Last update Wed Jun 17 14:48:05 2015 Audibert Louis
+** Last update Fri Jun 19 12:27:41 2015 Audibert Louis
 */
 
 #ifndef RING_BUFFER_H_
@@ -19,8 +19,8 @@ typedef struct s_ring_buffer
   int	end;
 }		t_ring_buffer;
 
-t_ring_buffer	*create_ring_buffer(int length);
-void		ring_buffer_destroy();
+t_ring_buffer	*ring_buffer_create(int length);
+void		ring_buffer_destroy(t_ring_buffer *buffer);
 int		ring_buffer_read(t_ring_buffer *buffer, char *target, int amount);
 int		ring_buffer_write(t_ring_buffer *buffer, char *data, int length);
 int		ring_buffer_empty(t_ring_buffer *buffer);

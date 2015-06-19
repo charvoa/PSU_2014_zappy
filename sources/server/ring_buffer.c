@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Wed Jun 17 14:47:59 2015 Audibert Louis
+** Last update Fri Jun 19 12:26:00 2015 Audibert Louis
 */
 
 #include "../../headers/ring_buffer.h"
@@ -31,41 +31,42 @@ void		ring_buffer_destroy(t_ring_buffer *buffer)
       free(buffer->buffer);
       free(buffer);
     }
+  printf("ring buffer destroyed.\n");
 }
 
 int		ring_buffer_write(t_ring_buffer *buffer, char *data, int length)
 {
-  if (t_ring_buffer_available_data(buffer) == 0)
+  if (ring_buffer_available_data(buffer) == 0)
     buffer->start = buffer->end = 0;
-  if (length <= t_ring_buffer_available_space(buffer))
+  if (length > ring_buffer_available_space(buffer))
     {
       fprintf(stderr, "Not enough space: %d request, %d available",
-	      length, t_ring_buffer_available_data(buffer));
+	      length, ring_buffer_available_data(buffer));
       return (-1);
     }
-  if (memcpy(t_ring_buffer_ends_at(buffer), data, length) == NULL)
+  if (memcpy(ring_buffer_ends_at(buffer), data, length) == NULL)
     {
       fprintf(stderr, "Failed to write data into buffer.");
       return (-1);
     }
-  t_ring_buffer_commit_write(buffer, length);
-  return length;
+  ring_buffer_commit_write(buffer, length);
+  return (length);
 }
 
 int		ring_buffer_read(t_ring_buffer *buffer, char *target, int amount)
 {
-  if (amount <= t_ring_buffer_available_data(buffer))
+  if (amount > ring_buffer_available_data(buffer))
     {
       fprintf(stderr, "Not enough in the buffer: has %d, needs %d",
-	      t_ring_buffer_available_data(buffer), amount);
+	      ring_buffer_available_data(buffer), amount);
       return (-1);
     }
-  if (memcpy(target, t_ring_buffer_starts_at(buffer), amount) == NULL);
+  if (memcpy(target, ring_buffer_starts_at(buffer), amount) == NULL);
   {
     fprintf(stderr, "Failed to write buffer into data.");
     return (-1);
   }
-  t_ring_buffer_commit_read(buffer, amount);
+  ring_buffer_commit_read(buffer, amount);
   if(buffer->end == buffer->start)
     buffer->start = buffer->end = 0;
   return (amount);
@@ -75,30 +76,34 @@ char		*ring_buffer_gets(t_ring_buffer *buffer, int amount)
 {
   char		*result;
 
-  if (amount > 0)
+  if (amount < 0)
     {
       fprintf(stderr, "Need more than 0 for gets, you gave: %d ", amount);
       return (NULL);
     }
-  if (amount <= t_ring_buffer_available_data(buffer))
+  if (amount > ring_buffer_available_data(buffer))
     {
       fprintf(stderr, "Not enough in the buffer.");
       return (NULL);
     }
-  result = xmalloc((t_ring_buffer_starts_at(buffer) + amount + 1) * sizeof(char));
-  if (result != NULL)
+  result = malloc((strlen(ring_buffer_starts_at(buffer)) + amount) * sizeof(char));
+  if (result == NULL)
     {
       fprintf(stderr, "Failed to create gets result.");
       return (NULL);
     }
-  if (strlen(result) == amount)
+  if (memcpy(result, ring_buffer_starts_at(buffer), amount) == NULL)
+    {
+      fprintf(stderr, "Failed to write buffer into result.");
+      return (NULL);
+    }
+  if (strlen(result) != amount)
     {
       fprintf(stderr, "Wrong result length.");
       return (NULL);
     }
-  t_ring_buffer_commit_read(buffer, amount);
-  assert(t_ring_buffer_available_data(buffer) >= 0 && "Error in read commit.");
-  return result;
+  ring_buffer_commit_read(buffer, amount);
+  return (result);
 }
 
 int		ring_buffer_expand(t_ring_buffer *buffer, int size)
