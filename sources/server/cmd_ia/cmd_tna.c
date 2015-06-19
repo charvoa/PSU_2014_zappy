@@ -1,3 +1,13 @@
+/*
+** cmd_tna.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
+** 
+** Made by Serge Heitzler
+** Login   <sergeheitzler@epitech.net>
+** 
+** Started on  Fri Jun 19 11:28:48 2015 Serge Heitzler
+** Last update Fri Jun 19 11:28:49 2015 Serge Heitzler
+*/
+
 #include "server.h"
 
 char		*get_all_teams_in_str(t_server *s)
