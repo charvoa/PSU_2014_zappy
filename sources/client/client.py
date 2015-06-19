@@ -20,6 +20,7 @@ __status__ = "Dev"
 p = GetOptions()
 mess = MessageClass()
 ic = InterpretClass()
+cc = CommandClass()
 s = None
 
 def signal_handler(signal, frame):
@@ -29,7 +30,7 @@ def signal_handler(signal, frame):
 def send_name_to_server(s):
     var = 'TEAM '
     var += p.getName()
-    #var += '\n'
+    #var += '\r\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
@@ -44,7 +45,8 @@ def protocol(s):
     mess.sendMessage(s, var)
 
 def act_command(s):
-    avance_cmd(s, p, mess)
+    cc.avance_cmd(s, p, mess)
+    cc.voir_cmd(s, p, mess)
 
 def main():
     try:
@@ -61,8 +63,8 @@ def main():
         print('Exception : The server has refused the connection')
     except getopt.GetoptError:
         print('Usage : client.py -n [NAME] -h [HOST] -p [PORT]')
-    except:
-        print('Exception : An error has occured')
+#    except:
+ #       print('Exception : An error has occured')
 
 if __name__ == "__main__":
     main()

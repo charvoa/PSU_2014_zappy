@@ -10,12 +10,14 @@
 
 #include "server.h"
 
-int		cmd_right(t_client *client)
+int		cmd_right(t_server *s, t_client *c, const char *cmd)
 {
+  (void)s;
+  (void)cmd;
   void	(*orientation[4])(t_client *);
 
   init_orientation(orientation);
-  orientation[(client->orientation + 1) % 4](client);
-  send_data(client->fd, "ok");
+  orientation[(c->orientation + 1) % 4](c);
+  send_data(c->fd, "ok");
   return (SUCCESS);
 }

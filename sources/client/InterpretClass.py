@@ -7,7 +7,7 @@ class InterpretClass():
     nbr_client = 0
 
     def interpret_bienvenue(self, s, rec, p):
-        if (rec == b'BIENVENUE\r\n'):
+        if (rec == 'BIENVENUE\r\n'):
             if (p.getVerbose()):
                 print(rec)
             return 1
@@ -22,4 +22,5 @@ class InterpretClass():
         if (p.getVerbose()):
             print(rec)
         self.x, self.y = rec.split(' - ')
-
+        print(self.x)
+        print(self.y)

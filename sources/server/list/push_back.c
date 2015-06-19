@@ -10,7 +10,7 @@
 
 #include "server.h"
 
-int		push_back(t_list *list, void *data, e_object_type type)
+int		push_back(t_list *list, void *data, e_node_type type)
 {
   t_node	*node;
 

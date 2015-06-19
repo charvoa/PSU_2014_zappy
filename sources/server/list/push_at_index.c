@@ -11,7 +11,7 @@
 #include "server.h"
 
 /* Possible memory leak dans cette fonction, node et tmp pas free. */
-int		push_at_index(t_list *list, void *data, e_object_type type, size_t index)
+int		push_at_index(t_list *list, void *data, e_node_type type, size_t index)
 {
   t_node	*node;
   t_node	*tmp;

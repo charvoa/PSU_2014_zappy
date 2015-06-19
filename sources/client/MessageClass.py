@@ -11,5 +11,6 @@ class MessageClass(object):
 
     def readMessage(self, s) -> str:
         received = s.recv(1024)
+        received = received.decode("utf-8")
         return received
 
