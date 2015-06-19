@@ -71,6 +71,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_IA_DIR)cmd_pin.c			\
 			$(CMD_IA_DIR)advance_funcs.c		\
 			$(CMD_IA_DIR)int_size_to_malloc.c	\
+			$(CMD_IA_DIR)get_objects_from_list.c	\
 			$(LIST_DIR)push_back.c 			\
 			$(LIST_DIR)push_at_index.c 		\
 			$(LIST_DIR)push_front.c 		\
@@ -80,6 +81,7 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)free_list.c			\
 			$(LIST_DIR)size_list.c			\
 			$(LIST_DIR)show_list.c			\
+			$(LIST_DIR)get_nbr_of.c			\
 			$(LIST_DIR)remove_at_index.c		\
 			$(LIST_DIR)remove_front.c		\
 			$(LIST_DIR)remove_back.c		\

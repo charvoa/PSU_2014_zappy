@@ -45,6 +45,7 @@ int		push_back(t_list *, void *, e_node_type);
 int		push_front(t_list *, void *, e_node_type);
 int		push_at_index(t_list *, void *, e_node_type, size_t);
 t_node		*get_node_at_index(t_list *, size_t);
+int    		get_nbr_of(e_node_type, t_list *);
 size_t		size_list(t_list *);
 
 #endif  /* !LIST_H_ */

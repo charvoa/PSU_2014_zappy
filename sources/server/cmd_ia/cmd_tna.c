@@ -21,9 +21,6 @@ char		*get_all_teams_in_str(t_server *s)
 int		cmd_tna(t_server *s, t_client *c, const char *cmd)
 {
   (void)cmd;
-  // Les (void) du dessous sont à supprimer, celui du dessus est important et à laisser.
-  (void)s;
-  (void)c;
   char		*final;
   char		*all_teams;
 

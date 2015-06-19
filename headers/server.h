@@ -217,6 +217,8 @@ int			cmd_pin(t_server *, t_client *, const char *);
 int			is_ia_cmd(const char *);
 void			exec_ia_cmd(t_server *, t_client *, const char *);
 
+char			*get_objects_from_inventory(t_list *);
+int			get_nbr_of_rock(e_rock_type, t_list *);
 void			init_advance(void (*advance[4])(t_size *, t_client *));
 int			int_size_to_malloc(int);
 t_client		*get_client_by_id(t_list *, int);
