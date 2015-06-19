@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:07 2015 Nicolas Girardot
-// Last update Tue May 26 19:41:55 2015 Nicolas Girardot
+// Last update Fri Jun 19 15:38:43 2015 Nicolas Girardot
 //
 
 #ifndef SOCKET_HH_
@@ -33,6 +33,8 @@ private:
   int			_socket;
   const	char		*_ip;
   const	int		_port;
+  std::stringstream	_read;
+  int			_connected = 0;
 public:
   Socket(const char *ip, const int port);
   ~Socket();

@@ -5,14 +5,15 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Tue May 26 19:41:27 2015 Nicolas Girardot
+// Last update Fri Jun 19 15:44:36 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
 
 Socket::Socket(const char *ip, const int port) : _ip(ip), _port(port)
 {
-
+  this->initSocket();
+  this->connectSocket();
 }
 
 Socket::~Socket()
@@ -38,8 +39,6 @@ void	Socket::my_connect()
 {
   int	fd;
 
-  this->initSocket();
-  this->connectSocket();
   FD_ZERO(&_rfds);
   FD_ZERO(&_wfds);
   FD_SET(STDIN_FILENO, &_rfds);
@@ -49,27 +48,19 @@ void	Socket::my_connect()
     fd = STDERR_FILENO;
   else
     fd = _socket;
-  select(fd + 1, &_rfds, &_wfds, NULL, NULL);
 }
 
 void	Socket::selectSocket()
 {
-  std::stringstream readd;
-  const std::string tmp;
-  int connected = 0;
-
-  while (42)
+  if (_connected == 0)
     {
-       if (connected == 0)
-	 {
-	   write(_socket, "graph_cli_connected\n", strlen("graph_cli_connected\n"));
-	   connected = 1;
-	 }
-      my_connect();
-      if (FD_ISSET(STDIN_FILENO, &this->_rfds));
-      else if (FD_ISSET(this->_socket, &_rfds))
-	{
-	  readd << _socket;
-	}
+      write(_socket, "graph_cli_connected\n", strlen("graph_cli_connected\n"));
+      _connected = 1;
+    }
+  my_connect();
+  if (FD_ISSET(STDIN_FILENO, &this->_rfds));
+  else if (FD_ISSET(this->_socket, &_rfds))
+    {
+      _read << _socket;
     }
 }

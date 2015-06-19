@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Tue May 26 18:35:37 2015 Nicolas Girardot
+// Last update Fri Jun 19 15:42:58 2015 Nicolas Girardot
 //
 
 #ifndef _GAMEENGINE_HPP_
@@ -24,14 +24,20 @@
 #include <Texture.hh>
 #include <Model.hh>
 #include "Map.hpp"
+#include "Socket.hh"
 
 class	GameEngine : public gdl::Game
 {
+private:
+  SDL_Window	*_window;
+  SDL_Surface	*_surface;
+  SDL_Event	_event;
+  Socket	*_socket;
 public:
   GameEngine() {}
   ~GameEngine() {
-    for (size_t i = 0; i < _object.size(); i++)
-      delete _object[i];
+    SDL_DestroyWindow(_window);
+    SDL_Quit();
   }
 
   void	init_object()
@@ -45,65 +51,56 @@ public:
 
   bool	initialize()
   {
-    glm::mat4	projection;
-    glm::mat4	transform;
-
-    if (_context.start(800, 600, "Zappy"))
-      return false;
-    glEnable(GL_DEPTH_TEST);
-    if (!_shader.load("./libGDL/shaders/basic.fp", GL_FRAGMENT_SHADER)
-	|| !_shader.load("./libGDL/shaders/basic.vp", GL_VERTEX_SHADER)
-	|| !_shader.build())
-      return false;
-
-    projection = glm::perspective(60.0f, 4.0f / 3.0f, 0.1f, 100.0f);
-    transform = glm::lookAt(glm::vec3(0, 10, -30), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
-
-    _shader.bind();
-    _shader.setUniform("view", transform);
-    _shader.setUniform("projection", projection);
-
-    while(42);
-    init_object();
+    _window = SDL_CreateWindow("Zappy - La Pintade 2015", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1000, 1000, SDL_WINDOW_SHOWN );
+    if (!_window)
+      std::cout << "Error on Windows Create" << std::endl;
+    else
+      {
+	_surface = SDL_GetWindowSurface(_window);
+	SDL_FillRect(_surface, NULL, SDL_MapRGB(_surface->format, 0xFF, 0xFF, 0xFF));
+	SDL_UpdateWindowSurface(_window);
+      }
     return true;
   }
 
   bool	update()
   {
-    if (_input.getKey(SDLK_ESCAPE))
-      return false;
-
-    _context.updateClock(_clock);
-    _context.updateInputs(_input);
-
-    for (size_t i = 0; i < _object.size(); i++)
-      _object[i]->update(_clock, _input);
-
+    this->_socket->selectSocket();
+    while (SDL_PollEvent(&_event))
+      {
+	if (_event.type == SDL_KEYDOWN)
+	  {
+	    switch(_event.key.keysym.sym)
+	      {
+	      case SDLK_ESCAPE:
+		return false;
+		break;
+	      default:
+		break;
+	      }
+	  }
+	if (_event.type == SDL_QUIT)
+	  return false;
+      }
     return true;
   }
 
   void	draw()
   {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    _shader.bind();
-    for (size_t i = 0; i < _object.size(); i++)
-      _object[i]->draw(_shader, _clock);
+    for (size_t i = 0; i < _object.size(); i++);
+    //_object[i]->draw(_shader, _clock);
 
-    _context.flush();
+    //    _context.flush();
   }
 
   void	run()
   {
+    this->_socket = new Socket("127.0.0.1", 4242);
     initialize();
-    while (this->update())
-      draw();
+    while (this->update());
   }
 
 private:
-  gdl::SdlContext		_context;
-  gdl::Clock			_clock;
-  gdl::BasicShader		_shader;
-  gdl::Input			_input;
   std::vector<AObject *>	_object;
 };
 
