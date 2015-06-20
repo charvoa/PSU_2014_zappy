@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Mon May 25 11:56:07 2015 Audibert Louis
+** Last update Sat Jun 20 17:42:26 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -55,16 +55,20 @@ void	accept_server(t_server *s, char **argv)
 	  s->fdmax = s->newfd;
 	  g_fdmax = s->fdmax;
 	}
+      create_client(s, s->newfd,
+		    "default_team_name", s->map->size);
       printf("%s: New connection from %s on socket %d\n", argv[0],
-		inet_ntoa(s->clientaddr.sin_addr), s->newfd);
-      write_to_client(s, "BIENVENUE\r\n");
+	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
+      send_data(s->newfd, "BIENVENUE\r\n");
     }
 }
 
 void		read_write_server(t_server *s, int i, char **argv)
 {
   ssize_t	nbytes;
+  t_client	*c;
 
+  c = get_client_by_id(s->clients, i);
   s->buf = xmalloc(4096 * sizeof(char));
   memset(s->buf, '\0', 4096);
   if ((nbytes = read(i, s->buf, 4095)) <= 0)
@@ -79,7 +83,9 @@ void		read_write_server(t_server *s, int i, char **argv)
   else
     {
       s->i = i;
-      exec_cmd(s);
+      //exec_cmd(s);
+      exec_ia_cmd(s, c, s->buf);
     }
   free(s->buf);
+  free(c);
 }

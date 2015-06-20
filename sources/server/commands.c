@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Tue May 26 18:19:22 2015 Audibert Louis
+** Last update Sat Jun 20 10:15:59 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -38,7 +38,7 @@ int	cmd_team(t_server *s)
 	  s->teams->slot_rest --;
 	}
       else
-	write_to_client(s, "NO_SLOT_REST\r\n");
+	send_data(s->newfd, "NO_SLOT_REST\r\n");
     }
   bzero(trame, 21);
   sprintf(trame, "%d - %d", s->map->size->width, s->map->size->height);

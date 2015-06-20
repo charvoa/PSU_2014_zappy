@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue May 26 23:56:32 2015 Serge Heitzler
+## Last update Sat Jun 20 10:05:49 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -42,7 +42,6 @@ SRCS		= 	main.c	 				\
 			set_options.c				\
 			server.c				\
 			utilis.c				\
-			write_to_client.c			\
 			size_of_tab.c				\
 			$(X_DIR)xmalloc.c	 		\
 			$(X_DIR)xlisten.c	 		\

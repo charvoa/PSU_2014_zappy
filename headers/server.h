@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed May 27 00:03:36 2015 Serge Heitzler
+** Last update Sat Jun 20 17:29:11 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -110,7 +110,7 @@ typedef struct		s_client
 
   t_position		*pos;
   t_list		*inventory;
-  t_list		*request;
+  t_list		*cmds;
 
   t_ring_buffer		*buffer;
 }			t_client;
@@ -235,7 +235,7 @@ int			count_teams(t_server *);
 
 /* CREATE_CLIENT.C */
 void			init_orientation(void(*orientation[4])(t_client *));
-void			create_client(t_client *, int, char *, t_size *);
+int			create_client(t_server *, int, char *, t_size *);
 
 /* CREATE_MAP.C */
 void			init_map(t_server *, unsigned int, unsigned int);
