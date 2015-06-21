@@ -5,12 +5,12 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Sun Jun 21 20:58:11 2015 Serge Heitzler
+** Last update Sun Jun 21 21:57:26 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-static t_init_write	g_items[8] =
+static t_label	g_items[8] =
   {
     {"food"},
     {"player"},

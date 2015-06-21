@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sun Jun 21 20:58:19 2015 Serge Heitzler
+** Last update Sun Jun 21 21:57:45 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -65,10 +65,10 @@ typedef enum		e_bool
     FALSE
   }			e_bool;
 
-typedef struct		s_init_write
+typedef struct		s_label
 {
   char			*label;
-}			t_init_write;
+}			t_label;
 
 typedef struct		s_init_cmds
 {
