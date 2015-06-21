@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun May  3 16:40:31 2015 Serge Heitzler
-** Last update Tue May 26 20:28:11 2015 Serge Heitzler
+** Last update Sun Jun 21 17:55:23 2015 Serge Heitzler
 */
 
 #ifndef LIST_H_
@@ -19,7 +19,8 @@ typedef enum e_node_type
     PLAYER,
     ROCK,
     FOOD,
-    CMD
+    CMD,
+    UNKNOWN
   }		e_node_type;
 
 typedef struct s_node

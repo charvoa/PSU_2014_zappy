@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sat Jun 20 10:05:49 2015 Serge Heitzler
+## Last update Sun Jun 21 20:08:56 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -70,8 +70,8 @@ SRCS		= 	main.c	 				\
 			$(CMD_IA_DIR)cmd_pin.c			\
 			$(CMD_IA_DIR)advance_funcs.c		\
 			$(CMD_IA_DIR)int_size_to_malloc.c	\
-			$(CMD_IA_DIR)get_objects_from_list.c	\
 			$(CMD_IA_DIR)pointers_array.c		\
+			$(CMD_IA_DIR)show_items_at_position.c	\
 			$(LIST_DIR)push_back.c 			\
 			$(LIST_DIR)push_at_index.c 		\
 			$(LIST_DIR)push_front.c 		\

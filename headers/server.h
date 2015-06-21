@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sat Jun 20 17:29:11 2015 Serge Heitzler
+** Last update Sun Jun 21 20:58:19 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -47,7 +47,7 @@ typedef enum		e_rock_type
     SIBUR,
     MENDIANE,
     PHIRAS,
-    THYSTAME
+    THYSTAME,
   }			e_rock_type;
 
 typedef enum		e_orientation
@@ -64,6 +64,11 @@ typedef enum		e_bool
     TRUE,
     FALSE
   }			e_bool;
+
+typedef struct		s_init_write
+{
+  char			*label;
+}			t_init_write;
 
 typedef struct		s_init_cmds
 {
@@ -223,6 +228,8 @@ void			init_advance(void (*advance[4])(t_size *, t_client *));
 int			int_size_to_malloc(int);
 t_client		*get_client_by_id(t_list *, int);
 int			size_of_tab(char **);
+char			*show_items_at_position(t_server *, int, int);
+int			get_size_malloc_at_position(t_server *, int, int);
 
 /* $(CMDIA)ADVANCE_FUNCS.C */
 void			adv_up(t_size *, t_client *);

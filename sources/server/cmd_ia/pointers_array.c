@@ -5,12 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Fri Jun 19 11:28:40 2015 Serge Heitzler
+** Last update Sun Jun 21 20:09:15 2015 Serge Heitzler
 */
 
 #include "server.h"
-
-// cmd_ia
 
 static t_init_cmds	g_ia_cmds[21] =
   {
