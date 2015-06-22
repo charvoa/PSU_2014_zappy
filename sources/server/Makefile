@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Mon Jun 22 12:07:12 2015 Audibert Louis
+## Last update Mon Jun 22 14:31:52 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -19,9 +19,7 @@ EXTERNLIB	=	-lm
 
 X_DIR		=	../xfuncs/
 
-CMD_IA_DIR	=	./cmd_ia/
-
-CMD_GR_DIR	=	./cmd_graph/
+CMD_DIR	=	./cmd/
 
 LIST_DIR	=	./list/
 
@@ -46,31 +44,31 @@ SRCS		= 	main.c	 				\
 			$(X_DIR)xlisten.c	 		\
 			$(X_DIR)xbind.c		 		\
 			$(X_DIR)xsocket.c		 	\
-			$(CMD_IA_DIR)cmd_right.c		\
-			$(CMD_IA_DIR)cmd_left.c			\
-			$(CMD_IA_DIR)cmd_view.c			\
-			$(CMD_IA_DIR)cmd_advance.c		\
-			$(CMD_IA_DIR)cmd_inventory.c		\
-			$(CMD_IA_DIR)cmd_take_object.c		\
-			$(CMD_IA_DIR)cmd_drop_object.c		\
-			$(CMD_IA_DIR)cmd_expel.c		\
-			$(CMD_IA_DIR)cmd_incantation.c		\
-			$(CMD_IA_DIR)cmd_fork.c			\
-			$(CMD_IA_DIR)cmd_dead.c			\
-			$(CMD_IA_DIR)cmd_broadcast.c		\
-			$(CMD_IA_DIR)cmd_msz.c			\
-			$(CMD_IA_DIR)cmd_sgt.c			\
-			$(CMD_IA_DIR)cmd_sst.c			\
-			$(CMD_IA_DIR)cmd_tna.c			\
-			$(CMD_IA_DIR)cmd_bct.c			\
-			$(CMD_IA_DIR)cmd_mct.c			\
-			$(CMD_IA_DIR)cmd_ppo.c			\
-			$(CMD_IA_DIR)cmd_plv.c			\
-			$(CMD_IA_DIR)cmd_pin.c			\
-			$(CMD_IA_DIR)advance_funcs.c		\
-			$(CMD_IA_DIR)int_size_to_malloc.c	\
-			$(CMD_IA_DIR)pointers_array.c		\
-			$(CMD_IA_DIR)show_items_at_position.c	\
+			$(CMD_DIR)cmd_right.c			\
+			$(CMD_DIR)cmd_left.c			\
+			$(CMD_DIR)cmd_view.c			\
+			$(CMD_DIR)cmd_advance.c			\
+			$(CMD_DIR)cmd_inventory.c		\
+			$(CMD_DIR)cmd_take_object.c		\
+			$(CMD_DIR)cmd_drop_object.c		\
+			$(CMD_DIR)cmd_expel.c			\
+			$(CMD_DIR)cmd_incantation.c		\
+			$(CMD_DIR)cmd_fork.c			\
+			$(CMD_DIR)cmd_dead.c			\
+			$(CMD_DIR)cmd_broadcast.c		\
+			$(CMD_DIR)cmd_msz.c			\
+			$(CMD_DIR)cmd_sgt.c			\
+			$(CMD_DIR)cmd_sst.c			\
+			$(CMD_DIR)cmd_tna.c			\
+			$(CMD_DIR)cmd_bct.c			\
+			$(CMD_DIR)cmd_mct.c			\
+			$(CMD_DIR)cmd_ppo.c			\
+			$(CMD_DIR)cmd_plv.c			\
+			$(CMD_DIR)cmd_pin.c			\
+			$(CMD_DIR)advance_funcs.c		\
+			$(CMD_DIR)int_size_to_malloc.c		\
+			$(CMD_DIR)pointers_array.c		\
+			$(CMD_DIR)show_items_at_position.c	\
 			$(LIST_DIR)push_back.c 			\
 			$(LIST_DIR)push_at_index.c 		\
 			$(LIST_DIR)push_front.c 		\

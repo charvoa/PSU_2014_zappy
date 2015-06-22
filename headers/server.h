@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Mon Jun 22 10:40:24 2015 Audibert Louis
+** Last update Mon Jun 22 15:16:26 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -109,6 +109,7 @@ typedef struct		s_cmd
 typedef struct		s_client
 {
   int			fd;
+  int			id;
   unsigned int		level;
   e_orientation		orientation;
   char			*team_name;
