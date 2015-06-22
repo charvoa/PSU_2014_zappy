@@ -5,12 +5,13 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:07 2015 Nicolas Girardot
-// Last update Fri Jun 19 15:38:43 2015 Nicolas Girardot
+// Last update Mon Jun 22 11:16:50 2015 Nicolas Girardot
 //
 
 #ifndef SOCKET_HH_
 # define SOCKET_HH_
 
+# include <time.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>

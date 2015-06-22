@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Fri Jun 19 15:42:58 2015 Nicolas Girardot
+// Last update Mon Jun 22 15:20:38 2015 Nicolas Girardot
 //
 
 #ifndef _GAMEENGINE_HPP_
@@ -25,19 +25,37 @@
 #include <Model.hh>
 #include "Map.hpp"
 #include "Socket.hh"
+#include "GraphMap.hh"
 
 class	GameEngine : public gdl::Game
 {
 private:
   SDL_Window	*_window;
-  SDL_Surface	*_surface;
   SDL_Event	_event;
+  SDL_Surface	*_surface;
+  SDL_Renderer	*_renderer;
   Socket	*_socket;
+  GraphMap	*_gMap;
 public:
   GameEngine() {}
   ~GameEngine() {
     SDL_DestroyWindow(_window);
     SDL_Quit();
+  }
+
+  SDL_Renderer &getRenderer()
+  {
+    return (*_renderer);
+  }
+
+  SDL_Window &getWindow()
+  {
+    return (*_window);
+  }
+
+  SDL_Surface &getSurface()
+  {
+    return (*_surface);
   }
 
   void	init_object()
@@ -56,10 +74,9 @@ public:
       std::cout << "Error on Windows Create" << std::endl;
     else
       {
-	_surface = SDL_GetWindowSurface(_window);
-	SDL_FillRect(_surface, NULL, SDL_MapRGB(_surface->format, 0xFF, 0xFF, 0xFF));
-	SDL_UpdateWindowSurface(_window);
+	_renderer = SDL_CreateRenderer(_window, 0, SDL_RENDERER_ACCELERATED);
       }
+    _gMap = new GraphMap(10, 10);
     return true;
   }
 
@@ -87,17 +104,18 @@ public:
 
   void	draw()
   {
-    for (size_t i = 0; i < _object.size(); i++);
-    //_object[i]->draw(_shader, _clock);
-
-    //    _context.flush();
+    SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255 );
+    SDL_RenderClear(_renderer);
+    _gMap->draw(_renderer);
+    SDL_RenderPresent(_renderer);
   }
 
   void	run()
   {
     this->_socket = new Socket("127.0.0.1", 4242);
     initialize();
-    while (this->update());
+    while (this->update())
+      draw();
   }
 
 private:

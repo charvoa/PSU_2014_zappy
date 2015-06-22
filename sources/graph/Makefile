@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Tue May 26 17:53:36 2015 Nicolas Girardot
+## Last update Fri Jun 19 17:52:45 2015 Nicolas Girardot
 ##
 
 MAIN		=	zappy_graph
@@ -14,6 +14,7 @@ EXEC		=	$(MAIN)
 
 SRC		+=	Socket.cpp					\
 			Command.cpp					\
+			GraphMap.cpp					\
 
 SRC_MAIN	=	$(SRC) main.cpp
 
