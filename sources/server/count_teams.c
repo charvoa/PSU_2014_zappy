@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Fri May 22 13:32:55 2015 Serge Heitzler
-** Last update Fri May 22 13:33:16 2015 Serge Heitzler
+** Last update Mon Jun 22 14:59:40 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -16,6 +16,7 @@ int	count_teams(t_server *s)
   int	i;
 
   i = 0;
+  save = 0;
   save = s->o->optind;
   while (s->o->optind < s->o->argc && *(s->o->argv[s->o->optind]) != '-')
     {
