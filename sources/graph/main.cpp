@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 13:23:08 2015 Serge Heitzler
-// Last update Fri Jun 19 15:21:33 2015 Nicolas Girardot
+// Last update Mon Jun 22 10:09:52 2015 Audibert Louis
 */
 
 #include "AObject.hpp"
@@ -16,6 +16,7 @@
 int	main(int ac, char **av)
 {
   (void) ac;
+  (void) av;
   GameEngine *test = new GameEngine();
   test->run();
 

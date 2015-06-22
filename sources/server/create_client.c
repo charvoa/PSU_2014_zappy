@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jun 20 17:34:18 2015 Serge Heitzler
+** Last update Mon Jun 22 11:01:49 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -26,6 +26,7 @@ int		create_client(t_server *s, int fd,
 
   init_orientation(orientation);
   c = xmalloc(sizeof(t_client));
+  c->pos = xmalloc(sizeof(t_position));
   c->fd = fd;
   c->level = 1;
   c->team_name = strdup(team_name);

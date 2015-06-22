@@ -5,13 +5,14 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Sun Jun 21 20:09:15 2015 Serge Heitzler
+** Last update Mon Jun 22 10:35:37 2015 Audibert Louis
 */
 
 #include "server.h"
 
-static t_init_cmds	g_ia_cmds[21] =
+static t_init_cmds	g_ia_cmds[22] =
   {
+    {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},
     {"droite", &cmd_right, 7},
     {"gauche", &cmd_left, 7},
