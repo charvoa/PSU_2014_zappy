@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sat Jun 20 17:39:28 2015 Serge Heitzler
+** Last update Mon Jun 22 15:02:58 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -94,9 +94,9 @@ t_server	*fill_struct_serv(int argc, char **argv)
 
   s = xmalloc(sizeof(t_server));
   s->teams = xmalloc(sizeof(t_teams));
+  s->teams->names = NULL;
   s->graph = xmalloc(sizeof(t_server_graph));
   s->graph->connected = FALSE;
-  /* Init à la bonne taille si argument x et y ? */
   init_map(s, 20, 20);
   init_opt(options);
   init_opt_server(s);

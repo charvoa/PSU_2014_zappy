@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sun Jun 21 20:08:56 2015 Serge Heitzler
+## Last update Mon Jun 22 12:07:12 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -31,7 +31,6 @@ SRCS		= 	main.c	 				\
 			create_map.c				\
 			create_client.c				\
 			distances.c				\
-			exec_cmd.c				\
 			my_printf.c				\
 			my_str_to_wordtab.c			\
 			options.c				\
@@ -85,6 +84,7 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_at_index.c		\
 			$(LIST_DIR)remove_front.c		\
 			$(LIST_DIR)remove_back.c		\
+			 # exec_cmd.c				\
 
 NAME		= 	server
 
