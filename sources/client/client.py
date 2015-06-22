@@ -42,8 +42,8 @@ def protocol(s):
     ic.interpret_num_client(s, rec, p)
     rec = mess.readMessage(s)
     ic.interpret_size(s, rec, p)
-    var = 'OK'
-    mess.sendMessage(s, var)
+    # var = 'OK'
+    # mess.sendMessage(s, var)
 
 #def act_command(s):
 #    cc.droite_cmd(s, p, mess)

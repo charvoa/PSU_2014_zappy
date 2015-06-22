@@ -5,12 +5,12 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Mon Jun 22 10:35:37 2015 Audibert Louis
+** Last update Mon Jun 22 16:33:04 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-static t_init_cmds	g_ia_cmds[22] =
+static t_init_cmds	g_ia_cmds[21] =
   {
     {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},
@@ -23,7 +23,6 @@ static t_init_cmds	g_ia_cmds[22] =
     {"expulse", &cmd_expel, 7},
     {"incantation", &cmd_incantation, 300},
     {"fork", &cmd_fork, 42},
-    {"", &cmd_dead, 0},
     {"broadcast", &cmd_broadcast, 7},
     {"msz", &cmd_msz, 0},
     {"sgt", &cmd_sgt, 0},
@@ -36,7 +35,7 @@ static t_init_cmds	g_ia_cmds[22] =
     {"pin", &cmd_pin, 0}
   };
 
-int		is_ia_cmd(const char *cmd)
+int		is_cmd(const char *cmd)
 {
   int	i;
 
@@ -50,13 +49,15 @@ int		is_ia_cmd(const char *cmd)
   return (NO);
 }
 
-void		exec_ia_cmd(t_server *s, t_client *c, const char *cmd)
+void		exec_cmd(t_server *s, t_client *c, const char *cmd)
 {
   int	ret;
 
-  printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
-  if ((ret = is_ia_cmd(cmd)) != NO)
-    g_ia_cmds[ret].ptr_func(s, c, cmd);
+  if ((ret = is_cmd(cmd)) != NO)
+    {
+      printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
+      g_ia_cmds[ret].ptr_func(s, c, cmd);
+    }
   else
     fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd);
 }

@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sun May 17 11:30:51 2015 Serge Heitzler
-** Last update Mon Jun 22 15:23:38 2015 Serge Heitzler
+** Last update Mon Jun 22 16:07:30 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -21,7 +21,6 @@ int		cmd_left(t_server *s, t_client *c, const char *cmd)
     orientation[(c->orientation + 3)](c);
   else
     orientation[(c->orientation - 1) % 4](c);
-  printf("c->fd vvv = %d\n", c->fd);
   send_data(c->fd, "ok");
   return (SUCCESS);
 }

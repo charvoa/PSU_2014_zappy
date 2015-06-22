@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sat Jun 20 17:42:26 2015 Serge Heitzler
+** Last update Mon Jun 22 16:39:47 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -68,7 +68,10 @@ void		read_write_server(t_server *s, int i, char **argv)
   ssize_t	nbytes;
   t_client	*c;
 
+
+  printf("LL i = %d\n", i);
   c = get_client_by_id(s->clients, i);
+  printf("LL c->fd = %d\n", c->fd);
   s->buf = xmalloc(4096 * sizeof(char));
   memset(s->buf, '\0', 4096);
   if ((nbytes = read(i, s->buf, 4095)) <= 0)
@@ -83,8 +86,8 @@ void		read_write_server(t_server *s, int i, char **argv)
   else
     {
       s->i = i;
-      //exec_cmd(s);
-      exec_ia_cmd(s, c, s->buf);
+      // envoyer le ring buffer du client c->ring_buffer->buffer
+      exec_cmd(s, c, s->buf);
     }
   free(s->buf);
   free(c);
