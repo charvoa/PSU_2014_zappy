@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Fri Jun 19 12:26:00 2015 Audibert Louis
+** Last update Tue Jun 23 11:20:45 2015 Audibert Louis
 */
 
 #include "../../headers/ring_buffer.h"
@@ -17,7 +17,7 @@
 t_ring_buffer	*ring_buffer_create(int length)
 {
   t_ring_buffer *buffer = calloc(1, sizeof(t_ring_buffer));
-  buffer->length  = length + 1;
+  buffer->length = length + 1;
   buffer->start = 0;
   buffer->end = 0;
   buffer->buffer = calloc(buffer->length, 1);
@@ -61,11 +61,11 @@ int		ring_buffer_read(t_ring_buffer *buffer, char *target, int amount)
 	      ring_buffer_available_data(buffer), amount);
       return (-1);
     }
-  if (memcpy(target, ring_buffer_starts_at(buffer), amount) == NULL);
-  {
-    fprintf(stderr, "Failed to write buffer into data.");
-    return (-1);
-  }
+  if (memcpy(target, ring_buffer_starts_at(buffer), amount) == NULL)
+    {
+      fprintf(stderr, "Failed to write buffer into data.");
+      return (-1);
+    }
   ring_buffer_commit_read(buffer, amount);
   if(buffer->end == buffer->start)
     buffer->start = buffer->end = 0;
@@ -97,7 +97,7 @@ char		*ring_buffer_gets(t_ring_buffer *buffer, int amount)
       fprintf(stderr, "Failed to write buffer into result.");
       return (NULL);
     }
-  if (strlen(result) != amount)
+  if ((int)strlen(result) != amount)
     {
       fprintf(stderr, "Wrong result length.");
       return (NULL);
@@ -108,5 +108,7 @@ char		*ring_buffer_gets(t_ring_buffer *buffer, int amount)
 
 int		ring_buffer_expand(t_ring_buffer *buffer, int size)
 {
+  (void) buffer;
+  (void) size;
   return (0);
 }

@@ -5,7 +5,11 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
+<<<<<<< HEAD:sources/server/cmd_ia/pointers_array.c
+** Last update Tue Jun 23 13:31:54 2015 Audibert Louis
+=======
 ** Last update Mon Jun 22 16:33:04 2015 Serge Heitzler
+>>>>>>> 952d117c02415112eaba265c54eb9b62b8ae8fef:sources/server/cmd/pointers_array.c
 */
 
 #include "server.h"
@@ -40,6 +44,7 @@ int		is_cmd(const char *cmd)
   int	i;
 
   i = 0;
+  printf("CMD is %s\n", cmd);
   while (i < 21)
     {
       if (!strncmp(g_ia_cmds[i].name, cmd, strlen(g_ia_cmds[i].name)))
@@ -49,10 +54,13 @@ int		is_cmd(const char *cmd)
   return (NO);
 }
 
-void		exec_cmd(t_server *s, t_client *c, const char *cmd)
+void		exec_ia_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
 {
   int	ret;
+  char	cmd[strlen(buffer->buffer)];
 
+  strcpy(cmd, ring_buffer_get_all(buffer));
+  printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
   if ((ret = is_cmd(cmd)) != NO)
     {
       printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
