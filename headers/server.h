@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 13:32:45 2015 Audibert Louis
+** Last update Tue Jun 23 14:15:35 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -109,7 +109,6 @@ typedef struct		s_cmd
 typedef struct		s_client
 {
   int			fd;
-  int			id;
   unsigned int		level;
   e_orientation		orientation;
   char			*team_name;
@@ -220,8 +219,8 @@ int			cmd_plv(t_server *, t_client *, const char *);
 int			cmd_pin(t_server *, t_client *, const char *);
 
 
-int			is_ia_cmd(const char *);
-void			exec_ia_cmd(t_server *, t_client *, t_ring_buffer *);
+int			is_cmd(const char *);
+void			exec_cmd(t_server *, t_client *, t_ring_buffer *);
 
 char			*get_objects_from_inventory(t_list *);
 int			get_nbr_of_rock(e_rock_type, t_list *);
