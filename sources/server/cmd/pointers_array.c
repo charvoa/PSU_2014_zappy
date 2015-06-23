@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Tue Jun 23 16:42:30 2015 Audibert Louis
+** Last update Tue Jun 23 17:42:16 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -63,5 +63,4 @@ void		exec_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
     }
   else
     fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd);
-  cmd_dead(s, c, "mort");
 }
