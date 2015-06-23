@@ -21,6 +21,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -33,6 +35,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -45,6 +49,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         voir_list = []
         voir_list = [string(x) for x in rec.split(', ')]
         for p in voir_list:
@@ -57,6 +63,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         inventaire_list = []
         inventaire_list = [string(x) for x in rec.split(', ')]
         for p in inventaire_list:
@@ -69,6 +77,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -81,6 +91,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -93,6 +105,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -105,6 +119,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -117,6 +133,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -129,6 +147,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -141,6 +161,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
@@ -153,6 +175,8 @@ class CommandClass():
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'OK'):
             return 1
         else:
