@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 14:05:59 2015 Serge Heitzler
+** Last update Tue Jun 23 14:15:35 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -220,7 +220,7 @@ int			cmd_pin(t_server *, t_client *, const char *);
 
 
 int			is_cmd(const char *);
-void			exec_cmd(t_server *, t_client *, const char *);
+void			exec_cmd(t_server *, t_client *, t_ring_buffer *);
 
 char			*get_objects_from_inventory(t_list *);
 int			get_nbr_of_rock(e_rock_type, t_list *);

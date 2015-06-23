@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Tue Jun 23 12:02:54 2015 Serge Heitzler
+** Last update Tue Jun 23 14:16:44 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -110,7 +110,5 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
       if (size_malloc += (get_size_malloc_at_position(s, *x, *y)) == 0)
 	size_malloc++;
     }
-
-
   return (SUCCESS);
 }

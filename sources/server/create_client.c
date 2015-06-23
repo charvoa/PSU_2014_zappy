@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Tue Jun 23 14:04:30 2015 Serge Heitzler
+** Last update Tue Jun 23 14:17:28 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -23,7 +23,6 @@ int		create_client(t_server *s, int fd,
 {
   void(*orientation[4])(t_client *);
   t_client	*c;
-  static int id = 8;
 
   init_orientation(orientation);
   c = xmalloc(sizeof(t_client));
@@ -35,7 +34,9 @@ int		create_client(t_server *s, int fd,
   c->pos->y = rand() % size->height;
   c->inventory = create_list();
   c->cmds = create_list();
-  c->orientation = UP;
+  c->buffer = ring_buffer_create(1024);
+  printf("buffer created\n");
+  orientation[rand() % 4](c);
   push_back(s->clients, c, PLAYER);
   printf("[create_client] - I have created a client with fd [%d]\n", c->fd);
   return (SUCCESS);

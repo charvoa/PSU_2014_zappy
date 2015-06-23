@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Tue Jun 23 12:11:02 2015 Serge Heitzler
+** Last update Tue Jun 23 14:15:49 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -49,10 +49,12 @@ int		is_cmd(const char *cmd)
   return (NO);
 }
 
-void		exec_cmd(t_server *s, t_client *c, const char *cmd)
+void		exec_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
 {
   int	ret;
+  char	cmd[strlen(buffer->buffer)];
 
+  strcpy(cmd, ring_buffer_get_all(buffer));
   if ((ret = is_cmd(cmd)) != NO)
     {
       printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
