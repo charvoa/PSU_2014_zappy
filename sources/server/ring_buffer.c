@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Tue Jun 23 11:20:45 2015 Audibert Louis
+** Last update Tue Jun 23 14:34:16 2015 Audibert Louis
 */
 
 #include "../../headers/ring_buffer.h"
@@ -92,6 +92,7 @@ char		*ring_buffer_gets(t_ring_buffer *buffer, int amount)
       fprintf(stderr, "Failed to create gets result.");
       return (NULL);
     }
+  bzero(result, (strlen(ring_buffer_starts_at(buffer)) + amount));
   if (memcpy(result, ring_buffer_starts_at(buffer), amount) == NULL)
     {
       fprintf(stderr, "Failed to write buffer into result.");
