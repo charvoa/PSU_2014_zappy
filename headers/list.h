@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun May  3 16:40:31 2015 Serge Heitzler
-** Last update Sun Jun 21 17:55:23 2015 Serge Heitzler
+** Last update Tue Jun 23 18:54:32 2015 Audibert Louis
 */
 
 #ifndef LIST_H_
@@ -20,6 +20,7 @@ typedef enum e_node_type
     ROCK,
     FOOD,
     CMD,
+    TEAM,
     UNKNOWN
   }		e_node_type;
 

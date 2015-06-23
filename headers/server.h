@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 17:40:20 2015 Audibert Louis
+** Last update Tue Jun 23 20:30:19 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -133,14 +133,17 @@ typedef struct		s_map
   t_list		***objects;
 }			t_map;
 
-typedef struct		s_teams
+typedef struct		s_team
 {
-  char			**names; // -n
-  int			len_names;
-  unsigned int		nb_max_clients_by_team; // -c
-  int			slot_rest;
-  t_list		*team;
-}			t_teams;
+  /* char			**names; // -n */
+  /* int			len_names; */
+  /* unsigned int		nb_max_clients_by_team; // -c */
+  /* int			slot_rest; */
+
+  char		*name;
+  int		slot_rest;
+  int		slot_max;
+}			t_team;
 
 typedef struct		s_opt
 {
@@ -161,7 +164,6 @@ typedef struct		s_server
 {
   // Loulou's Work
   unsigned int		port; // -p
-  t_teams		*teams; // -n -c
   unsigned int		time_action; // -t
   t_opt			*o;
   char			**tab;
@@ -183,6 +185,7 @@ typedef struct		s_server
   // Pontoise's Work
   t_map			*map;
   t_list		*clients;
+  t_list		*teams;
   t_server_graph	*graph;
 }			t_server;
 
@@ -223,11 +226,14 @@ int			cmd_pin(t_server *, t_client *, const char *);
 int			is_cmd(const char *);
 void			exec_cmd(t_server *, t_client *, t_ring_buffer *);
 
+void			set_slot_max_by_team(t_list *, int);
 char			*get_objects_from_inventory(t_list *);
 int			get_nbr_of_rock(e_rock_type, t_list *);
 void			init_advance(void (*advance[4])(t_size *, t_client *));
 int			int_size_to_malloc(int);
 t_client		*get_client_by_id(t_list *, int);
+t_team			*get_team_by_name(t_list *, char *);
+
 int			size_of_tab(char **);
 char			*show_items_at_position(t_server *, int, int);
 int			get_size_malloc_at_position(t_server *, int, int);
@@ -248,6 +254,10 @@ int			create_client(t_server *, int, char *, t_size *);
 /* CREATE_MAP.C */
 void			init_map(t_server *, unsigned int, unsigned int);
 char			**init_full_tab(int, int);
+
+/* CREATE_TEAM.C */
+t_team			*create_team(t_server *s, char *name, int nb_max);
+
 
 /* COMMANDS.C */
 int			cmd_team(t_server *, t_client *, const char *);

@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue Jun 23 13:32:12 2015 Audibert Louis
+## Last update Tue Jun 23 18:53:31 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -19,7 +19,7 @@ EXTERNLIB	=	-lm
 
 X_DIR		=	../xfuncs/
 
-CMD_DIR	=	./cmd/
+CMD_DIR		=	./cmd/
 
 LIST_DIR	=	./list/
 
@@ -75,6 +75,7 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)create_list.c		\
 			$(LIST_DIR)get_node_at_index.c		\
 			$(LIST_DIR)get_client_in_list.c		\
+			$(LIST_DIR)get_team_in_list.c		\
 			$(LIST_DIR)free_list.c			\
 			$(LIST_DIR)size_list.c			\
 			$(LIST_DIR)show_list.c			\
@@ -82,7 +83,8 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_at_index.c		\
 			$(LIST_DIR)remove_front.c		\
 			$(LIST_DIR)remove_back.c		\
-			ring_buffer.c
+			ring_buffer.c				\
+			create_team.c
 			 # exec_cmd.c				\
 
 NAME		= 	server
