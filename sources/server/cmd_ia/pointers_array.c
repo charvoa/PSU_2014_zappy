@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Mon Jun 22 10:35:37 2015 Audibert Louis
+** Last update Tue Jun 23 13:27:12 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -41,6 +41,7 @@ int		is_ia_cmd(const char *cmd)
   int	i;
 
   i = 0;
+  printf("CMD is %s\n", cmd);
   while (i < 21)
     {
       if (!strncmp(g_ia_cmds[i].name, cmd, strlen(g_ia_cmds[i].name)))
@@ -50,10 +51,12 @@ int		is_ia_cmd(const char *cmd)
   return (NO);
 }
 
-void		exec_ia_cmd(t_server *s, t_client *c, const char *cmd)
+void		exec_ia_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
 {
   int	ret;
+  char	cmd[strlen(buffer->buffer)];
 
+  strcpy(cmd, ring_buffer_get_all(buffer));
   printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
   if ((ret = is_ia_cmd(cmd)) != NO)
     g_ia_cmds[ret].ptr_func(s, c, cmd);

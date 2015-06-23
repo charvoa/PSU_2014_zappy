@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sat Jun 20 17:42:26 2015 Serge Heitzler
+** Last update Tue Jun 23 13:19:46 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -66,26 +66,30 @@ void	accept_server(t_server *s, char **argv)
 void		read_write_server(t_server *s, int i, char **argv)
 {
   ssize_t	nbytes;
+  char		*tmp;
   t_client	*c;
 
   c = get_client_by_id(s->clients, i);
-  s->buf = xmalloc(4096 * sizeof(char));
-  memset(s->buf, '\0', 4096);
-  if ((nbytes = read(i, s->buf, 4095)) <= 0)
+  tmp = xmalloc(4096 * sizeof(char));
+  memset(tmp, '\0', 4096);
+  if ((nbytes = read(i, tmp, 4096)) <= 0)
     {
       if (nbytes == 0)
 	printf("%s: socket %d hung up\n", argv[0], i);
       else
 	perror("read() error!");
+      ring_buffer_destroy(c->buffer);
       close(i);
       FD_CLR(i, &(s->master));
     }
   else
     {
+      ring_buffer_write(c->buffer, tmp, strlen(tmp));
       s->i = i;
       //exec_cmd(s);
-      exec_ia_cmd(s, c, s->buf);
+      /* exec_ia_cmd(s, c, tmp); */
+      exec_ia_cmd(s, c, c->buffer);
     }
-  free(s->buf);
+  free(tmp);
   free(c);
 }

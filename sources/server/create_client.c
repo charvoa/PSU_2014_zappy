@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Mon Jun 22 11:01:49 2015 Audibert Louis
+** Last update Tue Jun 23 11:22:12 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -34,6 +34,8 @@ int		create_client(t_server *s, int fd,
   c->pos->y = rand() % size->height;
   c->inventory = create_list();
   c->cmds = create_list();
+  c->buffer = ring_buffer_create(1024);
+  printf("buffer created\n");
   orientation[rand() % 4](c);
   push_back(s->clients, c, PLAYER);
   return (SUCCESS);

@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Mon Jun 22 12:07:12 2015 Audibert Louis
+## Last update Tue Jun 23 11:15:11 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -84,6 +84,7 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_at_index.c		\
 			$(LIST_DIR)remove_front.c		\
 			$(LIST_DIR)remove_back.c		\
+			ring_buffer.c
 			 # exec_cmd.c				\
 
 NAME		= 	server
