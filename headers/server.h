@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 20:06:24 2015 Serge Heitzler
+** Last update Tue Jun 23 20:30:17 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -139,6 +139,7 @@ typedef struct		s_teams
   int			len_names;
   unsigned int		nb_max_clients_by_team; // -c
   int			slot_rest;
+  t_list		*team;
 }			t_teams;
 
 typedef struct		s_opt

@@ -16,6 +16,8 @@ class InterpretClass():
     def interpret_num_client(self, s, rec, p):
         if (p.getVerbose()):
             print('num_client : ', rec)
+        if (rec == 'NO_SLOT_REST\r\n'):
+            return -1
         nbr_client = int(rec)
 
     def interpret_size(self, s, rec, p):
