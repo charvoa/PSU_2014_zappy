@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Mon Jun 22 16:33:04 2015 Serge Heitzler
+** Last update Tue Jun 23 12:11:02 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -57,6 +57,7 @@ void		exec_cmd(t_server *s, t_client *c, const char *cmd)
     {
       printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
       g_ia_cmds[ret].ptr_func(s, c, cmd);
+      printf("BITE\n");
     }
   else
     fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd);

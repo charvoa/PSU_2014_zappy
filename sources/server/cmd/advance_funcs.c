@@ -5,39 +5,47 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:08:42 2015 Serge Heitzler
-** Last update Tue May 26 15:04:54 2015 Serge Heitzler
+** Last update Tue Jun 23 14:08:42 2015 Serge Heitzler
 */
 
 #include "server.h"
 
 void		adv_up(t_size *size, t_client *client)
 {
+  printf("client->pos->y = %d\n", client->pos->y);
   if (client->pos->y == 0)
     client->pos->y = size->height - 1;
   else
     client->pos->y--;
+  printf("client->pos->y = %d\n", client->pos->y);
 }
 
 void		adv_right(t_size *size, t_client *client)
 {
+  printf("client->pos->x = %d\n", client->pos->x);
   if (client->pos->x == (size->width -1))
     client->pos->x = 0;
   else
     client->pos->x++;
+  printf("client->pos->x = %d\n", client->pos->x);
 }
 
 void		adv_down(t_size *size, t_client *client)
 {
+  printf("client->pos->y = %d\n", client->pos->y);
   if (client->pos->y == (size->height -1))
     client->pos->y = 0;
   else
     client->pos->y++;
+  printf("client->pos->y = %d\n", client->pos->y);
 }
 
 void		adv_left(t_size *size, t_client *client)
 {
+  printf("client->pos->x = %d\n", client->pos->x);
    if (client->pos->x == 0)
-    client->pos->x = size->width - 1;
+util    client->pos->x = size->width - 1;
   else
     client->pos->x--;
+  printf("client->pos->x = %d\n", client->pos->x);
 }

@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Mon Jun 22 16:39:47 2015 Serge Heitzler
+** Last update Tue Jun 23 13:55:56 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -42,6 +42,7 @@ void	bind_socket(t_server *s, int port)
 
 void	accept_server(t_server *s, char **argv)
 {
+  (void)argv;
   s->addrlen = sizeof(s->clientaddr);
   if ((s->newfd = accept(s->listener, (struct sockaddr *)&(s->clientaddr),
 			 (socklen_t*)&(s->addrlen))) == -1)
@@ -57,7 +58,7 @@ void	accept_server(t_server *s, char **argv)
 	}
       create_client(s, s->newfd,
 		    "default_team_name", s->map->size);
-      printf("%s: New connection from %s on socket %d\n", argv[0],
+      printf("New connection from %s on socket %d\n",
 	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
       send_data(s->newfd, "BIENVENUE\r\n");
     }
@@ -68,10 +69,7 @@ void		read_write_server(t_server *s, int i, char **argv)
   ssize_t	nbytes;
   t_client	*c;
 
-
-  printf("LL i = %d\n", i);
   c = get_client_by_id(s->clients, i);
-  printf("LL c->fd = %d\n", c->fd);
   s->buf = xmalloc(4096 * sizeof(char));
   memset(s->buf, '\0', 4096);
   if ((nbytes = read(i, s->buf, 4095)) <= 0)
@@ -85,7 +83,6 @@ void		read_write_server(t_server *s, int i, char **argv)
     }
   else
     {
-      s->i = i;
       // envoyer le ring buffer du client c->ring_buffer->buffer
       exec_cmd(s, c, s->buf);
     }
