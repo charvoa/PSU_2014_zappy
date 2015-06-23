@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Tue Jun 23 17:53:08 2015 Audibert Louis
+** Last update Tue Jun 23 21:37:41 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -81,8 +81,6 @@ void	init_opt_server(t_server *s)
 {
   s->o = xmalloc(sizeof(*s->o));
   s->port = 4242;
-  s->teams->nb_max_clients_by_team = 10;
-  s->teams->slot_rest = 5;
   s->time_action = 1;
 }
 
@@ -93,24 +91,23 @@ t_server	*fill_struct_serv(int argc, char **argv)
   int		(*options[6])(t_server *s);
 
   s = xmalloc(sizeof(t_server));
-  s->teams = xmalloc(sizeof(t_teams));
-  s->teams->names = NULL;
   s->graph = xmalloc(sizeof(t_server_graph));
   s->graph->connected = FALSE;
   init_map(s, 20, 20);
   init_opt(options);
+  s->teams = create_list();
   init_opt_server(s);
   s->clients = create_list();
-  s->teams = create_list();
   s->o->argc = argc;
   s->o->argv = get_tab(argc, argv);
   while ((opt = getopt(argc, argv,"p:x:y:n:c:t:v")) != -1)
     {
-      printf("opt = %d\n", opt);
       s->o->opt = opt;
       s->o->optarg = optarg;
       s->o->optind = optind;
       exec_option(s, options);
     }
+  set_slot_for_team(s->teams, "slot_rest", 10);
+  set_slot_for_team(s->teams, "slot_team", 10);
   return (s);
 }

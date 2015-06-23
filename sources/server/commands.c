@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Tue Jun 23 18:56:21 2015 Audibert Louis
+** Last update Tue Jun 23 22:07:45 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -41,7 +41,7 @@ int	cmd_team(t_server *s, t_client *c, const char *cmd)
   name = xmalloc((strlen(cmd) - 4) * sizeof(char));
   bzero(trame, 21);
   bzero(name, strlen(cmd) - 4);
-  sscanf(cmd, "NAME %s", name);
+  sscanf(cmd, "TEAM %s", name);
   if (is_a_team(s, name) == 0)
     {
       team = get_team_by_name(s->teams, name);
@@ -51,7 +51,7 @@ int	cmd_team(t_server *s, t_client *c, const char *cmd)
 	  send_data(c->fd, trame);
 	  bzero(c->team_name, strlen(name));
 	  c->team_name = strdup(name);
-	  team->slot_rest --;
+	  team->slot_rest--;
 	}
       else
 	send_data(c->fd, "NO_SLOT_REST\r\n");

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Tue Jun 23 20:37:29 2015 Serge Heitzler
+** Last update Tue Jun 23 21:55:47 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -67,6 +67,31 @@ char		**get_pos_of_visible_space(t_server *s, t_client *c)
   return (pos);
 }
 
+char		*create_final_string_view(t_server *s, t_client *c,
+					  int size_malloc, char **pos)
+{
+  char		*final;
+  char		*tmp;
+  int		*x;
+  int		*y;
+  int		i;
+
+  i = 0;
+  final = xmalloc(sizeof(char) * (size_malloc));
+  memset(final, 0, size_malloc);
+  x = xmalloc(sizeof(int));
+  y = xmalloc(sizeof(int));
+  while (i < get_number_of_visible_space(c->level))
+    {
+      sscanf(pos[i], "%d %d", x, y);
+      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y));
+      tmp = show_items_at_position(s, *x, *y);
+      sprintf(final, "%s,%s", final, tmp);
+      i++;
+    }
+  return (final);
+}
+
 int		cmd_view(t_server *s, t_client *c, const char *cmd)
 {
   (void)cmd;
@@ -75,6 +100,7 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
   int		*y;
   int		size_malloc;
   char		**pos;
+  char		*final;
 
   i = 0;
   pos = get_pos_of_visible_space(s, c);
@@ -88,5 +114,7 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
 	size_malloc++;
       i++;
     }
+  final = create_final_string_view(s, c, size_malloc, pos);
+  send_data(c->fd, final);
   return (SUCCESS);
 }

@@ -5,13 +5,14 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 23 17:57:11 2015 Audibert Louis
-** Last update Tue Jun 23 18:57:11 2015 Audibert Louis
+** Last update Tue Jun 23 21:33:36 2015 Serge Heitzler
 */
 
 #include "server.h"
 
 t_team		*create_team(t_server *s, char *name, int nb_max)
 {
+  (void)s;
   t_team	*team;
 
   team = xmalloc(sizeof(t_team));

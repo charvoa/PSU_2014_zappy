@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 20:42:16 2015 Serge Heitzler
+** Last update Tue Jun 23 21:32:11 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -135,14 +135,9 @@ typedef struct		s_map
 
 typedef struct		s_team
 {
-  /* char			**names; // -n */
-  /* int			len_names; */
-  /* unsigned int		nb_max_clients_by_team; // -c */
-  /* int			slot_rest; */
-
-  char		*name;
-  int		slot_rest;
-  int		slot_max;
+  char			*name;
+  int			slot_rest;
+  int			slot_max;
 }			t_team;
 
 typedef struct		s_opt
@@ -224,14 +219,14 @@ int			cmd_pin(t_server *, t_client *, const char *);
 int			is_cmd(const char *);
 void			exec_cmd(t_server *, t_client *, t_ring_buffer *);
 
-void			set_slot_max_by_team(t_list *, int);
+void			set_slot_for_team(t_list *, char *, int);
 char			*get_objects_from_inventory(t_list *);
 int			get_nbr_of_rock(e_rock_type, t_list *);
 void			init_advance(void (*advance[4])(t_size *, t_client *));
 int			istm(int);
 t_client		*get_client_by_id(t_list *, int);
 t_team			*get_team_by_name(t_list *, char *);
-
+char			*get_team_name_at_index(t_list *, int);
 int			size_of_tab(char **);
 char			*show_items_at_position(t_server *, int, int);
 int			get_size_malloc_at_position(t_server *, int, int);

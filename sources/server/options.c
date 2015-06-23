@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:34:34 2015 Audibert Louis
-** Last update Tue Jun 23 20:32:29 2015 Audibert Louis
+** Last update Tue Jun 23 21:08:09 2015 Serge Heitzler
 */
 
 #include <ctype.h>
@@ -49,7 +49,7 @@ int	opt_teams(t_server *s)
 int	opt_nb_client(t_server *s)
 {
   if (is_number(s->o->optarg) != -1)
-    set_slot_max_by_team(s->teams, 10);
+    set_slot_for_team(s->teams, "slot_max", atoi(s->o->optarg));
   else
     return (-1);
   return (0);

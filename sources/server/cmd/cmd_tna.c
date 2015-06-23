@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:48 2015 Serge Heitzler
-** Last update Fri Jun 19 11:28:49 2015 Serge Heitzler
+** Last update Tue Jun 23 21:29:18 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -18,13 +18,13 @@ char		*get_all_teams_in_str(t_server *s)
 
   i = 0;
   size = 0;
-  while (i < size_of_tab(s->teams->names))
-    size += (strlen(s->teams->names[i++]) + 1);
+  while (i < get_nbr_of(TEAM, s->teams))
+    size += (strlen(get_team_name_at_index(s->teams, i++)) + 1);
   res = xmalloc(sizeof(char) * size);
   memset(res, 0, size);
   i = 0;
-  while (i < size_of_tab(s->teams->names))
-    sprintf(res, "%s \n", s->teams->names[i++]);
+  while (i < get_nbr_of(TEAM, s->teams))
+    sprintf(res, "%s%s\n", res, get_team_name_at_index(s->teams, i++));
   return (res);
 }
 

@@ -5,12 +5,33 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 23 18:36:37 2015 Audibert Louis
-** Last update Tue Jun 23 20:27:19 2015 Audibert Louis
+** Last update Tue Jun 23 22:10:05 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-void		set_slot_max_by_team(t_list *list, int value)
+char		*get_team_name_at_index(t_list *list, int index)
+{
+  t_node	*tmp;
+  t_team	*team;
+  int		i;
+
+  i = 1;
+  tmp = list->start;
+  team = xmalloc(sizeof(t_team));
+  team = tmp->data;
+  while (tmp)
+    {
+      team = tmp->data;
+      if (i == index)
+	return (team->name);
+      tmp = tmp->next;
+      i++;
+    }
+  return (NULL);
+}
+
+void		set_slot_for_team(t_list *list, char *type, int value)
 {
   t_node	*tmp;
   t_team	*team;
@@ -21,7 +42,10 @@ void		set_slot_max_by_team(t_list *list, int value)
   while (tmp)
     {
       team = tmp->data;
-      team->slot_max = value;
+      if (strcmp(type, "slot_rest") == 0)
+	team->slot_rest = value;
+      if (strcmp(type, "slot_max") == 0)
+	team->slot_max = value;
       tmp = tmp->next;
     }
 }
