@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Mon Jun 22 15:11:48 2015 Nicolas Girardot
+// Last update Tue Jun 23 11:53:45 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -19,16 +19,17 @@ Command::~Command(){}
 
 void Command::msz(std::string cmd, GameEngine *game)
 {
-  (void) game;
   std::vector<std::string>	parse;
   std::string			current;
   std::istringstream		ss(cmd);
 
+  std::cout << cmd << std::endl;
   while(std::getline(ss, current, ' '))
-    if (current != "msz")
-      parse.push_back(current);
-
-  //  createMap(parse);
+    {
+      if (current != "msz")
+	parse.push_back(current);
+    }
+  game->createMap(parse);
 }
 
 void	Command::bct(std::string cmd, GameEngine *game)
@@ -129,8 +130,8 @@ void Command::Exec()
 
 void Command::Parse(std::string command, GameEngine *game)
 {
-  (void) game;
   std::string cmd(command, 0, 3);
+  std::cout << "command" << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:07 2015 Nicolas Girardot
-// Last update Mon Jun 22 11:16:50 2015 Nicolas Girardot
+// Last update Tue Jun 23 11:48:09 2015 Nicolas Girardot
 //
 
 #ifndef SOCKET_HH_
@@ -23,10 +23,17 @@
 # include <arpa/inet.h>
 # include <sys/types.h>
 # include <sys/socket.h>
+# include "Command.hh"
+# include "GameEngine.hh"
+
+class GameEngine;
+class Command;
 
 class Socket
 {
 private:
+  GameEngine		*_game;
+  Command		*_cmd;
   fd_set		_rfds;
   fd_set		_wfds;
   struct protoent	*_proto;
@@ -37,12 +44,13 @@ private:
   std::stringstream	_read;
   int			_connected = 0;
 public:
-  Socket(const char *ip, const int port);
+  Socket(const char *ip, const int port, GameEngine *);
   ~Socket();
   void	initSocket();
   void	connectSocket();
   void	selectSocket();
   void	my_connect();
+  void	writeOnSocket(std::string);
 };
 
 #endif

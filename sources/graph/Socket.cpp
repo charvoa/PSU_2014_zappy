@@ -5,14 +5,16 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Mon Jun 22 15:12:00 2015 Nicolas Girardot
+// Last update Tue Jun 23 14:07:17 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
 
-Socket::Socket(const char *ip, const int port) : _ip(ip), _port(port)
+Socket::Socket(const char *ip, const int port, GameEngine *game) : _ip(ip), _port(port)
 {
+  this->_cmd = new Command();
   this->initSocket();
+  this->_game = game;
   this->connectSocket();
 }
 
@@ -52,6 +54,7 @@ void	Socket::my_connect()
 
 void	Socket::selectSocket()
 {
+  std::string output(100, 0);
   if (_connected == 0)
     {
       write(_socket, "graph_cli_connected\n", strlen("graph_cli_connected\n"));
@@ -60,7 +63,13 @@ void	Socket::selectSocket()
   my_connect();
   if (FD_ISSET(this->_socket, &_rfds))
     {
-      std::cout << "test" << std::endl;
-      _read << _socket;
+      read(this->_socket, &output[0], 100 - 1);
+      std::cout << output << std::endl;
+      _cmd->Parse(output, _game);
     }
+}
+
+void	Socket::writeOnSocket(std::string message)
+{
+  write(_socket, message.c_str(), strlen(message.c_str()));
 }

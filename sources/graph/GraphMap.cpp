@@ -5,17 +5,21 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Mon Jun 22 15:20:50 2015 Nicolas Girardot
+// Last update Tue Jun 23 12:08:03 2015 Nicolas Girardot
 //
 
-#include "GameEngine.hpp"
+#include "GameEngine.hh"
 #include "GraphMap.hh"
 
 GraphMap::GraphMap(int width, int height)
 {
+  std::cout << "testouilleee1" << std::endl;
   _width = width;
+  std::cout << "testouilleee2" << std::endl;
   _height = height;
+  std::cout << "testouilleee3" << std::endl;
   _squareSize = 1000 / width;
+  std::cout << "testouilleee4" << std::endl;
 }
 
 GraphMap::~GraphMap() {}
