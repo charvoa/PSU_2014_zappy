@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Tue Jun 23 14:06:37 2015 Nicolas Girardot
+// Last update Tue Jun 23 14:38:31 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -99,10 +99,7 @@ void	GameEngine::draw()
   SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255 );
   SDL_RenderClear(_renderer);
   if (_gMap != NULL)
-    {
-      std::cout << " != NULL" << std::endl;
-      _gMap->draw(_renderer);
-    }
+    _gMap->draw(_renderer);
   SDL_RenderPresent(_renderer);
 }
 
