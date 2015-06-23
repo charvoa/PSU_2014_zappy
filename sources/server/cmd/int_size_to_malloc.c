@@ -5,12 +5,12 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Fri May 22 11:25:41 2015 Serge Heitzler
-** Last update Fri May 22 11:25:59 2015 Serge Heitzler
+** Last update Tue Jun 23 20:05:13 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-int		int_size_to_malloc(int nb)
+int		istm(int nb)
 {
   int		i;
 

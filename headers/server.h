@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 14:15:35 2015 Serge Heitzler
+** Last update Tue Jun 23 20:06:24 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -195,7 +195,6 @@ void			accept_server(t_server*, char**);
 void			read_write_server(t_server*, int, char**);
 void			my_printf(const char *, ...);
 
-
 int			cmd_left(t_server *, t_client *, const char *);
 int			cmd_right(t_server *, t_client *, const char *);
 int			cmd_advance(t_server *, t_client *, const char *);
@@ -218,14 +217,13 @@ int			cmd_ppo(t_server *, t_client *, const char *);
 int			cmd_plv(t_server *, t_client *, const char *);
 int			cmd_pin(t_server *, t_client *, const char *);
 
-
 int			is_cmd(const char *);
 void			exec_cmd(t_server *, t_client *, t_ring_buffer *);
 
 char			*get_objects_from_inventory(t_list *);
 int			get_nbr_of_rock(e_rock_type, t_list *);
 void			init_advance(void (*advance[4])(t_size *, t_client *));
-int			int_size_to_malloc(int);
+int			istm(int);
 t_client		*get_client_by_id(t_list *, int);
 int			size_of_tab(char **);
 char			*show_items_at_position(t_server *, int, int);

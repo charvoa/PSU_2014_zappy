@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Sun Jun 21 21:57:26 2015 Serge Heitzler
+** Last update Tue Jun 23 20:07:53 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -90,9 +90,9 @@ int		get_size_malloc_at_position(t_server* s, int x, int y)
   while (i < 8)
     {
       if (nb_items[i] > 0 && i == get_last_wrote(nb_items))
-	size_malloc += (strlen(g_items[i].label) + 1 + int_size_to_malloc(nb_items[i]) + 1);
+	size_malloc += (strlen(g_items[i].label) + 1 + istm(nb_items[i]) + 1);
       else if (nb_items[i] > 0)
-	size_malloc += (strlen(g_items[i].label) + 1 + int_size_to_malloc(nb_items[i]) + 2);
+	size_malloc += (strlen(g_items[i].label) + 1 + istm(nb_items[i]) + 2);
       i++;
     }
   return (size_malloc);
