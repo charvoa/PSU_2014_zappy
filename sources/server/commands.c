@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Tue Jun 23 14:46:50 2015 Audibert Louis
+** Last update Tue Jun 23 16:42:19 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -55,6 +55,5 @@ int	cmd_team(t_server *s, t_client *c, const char *cmd)
   bzero(trame, 21);
   sprintf(trame, "%d - %d\n", s->map->size->width, s->map->size->height);
   send_data(c->fd, trame);
-  cmd_dead(s, c, "mort");
   return (0);
 }
