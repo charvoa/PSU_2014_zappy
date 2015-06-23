@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Fri Jun 19 15:44:36 2015 Nicolas Girardot
+// Last update Mon Jun 22 15:12:00 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
@@ -41,13 +41,13 @@ void	Socket::my_connect()
 
   FD_ZERO(&_rfds);
   FD_ZERO(&_wfds);
-  FD_SET(STDIN_FILENO, &_rfds);
-  FD_SET(_socket, &_rfds);
-  FD_SET(_socket, &_rfds);
+  FD_SET(this->_socket, &_rfds);
+  FD_SET(this->_socket, &_wfds);
   if (_socket == -1)
     fd = STDERR_FILENO;
   else
     fd = _socket;
+  select(fd +  1, &_rfds, &_wfds, NULL, NULL);
 }
 
 void	Socket::selectSocket()
@@ -58,9 +58,9 @@ void	Socket::selectSocket()
       _connected = 1;
     }
   my_connect();
-  if (FD_ISSET(STDIN_FILENO, &this->_rfds));
-  else if (FD_ISSET(this->_socket, &_rfds))
+  if (FD_ISSET(this->_socket, &_rfds))
     {
+      std::cout << "test" << std::endl;
       _read << _socket;
     }
 }

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:17 2015 Nicolas Girardot
-// Last update Wed May 27 10:36:58 2015 Florian PERU
+// Last update Mon Jun 22 11:03:34 2015 Nicolas Girardot
 //
 
 #ifndef COMMAND_HH_
@@ -17,11 +17,12 @@
 #include <vector>
 #include <map>
 #include "AObject.hpp"
+#include "GameEngine.hpp"
 
 class Command
 {
 private:
-  typedef void(Command::*funcs)(std::string);
+  typedef void(Command::*funcs)(std::string, GameEngine *);
   funcs _ptr;
   typedef std::map<std::string, funcs>map_funcs;
   map_funcs	_functions;
@@ -30,14 +31,14 @@ public:
   Command();
   ~Command();
   void	Exec();
-  void	Parse(std::string);
-  void	msz(std::string);
-  void	bct(std::string);
-  void	mct(std::string);
-  void	tna(std::string);
-  void	pnw(std::string);
-  void	ppo(std::string);
-  void	plv(std::string);
+  void	Parse(std::string, GameEngine *);
+  void	msz(std::string, GameEngine *);
+  void	bct(std::string, GameEngine *);
+  void	mct(std::string, GameEngine *);
+  void	tna(std::string, GameEngine *);
+  void	pnw(std::string, GameEngine *);
+  void	ppo(std::string, GameEngine *);
+  void	plv(std::string, GameEngine *);
 };
 
 #endif

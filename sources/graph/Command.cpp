@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Wed May 27 10:45:16 2015 Florian PERU
+// Last update Mon Jun 22 15:11:48 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -17,8 +17,9 @@ Command::Command()
 
 Command::~Command(){}
 
-void Command::msz(std::string cmd)
+void Command::msz(std::string cmd, GameEngine *game)
 {
+  (void) game;
   std::vector<std::string>	parse;
   std::string			current;
   std::istringstream		ss(cmd);
@@ -30,8 +31,9 @@ void Command::msz(std::string cmd)
   //  createMap(parse);
 }
 
-void	Command::bct(std::string cmd)
+void	Command::bct(std::string cmd, GameEngine *game)
 {
+  (void) game;
   std::vector<std::string>	parse;
   std::string			current;
   std::istringstream		ss(cmd);
@@ -43,17 +45,19 @@ void	Command::bct(std::string cmd)
   //  affObject(parse);
 }
 
-void	Command::mct(std::string cmd)
+void	Command::mct(std::string cmd, GameEngine *game)
 {
+  (void) game;
   std::string		newCmd;
   std::istringstream	ss(cmd);
 
   while (std::getline(ss, newCmd, '\n'))
-    this->bct(newCmd);
+    this->bct(newCmd, game);
 }
 
-void	Command::tna(std::string cmd)
+void	Command::tna(std::string cmd, GameEngine *game)
 {
+  (void) game;
   std::string			singleCmd;
   std::string			name;
   std::istringstream		ss(cmd);
@@ -69,8 +73,9 @@ void	Command::tna(std::string cmd)
 }
 
 
-void	Command::pnw(std::string cmd)
+void	Command::pnw(std::string cmd, GameEngine *game)
 {
+  (void) game;
   std::string			param;
   std::vector<std::string>	detPlayer;
   std::istringstream		ss(cmd);
@@ -82,8 +87,9 @@ void	Command::pnw(std::string cmd)
   // affPlayer(param);
 }
 
-void	Command::ppo(std::string cmd)
+void	Command::ppo(std::string cmd, GameEngine *game)
 {
+  (void) game;
   std::string			param;
   std::vector<std::string>	detPlayer;
   std::istringstream		ss(cmd);
@@ -95,8 +101,9 @@ void	Command::ppo(std::string cmd)
   // affPlayer(param);
 }
 
-void	Command::plv(std::string cmd)
+void	Command::plv(std::string cmd, GameEngine *game)
 {
+  (void) game;
   std::string			current;
   std::vector<std::string>	lvlPlayer;
   std::istringstream		ss(cmd);
@@ -120,12 +127,13 @@ void Command::Exec()
   /* faire de même pour chaque fonctions */
 }
 
-void Command::Parse(std::string command)
+void Command::Parse(std::string command, GameEngine *game)
 {
+  (void) game;
   std::string cmd(command, 0, 3);
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)
-	(*this.*_functions[cmd])(command);
+	(*this.*_functions[cmd])(command, game);
     }
 }

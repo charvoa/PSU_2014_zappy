@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 13:23:26 2015 Audibert Louis
+** Last update Tue Jun 23 13:32:45 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -109,6 +109,7 @@ typedef struct		s_cmd
 typedef struct		s_client
 {
   int			fd;
+  int			id;
   unsigned int		level;
   e_orientation		orientation;
   char			*team_name;
@@ -257,9 +258,6 @@ unsigned int   		calcul_width(unsigned int, unsigned int, t_map *);
 float			calcul_distance(int, int);
 unsigned int		calcul_limit(unsigned int);
 float			give_me_distance(t_map *, t_position *, t_position *);
-
-/* EXEC_CMD.C */
-void			exec_cmd(t_server *);
 
 /* MY_STR_TO_WORDTAB.C */
 int			my_count_word(char *);

@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Tue Jun 23 13:19:46 2015 Audibert Louis
+** Last update Tue Jun 23 13:30:40 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -69,9 +69,12 @@ void		read_write_server(t_server *s, int i, char **argv)
   char		*tmp;
   t_client	*c;
 
+
+  printf("LL i = %d\n", i);
   c = get_client_by_id(s->clients, i);
   tmp = xmalloc(4096 * sizeof(char));
   memset(tmp, '\0', 4096);
+  printf("LL c->fd = %d\n", c->fd);
   if ((nbytes = read(i, tmp, 4096)) <= 0)
     {
       if (nbytes == 0)
