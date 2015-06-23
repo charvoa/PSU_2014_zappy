@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:14 2015 Serge Heitzler
-** Last update Tue Jun 23 14:21:01 2015 Audibert Louis
+** Last update Tue Jun 23 18:50:26 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -18,10 +18,12 @@ t_client		*get_client_by_id(t_list *list, int id)
   tmp = list->start;
   client = xmalloc(sizeof(t_client));
   client = tmp->data;
-  while (tmp && (id != client->fd))
+  while (tmp)
     {
       client = tmp->data;
+      if (id == client->fd)
+	return (client);
       tmp = tmp->next;
     }
-  return (client);
+  return (NULL);
 }

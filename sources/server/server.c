@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Mon Jun 22 15:02:58 2015 Audibert Louis
+** Last update Tue Jun 23 17:53:08 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -101,6 +101,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
   init_opt(options);
   init_opt_server(s);
   s->clients = create_list();
+  s->teams = create_list();
   s->o->argc = argc;
   s->o->argv = get_tab(argc, argv);
   while ((opt = getopt(argc, argv,"p:x:y:n:c:t:v")) != -1)

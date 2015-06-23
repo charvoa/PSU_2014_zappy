@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue Jun 23 20:40:51 2015 Serge Heitzler
+## Last update Tue Jun 23 20:41:49 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -76,6 +76,7 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)create_list.c		\
 			$(LIST_DIR)get_node_at_index.c		\
 			$(LIST_DIR)get_client_in_list.c		\
+			$(LIST_DIR)get_team_in_list.c		\
 			$(LIST_DIR)free_list.c			\
 			$(LIST_DIR)size_list.c			\
 			$(LIST_DIR)show_list.c			\
@@ -83,7 +84,8 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_at_index.c		\
 			$(LIST_DIR)remove_front.c		\
 			$(LIST_DIR)remove_back.c		\
-			ring_buffer.c
+			ring_buffer.c				\
+			create_team.c
 
 NAME		= 	server
 
