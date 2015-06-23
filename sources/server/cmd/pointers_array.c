@@ -5,11 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-<<<<<<< HEAD:sources/server/cmd_ia/pointers_array.c
-** Last update Tue Jun 23 13:31:54 2015 Audibert Louis
-=======
-** Last update Mon Jun 22 16:33:04 2015 Serge Heitzler
->>>>>>> 952d117c02415112eaba265c54eb9b62b8ae8fef:sources/server/cmd/pointers_array.c
+** Last update Tue Jun 23 14:01:41 2015 Audibert Louis
 */
 
 #include "server.h"
