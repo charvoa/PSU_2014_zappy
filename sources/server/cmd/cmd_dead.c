@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:16 2015 Serge Heitzler
-** Last update Fri Jun 19 11:29:17 2015 Serge Heitzler
+** Last update Tue Jun 23 14:39:28 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -16,5 +16,6 @@ int		cmd_dead(t_server *s, t_client *c, const char *cmd)
   // Les (void) du dessous sont à supprimer, celui du dessus est important et à laisser.
   (void)s;
   (void)c;
+  send_data(4, "mort");
   return (SUCCESS);
 }
