@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Tue Jun 23 20:28:28 2015 Serge Heitzler
+** Last update Tue Jun 23 20:37:29 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -21,34 +21,6 @@ int		get_number_of_visible_space(unsigned int level)
       level--;
     }
   return (nb);
-}
-
-int		determine_pos_x(t_client *c, t_size *size, int t, int l)
-{
-  (void)size;
-  if (c->orientation == UP)
-    return (c->pos->x + t);
-  if (c->orientation == RIGHT)
-    return (c->pos->x + l);
-  if (c->orientation == DOWN)
-    return (c->pos->x - t);
-  if (c->orientation == LEFT)
-    return (c->pos->x - l);
-  return (SUCCESS);
-}
-
-int		determine_pos_y(t_client *c, t_size *size, int t, int l)
-{
-  (void)size;
-  if (c->orientation == UP)
-    return (c->pos->y + l);
-  if (c->orientation == RIGHT)
-    return (c->pos->y + t);
-  if (c->orientation == DOWN)
-    return (c->pos->y - l);
-  if (c->orientation == LEFT)
-    return (c->pos->y - t);
-  return (SUCCESS);
 }
 
 char		**write_pos_in_array(t_server *s, t_client *c, int i, unsigned int l)

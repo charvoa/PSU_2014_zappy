@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 20:30:17 2015 Serge Heitzler
+** Last update Tue Jun 23 20:39:11 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -249,6 +249,10 @@ char			**init_full_tab(int, int);
 
 /* COMMANDS.C */
 int			cmd_team(t_server *, t_client *, const char *);
+
+/* DETERMINE_POS.C */
+int			determine_pos_x(t_client *, t_size *, int, int);
+int			determine_pos_y(t_client *, t_size *, int, int);
 
 /* DISTANCES.C */
 unsigned int   		calcul_length(unsigned int, unsigned int, t_map *);

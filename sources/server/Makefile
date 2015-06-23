@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue Jun 23 13:32:12 2015 Audibert Louis
+## Last update Tue Jun 23 20:40:51 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -19,7 +19,7 @@ EXTERNLIB	=	-lm
 
 X_DIR		=	../xfuncs/
 
-CMD_DIR	=	./cmd/
+CMD_DIR		=	./cmd/
 
 LIST_DIR	=	./list/
 
@@ -69,6 +69,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)int_size_to_malloc.c		\
 			$(CMD_DIR)pointers_array.c		\
 			$(CMD_DIR)show_items_at_position.c	\
+			$(CMD_DIR)determine_pos.c		\
 			$(LIST_DIR)push_back.c 			\
 			$(LIST_DIR)push_at_index.c 		\
 			$(LIST_DIR)push_front.c 		\
@@ -83,7 +84,6 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_front.c		\
 			$(LIST_DIR)remove_back.c		\
 			ring_buffer.c
-			 # exec_cmd.c				\
 
 NAME		= 	server
 
