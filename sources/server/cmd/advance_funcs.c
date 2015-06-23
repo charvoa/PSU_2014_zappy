@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:08:42 2015 Serge Heitzler
-** Last update Tue May 26 15:04:54 2015 Serge Heitzler
+** Last update Tue Jun 23 14:18:12 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -37,7 +37,7 @@ void		adv_down(t_size *size, t_client *client)
 void		adv_left(t_size *size, t_client *client)
 {
    if (client->pos->x == 0)
-    client->pos->x = size->width - 1;
+     client->pos->x = size->width - 1;
   else
     client->pos->x--;
 }

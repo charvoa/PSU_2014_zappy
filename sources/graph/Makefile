@@ -5,16 +5,17 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Fri Jun 19 17:52:45 2015 Nicolas Girardot
+## Last update Tue Jun 23 13:49:35 2015 Nicolas Girardot
 ##
 
 MAIN		=	zappy_graph
 
 EXEC		=	$(MAIN)
 
-SRC		+=	Socket.cpp					\
+SRC		+=	GameEngine.cpp					\
 			Command.cpp					\
 			GraphMap.cpp					\
+			Socket.cpp					\
 
 SRC_MAIN	=	$(SRC) main.cpp
 
@@ -25,7 +26,7 @@ LDFLAGS		=	-L./libGDL/libs/ -lgdl_gl	\
 			-ldl -lGL -lGLU -lSDL_image			\
 			-L ./Sound/lib -lfmodex64 -lglut		\
 
-CPPFLAGS	=	-Wall -Wextra -std=c++11 -Wno-ignored-qualifiers
+CPPFLAGS	=	-Wall -Wextra -std=c++11 -Wno-ignored-qualifiers -g3
 CPPFLAGS	+=	-I./libGDL/includes/
 
 ifeq ($(DEBUG), YES)

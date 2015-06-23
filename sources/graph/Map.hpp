@@ -5,11 +5,11 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Fri May 15 14:00:16 2015 Florian PERU
-// Last update Fri Jun 19 16:40:28 2015 Nicolas Girardot
+// Last update Mon Jun 22 17:29:21 2015 Nicolas Girardot
 //
 
-#ifndef _MAP_HPP_
-#define _MAP_HPP_
+#ifndef MAP_HPP_
+#define MAP_HPP_
 
 #include "AObject.hpp"
 

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Tue Jun 23 14:01:41 2015 Audibert Louis
+** Last update Tue Jun 23 14:21:27 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -40,7 +40,6 @@ int		is_cmd(const char *cmd)
   int	i;
 
   i = 0;
-  printf("CMD is %s\n", cmd);
   while (i < 21)
     {
       if (!strncmp(g_ia_cmds[i].name, cmd, strlen(g_ia_cmds[i].name)))
@@ -50,17 +49,17 @@ int		is_cmd(const char *cmd)
   return (NO);
 }
 
-void		exec_ia_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
+void		exec_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
 {
   int	ret;
   char	cmd[strlen(buffer->buffer)];
 
   strcpy(cmd, ring_buffer_get_all(buffer));
-  printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
   if ((ret = is_cmd(cmd)) != NO)
     {
       printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
       g_ia_cmds[ret].ptr_func(s, c, cmd);
+      printf("BITE\n");
     }
   else
     fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd);
