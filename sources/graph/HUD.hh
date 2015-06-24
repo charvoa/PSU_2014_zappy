@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:23 2015 Nicolas Girardot
-// Last update Wed Jun 24 16:36:29 2015 Nicolas Girardot
+// Last update Wed Jun 24 17:00:27 2015 Nicolas Girardot
 //
 
 #ifndef _HUD_HH_
@@ -47,6 +47,7 @@ public:
   ~HUD();
   void	update();
   void	updateCase(Position&);
+  void	updateLocked(Position &);
   void	draw(SDL_Renderer *);
   void	drawHUDRight(SDL_Renderer *);
   void	drawHUDTop(SDL_Renderer *);

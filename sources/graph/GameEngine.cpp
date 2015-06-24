@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Wed Jun 24 15:12:21 2015 Nicolas Girardot
+// Last update Wed Jun 24 17:00:11 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -100,6 +100,8 @@ void	GameEngine::setLocked()
   int	b;
   SDL_GetMouseState(&a, &b);
   std::cout << "click" << std::endl;
+  Position pos(a, b);
+  _hud->updateLocked(pos);
   _gMap->setLocked((a - 150) / 35, (b - 150) / 35);
 }
 
