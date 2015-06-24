@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Wed Jun 24 16:37:47 2015 Audibert Louis
+** Last update Wed Jun 24 16:41:14 2015 Audibert Louis
 */
 
 #include "../../headers/ring_buffer.h"
@@ -115,10 +115,10 @@ char		*ring_buffer_get_next_command(t_ring_buffer *buffer)
   int	data;
 
   cmd = NULL;
-  data = ring_buffer_available_data(buffer);
+  data = ring_buffer_available_data(buffer) + 1;
   if (data > 0)
     {
-      tmp = xmalloc((data + 1) * sizeof(char));
+      tmp = xmalloc(data * sizeof(char));
       strcpy(tmp, ring_buffer_starts_at(buffer));
       cmd = strtok(tmp, "\r\n");
       ring_buffer_commit_read(buffer, (strlen(cmd) + 2));
