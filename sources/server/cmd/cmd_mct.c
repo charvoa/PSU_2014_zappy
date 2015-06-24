@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:46 2015 Serge Heitzler
-** Last update Tue Jun 23 22:10:06 2015 Serge Heitzler
+** Last update Wed Jun 24 06:48:11 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -13,8 +13,8 @@
 int		number_of_busy_space(t_server *s)
 {
   int		busy;
-  unsigned int 	x;
-  unsigned int 	y;
+  int		x;
+  int		y;
 
   y = 0;
   busy = 0;
@@ -35,8 +35,8 @@ int		number_of_busy_space(t_server *s)
 int		get_all_malloc_size(t_server *s)
 {
   int		all_malloc_size;
-  unsigned int 	x;
-  unsigned int 	y;
+  int		x;
+  int		y;
 
   all_malloc_size = 0;
   y = 0;
@@ -56,8 +56,8 @@ int		get_all_malloc_size(t_server *s)
 int		cmd_mct(t_server *s, t_client *c, const char *cmd)
 {
   (void)cmd;
-  unsigned int 	x;
-  unsigned int 	y;
+  int		x;
+  int	 	y;
   int		busy;
   char		*tmp;
   char		*final;

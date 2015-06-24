@@ -89,7 +89,7 @@ char		*create_final_string_view(t_server *s, t_client *c,
       sprintf(final, "%s%s", final, tmp);
       sprintf(final, "%s,", final);
       i++;
-    }
+    }1
   return (final);
 }
 

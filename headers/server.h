@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 23 21:32:11 2015 Serge Heitzler
+** Last update Wed Jun 24 06:47:06 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -79,8 +79,8 @@ typedef struct		s_init_cmds
 
 typedef struct		s_position
 {
-  unsigned int		x;
-  unsigned int		y;
+  int			x;
+  int			y;
 }			t_position;
 
 typedef struct		s_food
@@ -122,8 +122,8 @@ typedef struct		s_client
 
 typedef struct		s_size
 {
-  unsigned int	       	width; // -x
-  unsigned int	       	height; // -y
+  int		       	width; // -x
+  int		       	height; // -y
 }			t_size;
 
 typedef struct		s_map
