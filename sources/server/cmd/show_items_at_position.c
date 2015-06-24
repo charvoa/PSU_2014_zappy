@@ -5,21 +5,21 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Tue Jun 23 20:07:53 2015 Serge Heitzler
+** Last update Wed Jun 24 14:23:10 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-static t_label	g_items[8] =
+t_objects	g_objects[8] =
   {
-    {"food"},
-    {"player"},
-    {"limemate"},
-    {"deraumere"},
-    {"sibur"},
-    {"mendiane"},
-    {"phiras"},
-    {"thystame"}
+    {"food", &create_food},
+    {"player", NULL},
+    {"limemate", &create_rock},
+    {"deraumere", &create_rock},
+    {"sibur", &create_rock},
+    {"mendiane", &create_rock},
+    {"phiras", &create_rock},
+    {"thystame", &create_rock}
   };
 
 int		*get_nb_items(t_list *list)
@@ -62,12 +62,12 @@ char		*fill_final_string(int size_malloc, int *nb_items)
 	{
 	  if (i == get_last_wrote(nb_items))
 	    {
-	      strcat(final, g_items[i].label);
+	      strcat(final, g_objects[i].label);
 	      sprintf(final, "%s %d\n", final, nb_items[i]);
 	    }
 	  else
 	    {
-	      strcat(final, g_items[i].label);
+	      strcat(final, g_objects[i].label);
 	      sprintf(final, "%s %d, ", final, nb_items[i]);
 	    }
 	}
@@ -90,9 +90,9 @@ int		get_size_malloc_at_position(t_server* s, int x, int y)
   while (i < 8)
     {
       if (nb_items[i] > 0 && i == get_last_wrote(nb_items))
-	size_malloc += (strlen(g_items[i].label) + 1 + istm(nb_items[i]) + 1);
+	size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 1);
       else if (nb_items[i] > 0)
-	size_malloc += (strlen(g_items[i].label) + 1 + istm(nb_items[i]) + 2);
+	size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 2);
       i++;
     }
   return (size_malloc);

@@ -1,11 +1,11 @@
 /*
 ** ring_buffer.c for zappy in /home/audibe_l/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Audibert Louis
 ** Login   <audibe_l@epitech.net>
-** 
+**
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Tue Jun 23 14:34:16 2015 Audibert Louis
+** Last update Wed Jun 24 15:23:10 2015 Antoine Garcia
 */
 
 #include "../../headers/ring_buffer.h"
@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "xfuncs.h"
 
 t_ring_buffer	*ring_buffer_create(int length)
 {
@@ -105,6 +106,24 @@ char		*ring_buffer_gets(t_ring_buffer *buffer, int amount)
     }
   ring_buffer_commit_read(buffer, amount);
   return (result);
+}
+
+char		*ring_buffer_get_next_command(t_ring_buffer *buffer)
+{
+  char	*cmd;
+  char	*tmp;
+  int	data;
+
+  cmd = NULL;
+  data = ring_buffer_available_data(buffer);
+  if (data > 0)
+    {
+      tmp = xmalloc(data * sizeof(char));
+      strcpy(tmp, ring_buffer_starts_at(buffer));
+      cmd = strtok(tmp, "\r\n");
+      ring_buffer_commit_read(buffer, (strlen(cmd) + 2));
+    }
+  return (cmd);
 }
 
 int		ring_buffer_expand(t_ring_buffer *buffer, int size)

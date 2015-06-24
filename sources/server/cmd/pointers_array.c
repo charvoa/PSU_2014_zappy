@@ -1,11 +1,11 @@
 /*
 ** pointers_array.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <sergeheitzler@epitech.net>
-** 
+**
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Wed Jun 24 11:27:56 2015 Audibert Louis
+** Last update Wed Jun 24 16:29:37 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -52,10 +52,12 @@ int		is_cmd(const char *cmd)
 void		exec_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
 {
   int	ret;
-  char	cmd[ring_buffer_available_data(buffer)];
+  char	*cmd;
 
-  bzero(cmd, ring_buffer_available_data(buffer));
-  strcpy(cmd, ring_buffer_get_all(buffer));
+  cmd = ring_buffer_get_next_command(buffer);
+  if (cmd == NULL)
+    return;
+  printf("CMD == %s\n", cmd);
   if ((ret = is_cmd(cmd)) != NO)
     {
       printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg

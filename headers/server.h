@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed Jun 24 16:23:29 2015 Audibert Louis
+** Last update Wed Jun 24 16:28:38 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -65,10 +65,11 @@ typedef enum		e_bool
     FALSE
   }			e_bool;
 
-typedef struct		s_label
+typedef struct		s_objects
 {
   char			*label;
-}			t_label;
+  int			(*ptr_func)();
+}			t_objects;
 
 typedef struct		s_init_cmds
 {
@@ -187,6 +188,7 @@ typedef struct		s_server
 extern	int		g_verbose;
 extern	int		g_listener;
 extern	int		g_fdmax;
+extern  t_objects	g_objects[8];
 
 void			init_socket(t_server*);
 void			bind_socket(t_server*, int);
@@ -230,6 +232,8 @@ char			*get_team_name_at_index(t_list *, int);
 int			size_of_tab(char **);
 char			*show_items_at_position(t_server *, int, int);
 int			get_size_malloc_at_position(t_server *, int, int);
+int			create_food(t_server *);
+int			create_rock(t_server *);
 
 /* $(CMD)ADVANCE_FUNCS.C */
 void			adv_up(t_size *, t_client *);
