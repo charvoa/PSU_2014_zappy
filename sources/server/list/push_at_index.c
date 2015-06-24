@@ -5,13 +5,13 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Tue May 26 18:33:20 2015 Serge Heitzler
-** Last update Tue May 26 23:55:04 2015 Serge Heitzler
+** Last update Wed Jun 24 16:39:09 2015 Audibert Louis
 */
 
 #include "server.h"
 
 /* Possible memory leak dans cette fonction, node et tmp pas free. */
-int		push_at_index(t_list *list, void *data, e_node_type type, size_t index)
+int		push_at_index(t_list *list, void *data, e_node_type type, int index)
 {
   t_node	*node;
   t_node	*tmp;
@@ -19,7 +19,7 @@ int		push_at_index(t_list *list, void *data, e_node_type type, size_t index)
   node = xmalloc(sizeof(*node));
   node->data = data;
   node->type = type;
-  if (list != NULL && index > 0 && index <= (size_list(list)))
+  if (list != NULL && index > 0 && index <= (int)(size_list(list)))
     {
       tmp = get_node_at_index(list, index);
       if (tmp->next == NULL)
