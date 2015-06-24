@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Wed Jun 24 09:44:17 2015 Audibert Louis
+## Last update Wed Jun 24 14:02:28 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -84,8 +84,10 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_front.c		\
 			$(LIST_DIR)remove_back.c		\
 			ring_buffer.c				\
-			create_team.c
-			# my_str_to_wordtab.c			\#
+			create_team.c				\
+			create_food.c				\
+			create_rock.c				\
+			create_objects.c
 
 NAME		= 	server
 

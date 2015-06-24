@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Tue Jun 23 17:42:16 2015 Audibert Louis
+** Last update Wed Jun 24 10:51:56 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -55,11 +55,11 @@ void		exec_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
   char	cmd[strlen(buffer->buffer)];
 
   strcpy(cmd, ring_buffer_get_all(buffer));
+  printf("CMD == %s\n", cmd);
   if ((ret = is_cmd(cmd)) != NO)
     {
       printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
       g_ia_cmds[ret].ptr_func(s, c, cmd);
-      printf("BITE\n");
     }
   else
     fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd);
