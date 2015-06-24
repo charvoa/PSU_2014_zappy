@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue Jun 23 20:41:49 2015 Serge Heitzler
+## Last update Wed Jun 24 09:44:17 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -30,7 +30,6 @@ SRCS		= 	main.c	 				\
 			create_client.c				\
 			distances.c				\
 			my_printf.c				\
-			my_str_to_wordtab.c			\
 			options.c				\
 			options2.c				\
 			rand_orientations.c			\
@@ -86,6 +85,7 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_back.c		\
 			ring_buffer.c				\
 			create_team.c
+			# my_str_to_wordtab.c			\#
 
 NAME		= 	server
 

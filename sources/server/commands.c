@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Tue Jun 23 22:07:45 2015 Serge Heitzler
+** Last update Wed Jun 24 10:35:14 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -23,12 +23,14 @@ int	is_a_team(t_server *s, char *team)
       t_iterate = tmp->data;
       if (strcmp(t_iterate->name, team) == 0)
 	{
-	  free(t_iterate);
+	  /* free(t_iterate->name); */
+	  /* free(t_iterate); */
 	  return (0);
 	}
       tmp = tmp->next;
     }
-  free(t_iterate);
+  /* free(t_iterate->name); */
+  /* free(t_iterate); */
   return (-1);
 }
 
@@ -38,10 +40,11 @@ int	cmd_team(t_server *s, t_client *c, const char *cmd)
   char		*name;
   t_team	*team;
   
-  name = xmalloc((strlen(cmd) - 4) * sizeof(char));
+  name = xmalloc((strlen(cmd) - 6) * sizeof(char));
   bzero(trame, 21);
-  bzero(name, strlen(cmd) - 4);
+  bzero(name, strlen(cmd) - 6);
   sscanf(cmd, "TEAM %s", name);
+  name[strlen(name)] = '\0';
   if (is_a_team(s, name) == 0)
     {
       team = get_team_by_name(s->teams, name);

@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Tue Jun 23 14:43:53 2015 Audibert Louis
+** Last update Wed Jun 24 10:38:34 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -90,5 +90,5 @@ void		read_write_server(t_server *s, int i, char **argv)
       exec_cmd(s, c, c->buffer);
     }
   free(tmp);
-  free(c);
+  /* free(c); */
 }
