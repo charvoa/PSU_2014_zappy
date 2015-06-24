@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu Jun 25 00:32:16 2015 Antoine Garcia
+** Last update Thu Jun 25 00:38:00 2015 Antoine Garcia
 */
 
 #ifndef			SERVER_H_
@@ -307,7 +307,7 @@ t_server		*fill_struct_serv(int, char **);
 
 /* SEND_DATA.C */
 int			send_data(int, const char *);
-
+int			send_data_to_gui(t_list *clients, const char *msg);
 /* SET_OPTIONS.C */
 void			init_opt(int (*options[6])(t_server *));
 int			check_opt(int);
