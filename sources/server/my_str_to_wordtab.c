@@ -1,11 +1,11 @@
 /*
 ** my_str_to_wordtab.c for myftp in /home/audibe_l/rendu/PSU_2014_myftp/Server
-** 
+**
 ** Made by Audibert Louis
 ** Login   <audibe_l@epitech.net>
-** 
+**
 ** Started on  Wed Mar 11 13:37:48 2015 Audibert Louis
-** Last update Wed May 13 16:30:31 2015 Audibert Louis
+** Last update Thu Jun 25 00:32:48 2015 Antoine Garcia
 */
 
 #include "../../headers/server.h"
