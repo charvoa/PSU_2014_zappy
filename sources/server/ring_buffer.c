@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Wed Jun 24 11:34:30 2015 Antoine Garcia
+** Last update Wed Jun 24 14:08:17 2015 Antoine Garcia
 */
 
 #include "../../headers/ring_buffer.h"
@@ -111,8 +111,10 @@ char		*ring_buffer_get_next_command(t_ring_buffer *buffer)
 {
   char	*cmd;
   char	*tmp;
-  int	data = ring_buffer_available_data(buffer);
+  int	data;
 
+  cmd = NULL;
+  data = ring_buffer_available_data(buffer);
   if (data > 0)
     {
       tmp = malloc(data * sizeof(char));
