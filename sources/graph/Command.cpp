@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Tue Jun 23 11:53:45 2015 Nicolas Girardot
+// Last update Tue Jun 23 20:57:25 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -40,10 +40,11 @@ void	Command::bct(std::string cmd, GameEngine *game)
   std::istringstream		ss(cmd);
 
   while (std::getline(ss, current, ' '))
-    if (current != "bct")
-      parse.push_back(current);
-
-  //  affObject(parse);
+    {
+      if (current != "bct")
+	parse.push_back(current);
+      game->setCase(parse);
+    }
 }
 
 void	Command::mct(std::string cmd, GameEngine *game)

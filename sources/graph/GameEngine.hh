@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Mon Jun 22 17:43:25 2015 Nicolas Girardot
+// Last update Wed Jun 24 15:07:25 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -20,12 +20,15 @@
 #include <SdlContext.hh>
 #include <Geometry.hh>
 #include <SDL/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <SDL.h>
 #include <Texture.hh>
 #include <Model.hh>
 #include "Socket.hh"
 #include "Map.hpp"
 #include "GraphMap.hh"
+#include "Position.hpp"
+#include "HUD.hh"
 
 class Socket;
 
@@ -36,8 +39,10 @@ private:
   SDL_Event	_event;
   SDL_Surface	*_surface;
   SDL_Renderer	*_renderer;
+  Position	_mousePos;
   Socket	*_socket;
   GraphMap	*_gMap;
+  HUD		*_hud;
 public:
   GameEngine();
   ~GameEngine();
@@ -47,11 +52,14 @@ public:
   void	init_object();
   bool	initialize();
   bool	update();
-  void	createMap(std::vector<std::string> &parse);
+  void	getMousePos();
+  void	createMap(std::vector<std::string> &);
+  void	setCase(std::vector<std::string> &);
+  void	setLocked();
   void	draw();
   void	run();
 private:
-  std::vector<AObject *>	_object;
+  std::map<Position *, std::vector<int>&> _cases;
 };
 
 #endif

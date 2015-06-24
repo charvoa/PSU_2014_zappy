@@ -5,11 +5,13 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:33 2015 Nicolas Girardot
-// Last update Mon Jun 22 15:22:13 2015 Nicolas Girardot
+// Last update Wed Jun 24 15:13:13 2015 Nicolas Girardot
 //
 
 #ifndef GRAPHMAP_HH_
 #define GRAPHMAP_HH_
+
+#include "Position.hpp"
 
 class GameEngine;
 
@@ -19,10 +21,12 @@ private:
   int	_height;
   int	_width;
   int	_squareSize;
+  Position *_locked;
 public:
   GraphMap(int, int);
   ~GraphMap();
-  void	draw(SDL_Renderer *);
+  void	draw(SDL_Renderer *, Position &);
+  void	setLocked(int, int);
 };
 
 #endif

@@ -5,15 +5,15 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Fri May 15 14:00:16 2015 Florian PERU
-// Last update Mon Jun 22 17:29:21 2015 Nicolas Girardot
+// Last update Tue Jun 23 16:53:33 2015 Nicolas Girardot
 //
 
 #ifndef MAP_HPP_
 #define MAP_HPP_
 
-#include "AObject.hpp"
+#include "AObject.hh"
 
-class	Map : public AObject
+class	Map
 {
 private:
 
@@ -25,10 +25,8 @@ public:
     return true;
   }
 
-  virtual void	draw(gdl::BasicShader & shader, gdl::Clock const & clock)
+  virtual void	draw()
   {
-    (void) shader;
-    (void) clock;
   }
 };
 

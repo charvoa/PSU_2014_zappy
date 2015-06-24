@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:17 2015 Nicolas Girardot
-// Last update Mon Jun 22 17:42:00 2015 Nicolas Girardot
+// Last update Tue Jun 23 16:52:51 2015 Nicolas Girardot
 //
 
 #ifndef COMMAND_HH_
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include "AObject.hpp"
+#include "AObject.hh"
 #include "GameEngine.hh"
 
 class GameEngine;

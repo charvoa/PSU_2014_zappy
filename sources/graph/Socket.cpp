@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Tue Jun 23 14:07:17 2015 Nicolas Girardot
+// Last update Wed Jun 24 13:36:59 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
@@ -64,7 +64,6 @@ void	Socket::selectSocket()
   if (FD_ISSET(this->_socket, &_rfds))
     {
       read(this->_socket, &output[0], 100 - 1);
-      std::cout << output << std::endl;
       _cmd->Parse(output, _game);
     }
 }

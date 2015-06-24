@@ -5,11 +5,11 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 15:23:29 2015 Nicolas Girardot
-// Last update Tue Jun 23 14:01:53 2015 Nicolas Girardot
+// Last update Tue Jun 23 16:54:13 2015 Nicolas Girardot
 //
 
 
-#include "AObject.hpp"
+#include "AObject.hh"
 #include "GameEngine.hh"
 #include "Map.hpp"
 #include "Socket.hh"
