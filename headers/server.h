@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed Jun 24 06:47:06 2015 Serge Heitzler
+** Last update Wed Jun 24 16:23:29 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -231,11 +231,18 @@ int			size_of_tab(char **);
 char			*show_items_at_position(t_server *, int, int);
 int			get_size_malloc_at_position(t_server *, int, int);
 
-/* $(CMDIA)ADVANCE_FUNCS.C */
+/* $(CMD)ADVANCE_FUNCS.C */
 void			adv_up(t_size *, t_client *);
 void			adv_right(t_size *, t_client *);
 void	       		adv_down(t_size *, t_client *);
 void			adv_left(t_size *, t_client *);
+
+/* $(CMD)CMD_TAKE_OBJECT.C */
+int		check_rock(char *rock);
+int		remove_rock(t_node *tmp, t_list *list, int rock_type, int index);
+int		take_rock(t_server *s, t_client *c, char *item);
+int		take_food(t_server *s, t_client *c);
+int		cmd_take_object(t_server *s, t_client *c, const char *cmd);
 
 /* COUNT_TEAMS.C */
 int			count_teams(t_server *);

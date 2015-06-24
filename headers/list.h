@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun May  3 16:40:31 2015 Serge Heitzler
-** Last update Tue Jun 23 18:54:32 2015 Audibert Louis
+** Last update Wed Jun 24 16:21:00 2015 Audibert Louis
 */
 
 #ifndef LIST_H_
@@ -45,9 +45,10 @@ t_list		*create_list();
 void		free_list(t_list *);
 int		push_back(t_list *, void *, e_node_type);
 int		push_front(t_list *, void *, e_node_type);
-int		push_at_index(t_list *, void *, e_node_type, size_t);
+int		push_at_index(t_list *, void *, e_node_type, int);
 t_node		*get_node_at_index(t_list *, size_t);
 int    		get_nbr_of(e_node_type, t_list *);
 size_t		size_list(t_list *);
+int		remove_at_index(t_list *, int);
 
 #endif  /* !LIST_H_ */
