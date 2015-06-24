@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Wed Jun 24 06:29:39 2015 Serge Heitzler
+** Last update Wed Jun 24 09:06:31 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -89,7 +89,7 @@ char		*create_final_string_view(t_server *s, t_client *c,
       sprintf(final, "%s%s", final, tmp);
       sprintf(final, "%s,", final);
       i++;
-    }
+    }1
   return (final);
 }
 
