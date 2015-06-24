@@ -5,11 +5,12 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 13:49:05 2015 Serge Heitzler
-** Last update Thu May  7 14:31:03 2015 Serge Heitzler
+** Last update Wed Jun 24 15:24:16 2015 Antoine Garcia
 */
 
 #ifndef			XFUNCS_H_
 # define		XFUNCS_H_
+#include <sys/socket.h>
 
 /* xmalloc.c */
 void			*xmalloc(size_t);

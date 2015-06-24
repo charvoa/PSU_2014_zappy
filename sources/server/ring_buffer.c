@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Wed Jun 24 14:08:17 2015 Antoine Garcia
+** Last update Wed Jun 24 15:23:10 2015 Antoine Garcia
 */
 
 #include "../../headers/ring_buffer.h"
@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "xfuncs.h"
 
 t_ring_buffer	*ring_buffer_create(int length)
 {
@@ -117,7 +118,7 @@ char		*ring_buffer_get_next_command(t_ring_buffer *buffer)
   data = ring_buffer_available_data(buffer);
   if (data > 0)
     {
-      tmp = malloc(data * sizeof(char));
+      tmp = xmalloc(data * sizeof(char));
       strcpy(tmp, ring_buffer_starts_at(buffer));
       cmd = strtok(tmp, "\r\n");
       ring_buffer_commit_read(buffer, (strlen(cmd) + 2));
