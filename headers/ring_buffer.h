@@ -5,7 +5,7 @@
 ** Login   <antgar@epitech.net>
 **
 ** Started on  Sun Jun 14 23:53:51 2015 Antoine Garcia
-** Last update Fri Jun 19 12:27:41 2015 Audibert Louis
+** Last update Wed Jun 24 10:53:42 2015 Antoine Garcia
 */
 
 #ifndef RING_BUFFER_H_
@@ -29,6 +29,7 @@ int		ring_buffer_available_data(t_ring_buffer *buffer);
 int		ring_buffer_available_space(t_ring_buffer *buffer);
 char		*ring_buffer_gets(t_ring_buffer *buffer, int amount);
 int		ring_buffer_expand(t_ring_buffer *buffer, int size);
+char		*ring_buffer_get_next_command(t_ring_buffer *buffer);
 
 # define ring_buffer_available_data(B) (((B)->end + 1) % (B)->length - (B)->start - 1)
 # define ring_buffer_available_space(B) ((B)->length - (B)->end - 1)
