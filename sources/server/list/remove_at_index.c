@@ -5,13 +5,14 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Tue May 26 23:55:47 2015 Serge Heitzler
-** Last update Tue May 26 23:56:48 2015 Serge Heitzler
+** Last update Wed Jun 24 14:16:24 2015 Audibert Louis
 */
 
 #include "server.h"
 
-int		remove_at_index(size_t index)
+int		remove_at_index(t_list *list, int index)
 {
   (void)index;
+  (void)list;
   return (SUCCESS);
 }

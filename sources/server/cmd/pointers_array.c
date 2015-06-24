@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Wed Jun 24 14:09:56 2015 Antoine Garcia
+** Last update Wed Jun 24 16:29:37 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -18,7 +18,7 @@ static t_init_cmds	g_ia_cmds[21] =
     {"gauche", &cmd_left, 7},
     {"voir", &cmd_view, 7},
     {"inventaire", &cmd_inventory, 7},
-    {"prend objet", &cmd_take_object, 7},
+    {"prend", &cmd_take_object, 7},
     {"pose objet", &cmd_drop_object, 7},
     {"expulse", &cmd_expel, 7},
     {"incantation", &cmd_incantation, 300},
