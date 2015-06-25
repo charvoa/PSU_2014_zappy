@@ -5,6 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
+** Last update Thu Jun 25 12:55:00 2015 Serge Heitzler
 ** Last update Thu Jun 25 02:22:42 2015 Antoine Garcia
 */
 
@@ -32,7 +33,7 @@ static t_init_cmds	g_ia_cmds[21] =
     {"mct", &cmd_mct, 0},
     {"ppo", &cmd_ppo, 0},
     {"plv", &cmd_plv, 0},
-    {"pin", &cmd_pin, 0}
+    {"pin", &cmd_pin, 0},
   };
 
 int		is_cmd(const char *cmd)

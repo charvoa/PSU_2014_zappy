@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:41 2015 Serge Heitzler
-** Last update Tue Jun 23 20:12:11 2015 Serge Heitzler
+** Last update Thu Jun 25 12:46:39 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -23,7 +23,7 @@ char		*get_objects_from_inventory(t_list *inventory)
   nbr[4] = get_nbr_of_rock(MENDIANE, inventory);
   nbr[5] = get_nbr_of_rock(PHIRAS, inventory);
   nbr[6] = get_nbr_of_rock(THYSTAME, inventory);
-  size_malloc = (77 + istm(nbr[0])
+  size_malloc = (78 + istm(nbr[0])
 		 + istm(nbr[1])  + istm(nbr[2])
 		 + istm(nbr[3])  + istm(nbr[4])
 		 + istm(nbr[5])  + istm(nbr[6]));
