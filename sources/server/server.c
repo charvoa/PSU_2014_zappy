@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Tue Jun 23 21:37:41 2015 Serge Heitzler
+** Last update Thu Jun 25 00:33:26 2015 Antoine Garcia
 */
 
 #include "server.h"
@@ -91,8 +91,6 @@ t_server	*fill_struct_serv(int argc, char **argv)
   int		(*options[6])(t_server *s);
 
   s = xmalloc(sizeof(t_server));
-  s->graph = xmalloc(sizeof(t_server_graph));
-  s->graph->connected = FALSE;
   init_map(s, 20, 20);
   init_opt(options);
   s->teams = create_list();

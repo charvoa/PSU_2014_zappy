@@ -27,7 +27,7 @@ s = None
 def send_name_to_server(s):
     var = 'TEAM '
     var += p.getName()
-    var += '\r\n'
+    var += '\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
@@ -42,13 +42,13 @@ def protocol(s):
     rec = mess.readMessage(s)
     ic.interpret_size(s, rec, p)
     var = 'OK'
-    var += '\r\n'
+    var += '\n'
     #mess.sendMessage(s, var)
 
-#def act_command(s):
-#    cc.droite_cmd(s, p, mess)
-#   cc.avance_cmd(s, p, mess)
-#    cc.voir_cmd(s, p, mess)
+def act_command(s):
+    cc.droite_cmd(s, p, mess)
+    cc.avance_cmd(s, p, mess)
+    cc.voir_cmd(s, p, mess)
 
 def main():
     try:
@@ -69,10 +69,11 @@ def main():
                     if i == 0:
                         data = sys.stdin.readline().strip()
                         if data:
-                            cc.gauche_cmd(s, p, mess)
+                            act_command(s)
+                            #cc.gauche_cmd(s, p, mess)
                             #mess.sendMessage(s, data)
-                    elif i == s:
-                        data = mess.readMessage(s)
+                        elif i == s:
+                            data = mess.readMessage(s)
                         if not data:
                             print('Shutting down.')
                             flag = True

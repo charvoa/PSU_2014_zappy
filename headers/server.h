@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed Jun 24 16:53:42 2015 Audibert Louis
+** Last update Thu Jun 25 12:07:36 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -65,6 +65,11 @@ typedef enum		e_bool
     FALSE
   }			e_bool;
 
+typedef enum		e_client_type
+  {
+    IA,
+    GUI
+  }			e_client_type;
 typedef struct		s_objects
 {
   char			*label;
@@ -113,7 +118,7 @@ typedef struct		s_client
   unsigned int		level;
   e_orientation		orientation;
   char			*team_name;
-
+  e_client_type		type;
   t_position		*pos;
   t_list		*inventory;
   t_list		*cmds;
@@ -150,12 +155,6 @@ typedef struct		s_opt
   char			**argv;
 }			t_opt;
 
-typedef struct		s_server_graph
-{
-  e_bool		connected;
-  int			fd;
-}			t_server_graph;
-
 typedef struct		s_server
 {
   // Loulou's Work
@@ -182,7 +181,6 @@ typedef struct		s_server
   t_map			*map;
   t_list		*clients;
   t_list		*teams;
-  t_server_graph	*graph;
 }			t_server;
 
 extern	int		g_verbose;
@@ -309,7 +307,7 @@ t_server		*fill_struct_serv(int, char **);
 
 /* SEND_DATA.C */
 int			send_data(int, const char *);
-
+int			send_data_to_gui(t_list *clients, const char *msg);
 /* SET_OPTIONS.C */
 void			init_opt(int (*options[6])(t_server *));
 int			check_opt(int);

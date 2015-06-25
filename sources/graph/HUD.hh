@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:23 2015 Nicolas Girardot
-// Last update Wed Jun 24 17:00:27 2015 Nicolas Girardot
+// Last update Thu Jun 25 10:00:05 2015 Nicolas Girardot
 //
 
 #ifndef _HUD_HH_
@@ -22,6 +22,8 @@ class HUD
 private:
   SDL_Renderer *_renderer;
   TTF_Font *_font = NULL;
+  SDL_Surface *_background = NULL;
+  SDL_Texture *_backgroundt = NULL;
   SDL_Surface *_caseCurrent = NULL;
   SDL_Texture *_caseCurrentt = NULL;
   SDL_Surface *_caseLocked = NULL;
@@ -41,6 +43,7 @@ private:
   SDL_Surface *_rock6Locked = NULL;
   SDL_Texture *_rock6Lockedt = NULL;
   SDL_Color _white = {255, 255, 255, 42};
+  SDL_Color _black = {0, 0, 0, 42};
 
 public:
   HUD(SDL_Renderer*);

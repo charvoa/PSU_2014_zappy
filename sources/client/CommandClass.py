@@ -6,7 +6,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('avance >>')
         var = 'avance'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (rec == 'OK'):
@@ -18,7 +18,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('droite >> ')
         var = 'droite'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -32,7 +32,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('gauche >>')
         var = 'gauche'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -46,7 +46,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('voir >>')
         var = 'voir'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -60,7 +60,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('inventaire >>')
         var = 'inventaire'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -74,7 +74,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('prend >>')
         var = 'pose'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -88,7 +88,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('pose >>')
         var = 'pose'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -102,7 +102,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('expulse >>')
         var = 'expulse'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -116,7 +116,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('broadcast >>')
         var = 'broadcast'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -130,7 +130,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('incantation >>')
         var = 'incantation'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -144,7 +144,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('fork >>')
         var = 'fork'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -158,7 +158,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('connect_nbr >>')
         var = 'connect_nbr'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -172,7 +172,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('mort >>')
         var = '-'
-        var += '\r\n'
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):

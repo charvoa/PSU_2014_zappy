@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Wed Jun 24 10:58:34 2015 Nicolas Girardot
+## Last update Thu Jun 25 11:19:43 2015 Nicolas Girardot
 ##
 
 MAIN		=	zappy_graph
@@ -18,6 +18,7 @@ SRC		+=	GameEngine.cpp					\
 			Socket.cpp					\
 			AObject.cpp					\
 			HUD.cpp						\
+			Case.cpp					\
 
 SRC_MAIN	=	$(SRC) main.cpp
 
@@ -26,6 +27,7 @@ OBJ_MAIN	=	$(SRC_MAIN:.cpp=.o)
 LDFLAGS		=	-L./libGDL/libs/ -lgdl_gl	\
 			-lGLEW -lrt -lfbxsdk -lSDL2 -lpthread		\
 			-lSDL2_ttf					\
+			-lSDL2_image						\
 			-ldl -lGL -lGLU -lSDL_image			\
 			-L ./Sound/lib -lfmodex64 -lglut		\
 
