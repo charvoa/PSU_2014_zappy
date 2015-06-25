@@ -1,11 +1,11 @@
 /*
 ** send_data.c for zappy in /home/heitzls/rendu/PSU_2014_zappy/sources/server/cmd_ia
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <heitzls@epitech.net>
-** 
+**
 ** Started on  Thu May 21 20:04:00 2015 Serge Heitzler
-** Last update Thu May 21 20:04:47 2015 Serge Heitzler
+** Last update Thu Jun 25 00:44:01 2015 Antoine Garcia
 */
 
 #include "server.h"
@@ -22,4 +22,22 @@ int		send_data(int socket, const char *buffer)
       return (ERROR);
     }
   return (n);
+}
+
+int		send_data_to_gui(t_list *clients, const char *msg)
+{
+  t_node *tmp;
+  t_client *client;
+
+  tmp = clients->start;
+  client = xmalloc(sizeof(t_client));
+  client = tmp->data;
+  while (tmp)
+    {
+      client = tmp->data;
+      if (client->type == GUI)
+	send_data(client->fd, msg);
+      tmp = tmp->next;
+    }
+  return (0);
 }
