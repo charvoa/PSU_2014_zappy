@@ -2,11 +2,18 @@ class CommandClass():
 
     """ A class that send command to the server """
 
+    def translate_non_alphanumerics(to_translate, translate_to=u'_'):
+        not_letters_or_digits = u'!"#%\'()*+,-./:;<=>?@[\]^_`{|}~'
+        translate_table = dict((ord(char), translate_to) for char in not_letters_or_digits)
+        return to_translate.translate(translate_table)
+
+#>>> translate_non_alphanumerics(u'<foo>!')
+
     def avance_cmd(self, s, p, mess):
         if (p.getVerbose()):
             print('avance >>')
         var = 'avance'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (rec == 'OK'):
@@ -18,7 +25,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('droite >> ')
         var = 'droite'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -32,7 +39,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('gauche >>')
         var = 'gauche'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -46,7 +53,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('voir >>')
         var = 'voir'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -60,7 +67,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('inventaire >>')
         var = 'inventaire'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -75,7 +82,7 @@ class CommandClass():
             print('prend >>')
         var = 'prend '
         var += obj
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -90,7 +97,7 @@ class CommandClass():
             print('pose >>')
         var = 'pose '
         var += obj
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -104,7 +111,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('expulse >>')
         var = 'expulse'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -118,7 +125,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('broadcast >>')
         var = 'broadcast'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -132,7 +139,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('incantation >>')
         var = 'incantation'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -146,7 +153,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('fork >>')
         var = 'fork'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -160,7 +167,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('connect_nbr >>')
         var = 'connect_nbr'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -174,7 +181,7 @@ class CommandClass():
         if (p.getVerbose()):
             print('mort >>')
         var = '-'
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):

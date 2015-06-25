@@ -27,7 +27,7 @@ s = None
 def send_name_to_server(s):
     var = 'TEAM '
     var += p.getName()
-    var += '\n'
+    var += '\r\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
@@ -42,15 +42,15 @@ def protocol(s):
     rec = mess.readMessage(s)
     ic.interpret_size(s, rec, p)
     var = 'OK'
-    var += '\n'
+    var += '\r\n'
     #mess.sendMessage(s, var)
 
 def act_command(s):
     #cc.droite_cmd(s, p, mess) #marche
     #cc.gauche_cmd(s, p, mess) #marche
     #cc.voir_cmd(s, p, mess) #bug
-    # marche cc.inventaire_cmd(s, p, mess)
-    cc.prend_cmd(s, p, mess, 'obj') #bug
+    cc.inventaire_cmd(s, p, mess) #marche
+    #cc.prend_cmd(s, p, mess, 'obj') #bug
     #cc.pose_cmd(s, p, mess, 'obj')
     #cc.expulse_cmd(s, p, mess)
     #cc.broadcast_cmd(s, p, mess)
@@ -78,11 +78,10 @@ def main():
                     if i == 0:
                         data = sys.stdin.readline().strip()
                         if data:
-                            act_command(s)
-                            #cc.gauche_cmd(s, p, mess)
-                            #mess.sendMessage(s, data)
-                        elif i == s:
-                            data = mess.readMessage(s)
+                            #act_command(s)
+                            mess.sendMessage(s, data)
+                    elif i == s:
+                        data = mess.readMessage(s)
                         if not data:
                             print('Shutting down.')
                             flag = True
@@ -92,7 +91,7 @@ def main():
                             flag = True
                             break
                         else:
-                            sys.stdout.write(data + '\n')
+                            sys.stdout.write('SERVER: ' + data + '\n')
                             sys.stdout.flush()
             except KeyboardInterrupt:
                 print('Interrupted.')
