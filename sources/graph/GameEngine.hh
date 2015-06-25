@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Thu Jun 25 12:38:04 2015 Nicolas Girardot
+// Last update Thu Jun 25 16:40:39 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -32,6 +32,7 @@
 #include "HUD.hh"
 
 class Socket;
+
 
 class	GameEngine : public gdl::Game
 {
@@ -60,7 +61,7 @@ public:
   void	draw();
   void	run();
 private:
-  std::map<Position *, Case&> _cases;
+  std::map<std::pair<int, int>, Case*> _cases;
 };
 
 #endif

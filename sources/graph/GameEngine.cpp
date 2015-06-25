@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 13:57:37 2015 Nicolas Girardot
+// Last update Thu Jun 25 16:58:33 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -50,7 +50,7 @@ bool	GameEngine::initialize()
   TTF_Init();
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
-  _socket->writeOnSocket("msz\n");
+  _socket->writeOnSocket("msz\r\n");
   return true;
 }
 
@@ -105,8 +105,11 @@ void	GameEngine::setLocked()
   SDL_GetMouseState(&a, &b);
   std::cout << "click" << std::endl;
   Position pos(a, b);
-  _hud->updateLocked(pos);
-  _gMap->setLocked((a - 150) / 35, (b - 150) / 35);
+  //  if (isClickedOnMap(a, b) == true)
+  // {
+      //      _hud->updateLocked(determinePosClicked(std::pair<int,int>(focus), a, b));
+      //_gMap->setLocked(determinePosClickedOnGUI(a, b));
+  // }
 }
 
 void	GameEngine::getMousePos()
@@ -126,16 +129,15 @@ void	GameEngine::getMousePos()
 
 void	GameEngine::setCase(std::vector<std::string> &content)
 {
-  std::vector<int> tab;
-
-  tab.push_back(stoi(content.at(2)));
-  tab.push_back(stoi(content.at(3)));
-  tab.push_back(stoi(content.at(4)));
-  tab.push_back(stoi(content.at(5)));
-  tab.push_back(stoi(content.at(6)));
-  tab.push_back(stoi(content.at(7)));
-  tab.push_back(stoi(content.at(8)));
-
+  Position pos(stoi(content.at(0)), stoi(content.at(1)));
+  Case new_case(stoi(content.at(3)),
+  		stoi(content.at(4)),
+  		stoi(content.at(5)),
+  		stoi(content.at(6)),
+  		stoi(content.at(7)),
+  		stoi(content.at(8)),
+  		stoi(content.at(2)));
+  _cases.insert(std::pair<std::pair<int, int>, Case *>(std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1))), &new_case));
 }
 
 void	GameEngine::draw()

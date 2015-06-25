@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:00 2015 Nicolas Girardot
-// Last update Thu Jun 25 10:10:14 2015 Nicolas Girardot
+// Last update Thu Jun 25 17:01:33 2015 Nicolas Girardot
 //
 
 #include "HUD.hh"
@@ -49,7 +49,7 @@ void	HUD::updateCase(Position &pos)
 {
   std::string result;
   std::stringstream sstm;
-  sstm << pos._x << "/" << pos._y;
+  sstm << pos._x + 1 << "/" << pos._y + 1;
   result = sstm.str();
   this->_caseCurrent = TTF_RenderText_Solid(_font, result.c_str(), _white);
   this->_caseCurrentt = SDL_CreateTextureFromSurface(_renderer, this->_caseCurrent);

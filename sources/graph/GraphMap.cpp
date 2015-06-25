@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Thu Jun 25 12:06:27 2015 Nicolas Charvoz
+// Last update Thu Jun 25 16:54:44 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -50,10 +50,18 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &pos)
     }
 }
 
-void	GraphMap::setLocked(int a, int b)
+int	GraphMap::getWidth()
 {
-  std::cout << "send data" << std::endl;
-  _locked->_x = a;
-  std::cout << "data " << a << " :: " << _locked->_x << std::endl;
-  _locked->_y = b;
+  return _width;
+}
+
+int	GraphMap::getHeight()
+{
+  return _height;
+}
+
+void	GraphMap::setLocked(Position &pos)
+{
+  _locked->_x = pos._x;
+  _locked->_y = pos._y;
 }
