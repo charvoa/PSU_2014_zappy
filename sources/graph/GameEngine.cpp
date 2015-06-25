@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 17:03:55 2015 Serge Heitzler
+// Last update Thu Jun 25 18:54:17 2015 Serge Heitzler
 //
 
 #include "GameEngine.hh"
@@ -157,7 +157,7 @@ void	GameEngine::run()
     draw();
 }
 
-bool		isClickedOnMap(int xClick, int yClick)
+bool		isEventOnMap(int xClick, int yClick)
 {
   if (xClick < 150 || yClick < 150 || xClick > 850 || yClick > 850)
     return false;
@@ -171,8 +171,8 @@ Position	&GameEngine::determinePosClicked(std::pair<int,int> & center, int xClic
   int posX;
   int posY;
 
-  posX = (xClick - 150) / (700 / 13);
-  posY = (yClick - 150) / (700 / 13);
+  posX = (xClick - 150) / (700 / 7);
+  posY = (yClick - 150) / (700 / 7);
   x = (center.first() - 6 + posX) % _gMap->getWidth();
   y = (center.second() - 6 + posY) % _gmap->getHeight();
   if (x < 0)
@@ -189,8 +189,8 @@ Position	&GameEngine::determinePosClickedOnGUI(int xClick, int yClick)
   int posX;
   int posY;
   
-  posX = (xClick - 150) / (700 / 13);
-  posY = (yClick - 150) / (700 / 13);
+  posX = (xClick - 150) / (700 / 7);
+  posY = (yClick - 150) / (700 / 7);
   Position pos(posX, posY);
   return (pos);
 }
