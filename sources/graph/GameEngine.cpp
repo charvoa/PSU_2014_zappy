@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 12:35:57 2015 Nicolas Girardot
+// Last update Thu Jun 25 13:53:58 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -20,6 +20,7 @@ GameEngine::~GameEngine() {
   SDL_Quit();
   TTF_Quit();
   IMG_Quit();
+  _socket->closeSocket();
 }
 
 SDL_Renderer &GameEngine::getRenderer()
