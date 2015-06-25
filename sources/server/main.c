@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Sun May 17 11:38:40 2015 Serge Heitzler
+** Last update Thu Jun 25 12:50:07 2015 Nicolas Charvoz
 */
 
 #include "server.h"
@@ -13,7 +13,7 @@
 int		main(int argc, char **argv)
 {
   t_server	*s;
-  
+
   srand(time(NULL));
   s = fill_struct_serv(argc, argv);
   init_socket(s);

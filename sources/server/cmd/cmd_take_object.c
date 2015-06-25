@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Thu Jun 25 12:31:43 2015 Audibert Louis
+** Last update Thu Jun 25 14:03:48 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -87,6 +87,7 @@ int		take_food(t_server *s, t_client *c)
   int		nb_food;
   int		i;
 
+  printf("IM IN TAKE FOOD\n");
   nb_food = get_nbr_of(FOOD, s->map->objects[c->pos->y][c->pos->x]);
   if (nb_food == 0)
     return (ERROR);
@@ -99,11 +100,13 @@ int		take_food(t_server *s, t_client *c)
 	  food = tmp->data;
 	  remove_at_index(s->map->objects[c->pos->y][c->pos->x], i);
 	  push_back(c->inventory, food, FOOD);
+	  printf("I FOUND A FOOD IN THE MAP[X][Y]\n");
 	  return (SUCCESS);
 	}
       i++;
       tmp = tmp->next;
     }
+  printf("I FINISHED TAKE FOOD WITHOUT FINDING FOOD\n");
   return (ERROR);
 }
 
@@ -118,7 +121,7 @@ int		cmd_take_object(t_server *s, t_client *c, const char *cmd)
     {
       if (take_food(s, c) == ERROR)
 	{
-	  send_data(c->fd, "ko");
+	  send_data(c->fd, "ko\n");
 	  return (ERROR);
 	}
     }
@@ -126,10 +129,10 @@ int		cmd_take_object(t_server *s, t_client *c, const char *cmd)
     {
       if (take_rock(s, c, item) == ERROR)
 	{
-	  send_data(c->fd, "ko");
+	  send_data(c->fd, "ko\n");
 	  return (ERROR);
 	}
     }
-  send_data(c->fd, "ok");
+  send_data(c->fd, "ok\n");
   return (SUCCESS);
 }

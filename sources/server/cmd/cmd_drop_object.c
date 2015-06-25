@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Thu Jun 25 12:32:03 2015 Audibert Louis
+** Last update Thu Jun 25 14:06:22 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -73,14 +73,14 @@ int		cmd_drop_object(t_server *s, t_client *c, const char *cmd)
   // Les (void) du dessous sont à supprimer, celui du dessus est important et à laisser.
   char		*item;
   
-  item = xmalloc((strlen(cmd) - 6) * sizeof(char));
-  bzero(item, strlen(cmd) - 6);
+  item = xmalloc((strlen(cmd) - 4) * sizeof(char));
+  bzero(item, strlen(cmd) - 4);
   sscanf(cmd, "pose %s", item);
   if (strcmp(item, "food") == 0)
     {
       if (drop_food(s, c) == ERROR)
 	{
-	  send_data(c->fd, "ko");
+	  send_data(c->fd, "ko\n");
 	  return (ERROR);
 	}
     }
@@ -88,10 +88,10 @@ int		cmd_drop_object(t_server *s, t_client *c, const char *cmd)
     {
       if (drop_rock(s, c, item) == ERROR)
 	{
-	  send_data(c->fd, "ko");
+	  send_data(c->fd, "ko\n");
 	  return (ERROR);
 	}
     }
-  send_data(c->fd, "ok");
+  send_data(c->fd, "ok\n");
   return (SUCCESS);
 }

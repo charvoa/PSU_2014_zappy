@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Thu Jun 25 11:52:39 2015 Nicolas Girardot
+// Last update Thu Jun 25 13:57:54 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
@@ -21,6 +21,11 @@ Socket::Socket(const char *ip, const int port, GameEngine *game) : _ip(ip), _por
 Socket::~Socket()
 {
 
+}
+
+void	Socket::closeSocket()
+{
+  close(_socket);
 }
 
 void	Socket::initSocket()
@@ -65,5 +70,6 @@ void	Socket::selectSocket()
 
 void	Socket::writeOnSocket(std::string message)
 {
+  std::cout << "writeOnSocket() >> " << std::endl;
   write(_socket, message.c_str(), strlen(message.c_str()));
 }

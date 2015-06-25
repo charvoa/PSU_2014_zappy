@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:41 2015 Serge Heitzler
-** Last update Thu Jun 25 12:46:39 2015 Serge Heitzler
+** Last update Thu Jun 25 14:18:36 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -30,7 +30,7 @@ char		*get_objects_from_inventory(t_list *inventory)
   res = xmalloc(sizeof(char) * size_malloc);
   memset(res, 0, size_malloc);
   // ! Trop de colonnes !
-  sprintf(res, "{nourriture %d, limemate %d, deraumere %d, sibur %d, mendiane %d, phiras, %d, thystame %d}\n", nbr[0], nbr[1], nbr[2], nbr[3], nbr[4], nbr[5], nbr[6]);
+  sprintf(res, "{nourriture %d, limemate %d, deraumere %d, sibur %d, mendiane %d, phiras %d, thystame %d}\n", nbr[0], nbr[1], nbr[2], nbr[3], nbr[4], nbr[5], nbr[6]);
   return (res);
 }
 

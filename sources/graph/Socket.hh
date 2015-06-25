@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:07 2015 Nicolas Girardot
-// Last update Tue Jun 23 11:48:09 2015 Nicolas Girardot
+// Last update Thu Jun 25 13:54:16 2015 Nicolas Girardot
 //
 
 #ifndef SOCKET_HH_
@@ -48,6 +48,7 @@ public:
   ~Socket();
   void	initSocket();
   void	connectSocket();
+  void	closeSocket();
   void	selectSocket();
   void	my_connect();
   void	writeOnSocket(std::string);
