@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 20:08:35 2015 Nicolas Girardot
+// Last update Thu Jun 25 20:11:03 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -142,7 +142,7 @@ void	GameEngine::setCase(std::vector<std::string> &content)
   		stoi(content.at(8)),
   		stoi(content.at(2)));
   if (_cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))] != NULL)
-    _cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))].setAll(stoi(content.at(3)),
+    _cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))]->setAll(stoi(content.at(3)),
 										 stoi(content.at(4)),
 										 stoi(content.at(5)),
 										 stoi(content.at(6)),
