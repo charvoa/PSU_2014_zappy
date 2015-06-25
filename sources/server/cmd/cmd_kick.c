@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Thu Jun 25 12:32:19 2015 Audibert Louis
+** Last update Thu Jun 25 12:33:31 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -48,5 +48,5 @@ int		cmd_kick(t_server *s, t_client *c, const char *cmd)
   /* 	} */
   /*     tmp = tmp->next; */
   /*   } */
-  /* return (SUCCESS); */
+  return (SUCCESS);
 }
