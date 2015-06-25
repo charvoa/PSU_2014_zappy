@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Thu Jun 25 12:38:04 2015 Nicolas Girardot
+// Last update Thu Jun 25 16:49:16 2015 Serge Heitzler
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -59,6 +59,9 @@ public:
   void	setLocked();
   void	draw();
   void	run();
+  bool		isClickedOnMap(int, int);
+  Position	&determinePosClicked(std::pair<int,int> &, int, int);
+  Position	&determinePosClickedOnGUI(int, int);
 private:
   std::map<Position *, Case&> _cases;
 };
