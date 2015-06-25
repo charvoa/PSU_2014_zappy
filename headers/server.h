@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu Jun 25 12:07:36 2015 Audibert Louis
+** Last update Fri Jun 26 11:03:59 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -40,6 +40,12 @@
 # define		ERROR -1
 # define		SUCCESS 0
 
+typedef enum		e_flag_rock
+  {
+    ADD,
+    REMOVE,
+  }			e_flag_rock;
+
 typedef enum		e_rock_type
   {
     LIMEMATE,
@@ -70,6 +76,7 @@ typedef enum		e_client_type
     IA,
     GUI
   }			e_client_type;
+
 typedef struct		s_objects
 {
   char			*label;
@@ -82,6 +89,19 @@ typedef struct		s_init_cmds
   int			(*ptr_func)();
   int			delay;
 }			t_init_cmds;
+
+typedef struct		s_block
+{
+  int			food;
+  int			limemate;
+  int			deraumere;
+  int			sibur;
+  int			mendiane;
+  int			phiras;
+  int			thystame;
+  int			*ids;
+  int			nb_clients;
+}			t_block;
 
 typedef struct		s_position
 {
@@ -102,15 +122,28 @@ typedef struct		s_rock
 
 typedef struct		s_cmd
 {
-  char			*cmd;
-  char			*options;
+  const char	       	*label;
   int			delay;
+
   /* "delay" à diviser par t au moment du calcul
      du delay si changement de t par le client */
+
   time_t		received_at;
-  time_t		send_at;
+  time_t		exec_at;
+
   int			precision;
 }			t_cmd;
+
+typedef struct		s_inventory
+{
+  int			food;
+  int			limemate;
+  int			deraumere;
+  int			sibur;
+  int			mendiane;
+  int			phiras;
+  int			thystame;
+}			t_inventory;
 
 typedef struct		s_client
 {
@@ -120,7 +153,7 @@ typedef struct		s_client
   char			*team_name;
   e_client_type		type;
   t_position		*pos;
-  t_list		*inventory;
+  t_inventory		*inventory;
   t_list		*cmds;
 
   t_ring_buffer		*buffer;
@@ -136,7 +169,7 @@ typedef struct		s_map
 {
   t_size		*size;
   char			**full;
-  t_list		***objects;
+  t_block		***objects;
 }			t_map;
 
 typedef struct		s_team
@@ -217,10 +250,10 @@ int			cmd_plv(t_server *, t_client *, const char *);
 int			cmd_pin(t_server *, t_client *, const char *);
 
 int			is_cmd(const char *);
-void			exec_cmd(t_server *, t_client *, t_ring_buffer *);
+void			exec_cmd(t_server *, t_client *);
 
 void			set_slot_for_team(t_list *, char *, int);
-char			*get_objects_from_inventory(t_list *);
+char			*get_objects_from_inventory(t_inventory *);
 int			get_nbr_of_rock(e_rock_type, t_list *);
 void			init_advance(void (*advance[4])(t_size *, t_client *));
 int			istm(int);
@@ -232,6 +265,11 @@ char			*show_items_at_position(t_server *, int, int);
 int			get_size_malloc_at_position(t_server *, int, int);
 int			create_food(t_server *);
 int			create_rock(t_server *);
+void			prepare_for_exec(t_server *, t_client *);
+
+/* $(CMD)ADD_OR_REMOVE_ID.C */
+int			*add_id(t_block *block, int id);
+int			*remove_id(t_block *block, int id);
 
 /* $(CMD)ADVANCE_FUNCS.C */
 void			adv_up(t_size *, t_client *);
@@ -245,6 +283,19 @@ int		remove_rock(t_node *tmp, t_list *list, int rock_type, int index);
 int		take_rock(t_server *s, t_client *c, char *item);
 int		take_food(t_server *s, t_client *c);
 int		cmd_take_object(t_server *s, t_client *c, const char *cmd);
+
+/* $(CMD)CMD_DROP_OBJECT.C */
+int		launch_func_rock(t_client *c, int rock, e_flag_rock flag);
+
+/* $(CMD)ADD_OR_REMOVE_ROCK.C */
+int		add_limemate(t_inventory *inventory, e_flag_rock flag);
+int		add_deraumere(t_inventory *inventory, e_flag_rock flag);
+int		add_sibur(t_inventory *inventory, e_flag_rock flag);
+
+/* $(CMD)ADD_OR_REMOVE_ROCK2.C */
+int		add_mendiane(t_inventory *inventory, e_flag_rock flag);
+int		add_phiras(t_inventory *inventory, e_flag_rock flag);
+int		add_thystame(t_inventory *inventory, e_flag_rock flag);
 
 /* COUNT_TEAMS.C */
 int			count_teams(t_server *);

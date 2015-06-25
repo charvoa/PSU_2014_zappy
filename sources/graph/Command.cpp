@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu Jun 25 12:45:26 2015 Nicolas Charvoz
+// Last update Thu Jun 25 18:26:25 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -44,7 +44,7 @@ void	Command::bct(std::string cmd, GameEngine *game)
     {
       if (current != "bct")
 	parse.push_back(current);
-      game->setCase(parse);
+      //game->setCase(parse);
     }
 }
 

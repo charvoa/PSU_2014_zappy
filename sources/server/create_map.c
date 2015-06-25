@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Sun May 17 11:39:54 2015 Serge Heitzler
+** Last update Fri Jun 26 09:35:04 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -37,14 +37,16 @@ void		init_map(t_server *s, unsigned int width, unsigned int height)
   s->map->size = xmalloc(sizeof(*(s->map->size)));
   s->map->size->width = width;
   s->map->size->height = height;
-  s->map->objects = xmalloc((width * height) * sizeof(t_list));
+  s->map->objects = xmalloc((width * height) * sizeof(t_block));
   while (y <= (height - 1))
     {
       x = 0;
-      s->map->objects[y] = xmalloc(width * sizeof(t_list));
+      s->map->objects[y] = xmalloc(width * sizeof(t_block));
       while (x <= (width - 1))
       	{
-	  s->map->objects[y][x] = create_list();
+	  s->map->objects[y][x] = xmalloc(sizeof(t_block));
+	  s->map->objects[y][x]->ids = NULL;
+	  s->map->objects[y][x]->nb_clients = 0;
       	  x++;
       	}
       s->map->objects[y][x] = NULL;

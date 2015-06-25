@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:25:37 2015 Serge Heitzler
-## Last update Wed May 13 10:15:25 2015 Nicolas Charvoz
+## Last update Thu Jun 25 17:24:35 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -20,7 +20,7 @@ XDIR		=	../xfuncs/
 SRCS		= 	main.c				\
 			$(XDIR)xmalloc.c		\
 
-NAME		= 	client
+NAME		= 	zappy_ai
 
 OBJS		= 	$(SRCS:.c=.o)
 

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Wed Jun 24 16:45:42 2015 Audibert Louis
+** Last update Thu Jun 25 17:04:27 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -40,13 +40,9 @@ int	cmd_team(t_server *s, t_client *c, const char *cmd)
   char		*name;
   t_team	*team;
   
-  name = xmalloc((strlen(cmd) - 3) * sizeof(char));
-  bzero(trame, 21);
-  bzero(name, strlen(cmd) - 3);
-  sscanf(cmd, "TEAM %s", name);
-  printf("NAME = %s\n", name);
-  printf("strlen(name) = %zu\n", strlen(name));
-  name[strlen(name)] = '\0';
+  name = xmalloc(strlen(cmd) * sizeof(char));
+  bzero(name, strlen(cmd));
+  sscanf(cmd, "%s", name);
   if (is_a_team(s, name) == 0)
     {
       team = get_team_by_name(s->teams, name);
@@ -57,12 +53,14 @@ int	cmd_team(t_server *s, t_client *c, const char *cmd)
 	  bzero(c->team_name, strlen(name));
 	  c->team_name = strdup(name);
 	  team->slot_rest--;
+	  send_data(c->fd, "ok\n");
 	}
       else
 	send_data(c->fd, "NO_SLOT_REST\r\n");
+      bzero(trame, 21);
+      sprintf(trame, "%d %d\n", s->map->size->width, s->map->size->height);
+      send_data(c->fd, trame);
     }
-  bzero(trame, 21);
-  sprintf(trame, "%d - %d\n", s->map->size->width, s->map->size->height);
-  send_data(c->fd, trame);
+  send_data(c->fd, "ko\n");
   return (0);
 }
