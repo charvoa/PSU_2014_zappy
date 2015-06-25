@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:32 2015 Serge Heitzler
-** Last update Fri Jun 19 11:28:33 2015 Serge Heitzler
+** Last update Thu Jun 25 12:20:23 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -18,6 +18,7 @@ int		get_nbr_of_rock(e_rock_type type, t_list *list)
 
   nbr = 0;
   tmp = list->start;
+  rock = xmalloc(sizeof(t_rock));
   while (tmp)
     {
       rock = tmp->data;

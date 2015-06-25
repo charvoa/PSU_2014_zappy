@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 11:52:52 2015 Nicolas Girardot
+// Last update Thu Jun 25 12:53:42 2015 Serge Heitzler
 //
 
 #include "GameEngine.hh"
@@ -155,3 +155,13 @@ void	GameEngine::run()
   while (this->update())
     draw();
 }
+
+// ni touche pas je viens à l'école
+// std::pair<int,int>	GameEngine::determinePosClicked(std::pair<int, int> center, int xClick, int yClick)
+// {
+//   int x;
+//   int y;
+
+//   x = xClick / 13         (center.first / 13) + 300
+//   return (std::make_pair(x, y));
+// }
