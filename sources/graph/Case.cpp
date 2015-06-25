@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:53 2015 Serge Heitzler
-// Last update Thu Jun 25 20:08:41 2015 Serge Heitzler
+// Last update Thu Jun 25 20:13:58 2015 Serge Heitzler
 //
 
 #include "Case.hh"
@@ -62,13 +62,13 @@ void	Case::decrement(e_type type)
     _food--;
 }
 
-void	Case::setAll(std::vector<int> &vector)
+void	Case::setAll(int limemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int food)
 {
-  _limemate = vector.at(0);
-  _deraumere = vector.at(1);
-  _sibur = vector.at(2);
-  _mendiane = vector.at(3);
-  _phiras = vector.at(4);
-  _thystame = vector.at(5);
-  _food = vector.at(6);
+  _limemate = linemate;
+  _deraumere = deraumere;
+  _sibur = sibur;
+  _mendiane = mediane;
+  _phiras = phiras;
+  _thystame = thystame;
+  _food = food;
 }
