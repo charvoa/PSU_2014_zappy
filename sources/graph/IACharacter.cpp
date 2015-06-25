@@ -1,32 +1,26 @@
 //
-// Case.cpp for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/graph
-//
+// IACharacter.cpp for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/graph
+// 
 // Made by Serge Heitzler
 // Login   <sergeheitzler@epitech.net>
+// 
+// Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
+// Last update Thu Jun 25 17:28:31 2015 Serge Heitzler
 //
-// Started on  Thu Jun 25 10:50:53 2015 Serge Heitzler
-// Last update Thu Jun 25 17:29:58 2015 Serge Heitzler
-//
 
-#include "Case.hh"
+#include "IACharacter.hh"
 
-Case::Case(int linemate, int deraumere, int sibur, int mediane, int phiras, int thystame, int food)
-{
-  _limemate = linemate;
-  _deraumere = deraumere;
-  _sibur = sibur;
-  _mendiane = mediane;
-  _phiras = phiras;
-  _thystame = thystame;
-  _food = food;
-}
-
-Case::~Case()
+IACharacter::IACharacter()
 {
 
 }
 
-void	Case::increment(e_type type)
+IACharacter::~IACharacter()
+{
+
+}
+
+void	IACharacter::increment(e_type type)
 {
   if (type == LIMEMATE)
     _limemate++;
@@ -44,7 +38,7 @@ void	Case::increment(e_type type)
     _food++;
 }
 
-void	Case::decrement(e_type type)
+void	IACharacter::decrement(e_type type)
 {
   if (type == LIMEMATE && _limemate > 0)
     _limemate--;
@@ -60,4 +54,22 @@ void	Case::decrement(e_type type)
     _thystame--;
   if (type == FOOD && _food > 0)
     _food--;
+}
+
+int	IACharacter::get(e_type type)
+{
+  if (type == LIMEMATE)
+    return _limemate;
+  if (type == DERAUMERE)
+    return _deraumere;
+  if (type == SIBUR)
+    return _sibur;
+  if (type == MENDIANE)
+    return _mendiane;
+  if (type == PHIRAS)
+    return _phiras;
+  if (type == THYSTAME)
+    return _thystame;
+  if (type == FOOD)
+    return _food;
 }

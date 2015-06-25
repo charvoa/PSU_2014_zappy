@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 16:58:33 2015 Nicolas Girardot
+// Last update Thu Jun 25 18:07:38 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -159,12 +159,40 @@ void	GameEngine::run()
     draw();
 }
 
-// ni touche pas je viens à l'école
-// std::pair<int,int>	GameEngine::determinePosClicked(std::pair<int, int> center, int xClick, int yClick)
-// {
-//   int x;
-//   int y;
+bool		isClickedOnMap(int xClick, int yClick)
+{
+  if (xClick < 150 || yClick < 150 || xClick > 850 || yClick > 850)
+    return false;
+  return true;
+}
 
-//   x = xClick / 13         (center.first / 13) + 300
-//   return (std::make_pair(x, y));
-// }
+Position	&GameEngine::determinePosClicked(std::pair<int,int> & center, int xClick, int yClick)
+{
+  int x;
+  int y;
+  int posX;
+  int posY;
+
+  posX = (xClick - 150) / (700 / 13);
+  posY = (yClick - 150) / (700 / 13);
+  x = (center.first() - 6 + posX) % _gMap->getWidth();
+  y = (center.second() - 6 + posY) % _gmap->getHeight();
+  if (x < 0)
+    x = _gMap->getWidth() + x;
+  if (y < 0)
+    y = _gMap->getHeight() + y;
+
+  Position pos(x, y);
+  return (pos);
+}
+
+Position	&GameEngine::determinePosClickedOnGUI(int xClick, int yClick)
+{
+  int posX;
+  int posY;
+
+  posX = (xClick - 150) / (700 / 13);
+  posY = (yClick - 150) / (700 / 13);
+  Position pos(posX, posY);
+  return (pos);
+}

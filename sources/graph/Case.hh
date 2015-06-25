@@ -5,28 +5,34 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:43 2015 Serge Heitzler
-// Last update Thu Jun 25 11:36:18 2015 Nicolas Girardot
+// Last update Thu Jun 25 17:29:59 2015 Serge Heitzler
 //
 
 #ifndef CASE_HH_
 # define CASE_HH_
 
-#include <vector>
+# include <vector>
+# inclulde "IACharacter.hh"
 
 class		Case
 {
-  typedef enum e_type
-  {
-    FOOD,
-    LIMEMATE,
-    DERAUMERE,
-    SIBUR,
-    MENDIANE,
-    PHIRAS,
-    THYSTAME
-  }	e_type;
+  typedef enum e_texture_type
+    {
+      
+    }		e_texture_type;
 
- public:
+  typedef enum e_type
+    {
+      FOOD = 0,
+      LIMEMATE = 1,
+      DERAUMERE = 2,
+      SIBUR = 3,
+      MENDIANE = 4,
+      PHIRAS = 5,
+      THYSTAME = 6
+    }	e_type;
+ 
+public:
   Case(int, int, int, int, int, int, int);
   ~Case();
 
@@ -42,7 +48,6 @@ class		Case
   int		_thystame;
   int		_food;
   //  std::vector<IACharacter *>	_list;
-
 
 };
 
