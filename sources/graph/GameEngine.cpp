@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 18:07:38 2015 Nicolas Girardot
+// Last update Thu Jun 25 18:55:51 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -94,6 +94,7 @@ void	GameEngine::createMap(std::vector<std::string> &parse)
   stry = parse.at(1);
   x = stoi(strx);
   y = stoi(stry);
+  std::cout << "MAP IS x = " << x << "::: Y = " << y << std::endl;
   if (this)
     _gMap = new GraphMap(x, y);
 }
@@ -105,11 +106,12 @@ void	GameEngine::setLocked()
   SDL_GetMouseState(&a, &b);
   std::cout << "click" << std::endl;
   Position pos(a, b);
-  //  if (isClickedOnMap(a, b) == true)
-  // {
-      //      _hud->updateLocked(determinePosClicked(std::pair<int,int>(focus), a, b));
-      //_gMap->setLocked(determinePosClickedOnGUI(a, b));
-  // }
+  std::pair<int, int> pair(6, 6);
+  if (isEventOnMap(a, b) == true)
+    {
+      _hud->updateLocked(determinePosClicked(pair, a, b));
+      _gMap->setLocked(determinePosClickedOnGUI(a, b));
+    }
 }
 
 void	GameEngine::getMousePos()
@@ -117,13 +119,16 @@ void	GameEngine::getMousePos()
   int	a;
   int	b;
   SDL_GetMouseState(&a, &b);
-  if ((a - 150) / 35 == _mousePos._x && (b - 150) / 35 == _mousePos._y);
+  if ((a - 150) / 100 == _mousePos._x && (b - 150) / 100 == _mousePos._y);
   else
     {
       std::cout << "test" << std::endl;
-      Position current((a - 150) / 35, (b - 150) / 35);
+      Position current((a - 150) / 100, (b - 150) / 100);
       _mousePos = current;
-      _hud->updateCase(_mousePos);
+        if (isEventOnMap(a, b) == true)
+	  {
+	    _hud->updateCase(_mousePos);
+	  }
     }
 }
 
@@ -153,13 +158,13 @@ void	GameEngine::draw()
 void	GameEngine::run()
 {
   this->_socket = new Socket("127.0.0.1", 4242, this);
-  _socket->writeOnSocket("graph_cli_connected\n");
+  _socket->writeOnSocket("GRAPHIC\n");
   initialize();
   while (this->update())
     draw();
 }
 
-bool		isClickedOnMap(int xClick, int yClick)
+bool		GameEngine::isClickedOnMap(int xClick, int yClick)
 {
   if (xClick < 150 || yClick < 150 || xClick > 850 || yClick > 850)
     return false;
@@ -173,10 +178,10 @@ Position	&GameEngine::determinePosClicked(std::pair<int,int> & center, int xClic
   int posX;
   int posY;
 
-  posX = (xClick - 150) / (700 / 13);
-  posY = (yClick - 150) / (700 / 13);
-  x = (center.first() - 6 + posX) % _gMap->getWidth();
-  y = (center.second() - 6 + posY) % _gmap->getHeight();
+  posX = (xClick - 150) / (700 / 7);
+  posY = (yClick - 150) / (700 / 7);
+  x = (center.first - 6 + posX) % _gMap->getWidth();
+  y = (center.second - 6 + posY) % _gMap->getHeight();
   if (x < 0)
     x = _gMap->getWidth() + x;
   if (y < 0)
@@ -191,8 +196,8 @@ Position	&GameEngine::determinePosClickedOnGUI(int xClick, int yClick)
   int posX;
   int posY;
 
-  posX = (xClick - 150) / (700 / 13);
-  posY = (yClick - 150) / (700 / 13);
+  posX = (xClick - 150) / (700 / 7);
+  posY = (yClick - 150) / (700 / 7);
   Position pos(posX, posY);
   return (pos);
 }
