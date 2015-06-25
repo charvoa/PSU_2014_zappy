@@ -5,10 +5,11 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Wed Jun 24 17:00:11 2015 Nicolas Girardot
+// Last update Thu Jun 25 09:58:41 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
+#include <SDL/SDL_image.h>
 
 GameEngine::GameEngine() {
   _gMap = NULL;
@@ -18,6 +19,7 @@ GameEngine::~GameEngine() {
   SDL_DestroyWindow(_window);
   SDL_Quit();
   TTF_Quit();
+  IMG_Quit();
 }
 
 SDL_Renderer &GameEngine::getRenderer()
@@ -43,6 +45,7 @@ bool	GameEngine::initialize()
     std::cout << "Error on Windows Create" << std::endl;
   else
     _renderer = SDL_CreateRenderer(_window, 0, SDL_RENDERER_ACCELERATED);
+  IMG_Init(IMG_INIT_PNG);
   TTF_Init();
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
@@ -138,9 +141,9 @@ void	GameEngine::draw()
 {
   SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
   SDL_RenderClear(_renderer);
+  _hud->draw(_renderer);
   if (_gMap != NULL)
     _gMap->draw(_renderer, _mousePos);
-  _hud->draw(_renderer);
   SDL_RenderPresent(_renderer);
 }
 

@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Wed Jun 24 10:58:34 2015 Nicolas Girardot
+## Last update Thu Jun 25 09:57:45 2015 Nicolas Girardot
 ##
 
 MAIN		=	zappy_graph
@@ -26,6 +26,7 @@ OBJ_MAIN	=	$(SRC_MAIN:.cpp=.o)
 LDFLAGS		=	-L./libGDL/libs/ -lgdl_gl	\
 			-lGLEW -lrt -lfbxsdk -lSDL2 -lpthread		\
 			-lSDL2_ttf					\
+			-lSDL2_image						\
 			-ldl -lGL -lGLU -lSDL_image			\
 			-L ./Sound/lib -lfmodex64 -lglut		\
 

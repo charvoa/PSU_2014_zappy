@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Wed Jun 24 15:21:07 2015 Nicolas Girardot
+// Last update Wed Jun 24 18:19:53 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -43,7 +43,7 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &pos)
 	  else if ((pos._x == (i - 1)) && (pos._y == (j - 1)))
 	    SDL_SetRenderDrawColor(renderer, 150, 255, 150, 255);
 	  else
-	    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+	    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 100);
 	  SDL_RenderFillRect(renderer, &rect);
 	}
       j = 1;
