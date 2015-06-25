@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu Jun 25 16:41:28 2015 Audibert Louis
+## Last update Thu Jun 25 17:23:02 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -88,7 +88,7 @@ SRCS		= 	main.c	 				\
 			create_rock.c				\
 			create_objects.c
 
-NAME		= 	server
+NAME		= 	zappy_server
 
 OBJS		= 	$(SRCS:.c=.o)
 

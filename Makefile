@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:23:38 2015 Serge Heitzler
-## Last update Sun May 17 11:49:32 2015 Serge Heitzler
+## Last update Thu Jun 25 17:24:11 2015 Audibert Louis
 ##
 
 MAKE		= 	make -C
@@ -15,17 +15,17 @@ DIR_CLIENT	= 	sources/client/
 EXE_CLIENT	= 	sources/client/client
 
 DIR_SERV	=	sources/server
-EXE_SERV	=	sources/server/server
+EXE_SERV	=	sources/server/zappy_server
 
 DIR_GRAPH	=	sources/graph/
 EXE_GRAPH	=	sources/graph/graph
 
 all		:	client server graph
 
-client		:
+zappy_ai	:
 			$(MAKE) $(DIR_CLIENT)
 
-server		:
+zappy_server	:
 			$(MAKE) $(DIR_SERV)
 
 graph		:
