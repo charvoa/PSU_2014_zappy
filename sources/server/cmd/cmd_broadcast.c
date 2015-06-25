@@ -1,11 +1,11 @@
 /*
 ** cmd_broadcast.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <sergeheitzler@epitech.net>
-** 
+**
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Thu Jun 25 14:35:23 2015 Audibert Louis
+** Last update Thu Jun 25 14:37:07 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -21,6 +21,16 @@ char		*get_trame_broadcast(t_client *c, char *text)
   return (final);
 }
 
+
+static void	send_gui_broadcast(char *msg, t_list *clients, t_client *c)
+{
+  char	*str;
+
+  str = xmalloc((strlen(msg) + 50) * sizeof(char));
+  sprintf(str, "pbc #%d %s\n", c->fd, msg);
+  printf("gui_broadcast = %s\n", str);
+  send_data_to_gui(clients, str);
+}
 void		get_text(char *text, const char *cmd)
 {
   int	i;
@@ -62,5 +72,6 @@ int		cmd_broadcast(t_server *s, t_client *c, const char *cmd)
       send_data(c_iterate->fd, final);
       tmp = tmp->next;
     }
+  send_gui_broadcast(text, s->clients, c);
   return (SUCCESS);
 }
