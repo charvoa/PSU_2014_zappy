@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Wed Jun 24 18:19:53 2015 Nicolas Girardot
+// Last update Thu Jun 25 11:48:29 2015 Nicolas Charvoz
 //
 
 #include "GameEngine.hh"
@@ -45,6 +45,7 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &pos)
 	  else
 	    SDL_SetRenderDrawColor(renderer, 0, 255, 0, 100);
 	  SDL_RenderFillRect(renderer, &rect);
+	  std::cout << "test graphmap" << std::endl;
 	}
       j = 1;
     }
