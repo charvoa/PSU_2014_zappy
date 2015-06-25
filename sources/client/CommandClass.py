@@ -2,13 +2,6 @@ class CommandClass():
 
     """ A class that send command to the server """
 
-    def translate_non_alphanumerics(to_translate, translate_to=u'_'):
-        not_letters_or_digits = u'!"#%\'()*+,-./:;<=>?@[\]^_`{|}~'
-        translate_table = dict((ord(char), translate_to) for char in not_letters_or_digits)
-        return to_translate.translate(translate_table)
-
-#>>> translate_non_alphanumerics(u'<foo>!')
-
     def avance_cmd(self, s, p, mess):
         if (p.getVerbose()):
             print('avance >>')
@@ -66,12 +59,14 @@ class CommandClass():
     def inventaire_cmd(self, s, p, mess):
         if (p.getVerbose()):
             print('inventaire >>')
-        var = 'inventaire'
-        var += '\r\n'
+        var = 'inventaire\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
+        #not_letters_or_digits =
+        #translate_table = dict((ord(char), translate_to) for char in not_letters_or_digits)
+        #return to_translate.translate(translate_table)
         inventaire_list = []
         inventaire_list = [str(x) for x in rec.split(', ')]
         for p in inventaire_list:

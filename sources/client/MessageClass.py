@@ -3,7 +3,7 @@ class MessageClass(object):
     """ A Simple class that send and receive messages"""
 
     def sendMessage(self, s, var):
-        var += '\r\n'
+        print('I send this : |', var, '|')
         s.send(var.encode())
 
     def getMessage(self):

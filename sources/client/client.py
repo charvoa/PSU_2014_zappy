@@ -78,8 +78,9 @@ def main():
                     if i == 0:
                         data = sys.stdin.readline().strip()
                         if data:
-                            #act_command(s)
-                            mess.sendMessage(s, data)
+                            act_command(s)
+                            data += '\r\n'
+                            #mess.sendMessage(s, data)
                     elif i == s:
                         data = mess.readMessage(s)
                         if not data:
