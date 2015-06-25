@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Thu Jun 25 09:57:45 2015 Nicolas Girardot
+## Last update Thu Jun 25 11:19:43 2015 Nicolas Girardot
 ##
 
 MAIN		=	zappy_graph
@@ -18,6 +18,7 @@ SRC		+=	GameEngine.cpp					\
 			Socket.cpp					\
 			AObject.cpp					\
 			HUD.cpp						\
+			Case.cpp					\
 
 SRC_MAIN	=	$(SRC) main.cpp
 
