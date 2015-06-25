@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 18:55:51 2015 Nicolas Girardot
+// Last update Thu Jun 25 20:08:35 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -123,10 +123,10 @@ void	GameEngine::getMousePos()
   else
     {
       std::cout << "test" << std::endl;
-      Position current((a - 150) / 100, (b - 150) / 100);
-      _mousePos = current;
         if (isEventOnMap(a, b) == true)
 	  {
+	    Position current((a - 150) / 100, (b - 150) / 100);
+	    _mousePos = current;
 	    _hud->updateCase(_mousePos);
 	  }
     }
@@ -134,7 +134,6 @@ void	GameEngine::getMousePos()
 
 void	GameEngine::setCase(std::vector<std::string> &content)
 {
-  Position pos(stoi(content.at(0)), stoi(content.at(1)));
   Case new_case(stoi(content.at(3)),
   		stoi(content.at(4)),
   		stoi(content.at(5)),
@@ -142,7 +141,17 @@ void	GameEngine::setCase(std::vector<std::string> &content)
   		stoi(content.at(7)),
   		stoi(content.at(8)),
   		stoi(content.at(2)));
-  _cases.insert(std::pair<std::pair<int, int>, Case *>(std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1))), &new_case));
+  if (_cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))] != NULL)
+    _cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))].setAll(stoi(content.at(3)),
+										 stoi(content.at(4)),
+										 stoi(content.at(5)),
+										 stoi(content.at(6)),
+										 stoi(content.at(7)),
+										 stoi(content.at(8)),
+										 stoi(content.at(2)));
+  else
+    _cases.insert(std::pair<std::pair<int, int>, Case *>(std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1))), &new_case));
+
 }
 
 void	GameEngine::draw()
@@ -164,7 +173,7 @@ void	GameEngine::run()
     draw();
 }
 
-bool		GameEngine::isClickedOnMap(int xClick, int yClick)
+bool		GameEngine::isEventOnMap(int xClick, int yClick)
 {
   if (xClick < 150 || yClick < 150 || xClick > 850 || yClick > 850)
     return false;
@@ -195,7 +204,6 @@ Position	&GameEngine::determinePosClickedOnGUI(int xClick, int yClick)
 {
   int posX;
   int posY;
-
   posX = (xClick - 150) / (700 / 7);
   posY = (yClick - 150) / (700 / 7);
   Position pos(posX, posY);
