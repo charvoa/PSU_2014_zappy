@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:43 2015 Serge Heitzler
-// Last update Thu Jun 25 17:29:59 2015 Serge Heitzler
+// Last update Thu Jun 25 20:07:23 2015 Serge Heitzler
 //
 
 #ifndef CASE_HH_
@@ -38,6 +38,7 @@ public:
 
   void		increment(e_type type);
   void		decrement(e_type type);
+  void		setAll(std::vector<int> &vector);
 
  private:
   int		_limemate;
