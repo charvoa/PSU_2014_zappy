@@ -5,10 +5,20 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Thu Jun 25 17:05:21 2015 Audibert Louis
+** Last update Thu Jun 25 18:54:46 2015 Audibert Louis
 */
 
 #include "server.h"
+
+static  t_objects	g_rocks[6] =
+  {
+    {"limemate", &add_limemate},
+    {"deraumere", &add_deraumere},
+    {"sibur", &add_sibur},
+    {"mendiane", &add_mendiane},
+    {"phiras", &add_phiras},
+    {"thystame", &add_thystame},
+  };
 
 int		check_rock(char *rock)
 {
@@ -53,9 +63,7 @@ int		take_rock(t_server *s, t_client *c, char *item)
   int		nb_rocks;
   int		i;
   int		rock_type;
-  t_rock	*rock;
 
-  rock = xmalloc(sizeof(t_rock));
   if ((rock_type = check_rock(item)) == ERROR)
     return (ERROR);
   if ((nb_rocks = get_nbr_of(ROCK, s->map->objects[c->pos->y][c->pos->x])) == 0)
@@ -69,8 +77,7 @@ int		take_rock(t_server *s, t_client *c, char *item)
 	  if (remove_rock(tmp, s->map->objects[c->pos->y][c->pos->x],
 			  rock_type, i) == SUCCESS)
 	    {
-	      rock = tmp->data;
- 	      push_back(c->inventory, rock, ROCK);
+	      launch_func_rock(rock_type, ADD);
 	      return (SUCCESS);
 	    }
 	}
@@ -87,7 +94,6 @@ int		take_food(t_server *s, t_client *c)
   int		nb_food;
   int		i;
 
-  printf("IM IN TAKE FOOD\n");
   nb_food = get_nbr_of(FOOD, s->map->objects[c->pos->y][c->pos->x]);
   if (nb_food == 0)
     return (ERROR);
@@ -97,16 +103,14 @@ int		take_food(t_server *s, t_client *c)
     {
       if (tmp->type == FOOD)
 	{
-	  food = tmp->data;
 	  remove_at_index(s->map->objects[c->pos->y][c->pos->x], i);
 	  push_back(c->inventory, food, FOOD);
-	  printf("I FOUND A FOOD IN THE MAP[X][Y]\n");
+	  c->inventory->food++;
 	  return (SUCCESS);
 	}
       i++;
       tmp = tmp->next;
     }
-  printf("I FINISHED TAKE FOOD WITHOUT FINDING FOOD\n");
   return (ERROR);
 }
 

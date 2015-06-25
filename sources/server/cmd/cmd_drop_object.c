@@ -5,10 +5,27 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Thu Jun 25 17:05:37 2015 Audibert Louis
+** Last update Thu Jun 25 19:01:57 2015 Audibert Louis
 */
 
 #include "server.h"
+
+int		launch_func_rock(int rock, e_flag_rock flag)
+{
+  int		i;
+  
+  i = 0;
+  while (i < 6)
+    {
+      if (i == rock)
+	{
+	  g_rocks[i].ptr_func(c->inventory, flag);
+	  return (SUCCESS);
+	}
+      i++;
+    }
+  return (ERROR);
+}
 
 int		drop_rock(t_server *s, t_client *c, char *item)
 {
@@ -29,12 +46,10 @@ int		drop_rock(t_server *s, t_client *c, char *item)
     {
       if (tmp->type == ROCK)
 	{
-	  if (remove_rock(tmp, c->inventory, rock_type, i) == SUCCESS)
-	    {
-	      rock = tmp->data;
-	      push_back(s->map->objects[c->pos->y][c->pos->x], rock, ROCK);
-	      return (SUCCESS);
-	    }
+	  launch_func_rock(rock_type, REMOVE);
+	  rock = tmp->data;
+	  push_back(s->map->objects[c->pos->y][c->pos->x], rock, ROCK);
+	  return (SUCCESS);
 	}
       i++;
       tmp = tmp->next;
@@ -59,7 +74,7 @@ int		drop_food(t_server *s, t_client *c)
       if (tmp->type == FOOD)
 	{
 	  food = tmp->data;
-	  remove_at_index(c->inventory, i);
+	  c->inventory->food--;
 	  push_back(s->map->objects[c->pos->y][c->pos->x], food, FOOD);
 	}
       i++;
@@ -70,7 +85,6 @@ int		drop_food(t_server *s, t_client *c)
 
 int		cmd_drop_object(t_server *s, t_client *c, const char *cmd)
 {
-  // Les (void) du dessous sont à supprimer, celui du dessus est important et à laisser.
   char		*item;
   
   item = xmalloc((strlen(cmd) - 4) * sizeof(char));
