@@ -5,32 +5,26 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:41 2015 Serge Heitzler
-** Last update Thu Jun 25 14:18:36 2015 Audibert Louis
+** Last update Thu Jun 25 17:53:21 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-char		*get_objects_from_inventory(t_list *inventory)
+char		*get_objects_from_inventory(t_inventory *i)
 {
-  int		nbr[7];
   int		size_malloc;
   char		*res;
 
-  nbr[0] = get_nbr_of(FOOD, inventory);
-  nbr[1] = get_nbr_of_rock(LIMEMATE, inventory);
-  nbr[2] = get_nbr_of_rock(DERAUMERE, inventory);
-  nbr[3] = get_nbr_of_rock(SIBUR, inventory);
-  nbr[4] = get_nbr_of_rock(MENDIANE, inventory);
-  nbr[5] = get_nbr_of_rock(PHIRAS, inventory);
-  nbr[6] = get_nbr_of_rock(THYSTAME, inventory);
-  size_malloc = (78 + istm(nbr[0])
-		 + istm(nbr[1])  + istm(nbr[2])
-		 + istm(nbr[3])  + istm(nbr[4])
-		 + istm(nbr[5])  + istm(nbr[6]));
+  size_malloc = (72 + istm(i->food)
+		 + istm(i->limemate) + istm(i->deraumere)
+		 + istm(i->sibur) + istm(i->mendiane)
+		 + istm(i->phiras) + istm(i->thystame));
   res = xmalloc(sizeof(char) * size_malloc);
   memset(res, 0, size_malloc);
-  // ! Trop de colonnes !
-  sprintf(res, "{nourriture %d, limemate %d, deraumere %d, sibur %d, mendiane %d, phiras %d, thystame %d}\n", nbr[0], nbr[1], nbr[2], nbr[3], nbr[4], nbr[5], nbr[6]);
+  sprintf(res, "{nourriture %d,limemate %d,deraumere %d,\
+sibur %d,mendiane %d,phiras %d,thystame %d}\n",
+	  i->food, i->limemate, i->deraumere, i->sibur,
+	  i->mendiane, i->phiras, i->thystame);
   return (res);
 }
 

@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu Jun 25 19:06:03 2015 Audibert Louis
+** Last update Thu Jun 25 19:08:19 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -119,6 +119,17 @@ typedef struct		s_cmd
   int			precision;
 }			t_cmd;
 
+typedef struct		s_inventory
+{
+  int			food;
+  int			limemate;
+  int			deraumere;
+  int			sibur;
+  int			mendiane;
+  int			phiras;
+  int			thystame;
+}			t_inventory;
+
 typedef struct		s_client
 {
   int			fd;
@@ -127,7 +138,7 @@ typedef struct		s_client
   char			*team_name;
   e_client_type		type;
   t_position		*pos;
-  t_list		*inventory;
+  t_inventory		*inventory;
   t_list		*cmds;
 
   t_ring_buffer		*buffer;
@@ -227,7 +238,7 @@ int			is_cmd(const char *);
 void			exec_cmd(t_server *, t_client *, t_ring_buffer *);
 
 void			set_slot_for_team(t_list *, char *, int);
-char			*get_objects_from_inventory(t_list *);
+char			*get_objects_from_inventory(t_inventory *);
 int			get_nbr_of_rock(e_rock_type, t_list *);
 void			init_advance(void (*advance[4])(t_size *, t_client *));
 int			istm(int);
