@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Wed Jun 24 15:07:25 2015 Nicolas Girardot
+// Last update Thu Jun 25 12:38:04 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -27,6 +27,7 @@
 #include "Socket.hh"
 #include "Map.hpp"
 #include "GraphMap.hh"
+#include "Case.hh"
 #include "Position.hpp"
 #include "HUD.hh"
 
@@ -59,7 +60,7 @@ public:
   void	draw();
   void	run();
 private:
-  std::map<Position *, std::vector<int>&> _cases;
+  std::map<Position *, Case&> _cases;
 };
 
 #endif

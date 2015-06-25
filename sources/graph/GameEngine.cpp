@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 11:52:52 2015 Nicolas Girardot
+// Last update Thu Jun 25 12:35:57 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -134,7 +134,7 @@ void	GameEngine::setCase(std::vector<std::string> &content)
   tab.push_back(stoi(content.at(6)));
   tab.push_back(stoi(content.at(7)));
   tab.push_back(stoi(content.at(8)));
-  _cases.insert(std::pair<Position*, std::vector<int>&>(new Position(stoi(content.at(0)), stoi(content.at(1))), tab));
+
 }
 
 void	GameEngine::draw()
