@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Fri Jun 19 11:29:38 2015 Serge Heitzler
+** Last update Thu Jun 25 16:32:45 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -16,5 +16,6 @@ int		cmd_fork(t_server *s, t_client *c, const char *cmd)
   // Les (void) du dessous sont à supprimer, celui du dessus est important et à laisser.
   (void)s;
   (void)c;
+  
   return (SUCCESS);
 }

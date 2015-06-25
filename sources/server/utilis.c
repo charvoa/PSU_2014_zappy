@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Thu Jun 25 16:06:50 2015 Audibert Louis
+** Last update Thu Jun 25 17:04:14 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -40,6 +40,24 @@ void	bind_socket(t_server *s, int port)
   printf("Server-bind() is OK ...\n");
 }
 
+void	protocole_connexion(t_server *s, int fd)
+{
+  char	*tmp;
+  t_client	*client;
+  int	nb;
+  
+  send_data(fd, "BIENVENUE\n");
+  tmp = xmalloc(1024 * sizeof(char));
+  bzero(tmp, 1024);
+  if ((nb = read(fd, tmp, 1024) > 0))
+    {
+      client = get_client_by_id(s->clients, fd);
+      cmd_team(s, client, tmp);
+    }
+  else
+    send_data(fd, "ko\n");
+}
+
 void	accept_server(t_server *s, char **argv)
 {
   (void)argv;
@@ -60,7 +78,7 @@ void	accept_server(t_server *s, char **argv)
 		    "default_team_name", s->map->size);
       printf("New connection from %s on socket %d\n",
 	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
-      send_data(s->newfd, "BIENVENUE\r\n");
+      protocole_connexion(s, s->newfd);
     }
 }
 

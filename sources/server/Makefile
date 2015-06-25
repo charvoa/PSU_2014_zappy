@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Wed Jun 24 16:52:53 2015 Audibert Louis
+## Last update Thu Jun 25 16:41:28 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -24,7 +24,6 @@ CMD_DIR		=	./cmd/
 LIST_DIR	=	./list/
 
 SRCS		= 	main.c	 				\
-			commands.c				\
 			count_teams.c				\
 			create_map.c				\
 			create_client.c				\
@@ -33,7 +32,6 @@ SRCS		= 	main.c	 				\
 			options.c				\
 			options2.c				\
 			rand_orientations.c			\
-			parser.c				\
 			send_data.c				\
 			set_options.c				\
 			server.c				\
@@ -43,6 +41,7 @@ SRCS		= 	main.c	 				\
 			$(X_DIR)xlisten.c	 		\
 			$(X_DIR)xbind.c		 		\
 			$(X_DIR)xsocket.c		 	\
+			$(CMD_DIR)cmd_team.c			\
 			$(CMD_DIR)cmd_right.c			\
 			$(CMD_DIR)cmd_left.c			\
 			$(CMD_DIR)cmd_view.c			\
