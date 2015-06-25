@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Thu Jun 25 14:06:22 2015 Audibert Louis
+** Last update Thu Jun 25 14:52:12 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -80,7 +80,7 @@ int		cmd_drop_object(t_server *s, t_client *c, const char *cmd)
     {
       if (drop_food(s, c) == ERROR)
 	{
-	  send_data(c->fd, "ko\n");
+	  send_data(c->fd, "ko\r\n");
 	  return (ERROR);
 	}
     }
@@ -88,10 +88,10 @@ int		cmd_drop_object(t_server *s, t_client *c, const char *cmd)
     {
       if (drop_rock(s, c, item) == ERROR)
 	{
-	  send_data(c->fd, "ko\n");
+	  send_data(c->fd, "ko\r\n");
 	  return (ERROR);
 	}
     }
-  send_data(c->fd, "ok\n");
+  send_data(c->fd, "ok\r\n");
   return (SUCCESS);
 }

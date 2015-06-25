@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Thu Jun 25 14:37:07 2015 Audibert Louis
+** Last update Thu Jun 25 14:57:11 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -14,9 +14,9 @@ char		*get_trame_broadcast(t_client *c, char *text)
 {
   char		*final;
   
-  final = xmalloc((strlen("message ") + strlen(text) + 8) * sizeof(char));
-  bzero(final, (strlen("message ") + strlen(text) + 8));
-  sprintf(final, "message %d %d,%s\n", c->pos->y, c->pos->x, text);
+  final = xmalloc((strlen("message ") + strlen(text) + 9) * sizeof(char));
+  bzero(final, (strlen("message ") + strlen(text) + 9));
+  sprintf(final, "message %d %d,%s\r\n", c->pos->y, c->pos->x, text);
   printf("final = %s", final);
   return (final);
 }
@@ -27,10 +27,11 @@ static void	send_gui_broadcast(char *msg, t_list *clients, t_client *c)
   char	*str;
 
   str = xmalloc((strlen(msg) + 50) * sizeof(char));
-  sprintf(str, "pbc #%d %s\n", c->fd, msg);
+  sprintf(str, "pbc #%d %s\r\n", c->fd, msg);
   printf("gui_broadcast = %s\n", str);
   send_data_to_gui(clients, str);
 }
+
 void		get_text(char *text, const char *cmd)
 {
   int	i;
