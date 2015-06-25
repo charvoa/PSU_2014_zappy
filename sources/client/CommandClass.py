@@ -70,10 +70,11 @@ class CommandClass():
         for p in inventaire_list:
             print(p)
 
-    def prend_cmd(self, s, p, mess):
+    def prend_cmd(self, s, p, mess, obj):
         if (p.getVerbose()):
             print('prend >>')
-        var = 'pose'
+        var = 'prend '
+        var += obj
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
@@ -84,10 +85,11 @@ class CommandClass():
         else:
             return 0
 
-    def pose_cmd(self, s, p, mess):
+    def pose_cmd(self, s, p, mess, obj):
         if (p.getVerbose()):
             print('pose >>')
-        var = 'pose'
+        var = 'pose '
+        var += obj
         var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)

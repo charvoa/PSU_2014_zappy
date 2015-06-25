@@ -46,10 +46,18 @@ def protocol(s):
     #mess.sendMessage(s, var)
 
 def act_command(s):
-    cc.droite_cmd(s, p, mess)
-    cc.gauche_cmd(s, p, mess)
-    cc.inventaire_cmd(s, p, mess)
-    cc.avance_cmd(s, p, mess)
+    #cc.droite_cmd(s, p, mess) #marche
+    #cc.gauche_cmd(s, p, mess) #marche
+    #cc.voir_cmd(s, p, mess) #bug
+    # marche cc.inventaire_cmd(s, p, mess)
+    cc.prend_cmd(s, p, mess, 'obj') #bug
+    #cc.pose_cmd(s, p, mess, 'obj')
+    #cc.expulse_cmd(s, p, mess)
+    #cc.broadcast_cmd(s, p, mess)
+    #cc.incantation_cmd(s, p, mess)
+    #cc.fork_cmd(s, p, mess)
+    #cc.connect_nbr(s, p, mess)
+    #cc.avance_cmd(s, p, mess) # bug
 
 def main():
     try:

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Thu Jun 25 11:52:39 2015 Nicolas Girardot
+// Last update Thu Jun 25 12:47:11 2015 Nicolas Charvoz
 //
 
 #include "Socket.hh"
@@ -65,5 +65,6 @@ void	Socket::selectSocket()
 
 void	Socket::writeOnSocket(std::string message)
 {
+  std::cout << "writeOnSocket() >> " << std::endl;
   write(_socket, message.c_str(), strlen(message.c_str()));
 }

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 12:35:57 2015 Nicolas Girardot
+// Last update Thu Jun 25 12:52:40 2015 Nicolas Charvoz
 //
 
 #include "GameEngine.hh"
