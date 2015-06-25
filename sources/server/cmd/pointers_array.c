@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Thu Jun 25 12:55:00 2015 Serge Heitzler
+** Last update Thu Jun 25 14:05:03 2015 Audibert Louis
 ** Last update Thu Jun 25 02:22:42 2015 Antoine Garcia
 */
 
@@ -20,7 +20,7 @@ static t_init_cmds	g_ia_cmds[21] =
     {"voir", &cmd_view, 7},
     {"inventaire", &cmd_inventory, 7},
     {"prend", &cmd_take_object, 7},
-    {"pose objet", &cmd_drop_object, 7},
+    {"pose", &cmd_drop_object, 7},
     {"expulse", &cmd_kick, 7},
     {"incantation", &cmd_incantation, 300},
     {"fork", &cmd_fork, 42},
