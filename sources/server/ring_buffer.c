@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Thu Jun 25 15:00:36 2015 Audibert Louis
+** Last update Thu Jun 25 16:13:35 2015 Audibert Louis
 */
 
 #include "../../headers/ring_buffer.h"
@@ -29,8 +29,8 @@ void		ring_buffer_destroy(t_ring_buffer *buffer)
 {
   if(buffer)
     {
-      free(buffer->buffer);
-      free(buffer);
+      /* free(buffer->buffer); */
+      /* free(buffer); */
     }
   printf("ring buffer destroyed.\n");
 }
