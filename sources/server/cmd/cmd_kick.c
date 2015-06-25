@@ -5,12 +5,12 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Thu Jun 25 12:05:58 2015 Audibert Louis
+** Last update Thu Jun 25 12:33:31 2015 Audibert Louis
 */
 
 #include "server.h"
 
-/* char		*get_cmd_deplacement(t_client *c) */
+/* char		*get_trame_deplacement(t_client *c) */
 /* { */
 /*   char		*cmd; */
 
@@ -29,11 +29,12 @@ int		cmd_kick(t_server *s, t_client *c, const char *cmd)
   //ET DU COUP SEND_DATA TO EVERYBODY "deplacement: direction = orientation t_client *c
   /* t_node	*tmp; */
   /* t_client	*client; */
+  /* char		*final; */
   /* char		*cmd; */
 
   /* client = xmalloc(sizeof(t_client)); */
   /* tmp = s->map->objects[c->pos->y][c->pos->x]->start; */
-  /* cmd = get_cmd_deplacement(c); */
+  /* final = get_trame_deplacement(c); */
   /* while (tmp) */
   /*   { */
   /*     if (tmp->type == PLAYER) */
@@ -42,7 +43,7 @@ int		cmd_kick(t_server *s, t_client *c, const char *cmd)
   /* 	  if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x) */
   /* 	      && client->fd != c->fd) */
   /* 	    { */
-	      
+  /* 	      send_data(client->fd, final); */
   /* 	    } */
   /* 	} */
   /*     tmp = tmp->next; */
