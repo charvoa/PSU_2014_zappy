@@ -52,7 +52,7 @@ class CommandClass():
         if (p.getVerbose()):
             print(rec)
         voir_list = []
-        voir_list = [string(x) for x in rec.split(', ')]
+        voir_list = [str(x) for x in rec.split(', ')]
         for p in voir_list:
             print(p)
 
@@ -66,7 +66,7 @@ class CommandClass():
         if (p.getVerbose()):
             print(rec)
         inventaire_list = []
-        inventaire_list = [string(x) for x in rec.split(', ')]
+        inventaire_list = [str(x) for x in rec.split(', ')]
         for p in inventaire_list:
             print(p)
 

@@ -49,6 +49,7 @@ def act_command(s):
     cc.droite_cmd(s, p, mess)
     cc.gauche_cmd(s, p, mess)
     cc.inventaire_cmd(s, p, mess)
+    cc.avance_cmd(s, p, mess)
 
 def main():
     try:
