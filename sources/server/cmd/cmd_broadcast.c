@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Thu Jun 25 03:13:33 2015 Antoine Garcia
+** Last update Thu Jun 25 03:14:33 2015 Antoine Garcia
 */
 
 #include "server.h"
@@ -36,7 +36,7 @@ static void	send_gui_broadcast(char *msg, t_list *clients, t_client *c)
   sprintf(str, "pbc #%d %s\n", c->fd, msg);
   printf("gui_broadcast = %s\n", str);
   send_data_to_gui(clients, str);
-
+}
 void		get_text(char *text, const char *cmd)
 {
   int	i;
