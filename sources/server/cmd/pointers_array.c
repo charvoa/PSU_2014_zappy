@@ -5,7 +5,8 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Wed Jun 24 16:51:58 2015 Audibert Louis
+** Last update Thu Jun 25 12:55:00 2015 Serge Heitzler
+** Last update Thu Jun 25 02:22:42 2015 Antoine Garcia
 */
 
 #include "server.h"
@@ -32,7 +33,7 @@ static t_init_cmds	g_ia_cmds[21] =
     {"mct", &cmd_mct, 0},
     {"ppo", &cmd_ppo, 0},
     {"plv", &cmd_plv, 0},
-    {"pin", &cmd_pin, 0}
+    {"pin", &cmd_pin, 0},
   };
 
 int		is_cmd(const char *cmd)
@@ -49,12 +50,19 @@ int		is_cmd(const char *cmd)
   return (NO);
 }
 
+static void	check_client_type(char *cmd, t_client *c)
+{
+  if (strcmp(cmd, "graph_cli_connected"))
+    c->type = GUI;
+}
+
 void		exec_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
 {
   int	ret;
   char	*cmd;
 
   cmd = ring_buffer_get_next_command(buffer);
+  check_client_type(cmd, c);
   if (cmd == NULL)
     return;
   printf("CMD == %s\n", cmd);
