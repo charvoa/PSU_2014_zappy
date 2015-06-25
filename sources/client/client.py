@@ -8,6 +8,8 @@ from GetOptions import *
 from MessageClass import *
 from InterpretClass import *
 from CommandClass import *
+from IAClass import *
+from threading import Thread
 
 __author__ = "Nicolas Charvoz"
 __copyright__ = "Copyright 2015, La Pintade"
@@ -22,18 +24,22 @@ p = GetOptions()
 mess = MessageClass()
 ic = InterpretClass()
 cc = CommandClass()
+ia = IAClass()
 s = None
 
 def send_name_to_server(s):
-    var = 'TEAM '
-    var += p.getName()
-    var += '\r\n'
+    #var = 'TEAM '
+    var = p.getName()
+    var += '\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
     rec = mess.readMessage(s)
     if (ic.interpret_bienvenue(s, rec, p) == 1):
         send_name_to_server(s)
+    else:
+        print('The server has not send the Bienvenue message')
+        sys.exit(0)
     rec = mess.readMessage(s)
     if (ic.interpret_num_client(s, rec, p) == -1):
         print('Cannot connect to the server, too many teamate already connected')
@@ -45,19 +51,21 @@ def protocol(s):
     var += '\r\n'
     #mess.sendMessage(s, var)
 
-def act_command(s):
-    #cc.droite_cmd(s, p, mess) #marche
-    #cc.gauche_cmd(s, p, mess) #marche
-    #cc.voir_cmd(s, p, mess) #bug
-    cc.inventaire_cmd(s, p, mess) #marche
-    #cc.prend_cmd(s, p, mess, 'obj') #bug
-    #cc.pose_cmd(s, p, mess, 'obj')
-    #cc.expulse_cmd(s, p, mess)
-    #cc.broadcast_cmd(s, p, mess)
-    #cc.incantation_cmd(s, p, mess)
-    #cc.fork_cmd(s, p, mess)
-    #cc.connect_nbr(s, p, mess)
-    #cc.avance_cmd(s, p, mess) # bug
+def listenToServer(s):
+    flag = False
+    while not flag:
+        data = mess.readMessage(s)
+        if not data:
+            print('Shutting down.')
+            flag = True
+            sys.exit(0)
+        elif data == 'mort\n':
+            print('You died')
+            flag = True
+            sys.exit(0)
+        else:
+            sys.stdout.write('SERVER: ' + data + '\n')
+            sys.stdout.flush()
 
 def main():
     try:
@@ -67,46 +75,56 @@ def main():
             sys.exit()
         mc = ModuleConnect()
         s = mc.connect(p.getHost(), p.getPort())
-        flag = False
         protocol(s)
+        flag = False
         while not flag:
             try:
-                sys.stdout.write('$> ')
-                sys.stdout.flush()
-                inputready, outputready, execptready = select.select([0, s], [], [])
-                for i in inputready:
-                    if i == 0:
-                        data = sys.stdin.readline().strip()
-                        if data:
-                            act_command(s)
-                            data += '\r\n'
-                            #mess.sendMessage(s, data)
-                    elif i == s:
-                        data = mess.readMessage(s)
-                        if not data:
-                            print('Shutting down.')
-                            flag = True
-                            break
-                        elif data == 'mort':
-                            print('You died')
-                            flag = True
-                            break
-                        else:
-                            sys.stdout.write('SERVER: ' + data + '\n')
-                            sys.stdout.flush()
+                threadIA = ia.run(s, p, mess)
+                threadServer = listenToServer(s)
+                threadIA.start()
+                threadServer.start()
+                threadIA.join()
+                threadServer.join()
             except KeyboardInterrupt:
                 print('Interrupted.')
                 s.close()
                 break
 
-#        act_command(s)
-#        s.close()
     except ConnectionRefusedError:
         print('Exception : The server has refused the connection')
     except getopt.GetoptError:
         print('Usage : client.py -n [NAME] -h [HOST] -p [PORT]')
+    except ConnectionResetError:
+        print('The server has shutdown')
     #except:
      #   print('Exception : An error has occured')
 
 if __name__ == "__main__":
     main()
+
+
+
+
+            #     sys.stdout.write('$> ')
+            #     sys.stdout.flush()
+            #     inputready, outputready, execptready = select.select([0, s], [], [])
+            #     for i in inputready:
+            #         if i == 0:
+            #             data = sys.stdin.readline().strip()
+            #             if data:
+            #                 act_command(s)
+            #                 data += '\r\n'
+            #                 #mess.sendMessage(s, data)
+            #         elif i == s:
+            #             data = mess.readMessage(s)
+            #             if not data:
+            #                 print('Shutting down.')
+            #                 flag = True
+            #                 break
+            #             elif data == 'mort':
+            #                 print('You died')
+            #                 flag = True
+            #                 break
+            #             else:
+            #                 sys.stdout.write('SERVER: ' + data + '\n')
+            #                 sys.stdout.flush()

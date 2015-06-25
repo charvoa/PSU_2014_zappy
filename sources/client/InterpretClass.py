@@ -7,23 +7,27 @@ class InterpretClass():
     nbr_client = 0
 
     def interpret_bienvenue(self, s, rec, p):
-        if (rec == 'BIENVENUE\r\n'):
-            if (p.getVerbose()):
-                print('bienvenue: ', rec)
+        if (p.getVerbose()):
+            print('bienvenue: ', rec)
+        if (rec == 'BIENVENUE\n'):
             return 1
         return 0
 
     def interpret_num_client(self, s, rec, p):
-        if (p.getVerbose()):
-            print('num_client : ', rec)
-        if (rec == 'NO_SLOT_REST\r\n'):
-            return -1
-        nbr_client = int(rec)
+        try:
+            if (p.getVerbose()):
+                print('num_client : ', rec)
+            if (rec == 'ko\n'):
+                return -1
+            nbr_client = int(rec)
+        except ValueError:
+            print('Wrong value sent by the server')
+            sys.exit(0)
 
     def interpret_size(self, s, rec, p):
         if (p.getVerbose()):
             print('size:', rec)
-        self.x, self.y = rec.split(' - ')
+        self.x, self.y = rec.split(' ')
         if (p.getVerbose()):
             print('X : ', self.x)
             print('Y : ', self.y)
