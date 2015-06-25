@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Tue Jun 23 20:57:25 2015 Nicolas Girardot
+// Last update Thu Jun 25 12:45:26 2015 Nicolas Charvoz
 //
 
 #include "Command.hh"
@@ -24,6 +24,7 @@ void Command::msz(std::string cmd, GameEngine *game)
   std::istringstream		ss(cmd);
 
   std::cout << cmd << std::endl;
+  std::cout << "test a linstant meme du jour d'aujourd'hui" << std::endl;
   while(std::getline(ss, current, ' '))
     {
       if (current != "msz")
