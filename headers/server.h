@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed Jun 24 16:28:38 2015 Audibert Louis
+** Last update Wed Jun 24 16:53:42 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -203,7 +203,7 @@ int			cmd_view(t_server *, t_client *, const char *);
 int			cmd_inventory(t_server *, t_client *, const char *);
 int			cmd_take_object(t_server *, t_client *, const char *);
 int			cmd_drop_object(t_server *, t_client *, const char *);
-int			cmd_expel(t_server *, t_client *, const char *);
+int			cmd_kick(t_server *, t_client *, const char *);
 int			cmd_incantation(t_server *, t_client *, const char *);
 int			cmd_fork(t_server *, t_client *, const char *);
 int			cmd_dead(t_server *, t_client *, const char *);

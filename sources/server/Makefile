@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Wed Jun 24 14:02:28 2015 Serge Heitzler
+## Last update Wed Jun 24 16:52:53 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -50,7 +50,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_inventory.c		\
 			$(CMD_DIR)cmd_take_object.c		\
 			$(CMD_DIR)cmd_drop_object.c		\
-			$(CMD_DIR)cmd_expel.c			\
+			$(CMD_DIR)cmd_kick.c			\
 			$(CMD_DIR)cmd_incantation.c		\
 			$(CMD_DIR)cmd_fork.c			\
 			$(CMD_DIR)cmd_dead.c			\
