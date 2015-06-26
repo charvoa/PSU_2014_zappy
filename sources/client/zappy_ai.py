@@ -28,8 +28,12 @@ ia = IAClass()
 s = None
 
 def send_name_to_server(s):
-    #var = 'TEAM '
-    var = p.getName()
+    print(p.getName())
+    if (p.getName()):
+        var = p.getName()
+    else:
+        self.team = 'Team'
+        self.team += str(random.randint(1,10))
     var += '\n'
     mess.sendMessage(s, var)
 
@@ -79,12 +83,36 @@ def main():
         flag = False
         while not flag:
             try:
-                threadIA = ia.run(s, p, mess)
-                threadServer = listenToServer(s)
-                threadIA.start()
-                threadServer.start()
-                threadIA.join()
-                threadServer.join()
+                if not p.getTest():
+                    threadIA = ia.run(s, p, mess)
+                    threadServer = listenToServer(s)
+                    threadIA.start()
+                    threadServer.start()
+                    threadIA.join()
+                    threadServer.join()
+                else:
+                    sys.stdout.write('$> ')
+                    sys.stdout.flush()
+                    inputready, outputready, execptready = select.select([0, s], [], [])
+                    for i in inputready:
+                        if i == 0:
+                            data = sys.stdin.readline().strip()
+                            if data:
+                                data += '\r\n'
+                                mess.sendMessage(s, data)
+                        elif i == s:
+                            data = mess.readMessage(s)
+                            if not data:
+                                print('Shutting down.')
+                                flag = True
+                                break
+                            elif data == 'mort':
+                                print('You died')
+                                flag = True
+                                break
+                            else:
+                                sys.stdout.write('SERVER: ' + data + '\n')
+                                sys.stdout.flush()
             except KeyboardInterrupt:
                 print('Interrupted.')
                 s.close()

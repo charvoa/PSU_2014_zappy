@@ -72,9 +72,10 @@ class CommandClass():
         else:
             rec = rec[1:-2]
             voir_list = []
-            voir_list = [str(x) for x in rec.split(', ')]
+            voir_list = [str(x) for x in rec.split(',')]
             for p in voir_list:
                 print('P>>', p)
+            return voir_list
 
     def inventaire_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -231,6 +232,9 @@ class CommandClass():
             print(rec)
         if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
