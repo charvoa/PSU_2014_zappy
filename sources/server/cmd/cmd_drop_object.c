@@ -1,14 +1,23 @@
 /*
 ** cmd_drop_object.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <sergeheitzler@epitech.net>
-** 
+**
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Fri Jun 26 11:43:20 2015 Audibert Louis
+** Last update Fri Jun 26 12:30:28 2015 Antoine Garcia
 */
 
 #include "server.h"
+
+static void		cmd_gui_pdr(t_client *c, t_list *clients, int type)
+{
+  char	*str;
+
+  str = malloc(strlen("pdr # \n") + 50);
+  sprintf(str, "pdr #%d %d", c->fd, type);
+  send_data_to_gui(clients, str);
+}
 
 int		launch_func_inventory(t_client *c, int rock, e_flag_rock flag)
 {
@@ -22,7 +31,7 @@ int		launch_func_inventory(t_client *c, int rock, e_flag_rock flag)
       {"phiras", &inventory_phiras},
       {"thystame", &inventory_thystame},
     };
-  
+
   i = 0;
   while (i < 6)
     {
@@ -44,6 +53,7 @@ int		drop_rock(t_server *s, t_client *c, char *item)
     return (ERROR);
   launch_func_inventory(c, rock_type, REMOVE);
   launch_func_block(s->map->objects[c->pos->y][c->pos->x], rock_type, ADD);
+  cmd_gui_pdr(c, s->clients, rock_type);
   return (SUCCESS);
 }
 
@@ -53,13 +63,14 @@ int		drop_food(t_server *s, t_client *c)
     return (ERROR);
   c->inventory->food--;
   s->map->objects[c->pos->y][c->pos->x]->food++;
+  cmd_gui_pdr(c, s->clients, 0);
   return (SUCCESS);
 }
 
 int		cmd_drop_object(t_server *s, t_client *c, const char *cmd)
 {
   char		*item;
-  
+
   item = xmalloc((strlen(cmd) - 4) * sizeof(char));
   bzero(item, strlen(cmd) - 4);
   sscanf(cmd, "pose %s", item);
