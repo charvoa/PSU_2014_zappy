@@ -5,12 +5,12 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jun 25 18:07:38 2015 Audibert Louis
-** Last update Thu Jun 25 19:03:53 2015 Audibert Louis
+** Last update Fri Jun 26 11:24:44 2015 Audibert Louis
 */
 
 #include "server.h"
 
-int	add_limemate(t_inventory *inventory, e_flag_rock flag)
+int	inventory_limemate(t_inventory *inventory, e_flag_rock flag)
 {
   if (flag == ADD)
     inventory->limemate++;
@@ -19,7 +19,7 @@ int	add_limemate(t_inventory *inventory, e_flag_rock flag)
   return (0);
 }
 
-int	add_deraumere(t_inventory *inventory, e_flag_rock flag)
+int	inventory_deraumere(t_inventory *inventory, e_flag_rock flag)
 {
   if (flag == ADD)
     inventory->deraumere++;
@@ -28,7 +28,7 @@ int	add_deraumere(t_inventory *inventory, e_flag_rock flag)
   return (0);
 }
 
-int	add_sibur(t_inventory *inventory, e_flag_rock flag)
+int	inventory_sibur(t_inventory *inventory, e_flag_rock flag)
 {
   if (flag == ADD)
     inventory->sibur++;

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Thu Jun 25 20:03:03 2015 Audibert Louis
+** Last update Fri Jun 26 11:35:06 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -33,73 +33,50 @@ int		check_rock(char *rock)
   return (ERROR);
 }
 
-int		remove_rock(t_node *tmp, t_list *list, int rock_type, int index)
+int		launch_func_block(t_block *block, int rock_type, e_flag_rock flag)
 {
-  t_rock	*rock;
-
-  rock = xmalloc(sizeof(t_rock));
-  rock = tmp->data;
-  if ((int)rock->type == rock_type)
+  int		i;
+  t_objects	rocks[6] =
     {
-      remove_at_index(list, index);
-      return (SUCCESS);
+      {"limemate", &block_limemate},
+      {"deraumere", &block_deraumere},
+      {"sibur", &block_sibur},
+      {"mendiane", &block_mendiane},
+      {"phiras", &block_phiras},
+      {"thystame", &block_thystame},
+    };
+  
+  i = 0;
+  while (i < 6)
+    {
+      if (i == rock_type)
+	{
+	  rocks[i].ptr_func(block, flag);
+	  return (SUCCESS);
+	}
+      i++;
     }
   return (ERROR);
 }
 
 int		take_rock(t_server *s, t_client *c, char *item)
 {
-  t_node	*tmp;
-  int		nb_rocks;
-  int		i;
   int		rock_type;
 
   if ((rock_type = check_rock(item)) == ERROR)
     return (ERROR);
-  if ((nb_rocks = get_nbr_of(ROCK, s->map->objects[c->pos->y][c->pos->x])) == 0)
-    return (ERROR);
-  tmp =  s->map->objects[c->pos->y][c->pos->x]->start;
-  i = 0;
-  while (tmp)
-    {
-      if (tmp->type == ROCK)
-	{
-	  if (remove_rock(tmp, s->map->objects[c->pos->y][c->pos->x],
-			  rock_type, i) == SUCCESS)
-	    {
-	      launch_func_rock(c, rock_type, ADD);
-	      return (SUCCESS);
-	    }
-	}
-      i++;
-      tmp = tmp->next;
-    }
+  launch_func_inventory(c, rock_type, ADD);
+  launch_func_block(s->map->objects[c->pos->y][c->pos->x], rock_type, REMOVE);
   return (ERROR);
 }
 
 int		take_food(t_server *s, t_client *c)
 {
-  t_node	*tmp;
-  int		nb_food;
-  int		i;
-
-  nb_food = get_nbr_of(FOOD, s->map->objects[c->pos->y][c->pos->x]);
-  if (nb_food == 0)
+  if (s->map->objects[c->pos->y][c->pos->x]->food == 0)
     return (ERROR);
-  tmp = s->map->objects[c->pos->y][c->pos->x]->start;
-  i = 0;
-  while (tmp)
-    {
-      if (tmp->type == FOOD)
-	{
-	  remove_at_index(s->map->objects[c->pos->y][c->pos->x], i);
-	  c->inventory->food++;
-	  return (SUCCESS);
-	}
-      i++;
-      tmp = tmp->next;
-    }
-  return (ERROR);
+  s->map->objects[c->pos->y][c->pos->x]->food--;
+  c->inventory->food++;
+  return (SUCCESS);
 }
 
 int		cmd_take_object(t_server *s, t_client *c, const char *cmd)

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Fri Jun 26 11:25:33 2015 Serge Heitzler
+** Last update Fri Jun 26 12:09:03 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -47,12 +47,6 @@ int		is_cmd(const char *cmd)
       i++;
     }
   return (NO);
-}
-
-static void	check_client_type(char *cmd, t_client *c)
-{
-  if (!strcmp(cmd, "graph_cli_connected\r\n"))
-    c->type = GUI;
 }
 
 void		exec_cmd(t_server *s, t_client *c)

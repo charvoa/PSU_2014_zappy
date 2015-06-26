@@ -1,6 +1,10 @@
+import sys
+
 class CommandClass():
 
     """ A class that send command to the server """
+
+#    def __init__(self):
 
     def avance_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -9,8 +13,11 @@ class CommandClass():
         var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -23,8 +30,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -37,8 +47,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -51,10 +64,17 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        voir_list = []
-        voir_list = [str(x) for x in rec.split(', ')]
-        for p in voir_list:
-            print(p)
+        if (rec == 'ko\n'):
+            return 0
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
+        else:
+            rec = rec[1:-2]
+            voir_list = []
+            voir_list = [str(x) for x in rec.split(', ')]
+            for p in voir_list:
+                print(p)
 
     def inventaire_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -64,13 +84,67 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        #not_letters_or_digits =
-        #translate_table = dict((ord(char), translate_to) for char in not_letters_or_digits)
-        #return to_translate.translate(translate_table)
-        inventaire_list = []
-        inventaire_list = [str(x) for x in rec.split(', ')]
-        for p in inventaire_list:
-            print(p)
+        if (rec == 'ko\n'):
+            return 0
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
+        else:
+            rec = rec[1:-2]
+            inventaire_list = []
+            inventaire_list = [str(x) for x in rec.split(',')]
+            i = 0
+            for p in inventaire_list:
+                if (i == 0):
+                    self.food = p
+                elif (i == 1):
+                    self.linemate = p
+                elif (i == 2):
+                    self.deraumere = p
+                elif (i == 3):
+                    self.sibur = p
+                elif (i == 4):
+                    self.mendiane = p
+                elif (i == 5):
+                    self.phiras = p
+                elif (i == 6):
+                    self.thystame = p
+                i+=1
+
+    def getLinemate(self) -> int:
+        s = self.linemate
+        s =''.join(i for i in s if i.isdigit())
+        return int(s)
+
+    def getDeraumere(self) -> int:
+        s = self.deraumere
+        s =''.join(i for i in s if i.isdigit())
+        return int(s)
+
+    def getSibur(self) -> int:
+        s = self.sibur
+        s =''.join(i for i in s if i.isdigit())
+        return int(s)
+
+    def getMendiane(self) -> int:
+        s = self.mendiane
+        s =''.join(i for i in s if i.isdigit())
+        return int(s)
+
+    def getPhiras(self) -> int:
+        s = self.phiras
+        s =''.join(i for i in s if i.isdigit())
+        return int(s)
+
+    def getThystame(self) -> int:
+        s = self.thystame
+        s =''.join(i for i in s if i.isdigit())
+        return int(s)
+
+    def getFood(self) -> int:
+        s = self.food
+        s =''.join(i for i in s if i.isdigit())
+        return int(s)
 
     def prend_cmd(self, s, p, mess, obj):
         if (p.getVerbose()):
@@ -82,8 +156,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -97,8 +174,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -111,8 +191,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -125,8 +208,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -139,7 +225,7 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
         else:
             return 0
@@ -153,8 +239,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -167,8 +256,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0
 
@@ -181,7 +273,10 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'OK'):
+        if (rec == 'ok\n'):
             return 1
+        elif (rec == 'mort\n'):
+            print('You died\n')
+            sys.exit(0)
         else:
             return 0

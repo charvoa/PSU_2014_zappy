@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri Jun 26 11:25:18 2015 Serge Heitzler
+** Last update Fri Jun 26 12:07:31 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -83,12 +83,12 @@ typedef struct		s_objects
   int			(*ptr_func)();
 }			t_objects;
 
-typedef struct		s_init_cmds
+typedef struct		s_cmds
 {
   char			*name;
   int			(*ptr_func)();
   int			delay;
-}			t_init_cmds;
+}			t_cmds;
 
 typedef struct		s_block
 {
@@ -279,24 +279,35 @@ void	       		adv_down(t_size *, t_client *);
 void			adv_left(t_size *, t_client *);
 
 /* $(CMD)CMD_TAKE_OBJECT.C */
-int		check_rock(char *rock);
-int		remove_rock(t_node *tmp, t_list *list, int rock_type, int index);
-int		take_rock(t_server *s, t_client *c, char *item);
-int		take_food(t_server *s, t_client *c);
-int		cmd_take_object(t_server *s, t_client *c, const char *cmd);
+int			check_rock(char *rock);
+int			remove_rock(t_node *tmp, t_list *list, int rock_type, int index);
+int			take_rock(t_server *s, t_client *c, char *item);
+int			take_food(t_server *s, t_client *c);
+int			cmd_take_object(t_server *s, t_client *c, const char *cmd);
 
 /* $(CMD)CMD_DROP_OBJECT.C */
-int		launch_func_rock(t_client *c, int rock, e_flag_rock flag);
+int			launch_func_inventory(t_client *, int, e_flag_rock);
+int			launch_func_block(t_block *, int, e_flag_rock);
 
-/* $(CMD)ADD_OR_REMOVE_ROCK.C */
-int		add_limemate(t_inventory *inventory, e_flag_rock flag);
-int		add_deraumere(t_inventory *inventory, e_flag_rock flag);
-int		add_sibur(t_inventory *inventory, e_flag_rock flag);
+/* $(CMD)INVENTORY_ROCK.C */
+int			inventory_limemate(t_inventory *, e_flag_rock);
+int			inventory_deraumere(t_inventory *, e_flag_rock);
+int			inventory_sibur(t_inventory *, e_flag_rock);
 
-/* $(CMD)ADD_OR_REMOVE_ROCK2.C */
-int		add_mendiane(t_inventory *inventory, e_flag_rock flag);
-int		add_phiras(t_inventory *inventory, e_flag_rock flag);
-int		add_thystame(t_inventory *inventory, e_flag_rock flag);
+/* $(CMD)INVENTORY_ROCK2.C */
+int			inventory_mendiane(t_inventory *, e_flag_rock);
+int			inventory_phiras(t_inventory *, e_flag_rock);
+int			inventory_thystame(t_inventory *, e_flag_rock);
+
+/* $(CMD)BLOCK_ROCK.C */
+int			block_limemate(t_block *, e_flag_rock);
+int			block_deraumere(t_block *, e_flag_rock);
+int			block_sibur(t_block *, e_flag_rock);
+
+/* $(CMD)BLOCK_ROCK2.C */
+int			block_mendiane(t_block *, e_flag_rock);
+int			block_phiras(t_block *, e_flag_rock);
+int		       	block_thystame(t_block *, e_flag_rock);
 
 /* COUNT_TEAMS.C */
 int			count_teams(t_server *);
