@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Fri Jun 26 16:50:42 2015 Antoine Garcia
+// Last update Fri Jun 26 17:01:05 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -28,7 +28,6 @@ void Command::pin(std::string cmd, GameEngine *game)
     {
       int val;
       ss >> val;
-      std::cout << val << std::endl;
       vector.push_back(val);
     }
 }
@@ -134,6 +133,21 @@ void	Command::plv(std::string cmd, GameEngine *game)
   // defLVL(lvlPlayer);
 }
 
+void Command::pgt(std::string cmd, GameEngine *game)
+{
+  (void) game;
+  std::string		str(cmd.begin() + 5, cmd.end());
+  std::vector<int>	vec;
+  std::istringstream	ss(str);
+
+  for (int i = 0 ; i < 2 ; i++)
+    {
+      int	val;
+      ss >> val;
+      vec.push_back(val);
+    }
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -144,6 +158,7 @@ void Command::Exec()
   _functions["ppo"] = &Command::ppo;
   _functions["plv"] = &Command::plv;
   _functions["pin"] = &Command::pin;
+  _functions["pgt"] = &Command::pgt;
   /* faire de même pour chaque fonctions */
 }
 
