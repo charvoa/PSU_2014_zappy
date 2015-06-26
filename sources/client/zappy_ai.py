@@ -83,7 +83,7 @@ def main():
         flag = False
         while not flag:
             try:
-                if not p.getTest():
+                if not p.getDbg():
                     threadIA = ia.run(s, p, mess)
                     threadServer = listenToServer(s)
                     threadIA.start()

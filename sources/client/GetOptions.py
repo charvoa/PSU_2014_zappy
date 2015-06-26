@@ -13,15 +13,15 @@ class GetOptions(object):
         self.name += str(random.randint(1,10))
         self.port = '4242'
         self.host = 'localhost'
-        self.test = False
+        self.dbg = False
 
     def parseOpt(self):
         #print('ARGV :', sys.argv[1:])
-        options, remainder = getopt.getopt(sys.argv[1:], 'n:p:h:v:t', ['name=',
+        options, remainder = getopt.getopt(sys.argv[1:], 'n:p:h:v:d', ['name=',
                                                                        'port=',
                                                                        'host=',
                                                                        'verbose',
-                                                                       'test'
+                                                                       'dbg'
                                                                    ])
         #print('OPTIONS :', options)
         for opt, arg in options:
@@ -33,16 +33,16 @@ class GetOptions(object):
                 self.host = arg
             elif opt in ('-v', '--verbose'):
                 self.verbose = True
-            elif opt in ('-t', '--verbose'):
-                self.test = True
+            elif opt in ('-d', '--dbg'):
+                self.dbg = True
         print('NAME :', self.name)
         print('PORT :', self.port)
         print('HOST :', self.host)
         print('VERBOSE :', self.verbose)
-        print('TEST :', self.test)
+        print('DBG :', self.dbg)
 
-    def getTest(self) -> bool:
-        return bool(self.test)
+    def getDbg(self) -> bool:
+        return bool(self.dbg)
     def getName(self):
         return self.name
     def getPort(self):
