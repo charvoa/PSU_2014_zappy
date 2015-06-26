@@ -1,3 +1,13 @@
+/*
+** size_of_tab.c for zappy in /home/audibe_l/rendu/PSU_2014_zappy/sources/server
+** 
+** Made by Audibert Louis
+** Login   <audibe_l@epitech.net>
+** 
+** Started on  Fri Jun 26 16:44:56 2015 Audibert Louis
+** Last update Fri Jun 26 16:44:57 2015 Audibert Louis
+*/
+
 #include "server.h"
 
 int		size_of_tab(char **tab)

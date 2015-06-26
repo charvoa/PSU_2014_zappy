@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Thu Jun 25 16:08:53 2015 Audibert Louis
+** Last update Fri Jun 26 16:41:58 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -30,6 +30,29 @@ void	handler_ctrl_c(int sig)
   exit(0);
 }
 
+void		check_death(t_server *s)
+{
+  t_node	*tmp;
+  t_client	*c;
+  int		i;
+
+  tmp = s->clients->start;
+  i = 0;
+  if (tmp != NULL)
+    {
+      c = xmalloc(sizeof(t_client));
+      c = tmp->data;
+      if (c->inventory->food == 0)
+	{
+	  send_data(c->fd, "mort\n");
+	  close(c->fd);
+	  remove_at_index(s->clients, i);
+	}
+      i++;
+      tmp = tmp->next;
+    }
+}
+
 void		loop_server(t_server *s, char **argv)
 {
   int		i;
@@ -44,7 +67,7 @@ void		loop_server(t_server *s, char **argv)
 	  perror("Server-select() error !");
 	  exit(1);
 	}
-      my_printf("Server-select() is OK...\n");
+      check_death(s);
       while (i <= s->fdmax)
 	{
 	  if (FD_ISSET(i, &(s->read_fds)))

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Wed Jun 24 09:08:13 2015 Serge Heitzler
+** Last update Fri Jun 26 16:39:47 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -60,7 +60,8 @@ char		**get_pos_of_visible_space(t_server *s, t_client *c)
 
   nb_visible_space = get_number_of_visible_space(c->level);
   pos = write_pos_in_array(s, c, 1, 1);
-  pos[0] = xmalloc(sizeof(char) * (istm((int)c->pos->x) + istm((int)c->pos->y) + 2));
+  pos[0] = xmalloc(sizeof(char) *
+		   (istm((int)c->pos->x) + istm((int)c->pos->y) + 2));
   memset(pos[0], 0, istm((int)c->pos->x) + istm((int)c->pos->y) + 2);
   sprintf(pos[0], "%d %d", (int)c->pos->x, (int)c->pos->y);
   pos[nb_visible_space + 1] = NULL;
