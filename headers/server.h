@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri Jun 26 19:43:21 2015 Serge Heitzler
+** Last update Sat Jun 27 00:02:50 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -80,6 +80,7 @@ typedef enum		e_client_type
 typedef struct		s_objects
 {
   char			*label;
+  int			(*ptr_func)();
 }			t_objects;
 
 typedef struct		s_cmds
@@ -121,16 +122,12 @@ typedef struct		s_rock
 
 typedef struct		s_cmd
 {
-  const char	       	*label;
-  int			delay;
-
   /* "delay" à diviser par t au moment du calcul
      du delay si changement de t par le client */
-
-  time_t		received_at;
-  time_t		exec_at;
-
-  int			precision;
+  const char	       	*label;
+  long			delay;
+  struct timespec       exec_at;
+  long			precision;
 }			t_cmd;
 
 typedef struct		s_inventory
@@ -147,21 +144,20 @@ typedef struct		s_inventory
 typedef struct		s_client
 {
   int			fd;
-  unsigned int		level;
+  int			level;
   e_orientation		orientation;
   char			*team_name;
   e_client_type		type;
   t_position		*pos;
   t_inventory		*inventory;
   t_list		*cmds;
-
   t_ring_buffer		*buffer;
 }			t_client;
 
 typedef struct		s_size
 {
-  int		       	width; // -x
-  int		       	height; // -y
+  int		       	width;
+  int		       	height;
 }			t_size;
 
 typedef struct		s_map
@@ -213,14 +209,14 @@ typedef struct		s_server
   t_map			*map;
   t_list		*clients;
   t_list		*teams;
-  time_t	       	now;
+  struct timespec      	now;
 }			t_server;
 
 extern int		g_verbose;
 extern int		g_listener;
 extern int		g_fdmax;
 extern t_objects	g_objects[8];
-extern t_cmds		g_cmds[21];
+extern t_cmds		g_cmds[22];
 
 void			init_socket(t_server*);
 void			bind_socket(t_server*, int);
@@ -267,6 +263,7 @@ int			get_size_malloc_at_position(t_server *, int, int);
 int			create_food(t_server *);
 int			create_rock(t_server *);
 void			prepare_for_exec(t_server *, t_client *);
+int			check_exec(t_server *);
 
 /* $(CMD)ADD_OR_REMOVE_ID.C */
 int			*add_id(t_block *block, int id);
@@ -277,6 +274,9 @@ void			adv_up(t_size *, t_client *);
 void			adv_right(t_size *, t_client *);
 void	       		adv_down(t_size *, t_client *);
 void			adv_left(t_size *, t_client *);
+
+/* $(CMD)CMD_CONNECT_NBR.C */
+int			cmd_connect_nbr(t_server *, t_client *, const char *);
 
 /* $(CMD)CMD_TAKE_OBJECT.C */
 int			check_rock(char *rock);
@@ -308,6 +308,11 @@ int			block_sibur(t_block *, e_flag_rock);
 int			block_mendiane(t_block *, e_flag_rock);
 int			block_phiras(t_block *, e_flag_rock);
 int		       	block_thystame(t_block *, e_flag_rock);
+
+/* $(CMD)CMD_TEAM */
+int			is_a_team(t_server *, char *);
+void			validate_team(t_team *, t_client *, char *);
+int			cmd_team(t_server *, t_client *, const char *);
 
 /* COUNT_TEAMS.C */
 int			count_teams(t_server *);
@@ -370,7 +375,8 @@ t_server		*fill_struct_serv(int, char **);
 
 /* SEND_DATA.C */
 int			send_data(int, const char *);
-int			send_data_to_gui(t_list *clients, const char *msg);
+int			send_data_to_gui(t_list *, const char *);
+
 /* SET_OPTIONS.C */
 void			init_opt(int (*options[6])(t_server *));
 int			check_opt(int);

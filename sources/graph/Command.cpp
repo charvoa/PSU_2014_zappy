@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu Jun 25 18:26:25 2015 Nicolas Girardot
+// Last update Fri Jun 26 17:13:07 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -16,6 +16,21 @@ Command::Command()
 }
 
 Command::~Command(){}
+
+void Command::pin(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::vector<int>	vector;
+  std::string		parse(cmd.begin() + 5, cmd.end());
+  std::istringstream	ss(parse);
+
+  for (int i = 0; i < 10 ; i++)
+    {
+      int val;
+      ss >> val;
+      vector.push_back(val);
+    }
+}
 
 void Command::msz(std::string cmd, GameEngine *game)
 {
@@ -118,6 +133,32 @@ void	Command::plv(std::string cmd, GameEngine *game)
   // defLVL(lvlPlayer);
 }
 
+void Command::pgt(std::string cmd, GameEngine *game)
+{
+  (void) game;
+  std::string		str(cmd.begin() + 5, cmd.end());
+  std::vector<int>	vec;
+  std::istringstream	ss(str);
+
+  for (int i = 0 ; i < 2 ; i++)
+    {
+      int	val;
+      ss >> val;
+      vec.push_back(val);
+    }
+}
+
+void Command::pdi(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 5, cmd.end());
+  std::istringstream	ss(str);
+  int			id;
+
+  ss >> id;
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -127,6 +168,9 @@ void Command::Exec()
   _functions["pnw"] = &Command::pnw;
   _functions["ppo"] = &Command::ppo;
   _functions["plv"] = &Command::plv;
+  _functions["pin"] = &Command::pin;
+  _functions["pgt"] = &Command::pgt;
+  _functions["pdi"] = &Command::pdi;
   /* faire de même pour chaque fonctions */
 }
 

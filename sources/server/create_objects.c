@@ -5,12 +5,12 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:00:23 2015 Serge Heitzler
-** Last update Fri Jun 26 20:14:25 2015 Serge Heitzler
+** Last update Fri Jun 26 20:49:49 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-void		add_objects(t_server *s, t_block *b)
+void		add_objects(t_block *b, int x, int y)
 {
   int		r;
 
@@ -44,7 +44,7 @@ int		create_objects(t_server *s)
   x = rand() % s->map->size->width;
   y = rand() % s->map->size->height;
   b = s->map->objects[y][x];
-  add_objects(s, b);
+  add_objects(b, x, y);
   size_malloc = (13 + istm(x) + istm(y) + istm(b->food)
 		 + istm(b->limemate) + istm(b->deraumere) + istm(b->sibur)
 		 + istm(b->mendiane) + istm(b->phiras) + istm(b->thystame));

@@ -5,12 +5,12 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:03:06 2015 Serge Heitzler
-** Last update Tue Jun 23 13:59:12 2015 Serge Heitzler
+** Last update Fri Jun 26 22:45:29 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-void		init_advance(void (*advance[4])(t_size *, t_client *))
+void		init_advance(void (*advance[5])(t_size *, t_client *))
 {
   advance[0] = (void*)&adv_up;
   advance[1] = (void*)&adv_right;
@@ -23,7 +23,7 @@ int			cmd_advance(t_server *s,
 				    t_client *c, const char *cmd)
 {
   (void)cmd;
-  void			(*advance[4])(t_size *, t_client *);
+  void			(*advance[5])(t_size *, t_client *);
 
   init_advance(advance);
   advance[c->orientation](s->map->size, c);

@@ -4,8 +4,7 @@
 ** Made by Serge Heitzler
 ** Login   <sergeheitzler@epitech.net>
 ** 
-** Started on  Fri Jun 19 11:29:20 2015 Serge Heitzler
-** Last update Fri Jun 26 20:17:06 2015 Serge Heitzler
+** Last update Fri Jun 26 20:20:12 2015 Serge Heitzler
 */
 
 #include "server.h"

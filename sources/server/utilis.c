@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Fri Jun 26 08:34:47 2015 Serge Heitzler
+** Last update Fri Jun 26 22:07:30 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -45,7 +45,7 @@ void	protocole_connexion(t_server *s, int fd)
   char	*tmp;
   t_client	*client;
   int	nb;
-  
+
   send_data(fd, "BIENVENUE\n");
   tmp = xmalloc(1024 * sizeof(char));
   bzero(tmp, 1024);
@@ -106,7 +106,7 @@ void		read_write_server(t_server *s, int i, char **argv)
       ring_buffer_write(c->buffer, tmp, strlen(tmp));
       s->i = i;
       prepare_for_exec(s, c);
-      //      exec_cmd(s, c);
+      check_exec(s);
     }
   free(tmp);
   /* free(c->team_name); */

@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 20:04:00 2015 Serge Heitzler
-** Last update Thu Jun 25 00:44:01 2015 Antoine Garcia
+** Last update Fri Jun 26 13:54:00 2015 Antoine Garcia
 */
 
 #include "server.h"

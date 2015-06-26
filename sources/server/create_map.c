@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Fri Jun 26 09:35:04 2015 Serge Heitzler
+** Last update Fri Jun 26 23:37:50 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -27,6 +27,18 @@ char		**init_full_tab(int width, int height)
   return (tab);
 }
 
+void		init_block(t_block *b)
+{
+  b->food = 0;
+  b->limemate = 0;
+  b->deraumere = 0;
+  b->sibur = 0;
+  b->mendiane = 0;
+  b->phiras = 0;
+  b->thystame = 0;
+  b->nb_clients = 0;
+}
+
 void		init_map(t_server *s, unsigned int width, unsigned int height)
 {
   unsigned int	x;
@@ -46,7 +58,7 @@ void		init_map(t_server *s, unsigned int width, unsigned int height)
       	{
 	  s->map->objects[y][x] = xmalloc(sizeof(t_block));
 	  s->map->objects[y][x]->ids = NULL;
-	  s->map->objects[y][x]->nb_clients = 0;
+	  init_block(s->map->objects[y][x]);
       	  x++;
       	}
       s->map->objects[y][x] = NULL;
