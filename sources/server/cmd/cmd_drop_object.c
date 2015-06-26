@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Fri Jun 26 12:30:28 2015 Antoine Garcia
+** Last update Fri Jun 26 13:21:41 2015 Antoine Garcia
 */
 
 #include "server.h"
@@ -15,7 +15,7 @@ static void		cmd_gui_pdr(t_client *c, t_list *clients, int type)
   char	*str;
 
   str = malloc(strlen("pdr # \n") + 50);
-  sprintf(str, "pdr #%d %d", c->fd, type);
+  sprintf(str, "pdr #%d %d\n", c->fd, type);
   send_data_to_gui(clients, str);
 }
 

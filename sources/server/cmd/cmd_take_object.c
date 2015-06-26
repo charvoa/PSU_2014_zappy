@@ -1,20 +1,29 @@
 /*
 ** cmd_take_object.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <sergeheitzler@epitech.net>
-** 
+**
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Fri Jun 26 11:35:06 2015 Audibert Louis
+** Last update Fri Jun 26 13:22:32 2015 Antoine Garcia
 */
 
 #include "server.h"
+
+static void		cmd_gui_pgt(t_client *c, t_list *clients, int type)
+{
+  char	*str;
+
+  str = malloc(strlen("pdr # \n") + 50);
+  sprintf(str, "pdr #%d %d\n", c->fd, type);
+  send_data_to_gui(clients, str);
+}
 
 int		check_rock(char *rock)
 {
   char	**rocks;
   int	i;
-  
+
   rocks = malloc(7 * sizeof(char*));
   rocks[0] = "limemate";
   rocks[1] = "deraumere";
@@ -45,7 +54,7 @@ int		launch_func_block(t_block *block, int rock_type, e_flag_rock flag)
       {"phiras", &block_phiras},
       {"thystame", &block_thystame},
     };
-  
+
   i = 0;
   while (i < 6)
     {
@@ -67,6 +76,7 @@ int		take_rock(t_server *s, t_client *c, char *item)
     return (ERROR);
   launch_func_inventory(c, rock_type, ADD);
   launch_func_block(s->map->objects[c->pos->y][c->pos->x], rock_type, REMOVE);
+  cmd_gui_pgt(c, s->clients, rock_type);
   return (ERROR);
 }
 
@@ -76,6 +86,7 @@ int		take_food(t_server *s, t_client *c)
     return (ERROR);
   s->map->objects[c->pos->y][c->pos->x]->food--;
   c->inventory->food++;
+  cmd_gui_pgt(c, s->clients, 0);
   return (SUCCESS);
 }
 
