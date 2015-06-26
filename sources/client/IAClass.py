@@ -1,6 +1,7 @@
 import time
 import random
 from CommandClass import *
+import subprocess
 from array import *
 
 class IAClass():
@@ -22,6 +23,9 @@ class IAClass():
 
     def run(self, s, p, mess):
         while 1:
+            # if (self.cc.fork_cmd(s, p, mess) == 1):
+            #     if (self.cc.connect_nbr_cmd(s, p, mess) >= 1):
+            #         subprocess.call(['./zappy_ai.py', ''])
             self.cc.voir_cmd(s, p, mess)
             self.cc.inventaire_cmd(s, p, mess)
             self.linemate = self.cc.getLinemate()

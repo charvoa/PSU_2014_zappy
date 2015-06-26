@@ -1,4 +1,5 @@
 import sys
+import subprocess
 
 class CommandClass():
 
@@ -62,8 +63,8 @@ class CommandClass():
         var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
-#        if (p.getVerbose()):
-#            print(rec)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'ko\n'):
             return 0
         elif (rec == 'mort\n'):
@@ -265,13 +266,11 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
-            return 1
-        elif (rec == 'mort\n'):
+        if (rec == 'mort\n'):
             print('You died\n')
             sys.exit(0)
         else:
-            return 0
+            return int(rec)
 
     def mort_cmd(self, s, p, mess):
         if (p.getVerbose()):
