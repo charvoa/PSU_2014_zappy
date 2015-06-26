@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu Jun 25 19:08:19 2015 Audibert Louis
+** Last update Fri Jun 26 09:33:45 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -251,6 +251,10 @@ int			get_size_malloc_at_position(t_server *, int, int);
 int			create_food(t_server *);
 int			create_rock(t_server *);
 
+/* $(CMD)ADD_OR_REMOVE_ID.C */
+int			*add_id(t_block *block, int id);
+int			*remove_id(t_block *block, int id);
+
 /* $(CMD)ADVANCE_FUNCS.C */
 void			adv_up(t_size *, t_client *);
 void			adv_right(t_size *, t_client *);
@@ -265,7 +269,7 @@ int		take_food(t_server *s, t_client *c);
 int		cmd_take_object(t_server *s, t_client *c, const char *cmd);
 
 /* $(CMD)CMD_DROP_OBJECT.C */
-int		launch_func_rock(int rock, e_flag_rock flag);
+int		launch_func_rock(t_client *c, int rock, e_flag_rock flag);
 
 /* $(CMD)ADD_OR_REMOVE_ROCK.C */
 int		add_limemate(t_inventory *inventory, e_flag_rock flag);

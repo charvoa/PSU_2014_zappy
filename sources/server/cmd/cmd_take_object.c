@@ -5,20 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Thu Jun 25 18:54:46 2015 Audibert Louis
+** Last update Thu Jun 25 20:03:03 2015 Audibert Louis
 */
 
 #include "server.h"
-
-static  t_objects	g_rocks[6] =
-  {
-    {"limemate", &add_limemate},
-    {"deraumere", &add_deraumere},
-    {"sibur", &add_sibur},
-    {"mendiane", &add_mendiane},
-    {"phiras", &add_phiras},
-    {"thystame", &add_thystame},
-  };
 
 int		check_rock(char *rock)
 {
@@ -77,7 +67,7 @@ int		take_rock(t_server *s, t_client *c, char *item)
 	  if (remove_rock(tmp, s->map->objects[c->pos->y][c->pos->x],
 			  rock_type, i) == SUCCESS)
 	    {
-	      launch_func_rock(rock_type, ADD);
+	      launch_func_rock(c, rock_type, ADD);
 	      return (SUCCESS);
 	    }
 	}
@@ -90,7 +80,6 @@ int		take_rock(t_server *s, t_client *c, char *item)
 int		take_food(t_server *s, t_client *c)
 {
   t_node	*tmp;
-  t_food	*food;
   int		nb_food;
   int		i;
 
@@ -104,7 +93,6 @@ int		take_food(t_server *s, t_client *c)
       if (tmp->type == FOOD)
 	{
 	  remove_at_index(s->map->objects[c->pos->y][c->pos->x], i);
-	  push_back(c->inventory, food, FOOD);
 	  c->inventory->food++;
 	  return (SUCCESS);
 	}
