@@ -5,12 +5,12 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jun 25 18:09:58 2015 Audibert Louis
-** Last update Thu Jun 25 18:59:51 2015 Audibert Louis
+** Last update Fri Jun 26 11:25:06 2015 Audibert Louis
 */
 
 #include "server.h"
 
-int	add_mendiane(t_inventory *inventory, e_flag_rock flag)
+int	inventory_mendiane(t_inventory *inventory, e_flag_rock flag)
 {
   if (flag == ADD)
     inventory->mendiane++;
@@ -19,7 +19,7 @@ int	add_mendiane(t_inventory *inventory, e_flag_rock flag)
   return (SUCCESS);
 }
 
-int	add_phiras(t_inventory *inventory, e_flag_rock flag)
+int	inventory_phiras(t_inventory *inventory, e_flag_rock flag)
 {
   if (flag == ADD)
     inventory->phiras++;
@@ -28,7 +28,7 @@ int	add_phiras(t_inventory *inventory, e_flag_rock flag)
   return (SUCCESS);
 }
 
-int	add_thystame(t_inventory *inventory, e_flag_rock flag)
+int	inventory_thystame(t_inventory *inventory, e_flag_rock flag)
 {
   if (flag == ADD)
     inventory->thystame++;

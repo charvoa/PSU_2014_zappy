@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Thu Jun 25 15:20:03 2015 Audibert Louis
+** Last update Fri Jun 26 11:44:27 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -51,27 +51,26 @@ int		cmd_kick(t_server *s, t_client *c, const char *cmd)
 
   //PARCOURIR S->MAPS[Y][X]->OBJECTS == PLAYER && != CLIENT *C
   //ET DU COUP SEND_DATA TO EVERYBODY "deplacement: direction = orientation t_client *c
-  t_node	*tmp;
-  t_client	*client;
-  char		*final;
+  /* t_node	*tmp; */
+  /* t_client	*client; */
+  /* char		*final; */
   
-  client = xmalloc(sizeof(t_client));
-  tmp = s->map->objects[c->pos->y][c->pos->x]->start;
-  final = get_trame_deplacement(c);
-  while (tmp)
-    {
-      if (tmp->type == PLAYER)
-  	{
-  	  client = tmp->data;
-  	  if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x)
-  	      && client->fd != c->fd)
-	    {
-	      send_data(client->fd, final);
-	      send_data(c->fd, "ok\r\n");
-	    }
-  	}
-      tmp = tmp->next;
-    }
-  send_data(c->fd, "ko\r\n");
+  /* client = xmalloc(sizeof(t_client)); */
+  /* final = get_trame_deplacement(c); */
+  /* while (tmp) */
+  /*   { */
+  /*     if (tmp->type == PLAYER) */
+  /* 	{ */
+  /* 	  client = tmp->data; */
+  /* 	  if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x) */
+  /* 	      && client->fd != c->fd) */
+  /* 	    { */
+  /* 	      send_data(client->fd, final); */
+  /* 	      send_data(c->fd, "ok\r\n"); */
+  /* 	    } */
+  /* 	} */
+  /*     tmp = tmp->next; */
+  /*   } */
+  /* send_data(c->fd, "ko\r\n"); */
   return (SUCCESS);
 }
