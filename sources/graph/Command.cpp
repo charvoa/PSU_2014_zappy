@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Fri Jun 26 17:01:05 2015 Antoine Garcia
+// Last update Fri Jun 26 17:13:07 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -148,6 +148,17 @@ void Command::pgt(std::string cmd, GameEngine *game)
     }
 }
 
+void Command::pdi(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 5, cmd.end());
+  std::istringstream	ss(str);
+  int			id;
+
+  ss >> id;
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -159,6 +170,7 @@ void Command::Exec()
   _functions["plv"] = &Command::plv;
   _functions["pin"] = &Command::pin;
   _functions["pgt"] = &Command::pgt;
+  _functions["pdi"] = &Command::pdi;
   /* faire de même pour chaque fonctions */
 }
 
