@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri Jun 26 12:07:31 2015 Serge Heitzler
+** Last update Fri Jun 26 17:33:40 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -220,7 +220,7 @@ extern int		g_verbose;
 extern int		g_listener;
 extern int		g_fdmax;
 extern t_objects	g_objects[8];
-extern t_cmds		g_cmds[21];
+extern t_cmds		g_cmds[22];
 
 void			init_socket(t_server*);
 void			bind_socket(t_server*, int);
@@ -278,6 +278,9 @@ void			adv_right(t_size *, t_client *);
 void	       		adv_down(t_size *, t_client *);
 void			adv_left(t_size *, t_client *);
 
+/* $(CMD)CMD_CONNECT_NBR.C */
+int			cmd_connect_nbr(t_server *, t_client *, const char *);
+
 /* $(CMD)CMD_TAKE_OBJECT.C */
 int			check_rock(char *rock);
 int			remove_rock(t_node *tmp, t_list *list, int rock_type, int index);
@@ -308,6 +311,11 @@ int			block_sibur(t_block *, e_flag_rock);
 int			block_mendiane(t_block *, e_flag_rock);
 int			block_phiras(t_block *, e_flag_rock);
 int		       	block_thystame(t_block *, e_flag_rock);
+
+/* $(CMD)CMD_TEAM */
+int	is_a_team(t_server *, char *);
+void	validate_team(t_team *, t_client *, char *);
+int	cmd_team(t_server *, t_client *, const char *);
 
 /* COUNT_TEAMS.C */
 int			count_teams(t_server *);

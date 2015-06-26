@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Fri Jun 26 11:31:18 2015 Audibert Louis
+## Last update Fri Jun 26 17:31:14 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -42,6 +42,7 @@ SRCS		= 	main.c	 				\
 			$(X_DIR)xbind.c		 		\
 			$(X_DIR)xsocket.c		 	\
 			$(CMD_DIR)cmd_team.c			\
+			$(CMD_DIR)cmd_connect_nbr.c		\
 			$(CMD_DIR)cmd_right.c			\
 			$(CMD_DIR)cmd_left.c			\
 			$(CMD_DIR)cmd_view.c			\
