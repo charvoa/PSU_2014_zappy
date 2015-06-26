@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:33 2015 Nicolas Girardot
-// Last update Wed Jun 24 15:13:13 2015 Nicolas Girardot
+// Last update Thu Jun 25 16:55:15 2015 Nicolas Girardot
 //
 
 #ifndef GRAPHMAP_HH_
@@ -26,7 +26,9 @@ public:
   GraphMap(int, int);
   ~GraphMap();
   void	draw(SDL_Renderer *, Position &);
-  void	setLocked(int, int);
+  void	setLocked(Position &);
+  int	getHeight();
+  int	getWidth();
 };
 
 #endif

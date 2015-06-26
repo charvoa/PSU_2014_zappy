@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:07 2015 Nicolas Girardot
-// Last update Thu Jun 25 13:54:16 2015 Nicolas Girardot
+// Last update Thu Jun 25 18:33:28 2015 Nicolas Girardot
 //
 
 #ifndef SOCKET_HH_
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <netdb.h>
+# include <fstream>
 # include <iostream>
 # include <string>
 # include <sstream>

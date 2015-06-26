@@ -5,14 +5,14 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:43 2015 Serge Heitzler
-// Last update Thu Jun 25 20:24:53 2015 Serge Heitzler
+// Last update Fri Jun 26 10:41:40 2015 Nicolas Girardot
 //
 
 #ifndef CASE_HH_
 # define CASE_HH_
 
 # include <vector>
-# inclulde "IACharacter.hh"
+# include "IACharacter.hh"
 
 class		Case
 {
@@ -32,7 +32,7 @@ class		Case
       PHIRAS = 5,
       THYSTAME = 6
     }	e_type;
- 
+
 public:
   Case(int, int, int, int, int, int, int);
   ~Case();

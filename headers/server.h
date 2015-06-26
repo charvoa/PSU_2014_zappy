@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri Jun 26 09:26:33 2015 Serge Heitzler
+** Last update Fri Jun 26 10:48:57 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -40,6 +40,12 @@
 # define		ERROR -1
 # define		SUCCESS 0
 
+typedef enum		e_flag_rock
+  {
+    ADD,
+    REMOVE,
+  }			e_flag_rock;
+
 typedef enum		e_rock_type
   {
     LIMEMATE,
@@ -70,6 +76,7 @@ typedef enum		e_client_type
     IA,
     GUI
   }			e_client_type;
+
 typedef struct		s_objects
 {
   char			*label;
@@ -259,6 +266,10 @@ int			get_size_malloc_at_position(t_server *, int, int);
 int			create_food(t_server *);
 int			create_rock(t_server *);
 
+/* $(CMD)ADD_OR_REMOVE_ID.C */
+int			*add_id(t_block *block, int id);
+int			*remove_id(t_block *block, int id);
+
 /* $(CMD)ADVANCE_FUNCS.C */
 void			adv_up(t_size *, t_client *);
 void			adv_right(t_size *, t_client *);
@@ -271,6 +282,19 @@ int		remove_rock(t_node *tmp, t_list *list, int rock_type, int index);
 int		take_rock(t_server *s, t_client *c, char *item);
 int		take_food(t_server *s, t_client *c);
 int		cmd_take_object(t_server *s, t_client *c, const char *cmd);
+
+/* $(CMD)CMD_DROP_OBJECT.C */
+int		launch_func_rock(t_client *c, int rock, e_flag_rock flag);
+
+/* $(CMD)ADD_OR_REMOVE_ROCK.C */
+int		add_limemate(t_inventory *inventory, e_flag_rock flag);
+int		add_deraumere(t_inventory *inventory, e_flag_rock flag);
+int		add_sibur(t_inventory *inventory, e_flag_rock flag);
+
+/* $(CMD)ADD_OR_REMOVE_ROCK2.C */
+int		add_mendiane(t_inventory *inventory, e_flag_rock flag);
+int		add_phiras(t_inventory *inventory, e_flag_rock flag);
+int		add_thystame(t_inventory *inventory, e_flag_rock flag);
 
 /* COUNT_TEAMS.C */
 int			count_teams(t_server *);
