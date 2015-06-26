@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri Jun 26 12:07:31 2015 Serge Heitzler
+** Last update Fri Jun 26 19:43:21 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -80,7 +80,6 @@ typedef enum		e_client_type
 typedef struct		s_objects
 {
   char			*label;
-  int			(*ptr_func)();
 }			t_objects;
 
 typedef struct		s_cmds
@@ -214,6 +213,7 @@ typedef struct		s_server
   t_map			*map;
   t_list		*clients;
   t_list		*teams;
+  time_t	       	now;
 }			t_server;
 
 extern int		g_verbose;

@@ -5,21 +5,21 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Fri Jun 26 13:31:57 2015 Serge Heitzler
+** Last update Fri Jun 26 19:43:47 2015 Serge Heitzler
 */
 
 #include "server.h"
 
 t_objects	g_objects[8] =
   {
-    {"food", &create_food},
-    {"player", NULL},
-    {"limemate", &create_rock},
-    {"deraumere", &create_rock},
-    {"sibur", &create_rock},
-    {"mendiane", &create_rock},
-    {"phiras", &create_rock},
-    {"thystame", &create_rock}
+    {"food"},
+    {"player"},
+    {"limemate"},
+    {"deraumere"},
+    {"sibur"},
+    {"mendiane"},
+    {"phiras"},
+    {"thystame"}
   };
 
 int		*get_nb_items(t_block *block)

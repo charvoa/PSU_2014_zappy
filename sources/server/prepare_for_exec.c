@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:46 2015 Serge Heitzler
-** Last update Fri Jun 26 13:43:05 2015 Serge Heitzler
+** Last update Fri Jun 26 14:35:17 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -26,7 +26,6 @@ void		prepare_for_exec(t_server *s, t_client *c)
   check_client_type(s_cmd->label, c);
   if (s_cmd->label == NULL)
     return;
-  
 
   // getcurrentime(server);
 

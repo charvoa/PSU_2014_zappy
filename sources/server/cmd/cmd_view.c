@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Wed Jun 24 09:08:13 2015 Serge Heitzler
+** Last update Fri Jun 26 19:46:54 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -87,7 +87,7 @@ char		*create_final_string_view(t_server *s, t_client *c,
       tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y));
       tmp = show_items_at_position(s, *x, *y);
       sprintf(final, "%s%s", final, tmp);
-      sprintf(final, "%s,", final);
+      sprintf(final, "%s, ", final);
       i++;
     }
   return (final);
