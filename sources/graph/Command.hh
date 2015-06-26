@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:17 2015 Nicolas Girardot
-// Last update Fri Jun 26 16:54:29 2015 Antoine Garcia
+// Last update Fri Jun 26 17:11:16 2015 Antoine Garcia
 //
 
 #ifndef COMMAND_HH_
@@ -43,6 +43,7 @@ public:
   void	plv(std::string, GameEngine *);
   void	pin(std::string, GameEngine *);
   void	pgt(std::string, GameEngine *);
+  void	pdi(std::string, GameEngine *);
 };
 
 #endif
