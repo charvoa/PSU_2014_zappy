@@ -5,13 +5,12 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Fri Jun 26 08:50:18 2015 Serge Heitzler
-** Last update Thu Jun 25 02:22:42 2015 Antoine Garcia
+** Last update Fri Jun 26 11:25:33 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-static t_init_cmds	g_cmds[21] =
+t_cmds	g_cmds[21] =
   {
     {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},

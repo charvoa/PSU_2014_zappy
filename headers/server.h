@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri Jun 26 11:03:59 2015 Serge Heitzler
+** Last update Fri Jun 26 11:25:18 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -216,10 +216,11 @@ typedef struct		s_server
   t_list		*teams;
 }			t_server;
 
-extern	int		g_verbose;
-extern	int		g_listener;
-extern	int		g_fdmax;
-extern  t_objects	g_objects[8];
+extern int		g_verbose;
+extern int		g_listener;
+extern int		g_fdmax;
+extern t_objects	g_objects[8];
+extern t_cmds		g_cmds[21];
 
 void			init_socket(t_server*);
 void			bind_socket(t_server*, int);
