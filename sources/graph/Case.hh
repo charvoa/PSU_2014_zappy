@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:43 2015 Serge Heitzler
-// Last update Thu Jun 25 20:15:03 2015 Nicolas Girardot
+// Last update Fri Jun 26 10:41:40 2015 Nicolas Girardot
 //
 
 #ifndef CASE_HH_
@@ -18,7 +18,8 @@ class		Case
 {
   typedef enum e_texture_type
     {
-
+      GRASS,
+      DIRT
     }		e_texture_type;
 
   typedef enum e_type
@@ -41,13 +42,14 @@ public:
   void		setAll(int, int, int, int, int, int, int);
 
  private:
-  int		_limemate;
-  int		_deraumere;
-  int		_sibur;
-  int		_mendiane;
-  int		_phiras;
-  int		_thystame;
-  int		_food;
+  int			_limemate;
+  int			_deraumere;
+  int			_sibur;
+  int			_mendiane;
+  int			_phiras;
+  int			_thystame;
+  int			_food;
+  e_texture_type	_textureType;
   //  std::vector<IACharacter *>	_list;
 
 };
