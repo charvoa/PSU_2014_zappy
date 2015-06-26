@@ -5,13 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Thu Jun 25 04:06:23 2015 Antoine Garcia
+** Last update Fri Jun 26 08:50:18 2015 Serge Heitzler
 ** Last update Thu Jun 25 02:22:42 2015 Antoine Garcia
 */
 
 #include "server.h"
 
-static t_init_cmds	g_ia_cmds[21] =
+static t_init_cmds	g_cmds[21] =
   {
     {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},
@@ -43,7 +43,7 @@ int		is_cmd(const char *cmd)
   i = 0;
   while (i < 21)
     {
-      if (!strncmp(g_ia_cmds[i].name, cmd, strlen(g_ia_cmds[i].name)))
+      if (!strncmp(g_cmds[i].name, cmd, strlen(g_cmds[i].name)))
 	return (i);
       i++;
     }
@@ -56,21 +56,20 @@ static void	check_client_type(char *cmd, t_client *c)
     c->type = GUI;
 }
 
-void		exec_cmd(t_server *s, t_client *c, t_ring_buffer *buffer)
+void		exec_cmd(t_server *s, t_client *c)
 {
-  int	ret;
-  char	*cmd;
+  t_cmd		*cmd;
+  int		ret;
 
-  cmd = ring_buffer_get_next_command(buffer);
-  check_client_type(cmd, c);
-  if (cmd == NULL)
-    return;
-  printf("CMD == %s\n", cmd);
-  if ((ret = is_cmd(cmd)) != NO)
+  cmd = xmalloc(sizeof(t_cmd));
+  cmd->label = xmalloc(sizeof(char) * 50); //50 en dur déterminer taille maximale CMD
+  cmd = c->cmds->start->data;
+  if ((ret = is_cmd(cmd->label)) != NO)
     {
-      printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd); // dbg
-      g_ia_cmds[ret].ptr_func(s, c, cmd);
+      printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd->label); // dbg
+      g_cmds[ret].ptr_func(s, c, cmd->label);
     }
   else
-    fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd);
+    fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd->label);
+  // free(cmd); Risque d'invalid read/write ?
 }

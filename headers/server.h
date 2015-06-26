@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Thu Jun 25 17:45:50 2015 Serge Heitzler
+** Last update Fri Jun 26 09:26:33 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -83,6 +83,19 @@ typedef struct		s_init_cmds
   int			delay;
 }			t_init_cmds;
 
+typedef struct		s_block
+{
+  int			food;
+  int			limemate;
+  int			deraumere;
+  int			sibur;
+  int			mendiane;
+  int			phiras;
+  int			thystame;
+  int			*ids;
+  int			nb_clients;
+}			t_block;
+
 typedef struct		s_position
 {
   int			x;
@@ -102,13 +115,15 @@ typedef struct		s_rock
 
 typedef struct		s_cmd
 {
-  char			*cmd;
-  char			*options;
+  const char	       	*label;
   int			delay;
+
   /* "delay" à diviser par t au moment du calcul
      du delay si changement de t par le client */
+
   time_t		received_at;
-  time_t		send_at;
+  time_t		exec_at;
+
   int			precision;
 }			t_cmd;
 
@@ -147,7 +162,7 @@ typedef struct		s_map
 {
   t_size		*size;
   char			**full;
-  t_list		***objects;
+  t_block		***objects;
 }			t_map;
 
 typedef struct		s_team
@@ -228,7 +243,7 @@ int			cmd_plv(t_server *, t_client *, const char *);
 int			cmd_pin(t_server *, t_client *, const char *);
 
 int			is_cmd(const char *);
-void			exec_cmd(t_server *, t_client *, t_ring_buffer *);
+void			exec_cmd(t_server *, t_client *);
 
 void			set_slot_for_team(t_list *, char *, int);
 char			*get_objects_from_inventory(t_inventory *);
