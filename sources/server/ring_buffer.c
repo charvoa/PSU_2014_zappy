@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Fri Jun 26 12:35:21 2015 Antoine Garcia
+** Last update Fri Jun 26 16:43:57 2015 Audibert Louis
 */
 
 #include <assert.h>
@@ -27,7 +27,7 @@ t_ring_buffer	*ring_buffer_create(int length)
 
 void		ring_buffer_destroy(t_ring_buffer *buffer)
 {
-  if(buffer)
+  if (buffer)
     {
       /* free(buffer->buffer); */
       /* free(buffer); */
@@ -68,7 +68,7 @@ int		ring_buffer_read(t_ring_buffer *buffer, char *target, int amount)
       return (-1);
     }
   ring_buffer_commit_read(buffer, amount);
-  if(buffer->end == buffer->start)
+  if (buffer->end == buffer->start)
     buffer->start = buffer->end = 0;
   return (amount);
 }
@@ -87,7 +87,8 @@ char		*ring_buffer_gets(t_ring_buffer *buffer, int amount)
       fprintf(stderr, "Not enough in the buffer.");
       return (NULL);
     }
-  result = malloc((strlen(ring_buffer_starts_at(buffer)) + amount) * sizeof(char));
+  result = xmalloc((strlen(ring_buffer_starts_at(buffer)) + amount)
+		   * sizeof(char));
   if (result == NULL)
     {
       fprintf(stderr, "Failed to create gets result.");
