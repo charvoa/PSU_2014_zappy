@@ -5,13 +5,12 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Fri Jun 26 08:50:18 2015 Serge Heitzler
-** Last update Thu Jun 25 02:22:42 2015 Antoine Garcia
+** Last update Fri Jun 26 12:09:03 2015 Serge Heitzler
 */
 
 #include "server.h"
 
-static t_init_cmds	g_cmds[21] =
+t_cmds	g_cmds[21] =
   {
     {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},
@@ -48,12 +47,6 @@ int		is_cmd(const char *cmd)
       i++;
     }
   return (NO);
-}
-
-static void	check_client_type(char *cmd, t_client *c)
-{
-  if (!strcmp(cmd, "graph_cli_connected\r\n"))
-    c->type = GUI;
 }
 
 void		exec_cmd(t_server *s, t_client *c)
