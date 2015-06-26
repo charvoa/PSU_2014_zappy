@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu Jun 25 18:26:25 2015 Nicolas Girardot
+// Last update Fri Jun 26 16:37:06 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -16,6 +16,22 @@ Command::Command()
 }
 
 Command::~Command(){}
+
+void Command::pin(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::vector<int>	vector;
+  std::string		parse(cmd.begin() + 3, cmd.end());
+  std::istringstream	ss(parse);
+
+  for (int i = 0; i < 9 ; i++)
+    {
+      int val;
+      ss >> val;
+      std::cout << val << std::endl;
+      vector.push_back(val);
+    }
+}
 
 void Command::msz(std::string cmd, GameEngine *game)
 {
@@ -127,6 +143,7 @@ void Command::Exec()
   _functions["pnw"] = &Command::pnw;
   _functions["ppo"] = &Command::ppo;
   _functions["plv"] = &Command::plv;
+  _functions["pin"] = &Command::pin;
   /* faire de même pour chaque fonctions */
 }
 
