@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Fri Jun 26 13:24:04 2015 Audibert Louis
+** Last update Fri Jun 26 13:39:26 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -16,26 +16,16 @@ char		*get_trame_deplacement(t_client *c)
   int		x;
   int		y;
 
+  x = c->pos->x;
+  y = c->pos->y;
   if (c->orientation == UP)
-    {
-      x = c->pos->x;
-      y = c->pos->y - 1;
-    }
+    y = c->pos->y - 1;
   else if (c->orientation == RIGHT)
-    {
-      x = c->pos->x - 1;
-      y = c->pos->y;
-    }
+    x = c->pos->x - 1;
   else if (c->orientation == DOWN)
-    {
-      x = c->pos->x;
-      y = c->pos->y + 1;
-    }
+    y = c->pos->y + 1;
   else
-    {
-      x = c->pos->x + 1;
-      y = c->pos->y;
-    }
+    x = c->pos->x + 1;
   trame = xmalloc((strlen("deplacement: ") + 8) * sizeof(char));
   bzero(trame, strlen("deplacement: ") + 8);
   sprintf(trame, "deplacement: %d %d\n", x, y);
@@ -45,12 +35,7 @@ char		*get_trame_deplacement(t_client *c)
 
 int		cmd_kick(t_server *s, t_client *c, const char *cmd)
 {
-  (void)s;
-  (void)c;
   (void)cmd;
-
-  //PARCOURIR S->MAPS[Y][X]->OBJECTS == PLAYER && != CLIENT *C
-  //ET DU COUP SEND_DATA TO EVERYBODY "deplacement: direction = orientation t_client *c
   t_client	*client;
   char		*final;
   int		i;
@@ -60,7 +45,8 @@ int		cmd_kick(t_server *s, t_client *c, const char *cmd)
   final = get_trame_deplacement(c);
   while (i <= s->map->objects[c->pos->y][c->pos->x]->nb_clients)
     {
-      client = get_client_by_id(s->clients, s->map->objects[c->pos->y][c->pos->x]->ids[i]);
+      client = get_client_by_id(s->clients,
+				s->map->objects[c->pos->y][c->pos->x]->ids[i]);
       if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x)
 	  && client->fd != c->fd)
   	    {

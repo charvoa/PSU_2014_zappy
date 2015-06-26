@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Thu Jun 25 17:04:27 2015 Audibert Louis
+** Last update Fri Jun 26 13:44:36 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -34,12 +34,24 @@ int	is_a_team(t_server *s, char *team)
   return (-1);
 }
 
+void	validate_team(t_team *team, t_client *c, char *name)
+{
+  char		trame[21];
+
+  sprintf(trame, "%d", team->slot_rest);
+  send_data(c->fd, trame);
+  bzero(c->team_name, strlen(name));
+  c->team_name = strdup(name);
+  team->slot_rest--;
+  send_data(c->fd, "ok\n");
+}
+
 int	cmd_team(t_server *s, t_client *c, const char *cmd)
 {
   char		trame[21];
   char		*name;
   t_team	*team;
-  
+
   name = xmalloc(strlen(cmd) * sizeof(char));
   bzero(name, strlen(cmd));
   sscanf(cmd, "%s", name);
@@ -47,14 +59,7 @@ int	cmd_team(t_server *s, t_client *c, const char *cmd)
     {
       team = get_team_by_name(s->teams, name);
       if (team->slot_rest >= 1)
-	{
-	  sprintf(trame, "%d", team->slot_rest);
-	  send_data(c->fd, trame);
-	  bzero(c->team_name, strlen(name));
-	  c->team_name = strdup(name);
-	  team->slot_rest--;
-	  send_data(c->fd, "ok\n");
-	}
+	validate_team(team, c, name);
       else
 	send_data(c->fd, "NO_SLOT_REST\r\n");
       bzero(trame, 21);
