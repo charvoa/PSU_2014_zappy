@@ -5,15 +5,15 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Thu Jun 25 16:13:35 2015 Audibert Louis
+** Last update Fri Jun 26 12:35:21 2015 Antoine Garcia
 */
 
-#include "../../headers/ring_buffer.h"
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "xfuncs.h"
+#include "../../headers/ring_buffer.h"
 
 t_ring_buffer	*ring_buffer_create(int length)
 {

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Fri Jun 26 08:37:05 2015 Serge Heitzler
+** Last update Fri Jun 26 13:43:33 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -20,6 +20,6 @@ int		check_exec()
 
 
 
-  exec_cmd(s, c)
+  //exec_cmd(s, c)
   return (SUCCESS);
 }
