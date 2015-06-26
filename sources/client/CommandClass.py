@@ -74,7 +74,7 @@ class CommandClass():
             voir_list = []
             voir_list = [str(x) for x in rec.split(', ')]
             for p in voir_list:
-                print(p)
+                print('P>>', p)
 
     def inventaire_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -111,6 +111,8 @@ class CommandClass():
                     self.thystame = p
                 i+=1
 
+#############Getters for food and Rocks ###################################
+
     def getLinemate(self) -> int:
         s = self.linemate
         s =''.join(i for i in s if i.isdigit())
@@ -145,6 +147,8 @@ class CommandClass():
         s = self.food
         s =''.join(i for i in s if i.isdigit())
         return int(s)
+
+################################################################
 
     def prend_cmd(self, s, p, mess, obj):
         if (p.getVerbose()):
