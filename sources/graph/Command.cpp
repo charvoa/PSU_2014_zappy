@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Fri Jun 26 16:37:06 2015 Antoine Garcia
+// Last update Fri Jun 26 16:50:42 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -21,10 +21,10 @@ void Command::pin(std::string cmd, GameEngine *game)
 {
   (void)game;
   std::vector<int>	vector;
-  std::string		parse(cmd.begin() + 3, cmd.end());
+  std::string		parse(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(parse);
 
-  for (int i = 0; i < 9 ; i++)
+  for (int i = 0; i < 10 ; i++)
     {
       int val;
       ss >> val;
