@@ -62,8 +62,8 @@ class CommandClass():
         var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
-        if (p.getVerbose()):
-            print(rec)
+#        if (p.getVerbose()):
+#            print(rec)
         if (rec == 'ko\n'):
             return 0
         elif (rec == 'mort\n'):
@@ -73,8 +73,6 @@ class CommandClass():
             rec = rec[1:-2]
             voir_list = []
             voir_list = [str(x) for x in rec.split(',')]
-            for p in voir_list:
-                print('P>>', p)
             return voir_list
 
     def inventaire_cmd(self, s, p, mess):
@@ -115,6 +113,7 @@ class CommandClass():
 #############Getters for food and Rocks ###################################
 
     def getLinemate(self) -> int:
+        print(self.linemate)
         s = self.linemate
         s =''.join(i for i in s if i.isdigit())
         return int(s)
@@ -228,13 +227,15 @@ class CommandClass():
         var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
-        if (p.getVerbose()):
-            print(rec)
-        if (rec == 'ok\n'):
-            return 1
-        elif (rec == 'mort\n'):
+        if (rec == 'mort\n'):
             print('You died\n')
             sys.exit(0)
+        elif (rec == 'elevation en cours\n'):
+            rec = mess.readMessage(s)
+            if (rec == 'mort\n'):
+                print('You died\n')
+                sys.exit(0)
+            return 1
         else:
             return 0
 
