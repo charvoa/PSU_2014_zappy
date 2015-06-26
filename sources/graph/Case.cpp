@@ -5,17 +5,17 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:53 2015 Serge Heitzler
-// Last update Thu Jun 25 17:29:58 2015 Serge Heitzler
+// Last update Thu Jun 25 20:16:42 2015 Nicolas Girardot
 //
 
 #include "Case.hh"
 
-Case::Case(int linemate, int deraumere, int sibur, int mediane, int phiras, int thystame, int food)
+Case::Case(int limemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int food)
 {
-  _limemate = linemate;
+  _limemate = limemate;
   _deraumere = deraumere;
   _sibur = sibur;
-  _mendiane = mediane;
+  _mendiane = mendiane;
   _phiras = phiras;
   _thystame = thystame;
   _food = food;
@@ -60,4 +60,15 @@ void	Case::decrement(e_type type)
     _thystame--;
   if (type == FOOD && _food > 0)
     _food--;
+}
+
+void	Case::setAll(int limemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int food)
+{
+  _limemate = limemate;
+  _deraumere = deraumere;
+  _sibur = sibur;
+  _mendiane = mendiane;
+  _phiras = phiras;
+  _thystame = thystame;
+  _food = food;
 }

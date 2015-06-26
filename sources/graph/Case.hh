@@ -5,20 +5,21 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:43 2015 Serge Heitzler
-// Last update Thu Jun 25 17:29:59 2015 Serge Heitzler
+// Last update Fri Jun 26 10:41:40 2015 Nicolas Girardot
 //
 
 #ifndef CASE_HH_
 # define CASE_HH_
 
 # include <vector>
-# inclulde "IACharacter.hh"
+# include "IACharacter.hh"
 
 class		Case
 {
   typedef enum e_texture_type
     {
-      
+      GRASS,
+      DIRT
     }		e_texture_type;
 
   typedef enum e_type
@@ -31,22 +32,24 @@ class		Case
       PHIRAS = 5,
       THYSTAME = 6
     }	e_type;
- 
+
 public:
   Case(int, int, int, int, int, int, int);
   ~Case();
 
   void		increment(e_type type);
   void		decrement(e_type type);
+  void		setAll(int, int, int, int, int, int, int);
 
  private:
-  int		_limemate;
-  int		_deraumere;
-  int		_sibur;
-  int		_mendiane;
-  int		_phiras;
-  int		_thystame;
-  int		_food;
+  int			_limemate;
+  int			_deraumere;
+  int			_sibur;
+  int			_mendiane;
+  int			_phiras;
+  int			_thystame;
+  int			_food;
+  e_texture_type	_textureType;
   //  std::vector<IACharacter *>	_list;
 
 };

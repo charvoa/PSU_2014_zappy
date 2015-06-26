@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Thu Jun 25 18:54:44 2015 Serge Heitzler
+// Last update Thu Jun 25 18:57:41 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -32,6 +32,7 @@
 #include "HUD.hh"
 
 class Socket;
+
 
 class	GameEngine : public gdl::Game
 {
@@ -63,7 +64,7 @@ public:
   Position	&determinePosClicked(std::pair<int,int> &, int, int);
   Position	&determinePosClickedOnGUI(int, int);
 private:
-  std::map<Position *, Case&> _cases;
+  std::map<std::pair<int, int>, Case*> _cases;
 };
 
 #endif

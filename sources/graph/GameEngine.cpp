@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 18:54:17 2015 Serge Heitzler
+// Last update Thu Jun 25 20:11:03 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -50,7 +50,7 @@ bool	GameEngine::initialize()
   TTF_Init();
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
-  _socket->writeOnSocket("msz\n");
+  _socket->writeOnSocket("msz\r\n");
   return true;
 }
 
@@ -94,6 +94,7 @@ void	GameEngine::createMap(std::vector<std::string> &parse)
   stry = parse.at(1);
   x = stoi(strx);
   y = stoi(stry);
+  std::cout << "MAP IS x = " << x << "::: Y = " << y << std::endl;
   if (this)
     _gMap = new GraphMap(x, y);
 }
@@ -105,8 +106,12 @@ void	GameEngine::setLocked()
   SDL_GetMouseState(&a, &b);
   std::cout << "click" << std::endl;
   Position pos(a, b);
-  _hud->updateLocked(pos);
-  _gMap->setLocked((a - 150) / 35, (b - 150) / 35);
+  std::pair<int, int> pair(6, 6);
+  if (isEventOnMap(a, b) == true)
+    {
+      _hud->updateLocked(determinePosClicked(pair, a, b));
+      _gMap->setLocked(determinePosClickedOnGUI(a, b));
+    }
 }
 
 void	GameEngine::getMousePos()
@@ -114,27 +119,38 @@ void	GameEngine::getMousePos()
   int	a;
   int	b;
   SDL_GetMouseState(&a, &b);
-  if ((a - 150) / 35 == _mousePos._x && (b - 150) / 35 == _mousePos._y);
+  if ((a - 150) / 100 == _mousePos._x && (b - 150) / 100 == _mousePos._y);
   else
     {
       std::cout << "test" << std::endl;
-      Position current((a - 150) / 35, (b - 150) / 35);
-      _mousePos = current;
-      _hud->updateCase(_mousePos);
+        if (isEventOnMap(a, b) == true)
+	  {
+	    Position current((a - 150) / 100, (b - 150) / 100);
+	    _mousePos = current;
+	    _hud->updateCase(_mousePos);
+	  }
     }
 }
 
 void	GameEngine::setCase(std::vector<std::string> &content)
 {
-  std::vector<int> tab;
-
-  tab.push_back(stoi(content.at(2)));
-  tab.push_back(stoi(content.at(3)));
-  tab.push_back(stoi(content.at(4)));
-  tab.push_back(stoi(content.at(5)));
-  tab.push_back(stoi(content.at(6)));
-  tab.push_back(stoi(content.at(7)));
-  tab.push_back(stoi(content.at(8)));
+  Case new_case(stoi(content.at(3)),
+  		stoi(content.at(4)),
+  		stoi(content.at(5)),
+  		stoi(content.at(6)),
+  		stoi(content.at(7)),
+  		stoi(content.at(8)),
+  		stoi(content.at(2)));
+  if (_cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))] != NULL)
+    _cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))]->setAll(stoi(content.at(3)),
+										 stoi(content.at(4)),
+										 stoi(content.at(5)),
+										 stoi(content.at(6)),
+										 stoi(content.at(7)),
+										 stoi(content.at(8)),
+										 stoi(content.at(2)));
+  else
+    _cases.insert(std::pair<std::pair<int, int>, Case *>(std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1))), &new_case));
 
 }
 
@@ -151,13 +167,13 @@ void	GameEngine::draw()
 void	GameEngine::run()
 {
   this->_socket = new Socket("127.0.0.1", 4242, this);
-  _socket->writeOnSocket("graph_cli_connected\n");
+  _socket->writeOnSocket("GRAPHIC\n");
   initialize();
   while (this->update())
     draw();
 }
 
-bool		isEventOnMap(int xClick, int yClick)
+bool		GameEngine::isEventOnMap(int xClick, int yClick)
 {
   if (xClick < 150 || yClick < 150 || xClick > 850 || yClick > 850)
     return false;
@@ -173,8 +189,8 @@ Position	&GameEngine::determinePosClicked(std::pair<int,int> & center, int xClic
 
   posX = (xClick - 150) / (700 / 7);
   posY = (yClick - 150) / (700 / 7);
-  x = (center.first() - 6 + posX) % _gMap->getWidth();
-  y = (center.second() - 6 + posY) % _gmap->getHeight();
+  x = (center.first - 6 + posX) % _gMap->getWidth();
+  y = (center.second - 6 + posY) % _gMap->getHeight();
   if (x < 0)
     x = _gMap->getWidth() + x;
   if (y < 0)
@@ -188,7 +204,6 @@ Position	&GameEngine::determinePosClickedOnGUI(int xClick, int yClick)
 {
   int posX;
   int posY;
-  
   posX = (xClick - 150) / (700 / 7);
   posY = (yClick - 150) / (700 / 7);
   Position pos(posX, posY);
