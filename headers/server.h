@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Fri Jun 26 10:48:57 2015 Serge Heitzler
+** Last update Fri Jun 26 11:03:59 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -265,6 +265,7 @@ char			*show_items_at_position(t_server *, int, int);
 int			get_size_malloc_at_position(t_server *, int, int);
 int			create_food(t_server *);
 int			create_rock(t_server *);
+void			prepare_for_exec(t_server *, t_client *);
 
 /* $(CMD)ADD_OR_REMOVE_ID.C */
 int			*add_id(t_block *block, int id);
