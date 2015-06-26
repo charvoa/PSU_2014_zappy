@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Thu Jun 25 18:34:43 2015 Nicolas Girardot
+// Last update Thu Jun 25 20:22:02 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
@@ -59,7 +59,7 @@ void	Socket::my_connect()
 
 void	Socket::selectSocket()
 {
-  std::string output(100, 0);
+  std::string output(15000, 0);
   std::string div;
   my_connect();
   if (FD_ISSET(this->_socket, &_rfds))
