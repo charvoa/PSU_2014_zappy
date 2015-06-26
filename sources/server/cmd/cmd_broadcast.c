@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Thu Jun 25 14:57:11 2015 Audibert Louis
+** Last update Fri Jun 26 16:37:33 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -13,14 +13,13 @@
 char		*get_trame_broadcast(t_client *c, char *text)
 {
   char		*final;
-  
+
   final = xmalloc((strlen("message ") + strlen(text) + 9) * sizeof(char));
   bzero(final, (strlen("message ") + strlen(text) + 9));
   sprintf(final, "message %d %d,%s\r\n", c->pos->y, c->pos->x, text);
   printf("final = %s", final);
   return (final);
 }
-
 
 static void	send_gui_broadcast(char *msg, t_list *clients, t_client *c)
 {
@@ -52,8 +51,6 @@ void		get_text(char *text, const char *cmd)
 
 int		cmd_broadcast(t_server *s, t_client *c, const char *cmd)
 {
-  // Les (void) du dessous sont à supprimer, celui du dessus est important et à laisser.
-  (void)c;
   char			*text;
   char			*final;
   t_node		*tmp;

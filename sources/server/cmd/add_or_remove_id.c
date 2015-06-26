@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Fri Jun 26 11:05:44 2015 Audibert Louis
+** Last update Fri Jun 26 16:36:44 2015 Audibert Louis
 */
 
 #include "server.h"
@@ -31,7 +31,7 @@ int	*remove_id(t_block *block, int id)
   int	*newtab;
   int	i;
   int	j;
-  
+
   newtab = xmalloc((block->nb_clients - 1) * sizeof(char));
   i = 0;
   j = 0;
