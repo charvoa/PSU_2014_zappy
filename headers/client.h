@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:41:12 2015 Audibert Louis
-** Last update Sat Jun 27 11:21:21 2015 Serge Heitzler
+** Last update Sat Jun 27 14:16:22 2015 Serge Heitzler
 */
 
 #ifndef _CLIENT_H_
@@ -13,10 +13,10 @@
 
 typedef enum		e_orientation
   {
-    UP = 0,
-    RIGHT = 1,
-    DOWN = 2,
-    LEFT = 3,
+    NORD = 1,
+    EST = 2,
+    SUD = 3,
+    OUEST = 4,
     NONE
   }			e_orientation;
 

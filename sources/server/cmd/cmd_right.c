@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sun May 17 10:54:26 2015 Serge Heitzler
-** Last update Sat Jun 27 10:50:52 2015 Audibert Louis
+** Last update Sat Jun 27 14:32:04 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -17,7 +17,7 @@ int		cmd_right(t_server *s, t_client *c, const char *cmd)
   void	(*orientation[4])(t_client *);
 
   init_orientation(orientation);
-  orientation[(c->orientation + 1) % 4](c);
+  orientation[(c->orientation) % 4](c);
   send_data(c->fd, "ok");
   return (SUCCESS);
 }

@@ -5,14 +5,14 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:46 2015 Serge Heitzler
-** Last update Sat Jun 27 11:11:31 2015 Serge Heitzler
+** Last update Sat Jun 27 14:20:42 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 static void	check_client_type(const char *cmd, t_client *c)
 {
-  if (!strcmp(cmd, "graph_cli_connected\r\n"))
+  if (!strcmp(cmd, "GRAPHIC\r\n"))
     c->type = GUI;
 }
 
