@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:41 2015 Serge Heitzler
-** Last update Thu Jun 25 17:53:21 2015 Serge Heitzler
+** Last update Sat Jun 27 10:50:05 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 char		*get_objects_from_inventory(t_inventory *i)
 {

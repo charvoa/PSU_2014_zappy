@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:46 2015 Serge Heitzler
-** Last update Fri Jun 26 13:43:05 2015 Serge Heitzler
+** Last update Sat Jun 27 10:43:57 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 static void	check_client_type(const char *cmd, t_client *c)
 {

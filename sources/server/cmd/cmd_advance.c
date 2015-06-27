@@ -5,10 +5,10 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:03:06 2015 Serge Heitzler
-** Last update Tue Jun 23 13:59:12 2015 Serge Heitzler
+** Last update Sat Jun 27 10:49:21 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 void		init_advance(void (*advance[4])(t_size *, t_client *))
 {

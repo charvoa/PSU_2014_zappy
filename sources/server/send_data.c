@@ -5,10 +5,10 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 20:04:00 2015 Serge Heitzler
-** Last update Fri Jun 26 13:54:00 2015 Antoine Garcia
+** Last update Sat Jun 27 10:47:17 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		send_data(int socket, const char *buffer)
 {

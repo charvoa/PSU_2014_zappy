@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 23 17:57:11 2015 Audibert Louis
-** Last update Wed Jun 24 08:54:21 2015 Serge Heitzler
+** Last update Sat Jun 27 10:43:14 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 t_team		*create_team(t_server *s, char *name, int nb_max)
 {

@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:16:33 2015 Audibert Louis
-** Last update Tue May 19 09:56:54 2015 Audibert Louis
+** Last update Sat Jun 27 10:47:30 2015 Audibert Louis
 */
 
-#include "../../headers/server.h"
+#include "functions.h"
 
 void	init_opt(int (*options[6])(t_server *s))
 {

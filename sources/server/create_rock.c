@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:57:49 2015 Serge Heitzler
-** Last update Fri Jun 26 13:39:11 2015 Serge Heitzler
+** Last update Sat Jun 27 10:43:02 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		create_rock(t_server *s)
 {

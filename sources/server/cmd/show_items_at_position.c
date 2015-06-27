@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Fri Jun 26 13:31:57 2015 Serge Heitzler
+** Last update Sat Jun 27 10:52:41 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 t_objects	g_objects[8] =
   {

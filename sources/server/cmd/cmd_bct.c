@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:20 2015 Serge Heitzler
-** Last update Fri Jun 26 16:34:08 2015 Audibert Louis
+** Last update Sat Jun 27 10:49:19 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		cmd_bct(t_server *s, t_client *c, const char *cmd)
 {

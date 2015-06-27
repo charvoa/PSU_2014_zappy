@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Fri Jun 26 17:30:54 2015 Audibert Louis
+** Last update Sat Jun 27 10:52:44 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 t_cmds	g_cmds[22] =
   {

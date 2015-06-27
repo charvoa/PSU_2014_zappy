@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 11:28:05 2015 Audibert Louis
-** Last update Fri Jun 26 11:40:33 2015 Audibert Louis
+** Last update Sat Jun 27 10:49:04 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int	block_mendiane(t_block *block, e_flag_rock flag)
 {

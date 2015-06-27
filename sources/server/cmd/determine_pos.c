@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Tue Jun 23 20:37:51 2015 Serge Heitzler
-** Last update Wed Jun 24 07:12:04 2015 Serge Heitzler
+** Last update Sat Jun 27 10:51:52 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		determine_pos_x(t_client *c, t_size *size, int t, int l)
 {

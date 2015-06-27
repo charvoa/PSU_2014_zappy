@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Fri Jun 26 16:39:47 2015 Audibert Louis
+** Last update Sat Jun 27 10:51:39 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		get_number_of_visible_space(unsigned int level)
 {

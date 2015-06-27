@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:00:23 2015 Serge Heitzler
-** Last update Wed Jun 24 14:24:15 2015 Serge Heitzler
+** Last update Sat Jun 27 10:43:05 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		create_objects(t_server *s)
 {

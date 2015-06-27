@@ -5,10 +5,10 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Fri Jun 26 09:35:04 2015 Serge Heitzler
+** Last update Sat Jun 27 10:42:53 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 char		**init_full_tab(int width, int height)
 {

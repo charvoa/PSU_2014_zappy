@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Fri Jun 26 16:43:57 2015 Audibert Louis
+** Last update Sat Jun 27 10:25:02 2015 Audibert Louis
 */
 
 #include <assert.h>
@@ -14,6 +14,7 @@
 #include <string.h>
 #include "xfuncs.h"
 #include "../../headers/ring_buffer.h"
+#include "functions.h"
 
 t_ring_buffer	*ring_buffer_create(int length)
 {

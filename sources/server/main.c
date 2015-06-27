@@ -5,10 +5,10 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:25:19 2015 Nicolas Charvoz
-** Last update Fri Jun 26 14:21:23 2015 Audibert Louis
+** Last update Sat Jun 27 10:43:28 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		main(int argc, char **argv)
 {
