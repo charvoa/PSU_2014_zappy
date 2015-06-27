@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Fri Jun 26 20:19:32 2015 Serge Heitzler
+## Last update Sat Jun 27 14:40:49 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -92,6 +92,7 @@ SRCS		= 	main.c	 				\
 			create_team.c				\
 			create_objects.c			\
 			prepare_for_exec.c			\
+			protocole_connexion.c			\
 			check_exec.c
 
 NAME		= 	zappy_server

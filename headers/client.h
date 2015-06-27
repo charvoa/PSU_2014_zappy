@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:41:12 2015 Audibert Louis
-** Last update Sat Jun 27 11:21:21 2015 Serge Heitzler
+** Last update Sat Jun 27 13:47:55 2015 Audibert Louis
 */
 
 #ifndef _CLIENT_H_
