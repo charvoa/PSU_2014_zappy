@@ -5,13 +5,14 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 14:38:32 2015 Audibert Louis
-** Last update Sat Jun 27 18:57:45 2015 Serge Heitzler
+** Last update Sat Jun 27 19:16:01 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 void	protocole_graphique(t_server *s, t_client *c)
 {
+  printf("PROTOCOLE GRAPHIQUE\n");
   cmd_msz(s, c, "protocole", NORMAL);
   cmd_sgt(s, c, "protocole", NORMAL);
   cmd_mct(s, c, "protocole", NORMAL);
