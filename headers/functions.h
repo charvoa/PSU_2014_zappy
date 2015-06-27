@@ -5,13 +5,16 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jun 27 15:22:24 2015 Audibert Louis
+** Last update Sat Jun 27 16:19:15 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
 # define _FUNCTIONS_H_
 
 # include		"server.h"
+
+/* Function(s) in file check_death.c */
+void		check_death(t_server *s);
 
 /* Function(s) in file check_exec.c */
 int		check_exec(t_server *);
@@ -190,6 +193,9 @@ int		cmd_plv(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_pin.c */
 int		cmd_pin(t_server *s, t_client *c, const char *cmd, e_client_type type);
+
+/* Function(s) in file cmd_pnw.c */
+int		cmd_pnw(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_ppo.c */
 int		cmd_ppo(t_server *s, t_client *c, const char *cmd, e_client_type type);
