@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Sat Jun 27 11:03:01 2015 Audibert Louis
+** Last update Sat Jun 27 11:19:25 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -23,11 +23,11 @@ int		get_number_of_visible_space(unsigned int level)
   return (nb);
 }
 
-char		**write_pos_in_array(t_server *s, t_client *c, int i, unsigned int l)
+char		**write_pos_in_array(t_server *s, t_client *c, int i, int l)
 {
   char		**pos;
   int		nb_visible_space;
-  unsigned int 	t;
+  int	 	t;
   int		x;
   int		y;
 
@@ -78,7 +78,7 @@ char		*create_final_string_view(t_server *s, t_client *c,
   int		i;
 
   i = 0;
-  size_malloc += 1;
+  size_malloc += 2;
   final = xmalloc(sizeof(char) * (size_malloc));
   bzero(final, size_malloc);
   x = xmalloc(sizeof(int));
@@ -86,11 +86,12 @@ char		*create_final_string_view(t_server *s, t_client *c,
   while (i < get_number_of_visible_space(c->level))
     {
       sscanf(pos[i], "%d %d", x, y);
-      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y));
-      bzero(tmp, get_size_malloc_at_position(s, *x, *y));
+      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y) + 1);
+      bzero(tmp, get_size_malloc_at_position(s, *x, *y) + 1);
       tmp = show_items_at_position(s, *x, *y);
       sprintf(final, "%s%s", final, tmp);
       sprintf(final, "%s,", final);
+      free(tmp);
       i++;
     }
   return (final);
@@ -108,7 +109,6 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
 
   i = 0;
   pos = get_pos_of_visible_space(s, c);
-  printf("DBG\n");
   size_malloc = 0;
   x = xmalloc(sizeof(int));
   y = xmalloc(sizeof(int));
@@ -116,12 +116,12 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
     {
       sscanf(pos[i], "%d %d", x, y);
       if (size_malloc += (get_size_malloc_at_position(s, *x, *y)) == 0)
-	size_malloc++;
+	{
+	}
       i++;
     }
   final = create_final_string_view(s, c, size_malloc, pos);
   //  sprintf(final, "{%s}", final);
-  printf("final = %s\n", final);
   send_data(c->fd, final);
   return (SUCCESS);
 }

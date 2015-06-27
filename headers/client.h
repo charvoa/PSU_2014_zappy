@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:41:12 2015 Audibert Louis
-** Last update Sat Jun 27 09:44:06 2015 Audibert Louis
+** Last update Sat Jun 27 11:21:21 2015 Serge Heitzler
 */
 
 #ifndef _CLIENT_H_
@@ -47,7 +47,7 @@ typedef struct		s_team
 typedef struct		s_client
 {
   int			fd;
-  unsigned int		level;
+  int			level;
   e_orientation		orientation;
   char			*team_name;
   e_client_type		type;

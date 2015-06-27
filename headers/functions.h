@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jun 27 11:22:05 2015 Audibert Louis
+** Last update Sat Jun 27 11:24:09 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -217,7 +217,7 @@ int		cmd_tna(t_server *s, t_client *c, const char *cmd);
 
 /* Function(s) in file cmd_view.c */
 int		get_number_of_visible_space(unsigned int level);
-char		**write_pos_in_array(t_server *s, t_client *c, int i, unsigned int l);
+char		**write_pos_in_array(t_server *s, t_client *c, int i, int l);
 char		**get_pos_of_visible_space(t_server *s, t_client *c);
 char		*create_final_string_view(t_server *s, t_client *c, int, char **);
 int		cmd_view(t_server *s, t_client *c, const char *cmd);

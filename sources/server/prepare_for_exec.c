@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:46 2015 Serge Heitzler
-** Last update Sat Jun 27 10:56:03 2015 Audibert Louis
+** Last update Sat Jun 27 11:11:31 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -37,22 +37,15 @@ void		prepare_for_exec(t_server *s, t_client *c)
   if (s_cmd->label == NULL)
     return;
 
-
-
-
-
   (void)ret;
   /* if (ret = (is_cmd(s_cmd->label)) != NO) */
   /*   g_cmds[ret].delay; */
   // INIT Obligatoire de exec_at pour éviter erreur valgrind
   clock_gettime(CLOCK_REALTIME, &s_cmd->exec_at);
 
-
-
   //  now.tv_sec;  /* seconds */
-  //  now.tv_usec; /* nanoseconds divide by 1000 to get microseconds*/
+  //  now.tv_usec; /* nanoseconds divide by 1000 to get microseconds*/  
 
-  
   push_back(c->cmds, s_cmd, CMD);
   printf("CMD == %s\n", s_cmd->label);
 }

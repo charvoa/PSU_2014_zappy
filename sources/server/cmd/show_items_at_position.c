@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Sat Jun 27 10:56:39 2015 Audibert Louis
+** Last update Sat Jun 27 11:11:44 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -43,14 +43,6 @@ int		get_last_wrote(int *nb_items)
   int		i;
 
   i = 7;
-  printf("%d\n", nb_items[0]);
-  printf("%d\n", nb_items[1]);
-  printf("%d\n", nb_items[2]);
-  printf("%d\n", nb_items[3]);
-  printf("%d\n", nb_items[4]);
-  printf("%d\n", nb_items[5]);
-  printf("%d\n", nb_items[6]);
-  printf("%d\n", nb_items[7]);
   while (i >= 0 && nb_items[i] == 0)
     i--;
   return (i);
@@ -62,10 +54,8 @@ char		*fill_final_string(int size_malloc, int *nb_items)
   char		*final;
 
   i = -1;
-  final = xmalloc(sizeof(char) * (size_malloc));
-  memset(final, 0, size_malloc);
-  printf("nb_items = %d\n", nb_items[0]);
-  printf("TESTOUILLE\n");
+  final = xmalloc(sizeof(char) * (size_malloc + 1));
+  memset(final, 0, size_malloc + 1);
   while (++i <= get_last_wrote(nb_items))
     {
       if (nb_items[i] > 0)
@@ -100,9 +90,13 @@ int		get_size_malloc_at_position(t_server* s, int x, int y)
   while (i < 8)
     {
       if (nb_items[i] > 0 && i == get_last_wrote(nb_items))
-	size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 1);
+	{
+	  size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 1);
+	}
       else if (nb_items[i] > 0)
-	size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 2);
+	{
+	  size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 2);
+	}
       i++;
     }
   return (size_malloc);
@@ -115,10 +109,10 @@ char		*show_items_at_position(t_server * s, int x, int y)
   t_block	*block;
   char		*final;
 
+  block = xmalloc(sizeof(t_block));
   block = s->map->objects[y][x];
   nb_items = get_nb_items(block);
   size_malloc = get_size_malloc_at_position(s, x, y);
-  printf("SIZEMALLOC = %d\n", size_malloc);
   final = fill_final_string(size_malloc, nb_items);
   return (final);
 }
