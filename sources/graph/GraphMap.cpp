@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Fri Jun 26 17:22:19 2015 Nicolas Girardot
+// Last update Sat Jun 27 14:55:20 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -31,6 +31,7 @@ GraphMap::~GraphMap() {}
 
 void	GraphMap::draw(SDL_Renderer *renderer, Position &pos, Position &focus, std::vector<std::vector<Case *> > map)
 {
+  (void) pos;
   int	i;
   int	j;
   for(i = focus._x - 3  ; i <= focus._x + 3 ; i++)

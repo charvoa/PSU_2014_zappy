@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:53 2015 Serge Heitzler
-// Last update Sat Jun 27 14:03:19 2015 Nicolas Girardot
+// Last update Sat Jun 27 14:56:14 2015 Nicolas Girardot
 //
 
 #include "Case.hh"
@@ -49,6 +49,7 @@ int	Case::get(e_type type)
     return _thystame;
   if (type == FOOD)
     return _food;
+  return 0;
 }
 
 int	Case::getType()
