@@ -5,10 +5,10 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Tue May 26 17:23:11 2015 Serge Heitzler
-** Last update Tue May 26 17:54:14 2015 Serge Heitzler
+** Last update Sat Jun 27 10:42:23 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 t_cmd		*create_cmd(const char *cmd)
 {

@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Sat Jun 27 11:02:06 2015 Serge Heitzler
+** Last update Sat Jun 27 11:19:25 2015 Serge Heitzler
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		get_number_of_visible_space(unsigned int level)
 {
@@ -55,7 +55,6 @@ char		**write_pos_in_array(t_server *s, t_client *c, int i, int l)
 char		**get_pos_of_visible_space(t_server *s, t_client *c)
 {
   (void)s;
-  int		i;
   char		**pos;
   int		nb_visible_space;
 
@@ -66,14 +65,6 @@ char		**get_pos_of_visible_space(t_server *s, t_client *c)
   memset(pos[0], 0, istm((int)c->pos->x) + istm((int)c->pos->y) + 2);
   sprintf(pos[0], "%d %d", (int)c->pos->x, (int)c->pos->y);
   pos[nb_visible_space] = NULL;
-
-  i = 0;
-  while (i < nb_visible_space)
-    {
-      printf("pos[%d] = %s\n", i, pos[i]);
-      i++;
-    }
-
   return (pos);
 }
 
@@ -117,7 +108,6 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
   char		*final;
 
   i = 0;
-
   pos = get_pos_of_visible_space(s, c);
   size_malloc = 0;
   x = xmalloc(sizeof(int));
@@ -127,9 +117,7 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
       sscanf(pos[i], "%d %d", x, y);
       if (size_malloc += (get_size_malloc_at_position(s, *x, *y)) == 0)
 	{
-
 	}
-      printf("APRES Boucle = %d\n", size_malloc);
       i++;
     }
   final = create_final_string_view(s, c, size_malloc, pos);

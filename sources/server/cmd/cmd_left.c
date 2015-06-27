@@ -5,10 +5,10 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sun May 17 11:30:51 2015 Serge Heitzler
-** Last update Sat Jun 27 00:02:51 2015 Serge Heitzler
+** Last update Sat Jun 27 10:57:09 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		cmd_left(t_server *s, t_client *c, const char *cmd)
 {

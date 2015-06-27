@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:48 2015 Serge Heitzler
-** Last update Tue Jun 23 21:29:18 2015 Serge Heitzler
+** Last update Sat Jun 27 10:51:41 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 char		*get_all_teams_in_str(t_server *s)
 {

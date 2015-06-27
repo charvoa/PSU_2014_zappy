@@ -5,16 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Tue Jun 23 20:37:51 2015 Serge Heitzler
-** Last update Sat Jun 27 10:17:05 2015 Serge Heitzler
+** Last update Sat Jun 27 11:09:27 2015 Serge Heitzler
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		determine_pos_x(t_client *c, t_size *size, int t, int l)
 {
-  printf("ori = %d\n", c->orientation);
-  printf("c->pos->x + t = %d\n", c->pos->x + t);
-  printf("c->pos->x + l = %d\n", c->pos->x + l);
   if (c->orientation == UP)
     return ((c->pos->x + t) >= 0 ?
 	    (c->pos->x + t) % size->width : (size->width + c->pos->x + t));
@@ -32,8 +29,6 @@ int		determine_pos_x(t_client *c, t_size *size, int t, int l)
 
 int		determine_pos_y(t_client *c, t_size *size, int t, int l)
 {
-  printf("c->pos->y + t = %d\n", c->pos->y + t);
-  printf("c->pos->y + l = %d\n", c->pos->y + l);
   if (c->orientation == UP)
     return ((c->pos->y - l) < 0 ?
 	    (size->height + c->pos->y - l) : c->pos->y - l);

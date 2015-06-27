@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:46 2015 Serge Heitzler
-** Last update Wed Jun 24 06:48:11 2015 Serge Heitzler
+** Last update Sat Jun 27 10:50:13 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		number_of_busy_space(t_server *s)
 {

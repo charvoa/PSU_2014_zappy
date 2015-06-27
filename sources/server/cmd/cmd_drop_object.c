@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Fri Jun 26 16:29:41 2015 Audibert Louis
+** Last update Sat Jun 27 10:49:39 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 static void		cmd_gui_pdr(t_client *c, t_list *clients, int type)
 {

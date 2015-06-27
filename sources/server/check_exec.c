@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Fri Jun 26 22:59:38 2015 Serge Heitzler
+** Last update Sat Jun 27 10:58:09 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		check_exec(t_server *s)
 {

@@ -5,10 +5,10 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Fri May 22 13:32:55 2015 Serge Heitzler
-** Last update Mon Jun 22 14:59:40 2015 Audibert Louis
+** Last update Sat Jun 27 10:42:08 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int	count_teams(t_server *s)
 {

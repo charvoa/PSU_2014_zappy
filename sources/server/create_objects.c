@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:00:23 2015 Serge Heitzler
-** Last update Fri Jun 26 20:49:49 2015 Serge Heitzler
+** Last update Sat Jun 27 10:56:19 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 void		add_objects(t_block *b, int x, int y)
 {

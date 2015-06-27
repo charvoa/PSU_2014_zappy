@@ -5,10 +5,10 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Thu Jun 25 17:43:31 2015 Serge Heitzler
+** Last update Sat Jun 27 10:42:20 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 void		init_orientation(void (*orientation[4])(t_client *))
 {

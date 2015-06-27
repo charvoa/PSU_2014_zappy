@@ -5,10 +5,10 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 19:57:54 2015 Serge Heitzler
-** Last update Thu May 21 22:07:00 2015 Serge Heitzler
+** Last update Sat Jun 27 10:43:54 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 void		ori_up(t_client *client)
 {
