@@ -5,12 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:20 2015 Serge Heitzler
-** Last update Sat Jun 27 10:57:27 2015 Audibert Louis
+** Last update Sat Jun 27 16:45:05 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-int		cmd_bct(t_server *s, t_client *c, const char *cmd)
+int		cmd_bct(t_server *s, t_client *c,
+			const char *cmd, e_client_type type)
 {
   int		*x;
   int		*y;
@@ -32,6 +33,9 @@ int		cmd_bct(t_server *s, t_client *c, const char *cmd)
   sprintf(final, "bct %d %d %d %d %d %d %d %d %d\n",
 	  *x, *y, b->food, b->limemate, b->deraumere, b->sibur,
 	  b->mendiane, b->phiras, b->thystame);
-  send_data(c->fd, final);
+  if (type == GUI)
+    send_data_to_gui(s->clients, final);
+  else
+    send_data(c->fd, final);
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:46 2015 Serge Heitzler
-** Last update Sat Jun 27 10:50:13 2015 Audibert Louis
+** Last update Sat Jun 27 17:03:18 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -53,8 +53,10 @@ int		get_all_malloc_size(t_server *s)
   return (all_malloc_size);
 }
 
-int		cmd_mct(t_server *s, t_client *c, const char *cmd)
+int		cmd_mct(t_server *s, t_client *c,
+			const char *cmd, e_client_type type)
 {
+  (void)type;
   (void)cmd;
   int		x;
   int	 	y;

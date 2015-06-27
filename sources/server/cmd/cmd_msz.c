@@ -5,19 +5,21 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:01 2015 Serge Heitzler
-** Last update Sat Jun 27 10:50:27 2015 Audibert Louis
+** Last update Sat Jun 27 16:26:49 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-int		cmd_msz(t_server *s, t_client *c, const char *cmd)
+int		cmd_msz(t_server *s, t_client *c,
+			const char *cmd, e_client_type type)
 {
+  (void)type;
   (void)cmd;
   char		*final;
 
-  final = xmalloc(sizeof(char) * (5  + istm((int)s->map->size->width)
+  final = xmalloc(sizeof(char) * (6  + istm((int)s->map->size->width)
 				  + istm((int)s->map->size->height)));
-  memset(final, 0, (5 + istm((int)s->map->size->width)
+  memset(final, 0, (6 + istm((int)s->map->size->width)
 		    + istm((int)s->map->size->height)));
   sprintf(final, "msz %d %d\n", s->map->size->width, s->map->size->height);
   send_data(c->fd, final);

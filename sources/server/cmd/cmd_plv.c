@@ -5,12 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:57 2015 Serge Heitzler
-** Last update Sat Jun 27 10:50:41 2015 Audibert Louis
+** Last update Sat Jun 27 17:27:33 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-int		cmd_plv(t_server *s, t_client *c, const char *cmd)
+int		cmd_plv(t_server *s, t_client *c,
+			const char *cmd, e_client_type type)
 {
   int		*id_targeted;
   char		*final;
@@ -24,6 +25,9 @@ int		cmd_plv(t_server *s, t_client *c, const char *cmd)
   memset(final, 0, (7 + istm(target->fd)
 		    + istm((int)target->level)));
   sprintf(final, "plv #%d %d\n", target->fd, target->level);
-  send_data(c->fd, final);
+  if (type == GUI)
+    send_data_to_gui(s->clients, final);
+  else
+    send_data(c->fd, final);
   return (SUCCESS);
 }

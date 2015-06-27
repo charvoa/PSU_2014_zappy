@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Sat Jun 27 15:25:51 2015 Serge Heitzler
+** Last update Sat Jun 27 17:32:26 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -49,6 +49,7 @@ void	validate_team(t_team *team, t_client *c, char *name)
 int	cmd_team(t_server *s, t_client *c,
 		 const char *cmd, e_client_type type)
 {
+  (void)type;
   char		trame[21];
   char		*name;
   t_team	*team;
@@ -67,9 +68,6 @@ int	cmd_team(t_server *s, t_client *c,
       sprintf(trame, "%d %d\n", s->map->size->width, s->map->size->height);
       send_data(c->fd, trame);
     }
-  if (type == GUI)
-    send_data_to_gui(s->clients, final);
-  else
-    send_data(c->fd, "ko\n");
+  send_data(c->fd, "ko\n");
   return (0);
 }

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:41 2015 Serge Heitzler
-** Last update Sat Jun 27 10:57:06 2015 Audibert Louis
+** Last update Sat Jun 27 16:30:10 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -28,8 +28,9 @@ sibur %d, mendiane %d, phiras %d, thystame %d}\n",
   return (res);
 }
 
-int		cmd_inventory(t_server *s, t_client *c, const char *cmd)
+int		cmd_inventory(t_server *s, t_client *c, const char *cmd, e_client_type type)
 {
+  (void)type;
   (void)cmd;
   (void)s;
   char		*final;
