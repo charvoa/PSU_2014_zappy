@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:03:06 2015 Serge Heitzler
-** Last update Sat Jun 27 10:57:19 2015 Audibert Louis
+** Last update Sat Jun 27 14:25:02 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -26,7 +26,7 @@ int			cmd_advance(t_server *s,
   void			(*advance[5])(t_size *, t_client *);
 
   init_advance(advance);
-  advance[c->orientation](s->map->size, c);
+  advance[c->orientation - 1](s->map->size, c);
   send_data(c->fd, "ok");
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Sat Jun 27 10:50:03 2015 Audibert Louis
+** Last update Sat Jun 27 14:22:13 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -27,11 +27,11 @@ char		*get_trame_deplacement(t_client *c)
 
   x = c->pos->x;
   y = c->pos->y;
-  if (c->orientation == UP)
+  if (c->orientation == NORD)
     y = c->pos->y - 1;
-  else if (c->orientation == RIGHT)
+  else if (c->orientation == EST)
     x = c->pos->x - 1;
-  else if (c->orientation == DOWN)
+  else if (c->orientation == SUD)
     y = c->pos->y + 1;
   else
     x = c->pos->x + 1;

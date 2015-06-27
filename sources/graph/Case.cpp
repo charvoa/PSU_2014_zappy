@@ -5,10 +5,11 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:53 2015 Serge Heitzler
-// Last update Thu Jun 25 20:16:42 2015 Nicolas Girardot
+// Last update Sat Jun 27 14:56:14 2015 Nicolas Girardot
 //
 
 #include "Case.hh"
+#include <iostream>
 
 Case::Case(int limemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int food)
 {
@@ -19,11 +20,41 @@ Case::Case(int limemate, int deraumere, int sibur, int mendiane, int phiras, int
   _phiras = phiras;
   _thystame = thystame;
   _food = food;
+  int tex = rand() % 2;
+  std::cout << tex << std::endl;
+  if (tex == 1)
+    _textureType = GRASS;
+  else
+    _textureType = DIRT;
 }
 
 Case::~Case()
 {
 
+}
+
+int	Case::get(e_type type)
+{
+  if (type == LIMEMATE)
+    return _limemate;
+  if (type == DERAUMERE)
+    return _deraumere;
+  if (type == SIBUR)
+    return _sibur;
+  if (type == MENDIANE)
+    return _mendiane;
+  if (type == PHIRAS)
+    return _phiras;
+  if (type == THYSTAME)
+    return _thystame;
+  if (type == FOOD)
+    return _food;
+  return 0;
+}
+
+int	Case::getType()
+{
+  return this->_textureType;
 }
 
 void	Case::increment(e_type type)

@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sat Jun 27 10:55:56 2015 Audibert Louis
+** Last update Sat Jun 27 14:39:22 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -38,24 +38,6 @@ void	bind_socket(t_server *s, int port)
   xbind(s->listener, (struct sockaddr *)&(s->serveraddr),
 	sizeof(s->serveraddr));
   printf("Server-bind() is OK ...\n");
-}
-
-void	protocole_connexion(t_server *s, int fd)
-{
-  char	*tmp;
-  t_client	*client;
-  int	nb;
-
-  send_data(fd, "BIENVENUE\n");
-  tmp = xmalloc(1024 * sizeof(char));
-  bzero(tmp, 1024);
-  if ((nb = read(fd, tmp, 1024) > 0))
-    {
-      client = get_client_by_id(s->clients, fd);
-      cmd_team(s, client, tmp);
-    }
-  else
-    send_data(fd, "ko\n");
 }
 
 void	accept_server(t_server *s, char **argv)
