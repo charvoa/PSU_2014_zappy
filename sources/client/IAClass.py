@@ -23,9 +23,6 @@ class IAClass():
 
     def run(self, s, p, mess):
         while 1:
-            # if (self.cc.fork_cmd(s, p, mess) == 1):
-            #     if (self.cc.connect_nbr_cmd(s, p, mess) >= 1):
-            #         subprocess.call(['./zappy_ai.py', ''])
             self.cc.voir_cmd(s, p, mess)
             self.cc.inventaire_cmd(s, p, mess)
             self.linemate = self.cc.getLinemate()
@@ -44,12 +41,11 @@ class IAClass():
                 self.cc.droite_cmd(s, p, mess)
             elif (rand == 3):
                 self.cc.prend_cmd(s, p, mess, 'nourriture')
-            elif (rand == 4):
-                self.cc.prend_cmd(s, p, mess, self.rocksTab[randTab])
             elif (rand == 5):
                 if (self.cc.incantation_cmd(s, p, mess) == 1):
                     self.level += 1
             else:
+                self.cc.prend_cmd(s, p, mess, self.rocksTab[randTab])
                 self.cc.avance_cmd(s, p, mess)
             print('Current Level : ', self.getLevel())
 
