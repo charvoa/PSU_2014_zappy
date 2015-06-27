@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 11:26:19 2015 Audibert Louis
-** Last update Fri Jun 26 11:39:59 2015 Audibert Louis
+** Last update Sat Jun 27 10:49:02 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int	block_limemate(t_block *block, e_flag_rock flag)
 {

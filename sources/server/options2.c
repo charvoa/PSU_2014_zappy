@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 14:05:42 2015 Audibert Louis
-** Last update Tue May 19 10:00:26 2015 Audibert Louis
+** Last update Sat Jun 27 10:48:11 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int	opt_width_map(t_server *s)
 {

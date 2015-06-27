@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Fri Jun 26 13:53:41 2015 Antoine Garcia
+** Last update Sat Jun 27 10:50:03 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 static void	cmd_gui_pex(t_client *c, t_list *clients)
 {

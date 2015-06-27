@@ -5,10 +5,10 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:08:42 2015 Serge Heitzler
-** Last update Tue Jun 23 14:18:12 2015 Serge Heitzler
+** Last update Sat Jun 27 10:48:53 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 void		adv_up(t_size *size, t_client *client)
 {

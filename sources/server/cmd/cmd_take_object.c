@@ -5,16 +5,16 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Fri Jun 26 13:22:32 2015 Antoine Garcia
+** Last update Sat Jun 27 10:51:31 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 static void		cmd_gui_pgt(t_client *c, t_list *clients, int type)
 {
   char	*str;
 
-  str = malloc(strlen("pdr # \n") + 50);
+  str = xmalloc(strlen("pdr # \n") + 50);
   sprintf(str, "pdr #%d %d\n", c->fd, type);
   send_data_to_gui(clients, str);
 }

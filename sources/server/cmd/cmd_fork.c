@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Fri Jun 26 16:35:26 2015 Audibert Louis
+** Last update Sat Jun 27 10:49:51 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 static void	cmd_gui_pfk(t_client *c, t_list *clients)
 {

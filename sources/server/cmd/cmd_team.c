@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Fri Jun 26 13:44:36 2015 Audibert Louis
+** Last update Sat Jun 27 10:56:53 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int	is_a_team(t_server *s, char *team)
 {

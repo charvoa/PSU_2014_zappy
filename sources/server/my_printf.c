@@ -5,12 +5,12 @@
 ** Login   <girard_s@epitech.net>
 **
 ** Started on  Tue May  5 14:41:57 2015 Nicolas Girardot
-** Last update Sun May 17 11:39:31 2015 Serge Heitzler
+** Last update Sat Jun 27 10:43:25 2015 Audibert Louis
 */
 
 #include <stdarg.h>
 #include <stdio.h>
-#include "server.h"
+#include "functions.h"
 
 void	my_printf(const char *format, ...)
 {

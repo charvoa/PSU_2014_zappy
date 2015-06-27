@@ -5,21 +5,21 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Fri Jun 26 13:31:57 2015 Serge Heitzler
+** Last update Sat Jun 27 11:11:44 2015 Serge Heitzler
 */
 
-#include "server.h"
+#include "functions.h"
 
 t_objects	g_objects[8] =
   {
-    {"food", &create_food},
+    {"food", NULL},
     {"player", NULL},
-    {"limemate", &create_rock},
-    {"deraumere", &create_rock},
-    {"sibur", &create_rock},
-    {"mendiane", &create_rock},
-    {"phiras", &create_rock},
-    {"thystame", &create_rock}
+    {"limemate", NULL},
+    {"deraumere", NULL},
+    {"sibur", NULL},
+    {"mendiane", NULL},
+    {"phiras", NULL},
+    {"thystame", NULL}
   };
 
 int		*get_nb_items(t_block *block)
@@ -44,7 +44,7 @@ int		get_last_wrote(int *nb_items)
 
   i = 7;
   while (i >= 0 && nb_items[i] == 0)
-    i++;
+    i--;
   return (i);
 }
 
@@ -54,8 +54,8 @@ char		*fill_final_string(int size_malloc, int *nb_items)
   char		*final;
 
   i = -1;
-  final = xmalloc(sizeof(char) * (size_malloc));
-  memset(final, 0, size_malloc);
+  final = xmalloc(sizeof(char) * (size_malloc + 1));
+  memset(final, 0, size_malloc + 1);
   while (++i <= get_last_wrote(nb_items))
     {
       if (nb_items[i] > 0)
@@ -90,9 +90,13 @@ int		get_size_malloc_at_position(t_server* s, int x, int y)
   while (i < 8)
     {
       if (nb_items[i] > 0 && i == get_last_wrote(nb_items))
-	size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 1);
+	{
+	  size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 1);
+	}
       else if (nb_items[i] > 0)
-	size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 2);
+	{
+	  size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 2);
+	}
       i++;
     }
   return (size_malloc);
@@ -105,6 +109,7 @@ char		*show_items_at_position(t_server * s, int x, int y)
   t_block	*block;
   char		*final;
 
+  block = xmalloc(sizeof(t_block));
   block = s->map->objects[y][x];
   nb_items = get_nb_items(block);
   size_malloc = get_size_malloc_at_position(s, x, y);

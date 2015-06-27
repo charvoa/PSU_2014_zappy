@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Fri Jun 26 16:36:44 2015 Audibert Louis
+** Last update Sat Jun 27 10:48:56 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int	*add_id(t_block *block, int id)
 {

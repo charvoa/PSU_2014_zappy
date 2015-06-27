@@ -5,10 +5,10 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Fri Jun 26 16:40:52 2015 Audibert Louis
+** Last update Sat Jun 27 10:55:56 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 void	init_socket(t_server *s)
 {
@@ -106,7 +106,7 @@ void		read_write_server(t_server *s, int i, char **argv)
       ring_buffer_write(c->buffer, tmp, strlen(tmp));
       s->i = i;
       prepare_for_exec(s, c);
-      /* exec_cmd(s, c); */
+      check_exec(s);
     }
   free(tmp);
   /* free(c->team_name); */

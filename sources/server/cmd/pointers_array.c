@@ -5,12 +5,12 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Fri Jun 26 12:09:03 2015 Serge Heitzler
+** Last update Sat Jun 27 10:56:35 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
-t_cmds	g_cmds[21] =
+t_cmds	g_cmds[22] =
   {
     {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},
@@ -33,6 +33,7 @@ t_cmds	g_cmds[21] =
     {"ppo", &cmd_ppo, 0},
     {"plv", &cmd_plv, 0},
     {"pin", &cmd_pin, 0},
+    {"connect_nbr", &cmd_connect_nbr, 7},
   };
 
 int		is_cmd(const char *cmd)
@@ -40,7 +41,7 @@ int		is_cmd(const char *cmd)
   int	i;
 
   i = 0;
-  while (i < 21)
+  while (i < 22)
     {
       if (!strncmp(g_cmds[i].name, cmd, strlen(g_cmds[i].name)))
 	return (i);

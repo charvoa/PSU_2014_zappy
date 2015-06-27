@@ -5,11 +5,11 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:34:34 2015 Audibert Louis
-** Last update Wed Jun 24 09:28:41 2015 Audibert Louis
+** Last update Sat Jun 27 10:43:42 2015 Audibert Louis
 */
 
 #include <ctype.h>
-#include "server.h"
+#include "functions.h"
 
 int	is_number(char *str)
 {

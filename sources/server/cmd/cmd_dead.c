@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:16 2015 Serge Heitzler
-** Last update Tue Jun 23 20:12:33 2015 Serge Heitzler
+** Last update Sat Jun 27 10:49:41 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		cmd_dead(t_server *s, t_client *c, const char *cmd)
 {

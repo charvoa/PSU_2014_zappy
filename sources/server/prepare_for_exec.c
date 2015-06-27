@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:46 2015 Serge Heitzler
-** Last update Fri Jun 26 13:43:05 2015 Serge Heitzler
+** Last update Sat Jun 27 11:11:31 2015 Serge Heitzler
 */
 
-#include "server.h"
+#include "functions.h"
 
 static void	check_client_type(const char *cmd, t_client *c)
 {
@@ -18,23 +18,34 @@ static void	check_client_type(const char *cmd, t_client *c)
 
 void		prepare_for_exec(t_server *s, t_client *c)
 {
-  t_cmd		*s_cmd;
-
   (void)s;
+  int			ret;
+  t_cmd			*s_cmd;
+
+  clock_gettime(CLOCK_REALTIME, &s->now);
+  if (c->cmds->length >= 10)
+    {
+      send_data(c->fd, "Cmd list is too long !\n");
+      return;
+    }
+
   s_cmd = xmalloc(sizeof(t_cmd));
   s_cmd->label = ring_buffer_get_next_command(c->buffer);
   check_client_type(s_cmd->label, c);
+
+
   if (s_cmd->label == NULL)
     return;
-  
 
-  // getcurrentime(server);
+  (void)ret;
+  /* if (ret = (is_cmd(s_cmd->label)) != NO) */
+  /*   g_cmds[ret].delay; */
+  // INIT Obligatoire de exec_at pour éviter erreur valgrind
+  clock_gettime(CLOCK_REALTIME, &s_cmd->exec_at);
 
-  
+  //  now.tv_sec;  /* seconds */
+  //  now.tv_usec; /* nanoseconds divide by 1000 to get microseconds*/  
 
-  if (c->cmds->length < 10)
-    push_back(c->cmds, s_cmd, CMD);
-  else
-    send_data(c->fd, "Cmd list is too long !\n");
+  push_back(c->cmds, s_cmd, CMD);
   printf("CMD == %s\n", s_cmd->label);
 }

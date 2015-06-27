@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:50 2015 Serge Heitzler
-** Last update Thu Jun 25 00:12:50 2015 Antoine Garcia
+** Last update Sat Jun 27 10:50:25 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		cmd_pin(t_server *s, t_client *c, const char *cmd)
 {
