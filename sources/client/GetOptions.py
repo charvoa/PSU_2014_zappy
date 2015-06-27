@@ -8,33 +8,40 @@ class GetOptions(object):
     """ Get the arguments and get the value of the arguments """
 
     def __init__(self):
-        self.verbose = False
         self.name = 'Team'
         self.name += str(random.randint(1,10))
         self.port = '4242'
         self.host = 'localhost'
+        self.verbose = False
         self.dbg = False
+
+
+    def usage(self):
+        print(sys.argv[0], '[-n [TEAM NAME]] [-h [HOST]] [-p [PORT]] [[-v, --verbose], [-d, --dbg]]')
 
     def parseOpt(self):
         #print('ARGV :', sys.argv[1:])
-        options, remainder = getopt.getopt(sys.argv[1:], 'n:p:h:v:d', ['name=',
-                                                                       'port=',
-                                                                       'host=',
-                                                                       'verbose',
-                                                                       'dbg'
-                                                                   ])
-        #print('OPTIONS :', options)
-        for opt, arg in options:
-            if opt in ('-n', '--name'):
-                self.name = arg
-            elif opt in ('-p', '--port'):
-                self.port = arg
-            elif opt in ('-h', '--host'):
-                self.host = arg
-            elif opt in ('-v', '--verbose'):
+        try:
+            opts, args = getopt.getopt(sys.argv[1:], "n:p:h:vd", ["name=", "port=", "host="
+                                                                , "verbose", "dbg"])
+        except getopt.GetoptError as err:
+            # print help information and exit:
+            print(str(err)) # will print something like "option -a not recognized"
+            self.usage()
+            sys.exit(2)
+        for o, a in opts:
+            if o in ("-v", "--verbose"):
                 self.verbose = True
-            elif opt in ('-d', '--dbg'):
+            elif o in ("-n", "--name"):
+                self.name = a
+            elif o in ("-p", "--port"):
+                self.port = a
+            elif o in ("-h", "--host"):
+                self.host = a
+            elif o in ("-d", "--dbg"):
                 self.dbg = True
+            else:
+                assert False, "unhandled option"
         print('NAME :', self.name)
         print('PORT :', self.port)
         print('HOST :', self.host)

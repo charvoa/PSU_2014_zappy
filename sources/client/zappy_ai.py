@@ -120,7 +120,7 @@ def main():
 
     except ConnectionRefusedError:
         print('Exception : The server has refused the connection')
-    except getopt.GetoptError:
+    #except getopt.GetoptError:
         print('Usage : client.py [-n [NAME]] [-h [HOST]] [-p [PORT]] [--dbg]')
     except ConnectionResetError:
         print('The server has shutdown')

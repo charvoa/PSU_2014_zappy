@@ -1,11 +1,11 @@
 //
 // IACharacter.cpp for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/graph
-// 
+//
 // Made by Serge Heitzler
 // Login   <sergeheitzler@epitech.net>
-// 
+//
 // Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
-// Last update Thu Jun 25 17:28:31 2015 Serge Heitzler
+// Last update Sat Jun 27 14:02:11 2015 Nicolas Girardot
 //
 
 #include "IACharacter.hh"

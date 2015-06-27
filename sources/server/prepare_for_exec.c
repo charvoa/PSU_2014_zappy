@@ -5,15 +5,19 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:46 2015 Serge Heitzler
-** Last update Sat Jun 27 14:20:42 2015 Serge Heitzler
+** Last update Sat Jun 27 15:13:17 2015 Audibert Louis
 */
 
 #include "functions.h"
 
-static void	check_client_type(const char *cmd, t_client *c)
+static int	check_client_type(const char *cmd, t_client *c)
 {
   if (!strcmp(cmd, "GRAPHIC\r\n"))
-    c->type = GUI;
+    {
+      c->type = GUI;
+      return (0);
+    }
+  return (-1);
 }
 
 void		prepare_for_exec(t_server *s, t_client *c)
@@ -31,8 +35,8 @@ void		prepare_for_exec(t_server *s, t_client *c)
 
   s_cmd = xmalloc(sizeof(t_cmd));
   s_cmd->label = ring_buffer_get_next_command(c->buffer);
-  check_client_type(s_cmd->label, c);
-
+  if (check_client_type(s_cmd->label, c) == 0)
+    protocole_graphique(s, c);
 
   if (s_cmd->label == NULL)
     return;

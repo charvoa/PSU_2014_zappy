@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jun 25 20:11:03 2015 Nicolas Girardot
+// Last update Sat Jun 27 14:33:17 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -13,6 +13,7 @@
 
 GameEngine::GameEngine() {
   _gMap = NULL;
+  _focus = new Position(10, 10);
 }
 
 GameEngine::~GameEngine() {
@@ -68,6 +69,30 @@ bool	GameEngine::update()
 	    case SDLK_ESCAPE:
 	      return false;
 	      break;
+	    case SDLK_UP:
+	      if (_focus->_y <= 0)
+		_focus->_y = _gMap->getHeight() - 1;
+	      else
+		_focus->_y -= 1;
+	      break;
+	    case SDLK_DOWN:
+	      if (_focus->_y >= _gMap->getHeight() - 1)
+		_focus->_y = 0;
+	      else
+		_focus->_y += 1;
+	      break;
+	    case SDLK_RIGHT:
+	      if (_focus->_x >= _gMap->getWidth() - 1)
+		_focus->_x = 0;
+	      else
+		_focus->_x += 1;
+	      break;
+	    case SDLK_LEFT:
+	      if (_focus->_x <= 0)
+		_focus->_x = _gMap->getWidth() - 1;
+	      else
+		_focus->_x -= 1;
+	      break;
 	    default:
 	      break;
 	    }
@@ -89,14 +114,23 @@ void	GameEngine::createMap(std::vector<std::string> &parse)
   int	y;
   std::string strx;
   std::string stry;
+  std::vector<Case *> tmp;
 
   strx = parse.at(0);
   stry = parse.at(1);
   x = stoi(strx);
   y = stoi(stry);
-  std::cout << "MAP IS x = " << x << "::: Y = " << y << std::endl;
+  for (int ybis = 0; ybis <= y - 1; ybis++)
+    {
+      for (int xbis = 0; xbis <= x - 1; xbis++)
+	{
+	  tmp.push_back(new Case(0, 0, 0, 0, 0, 0, 0));
+	}
+      _cases.push_back(tmp);
+      tmp.clear();
+    }
   if (this)
-    _gMap = new GraphMap(x, y);
+    _gMap = new GraphMap(x, y, _renderer);
 }
 
 void	GameEngine::setLocked()
@@ -104,13 +138,14 @@ void	GameEngine::setLocked()
   int	a;
   int	b;
   SDL_GetMouseState(&a, &b);
-  std::cout << "click" << std::endl;
   Position pos(a, b);
-  std::pair<int, int> pair(6, 6);
   if (isEventOnMap(a, b) == true)
     {
-      _hud->updateLocked(determinePosClicked(pair, a, b));
-      _gMap->setLocked(determinePosClickedOnGUI(a, b));
+      std::pair<int, int> posfocus(_focus->_x, _focus->_y);
+      std::pair<int, int> pai = determinePosClicked(posfocus, a, b);
+      _hud->updateLocked(pai.first, pai.second, _cases.at(pai.second).at(pai.first));
+      pai = determinePosClickedOnGUI(a, b);
+      _gMap->setLocked(pai.first, pai.second);
     }
 }
 
@@ -122,36 +157,30 @@ void	GameEngine::getMousePos()
   if ((a - 150) / 100 == _mousePos._x && (b - 150) / 100 == _mousePos._y);
   else
     {
-      std::cout << "test" << std::endl;
         if (isEventOnMap(a, b) == true)
 	  {
-	    Position current((a - 150) / 100, (b - 150) / 100);
-	    _mousePos = current;
-	    _hud->updateCase(_mousePos);
+	    std::pair<int, int> posfocus(_focus->_x, _focus->_y);
+	    std::pair<int, int> pai = determinePosClicked(posfocus, a, b);
+	    if (pai.first >= _gMap->getWidth() || pai.second >= _gMap->getHeight());
+	    else
+	      {
+		Position current(pai.first, pai.second);
+		_mousePos = current;
+		_hud->updateCase(_mousePos);
+	      }
 	  }
     }
 }
 
 void	GameEngine::setCase(std::vector<std::string> &content)
 {
-  Case new_case(stoi(content.at(3)),
-  		stoi(content.at(4)),
-  		stoi(content.at(5)),
-  		stoi(content.at(6)),
-  		stoi(content.at(7)),
-  		stoi(content.at(8)),
-  		stoi(content.at(2)));
-  if (_cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))] != NULL)
-    _cases[std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1)))]->setAll(stoi(content.at(3)),
-										 stoi(content.at(4)),
-										 stoi(content.at(5)),
-										 stoi(content.at(6)),
-										 stoi(content.at(7)),
-										 stoi(content.at(8)),
-										 stoi(content.at(2)));
-  else
-    _cases.insert(std::pair<std::pair<int, int>, Case *>(std::pair<int, int>(stoi(content.at(0)), stoi(content.at(1))), &new_case));
-
+  _cases.at(stoi(content.at(1))).at(stoi(content.at(0)))->setAll(stoi(content.at(3)),
+								 stoi(content.at(4)),
+								 stoi(content.at(5)),
+								 stoi(content.at(6)),
+								 stoi(content.at(7)),
+								 stoi(content.at(8)),
+								 stoi(content.at(2)));
 }
 
 void	GameEngine::draw()
@@ -160,7 +189,7 @@ void	GameEngine::draw()
   SDL_RenderClear(_renderer);
   _hud->draw(_renderer);
   if (_gMap != NULL)
-    _gMap->draw(_renderer, _mousePos);
+    _gMap->draw(_renderer, _mousePos, *_focus, _cases);
   SDL_RenderPresent(_renderer);
 }
 
@@ -180,7 +209,7 @@ bool		GameEngine::isEventOnMap(int xClick, int yClick)
   return true;
 }
 
-Position	&GameEngine::determinePosClicked(std::pair<int,int> & center, int xClick, int yClick)
+std::pair<int, int> GameEngine::determinePosClicked(std::pair<int,int> & center, int xClick, int yClick)
 {
   int x;
   int y;
@@ -189,23 +218,21 @@ Position	&GameEngine::determinePosClicked(std::pair<int,int> & center, int xClic
 
   posX = (xClick - 150) / (700 / 7);
   posY = (yClick - 150) / (700 / 7);
-  x = (center.first - 6 + posX) % _gMap->getWidth();
-  y = (center.second - 6 + posY) % _gMap->getHeight();
+  x = (center.first - 3 + posX) % _gMap->getWidth();
+  y = (center.second - 3 + posY) % _gMap->getHeight();
   if (x < 0)
     x = _gMap->getWidth() + x;
   if (y < 0)
     y = _gMap->getHeight() + y;
 
-  Position pos(x, y);
-  return (pos);
+  return (std::pair<int, int>(x, y));
 }
 
-Position	&GameEngine::determinePosClickedOnGUI(int xClick, int yClick)
+std::pair<int , int> GameEngine::determinePosClickedOnGUI(int xClick, int yClick)
 {
   int posX;
   int posY;
   posX = (xClick - 150) / (700 / 7);
   posY = (yClick - 150) / (700 / 7);
-  Position pos(posX, posY);
-  return (pos);
+  return (std::pair<int, int>(posX, posY));
 }

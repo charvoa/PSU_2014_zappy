@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jun 27 11:24:09 2015 Audibert Louis
+** Last update Sat Jun 27 15:22:24 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -67,6 +67,10 @@ int		opt_verbose(t_server *s);
 
 /* Function(s) in file prepare_for_exec.c */
 void		prepare_for_exec(t_server *s, t_client *c);
+
+/* Function(s) in file protocole_connexion.c */
+void		protocole_graphique(t_server *s, t_client *c);
+void		protocole_connexion(t_server *s, int fd);
 
 /* Function(s) in file rand_orientations.c */
 void		ori_up(t_client *client);
@@ -134,93 +138,93 @@ int		block_thystame(t_block *block, e_flag_rock flag);
 
 /* Function(s) in file cmd_advance.c */
 void		init_advance(void (*advance[4])(t_size *, t_client *));
-int		cmd_advance(t_server *s, t_client *c, const char *cmd);
+int		cmd_advance(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_bct.c */
-int		cmd_bct(t_server *s, t_client *c, const char *cmd);
+int		cmd_bct(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_broadcast.c */
 char		*get_trame_broadcast(t_client *c, char *text);
 void		get_text(char *text, const char *cmd);
-int		cmd_broadcast(t_server *s, t_client *c, const char *cmd);
+int		cmd_broadcast(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_connect_nbr.c */
-int		cmd_connect_nbr(t_server *s, t_client *c, const char *cmd);
+int		cmd_connect_nbr(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_dead.c */
-int		cmd_dead(t_server *s, t_client *c, const char *cmd);
+int		cmd_dead(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_drop_object.c */
 int		launch_func_inventory(t_client *c, int rock, e_flag_rock flag);
 int		drop_rock(t_server *s, t_client *c, char *item);
 int		drop_food(t_server *s, t_client *c);
-int		cmd_drop_object(t_server *s, t_client *c, const char *cmd);
+int		cmd_drop_object(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_fork.c */
-int		cmd_fork(t_server *s, t_client *c, const char *cmd);
+int		cmd_fork(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_incantation.c */
-int		cmd_incantation(t_server *s, t_client *c, const char *cmd);
+int		cmd_incantation(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_inventory.c */
 char		*get_objects_from_inventory(t_inventory *i);
-int		cmd_inventory(t_server *s, t_client *c, const char *cmd);
+int		cmd_inventory(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_kick.c */
 char		*get_trame_deplacement(t_client *c);
-int		cmd_kick(t_server *s, t_client *c, const char *cmd);
+int		cmd_kick(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_left.c */
-int		cmd_left(t_server *s, t_client *c, const char *cmd);
+int		cmd_left(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_mct.c */
 int		number_of_busy_space(t_server *s);
 int		get_all_malloc_size(t_server *s);
-int		cmd_mct(t_server *s, t_client *c, const char *cmd);
+int		cmd_mct(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_msz.c */
-int		cmd_msz(t_server *s, t_client *c, const char *cmd);
+int		cmd_msz(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_plv.c */
-int		cmd_plv(t_server *s, t_client *c, const char *cmd);
+int		cmd_plv(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_pin.c */
-int		cmd_pin(t_server *s, t_client *c, const char *cmd);
+int		cmd_pin(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_ppo.c */
-int		cmd_ppo(t_server *s, t_client *c, const char *cmd);
+int		cmd_ppo(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_right.c */
-int		cmd_right(t_server *s, t_client *c, const char *cmd);
+int		cmd_right(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_sgt.c */
-int		cmd_sgt(t_server *s, t_client *c, const char *cmd);
+int		cmd_sgt(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_sst.c */
-int		cmd_sst(t_server *s, t_client *c, const char *cmd);
+int		cmd_sst(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_take_object.c */
 int		check_rock(char *rock);
 int		launch_func_block(t_block *block, int rock_type, e_flag_rock flag);
 int		take_rock(t_server *s, t_client *c, char *item);
 int		take_food(t_server *s, t_client *c);
-int		cmd_take_object(t_server *s, t_client *c, const char *cmd);
+int		cmd_take_object(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_team.c */
 int		is_a_team(t_server *s, char *team);
 void		validate_team(t_team *team, t_client *c, char *name);
-int		cmd_team(t_server *s, t_client *c, const char *cmd);
+int		cmd_team(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_tna.c */
 char		*get_all_teams_in_str(t_server *s);
-int		cmd_tna(t_server *s, t_client *c, const char *cmd);
+int		cmd_tna(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_view.c */
 int		get_number_of_visible_space(unsigned int level);
 char		**write_pos_in_array(t_server *s, t_client *c, int i, int l);
 char		**get_pos_of_visible_space(t_server *s, t_client *c);
 char		*create_final_string_view(t_server *s, t_client *c, int, char **);
-int		cmd_view(t_server *s, t_client *c, const char *cmd);
+int		cmd_view(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file determine_pos.c */
 int		determine_pos_x(t_client *c, t_size *size, int t, int l);

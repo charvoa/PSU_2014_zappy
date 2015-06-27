@@ -5,10 +5,20 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jun 27 16:13:07 2015 Serge Heitzler
+** Last update Sat Jun 27 16:17:23 2015 Serge Heitzler
 */
 
 #include "functions.h"
+
+static void	cmd_gui_connexion(t_client *c, t_list *clients)
+{
+  char	*str;
+
+  str = xmalloc((strlen("pnw # \n") + 50) * sizeof(char));
+  sprintf(str, "pnw #%d %d %d %d %d\n", c->fd, c->pos->x,
+	  c->pos->y, c->orientation, c->level);
+  send_data_to_gui(clients, str);
+}
 
 void		init_orientation(void (*orientation[4])(t_client *))
 {
@@ -51,5 +61,6 @@ int		create_client(t_server *s, int fd,
   orientation[rand() % 4](c);
   push_back(s->clients, c, PLAYER);
   cmd_pnw(s, c, NULL, GUI);
+  cmd_gui_connexion(c, s->clients);
   return (SUCCESS);
 }
