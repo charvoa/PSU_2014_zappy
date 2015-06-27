@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Sat Jun 27 17:37:44 2015 Audibert Louis
+** Last update Sat Jun 27 18:14:10 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -62,6 +62,7 @@ int		drop_rock(t_server *s, t_client *c, char *item)
 
 int		drop_food(t_server *s, t_client *c)
 {
+  printf("drop %d\n", s->map->objects[c->pos->y][c->pos->x]->food);
   if (c->inventory->food <= 0)
     return (ERROR);
   c->inventory->food--;
@@ -79,7 +80,7 @@ int		cmd_drop_object(t_server *s, t_client *c,
   item = xmalloc((strlen(cmd) - 4) * sizeof(char));
   bzero(item, strlen(cmd) - 4);
   sscanf(cmd, "pose %s", item);
-  if (strcmp(item, "food") == 0)
+  if (strcmp(item, "nourriture") == 0)
     {
       if (drop_food(s, c) == ERROR)
 	{

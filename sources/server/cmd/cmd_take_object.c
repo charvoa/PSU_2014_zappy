@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sat Jun 27 17:36:54 2015 Audibert Louis
+** Last update Sat Jun 27 18:13:55 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -82,6 +82,7 @@ int		take_rock(t_server *s, t_client *c, char *item)
 
 int		take_food(t_server *s, t_client *c)
 {
+  printf("take %d\n", s->map->objects[c->pos->y][c->pos->x]->food);
   if (s->map->objects[c->pos->y][c->pos->x]->food == 0)
     return (ERROR);
   s->map->objects[c->pos->y][c->pos->x]->food--;
@@ -99,7 +100,7 @@ int		cmd_take_object(t_server *s, t_client *c,
   item = xmalloc((strlen(cmd) - 7) * sizeof(char));
   bzero(item, strlen(cmd) - 7);
   sscanf(cmd, "prend %s", item);
-  if (strcmp(item, "food") == 0)
+  if (strcmp(item, "nourriture") == 0)
     {
       if (take_food(s, c) == ERROR)
 	{
