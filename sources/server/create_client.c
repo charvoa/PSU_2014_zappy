@@ -5,20 +5,10 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jun 27 18:43:06 2015 Serge Heitzler
+** Last update Sat Jun 27 21:26:55 2015 Serge Heitzler
 */
 
 #include "functions.h"
-
-static void	cmd_gui_connexion(t_client *c, t_list *clients)
-{
-  char	*str;
-
-  str = xmalloc((strlen("pnw # \n") + 50) * sizeof(char));
-  sprintf(str, "pnw #%d %d %d %d %d\n", c->fd, c->pos->x,
-	  c->pos->y, c->orientation, c->level);
-  send_data_to_gui(clients, str);
-}
 
 void		init_orientation(void (*orientation[4])(t_client *))
 {
@@ -39,28 +29,18 @@ void		init_inventory(t_client *c)
   c->inventory->thystame = 0;
 }
 
-int		create_client(t_server *s, int fd,
-			      char *team_name, t_size *size)
+int		create_client(t_server *s, int fd)
 {
-  void(*orientation[4])(t_client *);
   t_client	*c;
 
-  init_orientation(orientation);
   c = xmalloc(sizeof(t_client));
-  c->pos = xmalloc(sizeof(t_position));
   c->fd = fd;
-  c->level = 1;
+  c->pos = xmalloc(sizeof(t_position));
   c->type = IA;
-  c->team_name = strdup(team_name);
-  c->pos->x = rand() % size->width;
-  c->pos->y = rand() % size->height;
-  printf("GENERATED in x: %d | y : %d\n", c->pos->x, c->pos->y);
+  c->team_name = strdup("DEFAULT");
   c->inventory = xmalloc(sizeof(t_client));
-  init_inventory(c);
   c->cmds = create_list();
   c->buffer = ring_buffer_create(1024);
-  orientation[rand() % 4](c);
   push_back(s->clients, c, PLAYER);
-  cmd_gui_connexion(c, s->clients);
   return (SUCCESS);
 }

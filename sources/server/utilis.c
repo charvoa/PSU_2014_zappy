@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sat Jun 27 14:39:22 2015 Audibert Louis
+** Last update Sat Jun 27 21:15:56 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -56,8 +56,7 @@ void	accept_server(t_server *s, char **argv)
 	  s->fdmax = s->newfd;
 	  g_fdmax = s->fdmax;
 	}
-      create_client(s, s->newfd,
-		    "default_team_name", s->map->size);
+      create_client(s, s->newfd);
       printf("New connection from %s on socket %d\n",
 	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
       protocole_connexion(s, s->newfd);

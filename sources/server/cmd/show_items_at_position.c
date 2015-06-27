@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Sat Jun 27 17:35:21 2015 Audibert Louis
+** Last update Sat Jun 27 20:49:57 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -63,7 +63,7 @@ char		*fill_final_string(int size_malloc, int *nb_items)
 	  if (i == get_last_wrote(nb_items))
 	    {
 	      strcat(final, g_objects[i].label);
-	      sprintf(final, "%s %d\n", final, nb_items[i]);
+	      sprintf(final, "%s %d", final, nb_items[i]);
 	    }
 	  else
 	    {

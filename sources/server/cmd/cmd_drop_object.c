@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Sat Jun 27 18:14:10 2015 Serge Heitzler
+** Last update Sat Jun 27 20:43:01 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -15,7 +15,7 @@ static void		cmd_gui_pdr(t_client *c, t_list *clients, int type)
   int			size_malloc;
   char	*str;
 
-  size_malloc = (7 + istm(c->fd) + istm(type));
+  size_malloc = (8 + istm(c->fd) + istm(type));
   str = xmalloc(sizeof(char) * size_malloc);
   bzero(str, size_malloc);
   sprintf(str, "pdr #%d %d\n", c->fd, type);

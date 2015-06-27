@@ -5,13 +5,14 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Sat Jun 27 10:56:35 2015 Audibert Louis
+** Last update Sat Jun 27 21:28:31 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-t_cmds	g_cmds[22] =
+t_cmds	g_cmds[23] =
   {
+    {"GRAPHIC", &cmd_graphic, 0},
     {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},
     {"droite", &cmd_right, 7},
@@ -41,7 +42,7 @@ int		is_cmd(const char *cmd)
   int	i;
 
   i = 0;
-  while (i < 22)
+  while (i < 23)
     {
       if (!strncmp(g_cmds[i].name, cmd, strlen(g_cmds[i].name)))
 	return (i);

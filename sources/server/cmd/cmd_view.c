@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Sat Jun 27 18:28:59 2015 Serge Heitzler
+** Last update Sat Jun 27 20:47:50 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -79,7 +79,7 @@ char		*create_final_string_view(t_server *s, t_client *c,
   int		i;
 
   i = 0;
-  size_malloc += 2;
+  size_malloc += 3;
   final = xmalloc(sizeof(char) * (size_malloc));
   bzero(final, size_malloc);
   x = xmalloc(sizeof(int));

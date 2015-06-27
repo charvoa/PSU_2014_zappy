@@ -5,16 +5,18 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sat Jun 27 18:13:55 2015 Serge Heitzler
+** Last update Sat Jun 27 20:45:28 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 static void		cmd_gui_pgt(t_client *c, t_list *clients, int type)
 {
-  char	*str;
+  int			size_malloc;
+  char			*str;
 
-  str = xmalloc(strlen("pdr # \n") + 50);
+  size_malloc = (8 + istm(c->fd) + istm(type));
+  str = xmalloc(sizeof(char) * size_malloc);
   sprintf(str, "pdr #%d %d\n", c->fd, type);
   send_data_to_gui(clients, str);
 }
@@ -97,8 +99,8 @@ int		cmd_take_object(t_server *s, t_client *c,
   (void)type;
   char		*item;
 
-  item = xmalloc((strlen(cmd) - 7) * sizeof(char));
-  bzero(item, strlen(cmd) - 7);
+  item = xmalloc((strlen(cmd) - 5) * sizeof(char));
+  bzero(item, strlen(cmd) - 5);
   sscanf(cmd, "prend %s", item);
   if (strcmp(item, "nourriture") == 0)
     {

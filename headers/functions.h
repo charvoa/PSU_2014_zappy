@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jun 27 17:38:47 2015 Audibert Louis
+** Last update Sat Jun 27 22:07:43 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -25,7 +25,7 @@ int		count_teams(t_server *s);
 /* Function(s) in file create_client.c */
 void		init_orientation(void (*orientation[4])(t_client *));
 void		init_inventory(t_client *c);
-int		create_client(t_server *, int, char *, t_size *);
+int		create_client(t_server *, int);
 
 /* Function(s) in file create_cmd.c */
 t_cmd		*create_cmd(const char *cmd);
@@ -166,6 +166,9 @@ int		cmd_drop_object(t_server *s, t_client *c, const char *cmd, e_client_type ty
 /* Function(s) in file cmd_fork.c */
 int		cmd_fork(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
+/* Function(s) in file cmd_graphic.c */
+int		cmd_graphic(t_server *s, t_client *c, const char *cmd, e_client_type type);
+
 /* Function(s) in file cmd_incantation.c */
 int		cmd_incantation(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
@@ -196,6 +199,7 @@ int		cmd_pin(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_pnw.c */
 int		cmd_pnw(t_server *s, t_client *c, const char *cmd, e_client_type type);
+int		cmd_pnw_all(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_ppo.c */
 int		cmd_ppo(t_server *s, t_client *c, const char *cmd, e_client_type type);
@@ -218,7 +222,7 @@ int		cmd_take_object(t_server *s, t_client *c, const char *cmd, e_client_type ty
 
 /* Function(s) in file cmd_team.c */
 int		is_a_team(t_server *s, char *team);
-void		validate_team(t_team *team, t_client *c, char *name);
+void		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
 int		cmd_team(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_tna.c */

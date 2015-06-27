@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Sat Jun 27 18:43:38 2015 Serge Heitzler
+** Last update Sat Jun 27 22:18:02 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -34,15 +34,23 @@ int	is_a_team(t_server *s, char *team)
   return (-1);
 }
 
-void	validate_team(t_team *team, t_client *c, char *name)
+void	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
 {
+  void(*orientation[4])(t_client *);
   char		trame[21];
 
-  sprintf(trame, "%d", team->slot_rest);
+  init_orientation(orientation);
+  c->type = IA;
+  c->level = 1;
+  c->pos->x = rand() % s->map->size->width;
+  c->pos->y = rand() % s->map->size->height;
+  init_inventory(c);
+  orientation[rand() % 4](c);
+  sprintf(trame, "%d", t->slot_rest);
   send_data(c->fd, trame);
-  bzero(c->team_name, strlen(name));
-  c->team_name = strdup(name);
-  team->slot_rest--;
+  bzero(c->team_name, strlen(n));
+  c->team_name = strdup(n);
+  t->slot_rest--;
   send_data(c->fd, "ok\n");
 }
 
@@ -62,15 +70,17 @@ int	cmd_team(t_server *s, t_client *c,
       team = get_team_by_name(s->teams, name);
       if (team->slot_rest >= 1)
 	{
-	  validate_team(team, c, name);
-	  cmd_pnw(s, c, NULL, GUI);
+	  fill_ia_client(s, c, team, name);
+	  cmd_pnw(s, c, NULL, NORMAL);
 	}
       else
 	send_data(c->fd, "NO_SLOT_REST\r\n");
       bzero(trame, 21);
       sprintf(trame, "%d %d\n", s->map->size->width, s->map->size->height);
+      printf("TRAM %s\n", trame);
       send_data(c->fd, trame);
     }
-  send_data(c->fd, "ko\n");
+  else
+    send_data(c->fd, "ko\n");
   return (0);
 }
