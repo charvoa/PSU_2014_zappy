@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:50 2015 Serge Heitzler
-** Last update Sat Jun 27 17:31:37 2015 Serge Heitzler
+** Last update Sat Jun 27 17:43:06 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -23,16 +23,18 @@ int		cmd_pin(t_server *s, t_client *c,
     id_targeted = c->fd;
   else
     sscanf(cmd, "pin #%d", id_targeted);
-  target = get_client_by_id(s->clients, *id_targeted);
+  t = get_client_by_id(s->clients, *id_targeted);
   size_malloc = (15 + istm(t->fd) + istm((int)t->pos->x) + istm((int)t->pos->y)
-		 + istm(t->food) + istm(t->linemate) + istm(t->deraumere)
-		 + istm(t->sibur) + istm(t->mendiane) + istm(t->phiras)
-		 + istm(t->thystame));
+		 + istm(t->inventory->food) + istm(t->inventory->linemate)
+		 + istm(t->inventory->deraumere) + istm(t->inventory->sibur)
+		 + istm(t->inventory->mendiane) + istm(t->inventory->phiras)
+		 + istm(t->inventory->thystame));
   final = xmalloc(sizeof(char) * size_malloc);
   memset(final, 0, size_malloc);
   sprintf(final, "pin #%d %d %d %d %d %d %d %d %d %d\n", t->fd, t->pos->x,
-	  t->pos->y, t->food, t->linemate, t->deraumere, t->sibur,
-	  t->mendiane, t->phiras, t->thystame);
+	  t->pos->y, t->inventory->food, t->inventory->linemate,
+	  t->inventory->deraumere, t->inventory->sibur,
+	  t->inventory->mendiane, t->inventory->phiras, t->inventory->thystame);
   if (type == GUI)
     send_data_to_gui(s->clients, final);
   else
