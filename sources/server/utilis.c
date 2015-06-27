@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sat Jun 27 21:15:56 2015 Serge Heitzler
+** Last update Sun Jun 28 01:48:11 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -72,6 +72,10 @@ void		read_write_server(t_server *s, int i, char **argv)
   c = get_client_by_id(s->clients, i);
   tmp = xmalloc(4096 * sizeof(char));
   memset(tmp, '\0', 4096);
+
+  /* clock_gettime(CLOCK_REALTIME, &s->now); */
+  /* printf("current s = %ld\nns = %ld\n\n", s->now.tv_sec, s->now.tv_nsec); */
+
   if ((nbytes = read(i, tmp, 4096)) <= 0)
     {
       if (nbytes == 0)
@@ -86,7 +90,7 @@ void		read_write_server(t_server *s, int i, char **argv)
     {
       ring_buffer_write(c->buffer, tmp, strlen(tmp));
       s->i = i;
-      prepare_for_exec(s, c);
+      create_cmd(s, c);
       check_exec(s);
     }
   free(tmp);
