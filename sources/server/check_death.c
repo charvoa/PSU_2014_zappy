@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Sat Jun 27 17:49:47 2015 Serge Heitzler
+** Last update Sat Jun 27 17:57:32 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -26,7 +26,6 @@ int		get_alloc_to_delete(t_server *s)
 	i++;
       tmp = tmp->next;
     }
-  free(c);
   return (i);
 }
 
@@ -37,16 +36,16 @@ void		delete_players(t_server *s, int **fds, int len)
 
   i = 0;
   //VERIFIER SI MALLOC + FREE A CHAQUE TOUR DE BOUCLE FONCTIONNE
+  trame = xmalloc((strlen("pdi #\n") + 50) * sizeof(int));
   while (i < len)
     {
-      trame = xmalloc((strlen("pdi #\n") + istm(fds[i][1])) * sizeof(int));
+      bzero(trame, strlen("pdi #\n") + 50);
+      printf("fds[%d][1] = %d\n", i, fds[i][1]);
       sprintf(trame, "pdi #%d\n", fds[i][1]);
       send_data_to_gui(s->clients, trame);
       remove_at_index(s->clients, fds[i][0]);
       i++;
-      free(trame);
     }
-  free(fds);
 }
 
 void		check_death(t_server *s)
@@ -69,6 +68,8 @@ void		check_death(t_server *s)
 	{
 	  delete_fds[j][0] = i;
 	  delete_fds[j][1] = c->fd;
+	  printf("delete_fds[%d][0] = %d\n", j, delete_fds[j][0]);
+	  printf("delete_fds[%d][1] = %d\n", j, delete_fds[j][1]);
 	  j++;
 	}
       i++;
