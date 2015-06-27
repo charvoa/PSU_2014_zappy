@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Sat Jun 27 10:56:14 2015 Audibert Louis
+** Last update Sat Jun 27 17:38:23 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -30,7 +30,7 @@ char		**init_full_tab(int width, int height)
 void		init_block(t_block *b)
 {
   b->food = 0;
-  b->limemate = 0;
+  b->linemate = 0;
   b->deraumere = 0;
   b->sibur = 0;
   b->mendiane = 0;

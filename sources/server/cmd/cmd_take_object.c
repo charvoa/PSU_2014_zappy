@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sat Jun 27 15:25:41 2015 Serge Heitzler
+** Last update Sat Jun 27 17:36:54 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -25,7 +25,7 @@ int		check_rock(char *rock)
   int	i;
 
   rocks = malloc(7 * sizeof(char*));
-  rocks[0] = "limemate";
+  rocks[0] = "linemate";
   rocks[1] = "deraumere";
   rocks[2] = "sibur";
   rocks[3] = "mendiane";
@@ -47,7 +47,7 @@ int		launch_func_block(t_block *block, int rock_type, e_flag_rock flag)
   int		i;
   t_objects	rocks[6] =
     {
-      {"limemate", &block_limemate},
+      {"linemate", &block_linemate},
       {"deraumere", &block_deraumere},
       {"sibur", &block_sibur},
       {"mendiane", &block_mendiane},

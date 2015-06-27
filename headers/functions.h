@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jun 27 16:19:15 2015 Audibert Louis
+** Last update Sat Jun 27 17:38:47 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -130,7 +130,7 @@ void		adv_down(t_size *size, t_client *client);
 void		adv_left(t_size *size, t_client *client);
 
 /* Function(s) in file block_rocks.c */
-int		block_limemate(t_block *block, e_flag_rock flag);
+int		block_linemate(t_block *block, e_flag_rock flag);
 int		block_deraumere(t_block *block, e_flag_rock flag);
 int		block_sibur(t_block *block, e_flag_rock flag);
 
@@ -240,7 +240,7 @@ int		determine_pos_y(t_client *c, t_size *size, int t, int l);
 int		istm(int nb);
 
 /* Function(s) in file inventory_rocks.c */
-int		inventory_limemate(t_inventory *inventory, e_flag_rock flag);
+int		inventory_linemate(t_inventory *inventory, e_flag_rock flag);
 int		inventory_deraumere(t_inventory *inventory, e_flag_rock flag);
 int		inventory_sibur(t_inventory *inventory, e_flag_rock flag);
 

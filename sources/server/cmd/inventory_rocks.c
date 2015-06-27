@@ -5,17 +5,17 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jun 25 18:07:38 2015 Audibert Louis
-** Last update Sat Jun 27 10:52:04 2015 Audibert Louis
+** Last update Sat Jun 27 17:37:13 2015 Audibert Louis
 */
 
 #include "functions.h"
 
-int	inventory_limemate(t_inventory *inventory, e_flag_rock flag)
+int	inventory_linemate(t_inventory *inventory, e_flag_rock flag)
 {
   if (flag == ADD)
-    inventory->limemate++;
+    inventory->linemate++;
   else
-    inventory->limemate--;
+    inventory->linemate--;
   return (0);
 }
 

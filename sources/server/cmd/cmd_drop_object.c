@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Sat Jun 27 17:29:52 2015 Serge Heitzler
+** Last update Sat Jun 27 17:37:44 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -27,7 +27,7 @@ int		launch_func_inventory(t_client *c, int rock, e_flag_rock flag)
   int		i;
   t_objects	rocks[6] =
     {
-      {"limemate", &inventory_limemate},
+      {"linemate", &inventory_linemate},
       {"deraumere", &inventory_deraumere},
       {"sibur", &inventory_sibur},
       {"mendiane", &inventory_mendiane},
