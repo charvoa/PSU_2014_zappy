@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Sat Jun 27 11:11:44 2015 Serge Heitzler
+** Last update Sat Jun 27 17:35:21 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -14,7 +14,7 @@ t_objects	g_objects[8] =
   {
     {"food", NULL},
     {"player", NULL},
-    {"limemate", NULL},
+    {"linemate", NULL},
     {"deraumere", NULL},
     {"sibur", NULL},
     {"mendiane", NULL},
@@ -29,7 +29,7 @@ int		*get_nb_items(t_block *block)
   nb_items = xmalloc(8 * sizeof(int));
   nb_items[0] = block->food;
   nb_items[1] = block->nb_clients;
-  nb_items[2] = block->limemate;
+  nb_items[2] = block->linemate;
   nb_items[3] = block->deraumere;
   nb_items[4] = block->sibur;
   nb_items[5] = block->mendiane;

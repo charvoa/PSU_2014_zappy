@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Sat Jun 27 10:56:53 2015 Audibert Louis
+** Last update Sat Jun 27 17:32:26 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -46,8 +46,10 @@ void	validate_team(t_team *team, t_client *c, char *name)
   send_data(c->fd, "ok\n");
 }
 
-int	cmd_team(t_server *s, t_client *c, const char *cmd)
+int	cmd_team(t_server *s, t_client *c,
+		 const char *cmd, e_client_type type)
 {
+  (void)type;
   char		trame[21];
   char		*name;
   t_team	*team;

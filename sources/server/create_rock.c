@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:57:49 2015 Serge Heitzler
-** Last update Sat Jun 27 10:43:02 2015 Audibert Louis
+** Last update Sat Jun 27 17:34:28 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -20,7 +20,7 @@ int		create_rock(t_server *s)
   y = rand() % s->map->size->height;
   r = (rand() + (rand() * x) + (rand() * y) + x + y) % 6;
   if (r == 0)
-    s->map->objects[x][y]->limemate++;
+    s->map->objects[x][y]->linemate++;
   if (r == 1)
     s->map->objects[x][y]->deraumere++;
   if (r == 2)

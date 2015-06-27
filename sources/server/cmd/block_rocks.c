@@ -5,17 +5,17 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 11:26:19 2015 Audibert Louis
-** Last update Sat Jun 27 10:49:02 2015 Audibert Louis
+** Last update Sat Jun 27 17:36:04 2015 Audibert Louis
 */
 
 #include "functions.h"
 
-int	block_limemate(t_block *block, e_flag_rock flag)
+int	block_linemate(t_block *block, e_flag_rock flag)
 {
   if (flag == ADD)
-    block->limemate++;
+    block->linemate++;
   else
-    block->limemate--;
+    block->linemate--;
   return (SUCCESS);
 }
 

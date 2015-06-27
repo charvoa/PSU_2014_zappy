@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:46:56 2015 Audibert Louis
-** Last update Sat Jun 27 09:48:08 2015 Audibert Louis
+** Last update Sat Jun 27 17:39:22 2015 Audibert Louis
 */
 
 #ifndef _RESSOURCES_H_
@@ -19,7 +19,7 @@ typedef enum		e_flag_rock
 
 typedef enum		e_rock_type
   {
-    LIMEMATE,
+    LINEMATE,
     DERAUMERE,
     SIBUR,
     MENDIANE,

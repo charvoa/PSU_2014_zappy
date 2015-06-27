@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sat Jun 27 10:47:32 2015 Audibert Louis
+** Last update Sat Jun 27 16:09:57 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -28,29 +28,6 @@ void	handler_ctrl_c(int sig)
     }
   close(g_listener);
   exit(0);
-}
-
-void		check_death(t_server *s)
-{
-  t_node	*tmp;
-  t_client	*c;
-  int		i;
-
-  tmp = s->clients->start;
-  i = 0;
-  if (tmp != NULL)
-    {
-      c = xmalloc(sizeof(t_client));
-      c = tmp->data;
-      if (c->inventory->food == 0)
-	{
-	  send_data(c->fd, "mort\n");
-	  close(c->fd);
-	  remove_at_index(s->clients, i);
-	}
-      i++;
-      tmp = tmp->next;
-    }
 }
 
 void		loop_server(t_server *s, char **argv)

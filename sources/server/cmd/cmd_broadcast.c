@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Sat Jun 27 10:49:31 2015 Audibert Louis
+** Last update Sat Jun 27 17:31:20 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -23,11 +23,13 @@ char		*get_trame_broadcast(t_client *c, char *text)
 
 static void	send_gui_broadcast(char *msg, t_list *clients, t_client *c)
 {
+  int		size_malloc;
   char	*str;
 
-  str = xmalloc((strlen(msg) + 50) * sizeof(char));
-  sprintf(str, "pbc #%d %s\r\n", c->fd, msg);
-  printf("gui_broadcast = %s\n", str);
+  size_malloc = (7 + istm(c->fd) + strlen(msg));
+  str = xmalloc(sizeof(char) * size_malloc);
+  bzero(str, size_malloc);
+  sprintf(str, "pbc #%d %s\n", c->fd, msg);
   send_data_to_gui(clients, str);
 }
 
@@ -49,8 +51,10 @@ void		get_text(char *text, const char *cmd)
     }
 }
 
-int		cmd_broadcast(t_server *s, t_client *c, const char *cmd)
+int		cmd_broadcast(t_server *s, t_client *c,
+			      const char *cmd, e_client_type type)
 {
+  (void)type;
   char			*text;
   char			*final;
   t_node		*tmp;
@@ -60,7 +64,6 @@ int		cmd_broadcast(t_server *s, t_client *c, const char *cmd)
   text = xmalloc((strlen(cmd) - 9) * sizeof(char));
   bzero(text, strlen(cmd) - 9);
   get_text(text, cmd);
-  printf("text = %s\n", text);
   final = get_trame_broadcast(c, text);
   c_iterate = xmalloc(sizeof(t_client));
   c_iterate = tmp->data;

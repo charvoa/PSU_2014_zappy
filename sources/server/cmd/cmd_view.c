@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Sat Jun 27 11:19:25 2015 Serge Heitzler
+** Last update Sat Jun 27 17:28:43 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -97,8 +97,9 @@ char		*create_final_string_view(t_server *s, t_client *c,
   return (final);
 }
 
-int		cmd_view(t_server *s, t_client *c, const char *cmd)
+int		cmd_view(t_server *s, t_client *c, const char *cmd, e_client_type type)
 {
+  (void)type;
   (void)cmd;
   int		i;
   int		*x;

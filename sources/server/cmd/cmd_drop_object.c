@@ -5,16 +5,19 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Sat Jun 27 10:49:39 2015 Audibert Louis
+** Last update Sat Jun 27 17:37:44 2015 Audibert Louis
 */
 
 #include "functions.h"
 
 static void		cmd_gui_pdr(t_client *c, t_list *clients, int type)
 {
+  int			size_malloc;
   char	*str;
 
-  str = xmalloc(strlen("pdr # \n") + 50);
+  size_malloc = (7 + istm(c->fd) + istm(type));
+  str = xmalloc(sizeof(char) * size_malloc);
+  bzero(str, size_malloc);
   sprintf(str, "pdr #%d %d\n", c->fd, type);
   send_data_to_gui(clients, str);
 }
@@ -24,7 +27,7 @@ int		launch_func_inventory(t_client *c, int rock, e_flag_rock flag)
   int		i;
   t_objects	rocks[6] =
     {
-      {"limemate", &inventory_limemate},
+      {"linemate", &inventory_linemate},
       {"deraumere", &inventory_deraumere},
       {"sibur", &inventory_sibur},
       {"mendiane", &inventory_mendiane},
@@ -67,8 +70,10 @@ int		drop_food(t_server *s, t_client *c)
   return (SUCCESS);
 }
 
-int		cmd_drop_object(t_server *s, t_client *c, const char *cmd)
+int		cmd_drop_object(t_server *s, t_client *c,
+				const char *cmd, e_client_type type)
 {
+  (void)type;
   char		*item;
 
   item = xmalloc((strlen(cmd) - 4) * sizeof(char));

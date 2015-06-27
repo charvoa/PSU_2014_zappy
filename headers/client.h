@@ -5,11 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:41:12 2015 Audibert Louis
-<<<<<<< HEAD
-** Last update Sat Jun 27 13:47:55 2015 Audibert Louis
-=======
-** Last update Sat Jun 27 14:16:22 2015 Serge Heitzler
->>>>>>> 259e19031ff2b08ec43886cb2b86d64848eeaefe
+** Last update Sat Jun 27 17:48:49 2015 Serge Heitzler
 */
 
 #ifndef _CLIENT_H_
@@ -27,13 +23,14 @@ typedef enum		e_orientation
 typedef enum		e_client_type
   {
     IA,
-    GUI
+    GUI,
+    NORMAL
   }			e_client_type;
 
 typedef struct		s_inventory
 {
   int			food;
-  int			limemate;
+  int			linemate;
   int			deraumere;
   int			sibur;
   int			mendiane;
