@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Fri Jun 26 17:13:07 2015 Antoine Garcia
+// Last update Sat Jun 27 14:32:57 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -38,8 +38,6 @@ void Command::msz(std::string cmd, GameEngine *game)
   std::string			current;
   std::istringstream		ss(cmd);
 
-  std::cout << cmd << std::endl;
-  std::cout << "test a linstant meme du jour d'aujourd'hui" << std::endl;
   while(std::getline(ss, current, ' '))
     {
       if (current != "msz")
@@ -59,8 +57,8 @@ void	Command::bct(std::string cmd, GameEngine *game)
     {
       if (current != "bct")
 	parse.push_back(current);
-      //game->setCase(parse);
     }
+  game->setCase(parse);
 }
 
 void	Command::mct(std::string cmd, GameEngine *game)
@@ -70,7 +68,11 @@ void	Command::mct(std::string cmd, GameEngine *game)
   std::istringstream	ss(cmd);
 
   while (std::getline(ss, newCmd, '\n'))
-    this->bct(newCmd, game);
+    {
+      ss.str("");
+      ss.clear();
+      this->bct(newCmd, game);
+    }
 }
 
 void	Command::tna(std::string cmd, GameEngine *game)
@@ -177,7 +179,6 @@ void Command::Exec()
 void Command::Parse(std::string command, GameEngine *game)
 {
   std::string cmd(command, 0, 3);
-  std::cout << "command" << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May  6 13:12:01 2015 Nicolas Girardot
-// Last update Thu Jun 25 20:22:02 2015 Nicolas Girardot
+// Last update Sat Jun 27 14:28:41 2015 Nicolas Girardot
 //
 
 #include "Socket.hh"
@@ -59,12 +59,12 @@ void	Socket::my_connect()
 
 void	Socket::selectSocket()
 {
-  std::string output(15000, 0);
+  std::string output(150000, 0);
   std::string div;
   my_connect();
   if (FD_ISSET(this->_socket, &_rfds))
     {
-      read(this->_socket, &output[0], 100 - 1);
+      read(this->_socket, &output[0], 149999);
       std::istringstream dd(output);
       while (std::getline(dd, div, '\n'))
 	     _cmd->Parse(div, _game);

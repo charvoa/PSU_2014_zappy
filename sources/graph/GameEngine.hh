@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Thu Jun 25 18:57:41 2015 Nicolas Girardot
+// Last update Fri Jun 26 16:51:06 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -43,6 +43,7 @@ private:
   SDL_Renderer	*_renderer;
   Position	_mousePos;
   Socket	*_socket;
+  Position	*_focus;
   GraphMap	*_gMap;
   HUD		*_hud;
 public:
@@ -61,10 +62,10 @@ public:
   void	draw();
   void	run();
   bool		isEventOnMap(int, int);
-  Position	&determinePosClicked(std::pair<int,int> &, int, int);
-  Position	&determinePosClickedOnGUI(int, int);
+  std::pair <int, int>determinePosClicked(std::pair<int,int> &, int, int);
+  std::pair <int, int>determinePosClickedOnGUI(int, int);
 private:
-  std::map<std::pair<int, int>, Case*> _cases;
+  std::vector<std::vector<Case*> > _cases;
 };
 
 #endif
