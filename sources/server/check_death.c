@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Sat Jun 27 16:37:10 2015 Audibert Louis
+** Last update Sat Jun 27 17:20:26 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -30,15 +30,21 @@ int		get_alloc_to_delete(t_server *s)
   return (i);
 }
 
-void		delete_players(t_server *s, int *fds, int len)
+void		delete_players(t_server *s, int **fds, int len)
 {
   int		i;
+  char		*trame;
 
   i = 0;
+  //VERIFIER SI MALLOC + FREE A CHAQUE TOUR DE BOUCLE FONCTIONNE
   while (i < len)
     {
-      remove_at_index(s->clients, fds[i]);
+      trame = xmalloc((strlen("pdi #\n") + istm(fds[i][1])) * sizeof(int));
+      sprintf(trame, "pdi #%d\n", fds[i][1]);
+      send_data_gui(s->clients, trame);
+      remove_at_index(s->clients, fds[i][0]);
       i++;
+      free(trame);
     }
   free(fds);
 }
@@ -48,20 +54,24 @@ void		check_death(t_server *s)
   t_node	*tmp;
   t_client	*c;
   int		i;
-  int		*delete_fds;
+  int		j;
+  int		**delete_fds;
 
-  delete_fds = xmalloc(get_alloc_to_delete(s));
+  delete_fds = xmalloc(get_alloc_to_delete(s) * 2 * sizeof(int));
   tmp = s->clients->start;
   i = 0;
+  j = 0;
   while (tmp != NULL)
     {
       c = xmalloc(sizeof(t_client));
       c = tmp->data;
       if (c->inventory->food == 0)
 	{
-	  delete_fds[i] = i;
-	  i++;
+	  delete_fds[j][0] = i;
+	  delete_fds[j][1] = c->fd;
+	  j++;
 	}
+      i++;
       tmp = tmp->next;
     }
   delete_players(s, delete_fds, i);
