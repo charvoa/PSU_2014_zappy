@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Sat Jun 27 10:56:57 2015 Audibert Louis
+** Last update Sat Jun 27 11:03:01 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -23,11 +23,11 @@ int		get_number_of_visible_space(unsigned int level)
   return (nb);
 }
 
-char		**write_pos_in_array(t_server *s, t_client *c, int i, int l)
+char		**write_pos_in_array(t_server *s, t_client *c, int i, unsigned int l)
 {
   char		**pos;
   int		nb_visible_space;
-  int	 	t;
+  unsigned int 	t;
   int		x;
   int		y;
 

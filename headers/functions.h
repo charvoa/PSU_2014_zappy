@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jun 27 10:41:03 2015 Audibert Louis
+** Last update Sat Jun 27 11:02:22 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -58,7 +58,7 @@ char		*ring_buffer_get_next_command(t_ring_buffer *buffer);
 int		ring_buffer_expand(t_ring_buffer *buffer, int size);
 
 /* Function(s) in file check_exec.c */
-int		check_exec();
+int		check_exec(t_server *);
 
 /* Function(s) in file create_objects.c */
 int		create_objects(t_server *s);
