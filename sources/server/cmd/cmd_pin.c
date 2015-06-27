@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:50 2015 Serge Heitzler
-** Last update Sat Jun 27 17:43:06 2015 Serge Heitzler
+** Last update Sat Jun 27 17:45:08 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -20,7 +20,7 @@ int		cmd_pin(t_server *s, t_client *c,
 
   id_targeted = xmalloc(sizeof(int));  
   if (type == GUI)
-    id_targeted = c->fd;
+    *id_targeted = c->fd;
   else
     sscanf(cmd, "pin #%d", id_targeted);
   t = get_client_by_id(s->clients, *id_targeted);

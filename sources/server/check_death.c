@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Sat Jun 27 17:20:26 2015 Audibert Louis
+** Last update Sat Jun 27 17:49:47 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -41,7 +41,7 @@ void		delete_players(t_server *s, int **fds, int len)
     {
       trame = xmalloc((strlen("pdi #\n") + istm(fds[i][1])) * sizeof(int));
       sprintf(trame, "pdi #%d\n", fds[i][1]);
-      send_data_gui(s->clients, trame);
+      send_data_to_gui(s->clients, trame);
       remove_at_index(s->clients, fds[i][0]);
       i++;
       free(trame);
