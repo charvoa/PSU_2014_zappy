@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jun 25 18:07:38 2015 Audibert Louis
-** Last update Fri Jun 26 11:24:44 2015 Audibert Louis
+** Last update Sat Jun 27 10:52:04 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int	inventory_limemate(t_inventory *inventory, e_flag_rock flag)
 {

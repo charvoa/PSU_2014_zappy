@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun May  3 16:40:31 2015 Serge Heitzler
-** Last update Wed Jun 24 16:21:00 2015 Audibert Louis
+** Last update Sat Jun 27 14:10:05 2015 Serge Heitzler
 */
 
 #ifndef LIST_H_
@@ -26,7 +26,7 @@ typedef enum e_node_type
 
 typedef struct s_node
 {
-  size_t	id;
+  int		id;
   e_node_type	type;
   void		*data;
   struct s_node *prev;
@@ -35,7 +35,7 @@ typedef struct s_node
 
 typedef struct s_list
 {
-  size_t	length;
+  int		length;
   t_node	*start;
   t_node	*end;
 }		t_list;
@@ -50,5 +50,6 @@ t_node		*get_node_at_index(t_list *, size_t);
 int    		get_nbr_of(e_node_type, t_list *);
 size_t		size_list(t_list *);
 int		remove_at_index(t_list *, int);
+int		remove_front(t_list *);
 
 #endif  /* !LIST_H_ */

@@ -1,6 +1,7 @@
 import time
 import random
 from CommandClass import *
+import subprocess
 from array import *
 
 class IAClass():
@@ -40,12 +41,11 @@ class IAClass():
                 self.cc.droite_cmd(s, p, mess)
             elif (rand == 3):
                 self.cc.prend_cmd(s, p, mess, 'nourriture')
-            elif (rand == 4):
-                self.cc.prend_cmd(s, p, mess, self.rocksTab[randTab])
             elif (rand == 5):
                 if (self.cc.incantation_cmd(s, p, mess) == 1):
                     self.level += 1
             else:
+                self.cc.prend_cmd(s, p, mess, self.rocksTab[randTab])
                 self.cc.avance_cmd(s, p, mess)
             print('Current Level : ', self.getLevel())
 

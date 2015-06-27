@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Fri Jun 26 13:53:41 2015 Antoine Garcia
+** Last update Sat Jun 27 14:22:13 2015 Serge Heitzler
 */
 
-#include "server.h"
+#include "functions.h"
 
 static void	cmd_gui_pex(t_client *c, t_list *clients)
 {
@@ -27,11 +27,11 @@ char		*get_trame_deplacement(t_client *c)
 
   x = c->pos->x;
   y = c->pos->y;
-  if (c->orientation == UP)
+  if (c->orientation == NORD)
     y = c->pos->y - 1;
-  else if (c->orientation == RIGHT)
+  else if (c->orientation == EST)
     x = c->pos->x - 1;
-  else if (c->orientation == DOWN)
+  else if (c->orientation == SUD)
     y = c->pos->y + 1;
   else
     x = c->pos->x + 1;

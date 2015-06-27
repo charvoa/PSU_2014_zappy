@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Fri Jun 26 16:39:47 2015 Audibert Louis
+** Last update Sat Jun 27 11:19:25 2015 Serge Heitzler
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		get_number_of_visible_space(unsigned int level)
 {
@@ -23,11 +23,11 @@ int		get_number_of_visible_space(unsigned int level)
   return (nb);
 }
 
-char		**write_pos_in_array(t_server *s, t_client *c, int i, unsigned int l)
+char		**write_pos_in_array(t_server *s, t_client *c, int i, int l)
 {
   char		**pos;
   int		nb_visible_space;
-  unsigned int 	t;
+  int	 	t;
   int		x;
   int		y;
 
@@ -64,7 +64,7 @@ char		**get_pos_of_visible_space(t_server *s, t_client *c)
 		   (istm((int)c->pos->x) + istm((int)c->pos->y) + 2));
   memset(pos[0], 0, istm((int)c->pos->x) + istm((int)c->pos->y) + 2);
   sprintf(pos[0], "%d %d", (int)c->pos->x, (int)c->pos->y);
-  pos[nb_visible_space + 1] = NULL;
+  pos[nb_visible_space] = NULL;
   return (pos);
 }
 
@@ -78,17 +78,20 @@ char		*create_final_string_view(t_server *s, t_client *c,
   int		i;
 
   i = 0;
+  size_malloc += 2;
   final = xmalloc(sizeof(char) * (size_malloc));
-  memset(final, 0, size_malloc);
+  bzero(final, size_malloc);
   x = xmalloc(sizeof(int));
   y = xmalloc(sizeof(int));
   while (i < get_number_of_visible_space(c->level))
     {
       sscanf(pos[i], "%d %d", x, y);
-      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y));
+      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y) + 1);
+      bzero(tmp, get_size_malloc_at_position(s, *x, *y) + 1);
       tmp = show_items_at_position(s, *x, *y);
       sprintf(final, "%s%s", final, tmp);
       sprintf(final, "%s,", final);
+      free(tmp);
       i++;
     }
   return (final);
@@ -113,10 +116,12 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
     {
       sscanf(pos[i], "%d %d", x, y);
       if (size_malloc += (get_size_malloc_at_position(s, *x, *y)) == 0)
-	size_malloc++;
+	{
+	}
       i++;
     }
   final = create_final_string_view(s, c, size_malloc, pos);
+  //  sprintf(final, "{%s}", final);
   send_data(c->fd, final);
   return (SUCCESS);
 }

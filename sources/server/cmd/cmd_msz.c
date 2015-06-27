@@ -5,10 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:01 2015 Serge Heitzler
-** Last update Tue Jun 23 20:11:19 2015 Serge Heitzler
+** Last update Sat Jun 27 10:50:27 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		cmd_msz(t_server *s, t_client *c, const char *cmd)
 {

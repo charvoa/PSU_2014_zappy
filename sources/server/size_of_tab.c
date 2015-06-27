@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 16:44:56 2015 Audibert Louis
-** Last update Fri Jun 26 16:44:57 2015 Audibert Louis
+** Last update Sat Jun 27 10:47:47 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		size_of_tab(char **tab)
 {

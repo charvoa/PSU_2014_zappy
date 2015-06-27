@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jun 25 18:09:58 2015 Audibert Louis
-** Last update Fri Jun 26 11:25:06 2015 Audibert Louis
+** Last update Sat Jun 27 10:52:07 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int	inventory_mendiane(t_inventory *inventory, e_flag_rock flag)
 {

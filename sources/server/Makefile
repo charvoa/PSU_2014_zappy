@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Fri Jun 26 17:31:14 2015 Audibert Louis
+## Last update Fri Jun 26 20:19:32 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -90,8 +90,6 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_back.c		\
 			ring_buffer.c				\
 			create_team.c				\
-			create_food.c				\
-			create_rock.c				\
 			create_objects.c			\
 			prepare_for_exec.c			\
 			check_exec.c

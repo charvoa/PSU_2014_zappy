@@ -5,10 +5,10 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Fri May 22 11:25:41 2015 Serge Heitzler
-** Last update Tue Jun 23 20:05:13 2015 Serge Heitzler
+** Last update Sat Jun 27 10:51:50 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		istm(int nb)
 {

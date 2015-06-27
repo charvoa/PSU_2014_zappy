@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 17:10:37 2015 Audibert Louis
-** Last update Fri Jun 26 17:32:00 2015 Audibert Louis
+** Last update Sat Jun 27 10:49:28 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 int		cmd_connect_nbr(t_server *s, t_client *c, const char *cmd)
 {
