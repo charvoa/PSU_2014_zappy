@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jun 27 17:34:56 2015 Audibert Louis
+** Last update Sat Jun 27 18:43:06 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -53,14 +53,14 @@ int		create_client(t_server *s, int fd,
   c->type = IA;
   c->team_name = strdup(team_name);
   c->pos->x = rand() % size->width;
-  c->pos->y = (rand() + rand()) % size->height;
+  c->pos->y = rand() % size->height;
+  printf("GENERATED in x: %d | y : %d\n", c->pos->x, c->pos->y);
   c->inventory = xmalloc(sizeof(t_client));
   init_inventory(c);
   c->cmds = create_list();
   c->buffer = ring_buffer_create(1024);
   orientation[rand() % 4](c);
   push_back(s->clients, c, PLAYER);
-  cmd_pnw(s, c, NULL, GUI);
   cmd_gui_connexion(c, s->clients);
   return (SUCCESS);
 }

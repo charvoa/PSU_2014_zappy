@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Sat Jun 27 17:28:43 2015 Serge Heitzler
+** Last update Sat Jun 27 18:28:59 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -59,6 +59,7 @@ char		**get_pos_of_visible_space(t_server *s, t_client *c)
   int		nb_visible_space;
 
   nb_visible_space = get_number_of_visible_space(c->level);
+  printf("visible space = %d\n", nb_visible_space);
   pos = write_pos_in_array(s, c, 1, 1);
   pos[0] = xmalloc(sizeof(char) *
 		   (istm((int)c->pos->x) + istm((int)c->pos->y) + 2));

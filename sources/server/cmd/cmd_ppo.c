@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:54 2015 Serge Heitzler
-** Last update Sat Jun 27 17:27:32 2015 Serge Heitzler
+** Last update Sat Jun 27 18:52:26 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -24,7 +24,7 @@ int		cmd_ppo(t_server *s, t_client *c,
   else
     sscanf(cmd, "ppo #%d", id_targeted);
   target = get_client_by_id(s->clients, *id_targeted);
-  size_malloc = (9 + istm(target->fd)
+  size_malloc = (10 + istm(target->fd)
 		 + istm((int)target->pos->x)
 		 + istm((int)target->pos->y)
 		 + istm(target->orientation));
@@ -32,6 +32,7 @@ int		cmd_ppo(t_server *s, t_client *c,
   memset(final, 0, size_malloc);
   sprintf(final, "ppo #%d %d %d %d\n", target->fd,
 	  target->pos->x, target->pos->y, target->orientation);
+  printf("%s", final);
   if (type == GUI)
     send_data_to_gui(s->clients, final);
   else

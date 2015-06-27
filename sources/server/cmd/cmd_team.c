@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Sat Jun 27 17:32:26 2015 Serge Heitzler
+** Last update Sat Jun 27 18:43:38 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -61,7 +61,10 @@ int	cmd_team(t_server *s, t_client *c,
     {
       team = get_team_by_name(s->teams, name);
       if (team->slot_rest >= 1)
-	validate_team(team, c, name);
+	{
+	  validate_team(team, c, name);
+	  cmd_pnw(s, c, NULL, GUI);
+	}
       else
 	send_data(c->fd, "NO_SLOT_REST\r\n");
       bzero(trame, 21);
