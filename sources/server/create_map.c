@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Sat Jun 27 17:38:23 2015 Audibert Louis
+** Last update Sat Jun 27 23:16:19 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -29,6 +29,7 @@ char		**init_full_tab(int width, int height)
 
 void		init_block(t_block *b)
 {
+  b->ids = xmalloc(sizeof(int));
   b->food = 0;
   b->linemate = 0;
   b->deraumere = 0;

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Sat Jun 27 22:18:02 2015 Serge Heitzler
+** Last update Sat Jun 27 23:14:25 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -36,7 +36,7 @@ int	is_a_team(t_server *s, char *team)
 
 void	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
 {
-  void(*orientation[4])(t_client *);
+  void		(*orientation[4])(t_client *);
   char		trame[21];
 
   init_orientation(orientation);
@@ -44,6 +44,9 @@ void	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   c->level = 1;
   c->pos->x = rand() % s->map->size->width;
   c->pos->y = rand() % s->map->size->height;
+  s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
+  s->map->objects[c->pos->y][c->pos->x]->ids =
+    add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
   init_inventory(c);
   orientation[rand() % 4](c);
   sprintf(trame, "%d", t->slot_rest);
