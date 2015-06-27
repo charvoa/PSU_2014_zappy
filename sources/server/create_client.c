@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jun 27 13:48:35 2015 Audibert Louis
+** Last update Sat Jun 27 15:06:34 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -53,12 +53,11 @@ int		create_client(t_server *s, int fd,
   c->type = IA;
   c->team_name = strdup(team_name);
   c->pos->x = rand() % size->width;
-  c->pos->y = rand() % size->height;
+  c->pos->y = (rand() + rand()) % size->height;
   c->inventory = xmalloc(sizeof(t_client));
   init_inventory(c);
   c->cmds = create_list();
   c->buffer = ring_buffer_create(1024);
-  printf("buffer created\n");
   orientation[rand() % 4](c);
   push_back(s->clients, c, PLAYER);
   printf("[create_client] - I have created a client with fd [%d]\n", c->fd);

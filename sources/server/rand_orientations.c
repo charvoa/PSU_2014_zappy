@@ -5,27 +5,27 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sat May 16 19:57:54 2015 Serge Heitzler
-** Last update Sat Jun 27 10:43:54 2015 Audibert Louis
+** Last update Sat Jun 27 14:22:40 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 void		ori_up(t_client *client)
 {
-  client->orientation = UP;
+  client->orientation = NORD;
 }
 
 void		ori_right(t_client *client)
 {
-  client->orientation = RIGHT;
+  client->orientation = EST;
 }
 
 void		ori_down(t_client *client)
 {
-  client->orientation = DOWN;
+  client->orientation = SUD;
 }
 
 void		ori_left(t_client *client)
 {
-  client->orientation = LEFT;
+  client->orientation = OUEST;
 }

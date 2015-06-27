@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jun 27 14:40:15 2015 Audibert Louis
+** Last update Sat Jun 27 15:13:33 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -69,6 +69,7 @@ int		opt_verbose(t_server *s);
 void		prepare_for_exec(t_server *s, t_client *c);
 
 /* Function(s) in file protocole_connexion.c */
+void		protocole_graphique(t_server *s, t_client *c);
 void		protocole_connexion(t_server *s, int fd);
 
 /* Function(s) in file rand_orientations.c */

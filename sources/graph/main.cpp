@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 15:23:29 2015 Nicolas Girardot
-// Last update Tue Jun 23 16:54:13 2015 Nicolas Girardot
+// Last update Fri Jun 26 17:19:01 2015 Nicolas Girardot
 //
 
 
@@ -13,6 +13,9 @@
 #include "GameEngine.hh"
 #include "Map.hpp"
 #include "Socket.hh"
+#include <time.h>
+#include <stdlib.h>
+
 
 int	main(int ac, char **av)
 {
@@ -20,6 +23,6 @@ int	main(int ac, char **av)
   (void) av;
   GameEngine test;
   test.run();
-
+  srand(time(NULL));
   return (0);
 }

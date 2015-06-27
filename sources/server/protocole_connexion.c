@@ -5,20 +5,17 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 14:38:32 2015 Audibert Louis
-** Last update Sat Jun 27 15:05:02 2015 Audibert Louis
+** Last update Sat Jun 27 15:13:21 2015 Audibert Louis
 */
 
 #include "functions.h"
 
-static void	protocole_graphique(t_server *s, t_list *clients, int fd)
+void	protocole_graphique(t_server *s, t_client *c)
 {
-  char		*trame;
-  
-  trame = xmalloc(64 * sizeof(char));
-  sprintf(trame, "msz %d %d\n", s->map->width, s->map->height);
-  send_data(clients, str);
-  bzero(trame, 64);
-  
+  cmd_msz(s, c, "protocole");
+  cmd_sgt(s, c, "protocole");
+  cmd_mct(s, c, "protocole");
+  cmd_tna(s, c, "protocole");
 }
 
 void		protocole_connexion(t_server *s, int fd)

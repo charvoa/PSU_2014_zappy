@@ -5,14 +5,14 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Sat Jun 27 10:58:09 2015 Audibert Louis
+** Last update Sat Jun 27 14:13:28 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 int		check_exec(t_server *s)
 {
-  size_t	i;
+  int		i;
   t_client	*c;
   t_node	*tmp_cli;
   t_node	*tmp_cmd;
