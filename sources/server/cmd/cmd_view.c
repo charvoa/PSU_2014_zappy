@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Sat Jun 27 00:02:46 2015 Serge Heitzler
+** Last update Sat Jun 27 11:02:06 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -55,6 +55,7 @@ char		**write_pos_in_array(t_server *s, t_client *c, int i, int l)
 char		**get_pos_of_visible_space(t_server *s, t_client *c)
 {
   (void)s;
+  int		i;
   char		**pos;
   int		nb_visible_space;
 
@@ -65,6 +66,14 @@ char		**get_pos_of_visible_space(t_server *s, t_client *c)
   memset(pos[0], 0, istm((int)c->pos->x) + istm((int)c->pos->y) + 2);
   sprintf(pos[0], "%d %d", (int)c->pos->x, (int)c->pos->y);
   pos[nb_visible_space] = NULL;
+
+  i = 0;
+  while (i < nb_visible_space)
+    {
+      printf("pos[%d] = %s\n", i, pos[i]);
+      i++;
+    }
+
   return (pos);
 }
 
@@ -78,7 +87,7 @@ char		*create_final_string_view(t_server *s, t_client *c,
   int		i;
 
   i = 0;
-  size_malloc += 1;
+  size_malloc += 2;
   final = xmalloc(sizeof(char) * (size_malloc));
   bzero(final, size_malloc);
   x = xmalloc(sizeof(int));
@@ -86,11 +95,12 @@ char		*create_final_string_view(t_server *s, t_client *c,
   while (i < get_number_of_visible_space(c->level))
     {
       sscanf(pos[i], "%d %d", x, y);
-      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y));
-      bzero(tmp, get_size_malloc_at_position(s, *x, *y));
+      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y) + 1);
+      bzero(tmp, get_size_malloc_at_position(s, *x, *y) + 1);
       tmp = show_items_at_position(s, *x, *y);
       sprintf(final, "%s%s", final, tmp);
       sprintf(final, "%s,", final);
+      free(tmp);
       i++;
     }
   return (final);
@@ -107,8 +117,8 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
   char		*final;
 
   i = 0;
+
   pos = get_pos_of_visible_space(s, c);
-  printf("DBG\n");
   size_malloc = 0;
   x = xmalloc(sizeof(int));
   y = xmalloc(sizeof(int));
@@ -116,12 +126,14 @@ int		cmd_view(t_server *s, t_client *c, const char *cmd)
     {
       sscanf(pos[i], "%d %d", x, y);
       if (size_malloc += (get_size_malloc_at_position(s, *x, *y)) == 0)
-	size_malloc++;
+	{
+
+	}
+      printf("APRES Boucle = %d\n", size_malloc);
       i++;
     }
   final = create_final_string_view(s, c, size_malloc, pos);
   //  sprintf(final, "{%s}", final);
-  printf("final = %s\n", final);
   send_data(c->fd, final);
   return (SUCCESS);
 }

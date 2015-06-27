@@ -5,13 +5,16 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Tue Jun 23 20:37:51 2015 Serge Heitzler
-** Last update Wed Jun 24 07:12:04 2015 Serge Heitzler
+** Last update Sat Jun 27 10:17:05 2015 Serge Heitzler
 */
 
 #include "server.h"
 
 int		determine_pos_x(t_client *c, t_size *size, int t, int l)
 {
+  printf("ori = %d\n", c->orientation);
+  printf("c->pos->x + t = %d\n", c->pos->x + t);
+  printf("c->pos->x + l = %d\n", c->pos->x + l);
   if (c->orientation == UP)
     return ((c->pos->x + t) >= 0 ?
 	    (c->pos->x + t) % size->width : (size->width + c->pos->x + t));
@@ -29,15 +32,17 @@ int		determine_pos_x(t_client *c, t_size *size, int t, int l)
 
 int		determine_pos_y(t_client *c, t_size *size, int t, int l)
 {
+  printf("c->pos->y + t = %d\n", c->pos->y + t);
+  printf("c->pos->y + l = %d\n", c->pos->y + l);
   if (c->orientation == UP)
-    return ((c->pos->y + l) >= 0 ?
-	    (c->pos->y + l) % size->height : (size->height + c->pos->y + l));
+    return ((c->pos->y - l) < 0 ?
+	    (size->height + c->pos->y - l) : c->pos->y - l);
   if (c->orientation == RIGHT)
     return ((c->pos->y + t) >= 0 ?
 	    (c->pos->y + t) % size->height : (size->height + c->pos->y + t));
   if (c->orientation == DOWN)
-    return ((c->pos->y - l) >= 0 ?
-	    (c->pos->y - l) % size->height : (size->height + c->pos->y - l));
+    return ((c->pos->y + l) >= size->height ?
+	    (c->pos->y + l) % size->height : c->pos->y + l);
   if (c->orientation == LEFT)
     return ((c->pos->y - t) >= 0 ?
 	    (c->pos->y - t) % size->height : (size->height + c->pos->y - t));
