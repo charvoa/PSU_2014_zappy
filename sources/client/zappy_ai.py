@@ -124,6 +124,10 @@ def main():
         print('Usage : client.py [-n [NAME]] [-h [HOST]] [-p [PORT]] [--dbg]')
     except ConnectionResetError:
         print('The server has shutdown')
+    except BrokenPipeError:
+        print('The server has hung up')
+    except TypeError:
+        print('Parsing error, cannot handle too much things ..')
     #except:
      #   print('Exception : An error has occured')
 

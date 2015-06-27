@@ -5,7 +5,14 @@ class CommandClass():
 
     """ A class that send command to the server """
 
-#    def __init__(self):
+    def __init__(self):
+        self.food = 10
+        self.linemate = 0
+        self.deraumere = 0
+        self.sibur = 0
+        self.mendiane = 0
+        self.phiras = 0
+        self.thystame = 0
 
     def avance_cmd(self, s, p, mess):
         if (p.getVerbose()):
@@ -116,38 +123,51 @@ class CommandClass():
     def getLinemate(self) -> int:
         s = self.linemate
         s =''.join(i for i in s if i.isdigit())
-        return int(s)
+        if (s):
+            return int(s)
+        return 0
 
     def getDeraumere(self) -> int:
         s = self.deraumere
         s =''.join(i for i in s if i.isdigit())
-        return int(s)
+        if (s):
+            return int(s)
+        return 0
 
     def getSibur(self) -> int:
         s = self.sibur
         s =''.join(i for i in s if i.isdigit())
-        return int(s)
+        if (s):
+            return int(s)
+        return 0
 
     def getMendiane(self) -> int:
         s = self.mendiane
         s =''.join(i for i in s if i.isdigit())
-        return int(s)
+        if (s):
+            return int(s)
+        return 0
 
     def getPhiras(self) -> int:
         s = self.phiras
         s =''.join(i for i in s if i.isdigit())
-        return int(s)
+        if (s):
+            return int(s)
+        return 0
 
     def getThystame(self) -> int:
         s = self.thystame
         s =''.join(i for i in s if i.isdigit())
-        return int(s)
+        if (s):
+            return int(s)
+        return 0
 
     def getFood(self) -> int:
         s = self.food
         s =''.join(i for i in s if i.isdigit())
-        return int(s)
-
+        if (s):
+            return int(s)
+        return 0
 ################################################################
 
     def prend_cmd(self, s, p, mess, obj):
