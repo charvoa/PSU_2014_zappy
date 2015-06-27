@@ -5,21 +5,21 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Sat Jun 27 10:52:41 2015 Audibert Louis
+** Last update Sat Jun 27 10:56:39 2015 Audibert Louis
 */
 
 #include "functions.h"
 
 t_objects	g_objects[8] =
   {
-    {"food", &create_food},
+    {"food", NULL},
     {"player", NULL},
-    {"limemate", &create_rock},
-    {"deraumere", &create_rock},
-    {"sibur", &create_rock},
-    {"mendiane", &create_rock},
-    {"phiras", &create_rock},
-    {"thystame", &create_rock}
+    {"limemate", NULL},
+    {"deraumere", NULL},
+    {"sibur", NULL},
+    {"mendiane", NULL},
+    {"phiras", NULL},
+    {"thystame", NULL}
   };
 
 int		*get_nb_items(t_block *block)
@@ -43,8 +43,16 @@ int		get_last_wrote(int *nb_items)
   int		i;
 
   i = 7;
+  printf("%d\n", nb_items[0]);
+  printf("%d\n", nb_items[1]);
+  printf("%d\n", nb_items[2]);
+  printf("%d\n", nb_items[3]);
+  printf("%d\n", nb_items[4]);
+  printf("%d\n", nb_items[5]);
+  printf("%d\n", nb_items[6]);
+  printf("%d\n", nb_items[7]);
   while (i >= 0 && nb_items[i] == 0)
-    i++;
+    i--;
   return (i);
 }
 
@@ -56,6 +64,8 @@ char		*fill_final_string(int size_malloc, int *nb_items)
   i = -1;
   final = xmalloc(sizeof(char) * (size_malloc));
   memset(final, 0, size_malloc);
+  printf("nb_items = %d\n", nb_items[0]);
+  printf("TESTOUILLE\n");
   while (++i <= get_last_wrote(nb_items))
     {
       if (nb_items[i] > 0)
@@ -108,6 +118,7 @@ char		*show_items_at_position(t_server * s, int x, int y)
   block = s->map->objects[y][x];
   nb_items = get_nb_items(block);
   size_malloc = get_size_malloc_at_position(s, x, y);
+  printf("SIZEMALLOC = %d\n", size_malloc);
   final = fill_final_string(size_malloc, nb_items);
   return (final);
 }
