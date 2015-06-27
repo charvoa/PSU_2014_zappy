@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jun 27 14:19:22 2015 Serge Heitzler
+** Last update Sat Jun 27 16:13:07 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -50,5 +50,6 @@ int		create_client(t_server *s, int fd,
   c->buffer = ring_buffer_create(1024);
   orientation[rand() % 4](c);
   push_back(s->clients, c, PLAYER);
+  cmd_pnw(s, c, NULL, GUI);
   return (SUCCESS);
 }

@@ -5,13 +5,14 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:52 2015 Serge Heitzler
-** Last update Sat Jun 27 10:31:08 2015 Audibert Louis
+** Last update Sat Jun 27 15:25:34 2015 Serge Heitzler
 */
 
 #include "server.h"
 #include "functions.h"
 
-int		cmd_sst(t_server *s, t_client *c, const char *cmd)
+int		cmd_sst(t_server *s, t_client *c,
+			const char *cmd, e_client_type type)
 {
   char		*final;
   char		value[6];
@@ -23,6 +24,9 @@ int		cmd_sst(t_server *s, t_client *c, const char *cmd)
 		  (5 + strlen(value)));
   memset(final, 0, 5 + strlen(value));
   sprintf(final, "sgt %s\n", value);
-  send_data(c->fd, final);
+  if (type == GUI)
+    send_data_to_gui(s->clients, final);
+  else
+    send_data(c->fd, final);
   return (SUCCESS);
 }

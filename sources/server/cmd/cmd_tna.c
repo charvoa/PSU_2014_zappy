@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:48 2015 Serge Heitzler
-** Last update Sat Jun 27 10:51:41 2015 Audibert Louis
+** Last update Sat Jun 27 15:26:00 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -28,7 +28,8 @@ char		*get_all_teams_in_str(t_server *s)
   return (res);
 }
 
-int		cmd_tna(t_server *s, t_client *c, const char *cmd)
+int		cmd_tna(t_server *s, t_client *c,
+			const char *cmd, e_client_type type)
 {
   (void)cmd;
   char		*final;
@@ -38,6 +39,9 @@ int		cmd_tna(t_server *s, t_client *c, const char *cmd)
   final = xmalloc(sizeof(char) * (5 + strlen(all_teams)));
   memset(final, 0, (5 + strlen(all_teams)));
   sprintf(final, "tna %s\n", all_teams);
-  send_data(c->fd, final);
+  if (type == GUI)
+    send_data_to_gui(s->clients, final);
+  else
+    send_data(c->fd, final);
   return (SUCCESS);
 }

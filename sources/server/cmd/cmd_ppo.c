@@ -5,30 +5,36 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:54 2015 Serge Heitzler
-** Last update Sat Jun 27 10:50:38 2015 Audibert Louis
+** Last update Sat Jun 27 15:38:05 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-int		cmd_ppo(t_server *s, t_client *c, const char *cmd)
+int		cmd_ppo(t_server *s, t_client *c,
+			const char *cmd, e_client_type type)
 {
+  int		size_malloc;
   int		*id_targeted;
   char		*final;
   t_client	*target;
 
   id_targeted = xmalloc(sizeof(int));
-  sscanf(cmd, "ppo #%d", id_targeted);
+  if (type == GUI)
+    *id_targeted = c->fd;
+  else
+    sscanf(cmd, "ppo #%d", id_targeted);
   target = get_client_by_id(s->clients, *id_targeted);
-  final = xmalloc(sizeof(char) * (9 + istm(target->fd)
-				  + istm((int)target->pos->x)
-				  + istm((int)target->pos->y)
-				  + istm(target->orientation)));
-  memset(final, 0, (9 + istm(target->fd)
-		    + istm((int)target->pos->x)
-		    + istm((int)target->pos->y)
-		    + istm(target->orientation)));
+  size_malloc = (9 + istm(target->fd)
+		 + istm((int)target->pos->x)
+		 + istm((int)target->pos->y)
+		 + istm(target->orientation));
+  final = xmalloc(sizeof(char) * size_malloc);
+  memset(final, 0, size_malloc);
   sprintf(final, "ppo #%d %d %d %d\n", target->fd,
 	  target->pos->x, target->pos->y, target->orientation);
-  send_data(c->fd, final);
+  if (type == GUI)
+    send_data_to_gui(s->clients, final);
+  else
+    send_data(c->fd, final);
   return (SUCCESS);
 }

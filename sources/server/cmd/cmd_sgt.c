@@ -5,12 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:58 2015 Serge Heitzler
-** Last update Sat Jun 27 10:50:50 2015 Audibert Louis
+** Last update Sat Jun 27 15:26:40 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-int		cmd_sgt(t_server *s, t_client *c, const char *cmd)
+int		cmd_sgt(t_server *s, t_client *c,
+			const char *cmd, e_client_type type)
 {
   (void)cmd;
   char		*final;
@@ -19,6 +20,9 @@ int		cmd_sgt(t_server *s, t_client *c, const char *cmd)
 		  (5 + istm(s->time_action)));
   memset(final, 0, 5 + istm(s->time_action));
   sprintf(final, "sgt %d\n", s->time_action);
-  send_data(c->fd, final);
+  if (type == GUI)
+    send_data_to_gui(s->clients, final);
+  else
+    send_data(c->fd, final);
   return (SUCCESS);
 }

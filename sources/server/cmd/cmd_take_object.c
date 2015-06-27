@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sat Jun 27 10:51:31 2015 Audibert Louis
+** Last update Sat Jun 27 15:25:41 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -90,8 +90,10 @@ int		take_food(t_server *s, t_client *c)
   return (SUCCESS);
 }
 
-int		cmd_take_object(t_server *s, t_client *c, const char *cmd)
+int		cmd_take_object(t_server *s, t_client *c,
+				const char *cmd, e_client_type type)
 {
+  (void)type;
   char		*item;
 
   item = xmalloc((strlen(cmd) - 7) * sizeof(char));
