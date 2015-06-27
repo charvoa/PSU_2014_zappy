@@ -114,7 +114,6 @@ class CommandClass():
 #############Getters for food and Rocks ###################################
 
     def getLinemate(self) -> int:
-        print(self.linemate)
         s = self.linemate
         s =''.join(i for i in s if i.isdigit())
         return int(s)
@@ -233,6 +232,8 @@ class CommandClass():
             sys.exit(0)
         elif (rec == 'elevation en cours\n'):
             rec = mess.readMessage(s)
+            if (p.getVerbose()):
+                print('During Elevation', rec)
             if (rec == 'mort\n'):
                 print('You died\n')
                 sys.exit(0)

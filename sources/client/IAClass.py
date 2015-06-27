@@ -17,9 +17,36 @@ class IAClass():
         self.mendiane = 0
         self.phiras = 0
         self.thystame = 0
-        self.inFrontOfMe = 0
+        self.inFrontOfMe = None
         self.cc = CommandClass()
         self.level = 1
+
+    def defineWhatWeNeedMost(self):
+        if (self.getLevel() == 1):
+            print('Level 1 | Need : 1 Player, 1 Linemate, 0 Deraumere, 0 Sibur, 0 Mendiane, 0 Phiras, 0 Thystame')
+        elif (self.getLevel() == 2):
+            print('Level 2 | Need : 2 Player, 1 Linemate, 1 Deraumere, 1 Sibur, 0 Mendiane, 0 Phiras, 0 Thystame')
+        elif (self.getLevel() == 3):
+            print('Level 3 | Need : 2 Player, 2 Linemate, 0 Deraumere, 1 Sibur, 0 Mendiane, 2 Phiras, 0 Thystame')
+        elif (self.getLevel() == 4):
+            print('Level 4 | Need : 4 Player, 1 Linemate, 1 Deraumere, 2 Sibur, 0 Mendiane, 1 Phiras, 0 Thystame')
+        elif(self.getLevel() == 5):
+            print('Level 5 | Need : 4 Player, 1 Linemate, 2 Deraumere, 1 Sibur, 3 Mendiane, 0 Phiras, 0 Thystame')
+        elif(self.getLevel() == 6):
+            print('Level 6 | Need : 6 Player, 1 Linemate, 2 Deraumere, 3 Sibur, 0 Mendiane, 1 Phiras, 0 Thystame')
+        elif(self.getLevel() == 7):
+            print('Level 7 | Need : 6 Player, 2 Linemate, 2 Deraumere, 2 Sibur, 2 Mendiane, 2 Phiras, 1 Thystame')
+        elif(self.getLevel() == 8):
+            print('Level 8 | Max')
+
+    def checkBestCase(self):
+        if (self.inFrontOfMe):
+            for p in self.inFrontOfMe:
+                if 'nourriture' in p:
+                    print('I see food ! ')
+                for i in self.rocksTab:
+                    if i in p:
+                        print('I see ', i)
 
     def run(self, s, p, mess):
         while 1:
@@ -48,6 +75,7 @@ class IAClass():
                 self.cc.prend_cmd(s, p, mess, self.rocksTab[randTab])
                 self.cc.avance_cmd(s, p, mess)
             print('Current Level : ', self.getLevel())
+            self.defineWhatWeNeedMost()
 
     def getLevel(self) -> int:
         return int(self.level)
