@@ -9,7 +9,7 @@ class InterpretClass():
     def interpret_bienvenue(self, s, rec, p):
         if (p.getVerbose()):
             print('bienvenue: ', rec)
-        if (rec == 'BIENVENUE\n'):
+        if (rec == "BIENVENUE\n"):
             return 1
         return 0
 

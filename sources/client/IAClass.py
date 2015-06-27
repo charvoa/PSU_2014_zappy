@@ -55,6 +55,9 @@ class IAClass():
             print('Level 8 | Max')
             return 0, 0, 0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0]
 
+    # def convertVoirToBinary(self):
+    #     for i in self.inFrontOfMe:
+
     def checkBestCase(self):
         if (self.inFrontOfMe):
             for p in self.inFrontOfMe:
