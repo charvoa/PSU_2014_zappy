@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 23:24:43 2015 Antoine Garcia
+// Last update Sun Jun 28 23:39:55 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -268,12 +268,21 @@ void Command::eht(std::string cmd, GameEngine *game)
 
 void Command::ebo(std::string cmd, GameEngine *game)
 {
+  (void)game;
   std::string		str(cmd.begin() + 4, cmd.end());
   int val = std::stoi(str);
 }
 
-void Command::edi(std::string cmd, GameEngine *)
+void Command::edi(std::string cmd, GameEngine *game)
 {
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
+void Command::pex(std::string cmd, GameEngine *game)
+{
+  (void)game;
   std::string		str(cmd.begin() + 4, cmd.end());
   int val = std::stoi(str);
 }
