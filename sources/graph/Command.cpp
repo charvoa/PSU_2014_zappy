@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 15:05:34 2015 Antoine Garcia
+// Last update Sun Jun 28 15:07:53 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -235,7 +235,7 @@ void Command::pic(std::string cmd, GameEngine *game)
       std::string val(var.begin() + 1, var.end());
       int value;
       value = std::stoi(val);
-      std::cout << value << std::endl;
+      vector.push_back(value);
     }
 }
 
