@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sun Jun 28 13:25:56 2015 Serge Heitzler
+** Last update Sun Jun 28 15:47:51 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -274,6 +274,7 @@ void		free_list(t_list *list);
 
 /* Function(s) in file get_client_in_list.c */
 t_client	*get_client_by_id(t_list *list, int id);
+int		remove_client_by_id(t_list *list, int id);
 
 /* Function(s) in file get_nbr_of.c */
 int		get_nbr_of_rock(e_rock_type type, t_list *list);

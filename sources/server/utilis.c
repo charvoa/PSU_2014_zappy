@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sun Jun 28 15:50:45 2015 Audibert Louis
+** Last update Sun Jun 28 15:54:35 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -81,12 +81,12 @@ void		read_write_server(t_server *s, int i, char **argv)
       if (nbytes == 0)
 	{
 	  /* remove_from_socket(s->clients, i); */
+	  ring_buffer_destroy(c->buffer);
 	  remove_client_by_id(s->clients, i);
 	  printf("%s: socket %d hung up\n", argv[0], i);
 	}
       else
 	perror("read() error!");
-      ring_buffer_destroy(c->buffer);
       close(i);
       FD_CLR(i, &(s->master));
     }

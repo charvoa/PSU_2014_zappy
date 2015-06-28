@@ -5,15 +5,15 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Sat Jun 27 20:49:57 2015 Serge Heitzler
+** Last update Sun Jun 28 15:40:42 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 t_objects	g_objects[8] =
   {
-    {"food", NULL},
-    {"player", NULL},
+    {"nourriture", NULL},
+    {"joueur", NULL},
     {"linemate", NULL},
     {"deraumere", NULL},
     {"sibur", NULL},
