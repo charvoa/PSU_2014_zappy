@@ -55,8 +55,21 @@ class IAClass():
             print('Level 8 | Max')
             return 0, 0, 0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0]
 
-    # def convertVoirToBinary(self):
-    #     for i in self.inFrontOfMe:
+    def convertVoirToBinary(self):
+        rows = 81
+        col = 7
+        myList = [[0 for x in range(col)] for x in range(rows)]
+        for i in range(rows):
+            for p in self.inFrontOfMe:
+                print("Pvoir>>", p)
+                myList[i][0] = p.count('joueur')
+                myList[i][1] = p.count('linemate')
+                myList[i][2] = p.count('deraumere')
+                myList[i][3] = p.count('sibur')
+                myList[i][4] = p.count('mendiane')
+                myList[i][5] = p.count('phiras')
+                myList[i][6] = p.count('thystame')
+                print(myList[i])
 
     def checkBestCase(self):
         if (self.inFrontOfMe):
@@ -79,6 +92,7 @@ class IAClass():
             self.thystame = self.cc.getThystame()
             self.food = self.cc.getFood()
             self.inFrontOfMe = self.cc.voir_cmd(s, p, mess)
+            self.convertVoirToBinary()
             rand = random.randint(1, 7)
             randTab = random.randint(0, 5)
             if (rand == 1):
@@ -92,7 +106,6 @@ class IAClass():
                 self.cc.prend_cmd(s, p, mess, self.rocksTab[randTab])
             self.cc.avance_cmd(s, p, mess)
             self.cc.prend_cmd(s, p, mess, 'nourriture')
-
             print('Current Level : ', self.getLevel())
             self.playerNeeded, self.linemateNeeded, self.deraumereNeeded, self.siburNeeded, self.mendianeNeeded, self.phirasNeeded, self.thystameNeeded, self.itemsNeeded = self.defineWhatWeNeedMost()
 
