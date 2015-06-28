@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Sat Jun 27 14:33:17 2015 Nicolas Girardot
+// Last update Sun Jun 28 11:01:59 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -39,6 +39,23 @@ SDL_Surface &GameEngine::getSurface()
   return (*_surface);
 }
 
+void	GameEngine::addPlayer(std::vector<std::string> &args)
+{
+  IACharacter *player = new IACharacter(args);
+  _players.push_back(player);
+}
+
+void	GameEngine::updatePlayer(std::vector<std::string> &args)
+{
+  int	id = stoi(args.at(0));
+  for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
+    {
+      if (id == (*it)->getId())
+	(*it)->updateAtt(args);
+      else
+	{ }
+    }
+}
 
 bool	GameEngine::initialize()
 {
@@ -51,7 +68,6 @@ bool	GameEngine::initialize()
   TTF_Init();
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
-  _socket->writeOnSocket("msz\r\n");
   return true;
 }
 
@@ -189,14 +205,14 @@ void	GameEngine::draw()
   SDL_RenderClear(_renderer);
   _hud->draw(_renderer);
   if (_gMap != NULL)
-    _gMap->draw(_renderer, _mousePos, *_focus, _cases);
+    _gMap->draw(_renderer, *_focus, _cases, _players);
   SDL_RenderPresent(_renderer);
 }
 
 void	GameEngine::run()
 {
   this->_socket = new Socket("127.0.0.1", 4242, this);
-  _socket->writeOnSocket("GRAPHIC\n");
+  _socket->writeOnSocket("GRAPHIC\r\n");
   initialize();
   while (this->update())
     draw();

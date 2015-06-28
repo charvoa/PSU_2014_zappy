@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:43 2015 Serge Heitzler
-// Last update Sat Jun 27 14:03:08 2015 Nicolas Girardot
+// Last update Sat Jun 27 15:18:23 2015 Nicolas Girardot
 //
 
 #ifndef CASE_HH_
@@ -55,7 +55,7 @@ public:
   int			_thystame;
   int			_food;
   e_texture_type       	_textureType;
-  //  std::vector<IACharacter *>	_list;
+  std::vector<IACharacter *>	_list;
 
 };
 
