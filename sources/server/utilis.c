@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sun Jun 28 01:48:11 2015 Serge Heitzler
+** Last update Sun Jun 28 12:48:08 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -79,7 +79,10 @@ void		read_write_server(t_server *s, int i, char **argv)
   if ((nbytes = read(i, tmp, 4096)) <= 0)
     {
       if (nbytes == 0)
-	printf("%s: socket %d hung up\n", argv[0], i);
+	{
+	  /* remove_from_socket(s->clients, i); */
+	  printf("%s: socket %d hung up\n", argv[0], i);
+	}
       else
 	perror("read() error!");
       ring_buffer_destroy(c->buffer);

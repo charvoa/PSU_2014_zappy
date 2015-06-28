@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sun Jun 28 11:50:23 2015 Serge Heitzler
+** Last update Sun Jun 28 13:25:56 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -117,6 +117,7 @@ void		read_write_server(t_server *s, int i, char **argv);
 /* --------------------$(CMD)--------------------- */
 
 /* Function(s) in file add_or_remove_id.c */
+int		remove_from_socket(t_list *list, int id);
 int		*add_id(t_block *block, int id);
 int		*remove_id(t_block *block, int id);
 
