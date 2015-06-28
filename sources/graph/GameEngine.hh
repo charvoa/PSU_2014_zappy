@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Fri Jun 26 16:51:06 2015 Nicolas Girardot
+// Last update Sat Jun 27 18:25:20 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -52,8 +52,10 @@ public:
   SDL_Renderer &getRenderer();
   SDL_Window &getWindow();
   SDL_Surface &getSurface();
+  void	addPlayer(std::vector<std::string> &);
   void	init_object();
   bool	initialize();
+  void	updatePlayer(std::vector<std::string> &);
   bool	update();
   void	getMousePos();
   void	createMap(std::vector<std::string> &);
@@ -66,6 +68,7 @@ public:
   std::pair <int, int>determinePosClickedOnGUI(int, int);
 private:
   std::vector<std::vector<Case*> > _cases;
+  std::list<IACharacter *> _players;
 };
 
 #endif

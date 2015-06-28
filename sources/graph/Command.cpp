@@ -5,11 +5,11 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sat Jun 27 14:32:57 2015 Nicolas Girardot
+// Last update Sun Jun 28 11:27:43 2015 Antoine Garcia
 //
 
 #include "Command.hh"
-
+#include <tuple>
 Command::Command()
 {
   Exec();
@@ -104,7 +104,7 @@ void	Command::pnw(std::string cmd, GameEngine *game)
     if (param != "pnw")
       detPlayer.push_back(param);
 
-  // affPlayer(param);
+  game->addPlayer(detPlayer);
 }
 
 void	Command::ppo(std::string cmd, GameEngine *game)
@@ -117,8 +117,7 @@ void	Command::ppo(std::string cmd, GameEngine *game)
   while (std::getline(ss, param, ' '))
     if (param != "ppo")
       detPlayer.push_back(param);
-
-  // affPlayer(param);
+  game->updatePlayer(detPlayer);
 }
 
 void	Command::plv(std::string cmd, GameEngine *game)
@@ -161,6 +160,42 @@ void Command::pdi(std::string cmd, GameEngine *game)
   ss >> id;
 }
 
+void Command::pfk(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 5, cmd.end());
+  std::istringstream	ss(str);
+  int			id;
+
+  ss >> id;
+}
+
+void Command::seg(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  int			id;
+
+  ss >> id;
+}
+
+void Command::pbc(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 5, cmd.end() - 1);
+  std::istringstream	ss(str);
+  int val;
+  std::string	string;
+
+  ss >> val;
+  ss >> string;
+  std::tuple<int, std::string> tuple = std::make_tuple(val, str);
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -173,12 +208,17 @@ void Command::Exec()
   _functions["pin"] = &Command::pin;
   _functions["pgt"] = &Command::pgt;
   _functions["pdi"] = &Command::pdi;
+  _functions["pfk"] = &Command::pfk;
+  _functions["pnw"] = &Command::pnw;
+  _functions["seg"] = &Command::seg;
+  _functions["pbc"] = &Command::pbc;
   /* faire de même pour chaque fonctions */
 }
 
 void Command::Parse(std::string command, GameEngine *game)
 {
   std::string cmd(command, 0, 3);
+  std::cout << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)
