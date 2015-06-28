@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sat Jun 27 14:32:57 2015 Nicolas Girardot
+// Last update Sun Jun 28 11:01:53 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -161,6 +161,28 @@ void Command::pdi(std::string cmd, GameEngine *game)
   ss >> id;
 }
 
+void Command::pfk(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 5, cmd.end());
+  std::istringstream	ss(str);
+  int			id;
+
+  ss >> id;
+}
+
+void Command::seg(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  int			id;
+
+  ss >> id;
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -173,6 +195,9 @@ void Command::Exec()
   _functions["pin"] = &Command::pin;
   _functions["pgt"] = &Command::pgt;
   _functions["pdi"] = &Command::pdi;
+  _functions["pfk"] = &Command::pfk;
+  _functions["pnw"] = &Command::pnw;
+  _functions["seg"] = &Command::seg;
   /* faire de même pour chaque fonctions */
 }
 
