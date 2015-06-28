@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Sun Jun 28 15:25:23 2015 Audibert Louis
+** Last update Sun Jun 28 18:11:19 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -15,7 +15,7 @@ static void	cmd_pex(t_client *c, t_list *clients)
   int		size_malloc;
   char	*str;
 
-  size_malloc = (6 + istm(c->fd));
+  size_malloc = (7 + istm(c->fd));
   str = xmalloc(sizeof(char) * size_malloc);
   bzero(str, size_malloc);
   sprintf(str, "pex #%d\n", c->fd);
@@ -71,7 +71,7 @@ int		cmd_kick(t_server *s, t_client *c,
   client = xmalloc(sizeof(t_client));
   final = get_trame_deplacement(c);
   cmd_pex(c, s->clients);
-  while (i <= s->map->objects[c->pos->y][c->pos->x]->nb_clients)
+  while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients)
     {
       client = get_client_by_id(s->clients,
 				s->map->objects[c->pos->y][c->pos->x]->ids[i]);
