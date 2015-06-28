@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:17 2015 Nicolas Girardot
-// Last update Sun Jun 28 23:02:32 2015 Antoine Garcia
+// Last update Sun Jun 28 23:21:06 2015 Antoine Garcia
 //
 
 #ifndef COMMAND_HH_
@@ -52,6 +52,7 @@ public:
   void  pdr(std::string, GameEngine *);
   void	smg(std::string, GameEngine *);
   void	eht(std::string, GameEngine *);
+  void	ebo(std::string, GameEngine *);
 };
 
 #endif

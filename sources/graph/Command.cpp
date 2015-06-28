@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 23:11:51 2015 Antoine Garcia
+// Last update Sun Jun 28 23:22:46 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -266,6 +266,12 @@ void Command::eht(std::string cmd, GameEngine *game)
   int val = std::stoi(str);
 }
 
+void Command::ebo(std::string cmd, GameEngine *game)
+{
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -286,7 +292,8 @@ void Command::Exec()
   _functions["pic"] = &Command::pic;
   _functions["pdr"] = &Command::pdr;
   _functions["smg"] = &Command::smg;
-  _functions["eht"] = &Command::smg;
+  _functions["eht"] = &Command::eht;
+  _functions["ebo"] = &Command::ebo;
   /* faire de même pour chaque fonctions */
 }
 
