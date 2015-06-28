@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sun Jun 28 15:47:51 2015 Serge Heitzler
+** Last update Sun Jun 28 23:19:26 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -191,8 +191,20 @@ int		cmd_mct(t_server *s, t_client *c, const char *cmd, e_client_type type);
 /* Function(s) in file cmd_msz.c */
 int		cmd_msz(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
+/* Function(s) in file cmd_pex.c */
+int		cmd_pex(t_client *c, t_list *clients);
+
+/* Function(s) in file cmd_pfk.c */
+int		cmd_pfk(t_client *c, t_list *clients);
+
+/* Function(s) in file cmd_pdr.c */
+int		cmd_pdr(t_client *c, t_list *clients, int type);
+
 /* Function(s) in file cmd_plv.c */
 int		cmd_plv(t_server *s, t_client *c, const char *cmd, e_client_type type);
+
+/* Function(s) in file cmd_pdr.c */
+int		cmd_pgt(t_client *c, t_list *clients, int type);
 
 /* Function(s) in file cmd_pin.c */
 int		cmd_pin(t_server *s, t_client *c, const char *cmd, e_client_type type);

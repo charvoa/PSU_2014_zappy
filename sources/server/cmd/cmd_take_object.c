@@ -5,21 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sun Jun 28 14:43:50 2015 Audibert Louis
+** Last update Sun Jun 28 23:12:25 2015 Serge Heitzler
 */
 
 #include "functions.h"
-
-static void		cmd_gui_pgt(t_client *c, t_list *clients, int type)
-{
-  int			size_malloc;
-  char			*str;
-
-  size_malloc = (8 + istm(c->fd) + istm(type));
-  str = xmalloc(sizeof(char) * size_malloc);
-  sprintf(str, "pdr #%d %d\n", c->fd, type);
-  send_data_to_gui(clients, str);
-}
 
 int		check_rock(char *rock)
 {
@@ -83,7 +72,7 @@ int		take_rock(t_server *s, t_client *c, char *item)
   if (launch_func_block(s->map->objects[c->pos->y][c->pos->x],
 			rock_type, REMOVE) == ERROR)
     return (ERROR);
-  cmd_gui_pgt(c, s->clients, rock_type + 1);
+  cmd_pgt(c, s->clients, rock_type + 1);
   cmd_pin(s, c, "protocole", GUI);
   cmd_bct(s, c, "protocole", GUI);
   return (SUCCESS);
@@ -96,7 +85,7 @@ int		take_food(t_server *s, t_client *c)
     return (ERROR);
   s->map->objects[c->pos->y][c->pos->x]->food--;
   c->inventory->food++;
-  cmd_gui_pgt(c, s->clients, 0);
+  cmd_pgt(c, s->clients, 0);
   cmd_pin(s, c, "protocole", GUI);
   cmd_bct(s, c, "protocole", GUI);
   return (SUCCESS);

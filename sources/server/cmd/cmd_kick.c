@@ -5,22 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Sun Jun 28 18:11:19 2015 Audibert Louis
+** Last update Sun Jun 28 23:10:21 2015 Serge Heitzler
 */
 
 #include "functions.h"
-
-static void	cmd_pex(t_client *c, t_list *clients)
-{
-  int		size_malloc;
-  char	*str;
-
-  size_malloc = (7 + istm(c->fd));
-  str = xmalloc(sizeof(char) * size_malloc);
-  bzero(str, size_malloc);
-  sprintf(str, "pex #%d\n", c->fd);
-  send_data_to_gui(clients, str);
-}
 
 char		*get_trame_deplacement(t_client *c)
 {

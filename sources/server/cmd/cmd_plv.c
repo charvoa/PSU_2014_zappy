@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:57 2015 Serge Heitzler
-** Last update Sat Jun 27 17:27:33 2015 Serge Heitzler
+** Last update Sun Jun 28 22:47:20 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -18,11 +18,14 @@ int		cmd_plv(t_server *s, t_client *c,
   t_client	*target;
 
   id_targeted = xmalloc(sizeof(int));
-  sscanf(cmd, "plv #%d", id_targeted);
+  if (type == GUI)
+    *id_targeted = c->fd;
+  else
+    sscanf(cmd, "plv #%d", id_targeted);
   target = get_client_by_id(s->clients, *id_targeted);
-  final = xmalloc(sizeof(char) * (7 + istm(target->fd)
+  final = xmalloc(sizeof(char) * (8 + istm(target->fd)
 				  + istm((int)target->level)));
-  memset(final, 0, (7 + istm(target->fd)
+  memset(final, 0, (8 + istm(target->fd)
 		    + istm((int)target->level)));
   sprintf(final, "plv #%d %d\n", target->fd, target->level);
   if (type == GUI)
