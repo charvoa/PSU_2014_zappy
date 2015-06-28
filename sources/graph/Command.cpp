@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Mon Jun 29 13:20:57 2015 Nicolas Girardot
+// Last update Sun Jun 28 23:04:19 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -256,6 +256,14 @@ void Command::smg(std::string cmd, GameEngine *game)
 {
   (void) game;
   std::string		str(cmd.begin() + 4, cmd.end());
+}
+
+void Command::eht(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
 }
 
 void Command::Exec()
