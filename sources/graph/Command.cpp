@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Mon Jun 29 16:09:01 2015 Nicolas Charvoz
+// Last update Mon Jun 29 00:07:32 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -311,6 +311,7 @@ void Command::Exec()
   _functions["eht"] = &Command::eht;
   _functions["ebo"] = &Command::ebo;
   _functions["edi"] = &Command::edi;
+  _functions["pex"] = &Command::pex;
   /* faire de même pour chaque fonctions */
 }
 
