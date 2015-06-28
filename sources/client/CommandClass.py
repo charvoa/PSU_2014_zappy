@@ -15,6 +15,7 @@ class CommandClass():
         self.thystame = 0
 
     def avance_cmd(self, s, p, mess):
+        self.prend_cmd(s, p, mess, 'nourriture')
         if (p.getVerbose()):
             print('avance >>')
         var = 'avance'
@@ -30,6 +31,7 @@ class CommandClass():
             return 0
 
     def droite_cmd(self, s, p, mess):
+        self.prend_cmd(s, p, mess, 'nourriture')
         if (p.getVerbose()):
             print('droite >> ')
         var = 'droite'
@@ -47,6 +49,7 @@ class CommandClass():
             return 0
 
     def gauche_cmd(self, s, p, mess):
+        self.prend_cmd(s, p, mess, 'nourriture')
         if (p.getVerbose()):
             print('gauche >>')
         var = 'gauche'

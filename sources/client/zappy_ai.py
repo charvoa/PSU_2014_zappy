@@ -24,7 +24,6 @@ p = GetOptions()
 mess = MessageClass()
 ic = InterpretClass()
 cc = CommandClass()
-ia = IAClass()
 s = None
 
 def send_name_to_server(s):
@@ -84,7 +83,8 @@ def main():
         while not flag:
             try:
                 if not p.getDbg():
-                    threadIA = ia.run(s, p, mess)
+                    ia = IAClass(s, p, mess)
+                    threadIA = ia.run()
                     threadServer = listenToServer(s)
                     threadIA.start()
                     threadServer.start()

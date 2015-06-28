@@ -1,14 +1,20 @@
 import time
 import random
-from CommandClass import *
 import subprocess
 from array import *
+from CommandClass import *
+from MoveClass import *
 
 class IAClass():
 
     """ IAClass that handle the zappy's AI """
 
-    def __init__(self):
+    def __init__(self, s, p, mess):
+        self.s = s
+        self.p = p
+        self.mess = mess
+        self.cc = CommandClass()
+        self.move = MoveClass()
         self.rocksTab = ['linemate', 'deraumere', 'sibur', 'mendiane', 'phiras',
                                     'thystame']
         self.linemate = 0
@@ -18,7 +24,6 @@ class IAClass():
         self.phiras = 0
         self.thystame = 0
         self.inFrontOfMe = None
-        self.cc = CommandClass()
         self.level = 1
         self.playerNeeded = 1
         self.linemateNeeded = 1
@@ -28,40 +33,48 @@ class IAClass():
         self.phirasNeeded = 0
         self.thystameNeeded = 0
         self.itemsNeeded = [1, 1, 0, 0, 0, 0, 0, 0]
+        self.rows = 4
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
-            print('Level 1 | Need : 1 Player, 1 Linemate, 0 Deraumere, 0 Sibur, 0 Mendiane, 0 Phiras, 0 Thystame')
+            #print('Level 1 | Need : 1 Player, 1 Linemate, 0 Deraumere, 0 Sibur, 0 Mendiane, 0 Phiras, 0 Thystame')
             return 1, 1, 0, 0, 0, 0, 0, [1, 1, 0, 0, 0, 0, 0]
         elif (self.getLevel() == 2):
-            print('Level 2 | Need : 2 Player, 1 Linemate, 1 Deraumere, 1 Sibur, 0 Mendiane, 0 Phiras, 0 Thystame')
+            #print('Level 2 | Need : 2 Player, 1 Linemate, 1 Deraumere, 1 Sibur, 0 Mendiane, 0 Phiras, 0 Thystame')
             return 2, 1, 1, 1, 0, 0, 0, [2, 1, 1, 1, 0, 0, 0]
         elif (self.getLevel() == 3):
-            print('Level 3 | Need : 2 Player, 2 Linemate, 0 Deraumere, 1 Sibur, 0 Mendiane, 2 Phiras, 0 Thystame')
+            #print('Level 3 | Need : 2 Player, 2 Linemate, 0 Deraumere, 1 Sibur, 0 Mendiane, 2 Phiras, 0 Thystame')
             return 2, 2, 0, 1, 0, 2, 0, [2, 2, 0, 1, 0, 2, 0]
         elif (self.getLevel() == 4):
-            print('Level 4 | Need : 4 Player, 1 Linemate, 1 Deraumere, 2 Sibur, 0 Mendiane, 1 Phiras, 0 Thystame')
+            #print('Level 4 | Need : 4 Player, 1 Linemate, 1 Deraumere, 2 Sibur, 0 Mendiane, 1 Phiras, 0 Thystame')
             return 4, 1, 1, 2, 0, 1, 0, [4, 1, 1, 2, 0, 1, 0]
         elif(self.getLevel() == 5):
-            print('Level 5 | Need : 4 Player, 1 Linemate, 2 Deraumere, 1 Sibur, 3 Mendiane, 0 Phiras, 0 Thystame')
+            #print('Level 5 | Need : 4 Player, 1 Linemate, 2 Deraumere, 1 Sibur, 3 Mendiane, 0 Phiras, 0 Thystame')
             return 4, 1, 2, 1, 3, 0, 0, [4, 1, 2, 1, 3, 0, 0]
         elif(self.getLevel() == 6):
-            print('Level 6 | Need : 6 Player, 1 Linemate, 2 Deraumere, 3 Sibur, 0 Mendiane, 1 Phiras, 0 Thystame')
+            #print('Level 6 | Need : 6 Player, 1 Linemate, 2 Deraumere, 3 Sibur, 0 Mendiane, 1 Phiras, 0 Thystame')
             return 6, 1, 2, 3, 0, 1, 0, [6, 1, 2, 3, 0, 1, 0]
         elif(self.getLevel() == 7):
-            print('Level 7 | Need : 6 Player, 2 Linemate, 2 Deraumere, 2 Sibur, 2 Mendiane, 2 Phiras, 1 Thystame')
+            #print('Level 7 | Need : 6 Player, 2 Linemate, 2 Deraumere, 2 Sibur, 2 Mendiane, 2 Phiras, 1 Thystame')
             return 6, 2, 2, 2, 2, 2, 1, [6, 2, 2, 2, 2, 2, 1]
         elif(self.getLevel() == 8):
-            print('Level 8 | Max')
+            #print('Level 8 | Max')
             return 0, 0, 0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0]
 
+    def getNbRows(self):
+        level = self.getLevel()
+        nb = 1
+        while (level >= 1):
+            nb += ((level * 2) + 1)
+            level -= 1
+        return nb
+
     def convertVoirToBinary(self):
-        rows = 81
+        self.rows = self.getNbRows()
         col = 7
-        myList = [[0 for x in range(col)] for x in range(rows)]
-        for i in range(rows):
-            for p in self.inFrontOfMe:
-                print("Pvoir>>", p)
+        myList = [[0 for x in range(col)] for x in range(self.rows)]
+        for p in self.inFrontOfMe:
+            for i in range(self.rows):
                 myList[i][0] = p.count('joueur')
                 myList[i][1] = p.count('linemate')
                 myList[i][2] = p.count('deraumere')
@@ -69,21 +82,27 @@ class IAClass():
                 myList[i][4] = p.count('mendiane')
                 myList[i][5] = p.count('phiras')
                 myList[i][6] = p.count('thystame')
-                print(myList[i])
+        return myList
 
     def checkBestCase(self):
-        if (self.inFrontOfMe):
-            for p in self.inFrontOfMe:
-                if 'nourriture' in p:
-                    print('I see food ! ')
-                for i in self.rocksTab:
-                    if i in p:
-                        print('I see ', i)
+        best = 0
+        save = 0
+        bestCase = 0
+        myList = self.convertVoirToBinary()
+        for i in range(self.rows):
+            best = 0
+            for j in range(7):
+                if (myList[i][j] >= self.itemsNeeded[j]):
+                    best += 1
+            if (best >= save):
+                save = best
+                bestCase = i
+        return bestCase
 
-    def run(self, s, p, mess):
-        while 1:
-            self.cc.voir_cmd(s, p, mess)
-            self.cc.inventaire_cmd(s, p, mess)
+    def run(self):
+        i = 1
+        while (i == 1):
+            self.cc.inventaire_cmd(self.s, self.p, self.mess)
             self.linemate = self.cc.getLinemate()
             self.deraumere = self.cc.getDeraumere()
             self.sibur = self.cc.getSibur()
@@ -91,23 +110,31 @@ class IAClass():
             self.phiras = self.cc.getPhiras()
             self.thystame = self.cc.getThystame()
             self.food = self.cc.getFood()
-            self.inFrontOfMe = self.cc.voir_cmd(s, p, mess)
-            self.convertVoirToBinary()
+            self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
             rand = random.randint(1, 7)
             randTab = random.randint(0, 5)
-            if (rand == 1):
-                self.cc.gauche_cmd(s, p, mess)
-            elif (rand == 2):
-                self.cc.droite_cmd(s, p, mess)
-            elif (rand == 5):
-                if (self.cc.incantation_cmd(s, p, mess) == 1):
-                    self.level += 1
-            else:
-                self.cc.prend_cmd(s, p, mess, self.rocksTab[randTab])
-            self.cc.avance_cmd(s, p, mess)
-            self.cc.prend_cmd(s, p, mess, 'nourriture')
+            if (self.cc.incantation_cmd(self.s, self.p, self.mess) == 1):
+                self.level += 1
+            self.cc.prend_cmd(self.s, self.p, self.mess, self.rocksTab[randTab])
             print('Current Level : ', self.getLevel())
             self.playerNeeded, self.linemateNeeded, self.deraumereNeeded, self.siburNeeded, self.mendianeNeeded, self.phirasNeeded, self.thystameNeeded, self.itemsNeeded = self.defineWhatWeNeedMost()
+            x, y = self.move.getMovements(self.checkBestCase())
+            self.moveAI(x, y)
+
+    def moveAI(self, x, y):
+        while (y > 0):
+            if (self.cc.avance_cmd(self.s, self.p, self.mess) == 1):
+                y -= 1
+        if (x > 0):
+            if (self.cc.droite_cmd(self.s, self.p, self.mess) == 1):
+                while (x > 0):
+                    if (self.cc.avance_cmd(self.s, self.p, self.mess) == 1):
+                        x -= 1
+        elif (x < 0):
+            if (self.cc.gauche_cmd(self.s, self.p, self.mess) == 1):
+                while (x < 0):
+                    if (self.cc.avance_cmd(self.s, self.p, self.mess) == 1):
+                        x += 1
 
     def getLevel(self) -> int:
         return int(self.level)
