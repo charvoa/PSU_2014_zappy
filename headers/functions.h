@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jun 27 22:07:43 2015 Serge Heitzler
+** Last update Sun Jun 28 00:10:16 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -26,9 +26,6 @@ int		count_teams(t_server *s);
 void		init_orientation(void (*orientation[4])(t_client *));
 void		init_inventory(t_client *c);
 int		create_client(t_server *, int);
-
-/* Function(s) in file create_cmd.c */
-t_cmd		*create_cmd(const char *cmd);
 
 /* Function(s) in file create_food.c */
 int		create_food(t_server *s);
@@ -68,8 +65,8 @@ int		opt_width_map(t_server *s);
 int		opt_height_map(t_server *s);
 int		opt_verbose(t_server *s);
 
-/* Function(s) in file prepare_for_exec.c */
-void		prepare_for_exec(t_server *s, t_client *c);
+/* Function(s) in file create_cmd.c */
+void	        create_cmd(t_server *s, t_client *c);
 
 /* Function(s) in file protocole_connexion.c */
 void		protocole_graphique(t_server *s, t_client *c);

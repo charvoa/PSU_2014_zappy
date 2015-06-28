@@ -1,23 +1,85 @@
 /*
-** create_cmd.c for zappy in /home/heitzl_s/rendu/PSU_2014_zappy/sources/server/list
-**
+** prepare_for_exec.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
+** 
 ** Made by Serge Heitzler
-** Login   <heitzl_s@epitech.net>
-**
-** Started on  Tue May 26 17:23:11 2015 Serge Heitzler
-** Last update Sat Jun 27 10:42:23 2015 Audibert Louis
+** Login   <sergeheitzler@epitech.net>
+** 
+** Started on  Sun Jun 28 00:07:48 2015 Serge Heitzler
+** Last update Sun Jun 28 01:48:33 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-t_cmd		*create_cmd(const char *cmd)
+int		manage_time(t_server *s, t_cmd *cmd, int index)
 {
-  t_cmd		*cmd;
-  struct timespec tp;
+  float		rate;
+  long		ns_delay;
+  int		mod;
+  int		billion;
 
-  clock_gettime(CLOCK_REALTIME, &tp);
-  /* "tp.tv_usec" = nanoseconds divide by 1000 to get microseconds*/
+  billion = 1000000000;
+  rate = g_cmds[index].delay / s->time_action;
+  ns_delay = rate * billion;
+  printf("rate %f nsdelay %ld\n", rate, ns_delay);
+  if (ns_delay > billion)
+    {
+      printf("A\n");
+      cmd->exec_at.tv_sec += ns_delay / billion; 
+      mod = ns_delay % billion;
+      if (cmd->exec_at.tv_nsec + mod > billion)
+	{
+	  printf("B\n");
+	  cmd->exec_at.tv_sec++;
+	  mod = cmd->exec_at.tv_nsec + mod;
+	}
+      cmd->exec_at.tv_nsec += mod;
+    }
+  else
+    {
+      printf("C\n");
+      if (cmd->exec_at.tv_nsec + ns_delay > billion)
+	{
+	  printf("D\n");
+	  cmd->exec_at.tv_sec++;
+	  ns_delay = cmd->exec_at.tv_nsec + ns_delay - billion;
+	}
+      else
+	cmd->exec_at.tv_nsec += ns_delay;
+    }
+  return (SUCCESS);
+}
 
-  printf( "Current local time and date: %s", asctime(time_info));
-  return (cmd);
+void		create_cmd(t_server *s, t_client *c)
+{
+  (void)s;
+  int			ret;
+  t_cmd			*s_cmd;
+
+  if (c->cmds->length >= 10)
+    {
+      send_data(c->fd, "Cmd list is too long !\n");
+      return;
+    }
+
+  s_cmd = xmalloc(sizeof(t_cmd));
+  s_cmd->label = ring_buffer_get_next_command(c->buffer);
+
+  if (s_cmd->label == NULL)
+    return;
+
+  /* (void)ret; */
+  if ((ret = (is_cmd(s_cmd->label))) != NO)
+    {
+      // INIT Obligatoire de exec_at pour éviter erreur valgrind
+      clock_gettime(CLOCK_REALTIME, &s_cmd->exec_at);
+      printf("BEFORE s = %ld\nns = %ld\nx/t = %f\n", s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec, g_cmds[ret].delay / s->time_action);
+      manage_time(s, s_cmd, ret);
+      printf("AFTER s = %ld\nns = %ld\nx/t = %f\n", s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec, g_cmds[ret].delay / s->time_action);
+    }
+
+  //  now.tv_sec;  /* seconds */
+  //  now.tv_usec; /* nanoseconds divide by 1000 to get microseconds*/  
+
+  push_back(c->cmds, s_cmd, CMD);
+  printf("CMD == %s\n", s_cmd->label);
 }

@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sat Jun 27 21:32:42 2015 Serge Heitzler
+## Last update Sun Jun 28 00:15:56 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -24,9 +24,16 @@ CMD_DIR		=	./cmd/
 LIST_DIR	=	./list/
 
 SRCS		= 	main.c	 				\
+			ring_buffer.c				\
 			count_teams.c				\
 			create_map.c				\
+			create_cmd.c				\
 			create_client.c				\
+			create_team.c				\
+			create_objects.c			\
+			protocole_connexion.c			\
+			check_exec.c				\
+			check_death.c				\
 			distances.c				\
 			my_printf.c				\
 			options.c				\
@@ -89,14 +96,7 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)get_nbr_of.c			\
 			$(LIST_DIR)remove_at_index.c		\
 			$(LIST_DIR)remove_front.c		\
-			$(LIST_DIR)remove_back.c		\
-			ring_buffer.c				\
-			create_team.c				\
-			create_objects.c			\
-			prepare_for_exec.c			\
-			protocole_connexion.c			\
-			check_exec.c				\
-			check_death.c
+			$(LIST_DIR)remove_back.c		
 
 NAME		= 	zappy_server
 

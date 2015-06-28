@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sat Jun 27 21:11:24 2015 Serge Heitzler
+** Last update Sun Jun 28 00:31:49 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -55,7 +55,7 @@ typedef struct		s_cmds
 {
   char			*name;
   int			(*ptr_func)();
-  int			delay;
+  float			delay;
 }			t_cmds;
 
 typedef struct		s_cmd
@@ -81,7 +81,7 @@ typedef struct		s_server
 {
   // Loulou's Work
   unsigned int		port; // -p
-  unsigned int		time_action; // -t
+  float			time_action; // -t
   t_opt			*o;
   char			**tab;
 
