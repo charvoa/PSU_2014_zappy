@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Sat Jun 27 17:30:10 2015 Serge Heitzler
+** Last update Sun Jun 28 15:25:23 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -45,15 +45,28 @@ char		*get_trame_deplacement(t_client *c)
   return (trame);
 }
 
+void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
+{
+  if (caller->orientation == NORD)
+    moved->pos->y = caller->pos->y - 1;
+  else if (caller->orientation == EST)
+    moved->pos->x = caller->pos->x - 1;
+  else if (caller->orientation == SUD)
+    moved->pos->y = caller->pos->y + 1;
+  else
+    moved->pos->x = caller->pos->x + 1;
+  cmd_ppo(s, moved, "protocole", GUI);
+}
+
 int		cmd_kick(t_server *s, t_client *c,
 			 const char *cmd, e_client_type type)
 {
-  (void)type;
-  (void)cmd;
   t_client	*client;
   char		*final;
   int		i;
 
+  (void)type;
+  (void)cmd;
   i = 0;
   client = xmalloc(sizeof(t_client));
   final = get_trame_deplacement(c);
@@ -65,12 +78,12 @@ int		cmd_kick(t_server *s, t_client *c,
       if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x)
 	  && client->fd != c->fd)
   	    {
+	      move_client_from_ori(s, c, client);
   	      send_data(client->fd, final);
-  	      send_data(c->fd, "ok\r\n");
+  	      send_data(c->fd, "ok\n");
   	    }
-      client = NULL;
       i++;
     }
-  send_data(c->fd, "ko\r\n");
+  send_data(c->fd, "ko\n");
   return (SUCCESS);
 }
