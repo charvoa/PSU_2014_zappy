@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Sat Jun 27 14:55:20 2015 Nicolas Girardot
+// Last update Sat Jun 27 18:25:54 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -14,26 +14,25 @@
 GraphMap::GraphMap(int width, int height, SDL_Renderer *renderer)
 {
   _locked = new Position(-1, -1);
-  std::cout << "testouilleee1" << std::endl;
   _width = width;
-  std::cout << "testouilleee2" << std::endl;
   _height = height;
-  std::cout << "testouilleee3" << std::endl;
   _squareSize = 100;
   _grass = IMG_Load("grass.jpg");
   _grasst = SDL_CreateTextureFromSurface(renderer, _grass);
   _dirt = IMG_Load("dirt.jpg");
   _dirtt = SDL_CreateTextureFromSurface(renderer, _dirt);
-  std::cout << "testouilleee4" << std::endl;
+  _playerSkin = IMG_Load("spriteGame.png");
+  _playerSkint = SDL_CreateTextureFromSurface(renderer, _playerSkin);
+
 }
 
 GraphMap::~GraphMap() {}
 
-void	GraphMap::draw(SDL_Renderer *renderer, Position &pos, Position &focus, std::vector<std::vector<Case *> > map)
+void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::vector<Case *> > map, std::list<IACharacter *> &players)
 {
-  (void) pos;
   int	i;
   int	j;
+
   for(i = focus._x - 3  ; i <= focus._x + 3 ; i++)
     {
       for (j = focus._y - 3 ; j <= focus._y + 3 ; j++)
@@ -51,6 +50,20 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &pos, Position &focus, std:
 	      else
 		SDL_RenderCopy(renderer, _dirtt, NULL, &rect);
 	    }
+	}
+    }
+    for(std::list<IACharacter *>::iterator it = players.begin(); it != players.end() ; it++)
+    {
+      std::cout << "Player is being drawn at " << (*it)->_position->_x << "/" << (*it)->_position->_y << std::endl;
+      if ((*it)->_position->_x >= focus._x - 3 && (*it)->_position->_x <= focus._x + 3 && (*it)->_position->_y >= focus._y - 3 && (*it)->_position->_y <= focus._y + 3)
+	{
+	  std::cout << "OLE" << std::endl;
+	  SDL_Rect rect;
+	  rect.x = (150 + ((*it)->_position->_x - focus._x + 3) * _squareSize);
+	  rect.y = (100 + ((*it)->_position->_y - focus._y + 3) * _squareSize);
+	  rect.w = 100;
+	  rect.h = 142;
+	  SDL_RenderCopy(renderer, _playerSkint, NULL, &rect);
 	}
     }
 }

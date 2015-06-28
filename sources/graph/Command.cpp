@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 11:01:53 2015 Antoine Garcia
+// Last update Sun Jun 28 11:03:41 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -104,7 +104,7 @@ void	Command::pnw(std::string cmd, GameEngine *game)
     if (param != "pnw")
       detPlayer.push_back(param);
 
-  // affPlayer(param);
+  game->addPlayer(detPlayer);
 }
 
 void	Command::ppo(std::string cmd, GameEngine *game)
@@ -117,8 +117,7 @@ void	Command::ppo(std::string cmd, GameEngine *game)
   while (std::getline(ss, param, ' '))
     if (param != "ppo")
       detPlayer.push_back(param);
-
-  // affPlayer(param);
+  game->updatePlayer(detPlayer);
 }
 
 void	Command::plv(std::string cmd, GameEngine *game)
@@ -204,6 +203,7 @@ void Command::Exec()
 void Command::Parse(std::string command, GameEngine *game)
 {
   std::string cmd(command, 0, 3);
+  std::cout << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)
