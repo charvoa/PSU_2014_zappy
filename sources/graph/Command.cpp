@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 20:09:20 2015 Antoine Garcia
+// Last update Sun Jun 28 20:17:45 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -252,6 +252,11 @@ void Command::pdr(std::string cmd, GameEngine *game)
   std::tuple<int, int> tuple = std::make_tuple(id, id_ressource);
 }
 
+void Command::smg(std::string cmd, GameEngine *game)
+{
+  std::string		str(cmd.begin() + 4, cmd.end());
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -271,6 +276,7 @@ void Command::Exec()
   _functions["pie"] = &Command::pie;
   _functions["pic"] = &Command::pic;
   _functions["pdr"] = &Command::pdr;
+  _functions["smg"] = &Command::smg;
   /* faire de même pour chaque fonctions */
 }
 
