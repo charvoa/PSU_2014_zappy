@@ -5,11 +5,11 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 11:03:41 2015 Antoine Garcia
+// Last update Sun Jun 28 11:27:43 2015 Antoine Garcia
 //
 
 #include "Command.hh"
-
+#include <tuple>
 Command::Command()
 {
   Exec();
@@ -182,6 +182,20 @@ void Command::seg(std::string cmd, GameEngine *game)
   ss >> id;
 }
 
+void Command::pbc(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 5, cmd.end() - 1);
+  std::istringstream	ss(str);
+  int val;
+  std::string	string;
+
+  ss >> val;
+  ss >> string;
+  std::tuple<int, std::string> tuple = std::make_tuple(val, str);
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -197,6 +211,7 @@ void Command::Exec()
   _functions["pfk"] = &Command::pfk;
   _functions["pnw"] = &Command::pnw;
   _functions["seg"] = &Command::seg;
+  _functions["pbc"] = &Command::pbc;
   /* faire de même pour chaque fonctions */
 }
 
