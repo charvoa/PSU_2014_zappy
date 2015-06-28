@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 19:43:14 2015 Antoine Garcia
+// Last update Sun Jun 28 19:44:51 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -270,6 +270,7 @@ void Command::Exec()
   _functions["pbc"] = &Command::pbc;
   _functions["pie"] = &Command::pie;
   _functions["pic"] = &Command::pic;
+  _functions["pdr"] = &Command::pdr;
   /* faire de même pour chaque fonctions */
 }
 
