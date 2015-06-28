@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 00:07:48 2015 Serge Heitzler
-** Last update Sun Jun 28 01:48:33 2015 Serge Heitzler
+** Last update Sun Jun 28 12:10:02 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -60,14 +60,13 @@ void		create_cmd(t_server *s, t_client *c)
       send_data(c->fd, "Cmd list is too long !\n");
       return;
     }
-
   s_cmd = xmalloc(sizeof(t_cmd));
   s_cmd->label = ring_buffer_get_next_command(c->buffer);
-
   if (s_cmd->label == NULL)
     return;
-
-  /* (void)ret; */
+  if (!(strncmp(s_cmd->label, "incantation", strlen("incantation")) != 0
+  	&& (is_incantation_possible(s, c, s_cmd->label, NORMAL)) == NO))
+    return;
   if ((ret = (is_cmd(s_cmd->label))) != NO)
     {
       // INIT Obligatoire de exec_at pour éviter erreur valgrind
@@ -76,10 +75,6 @@ void		create_cmd(t_server *s, t_client *c)
       manage_time(s, s_cmd, ret);
       printf("AFTER s = %ld\nns = %ld\nx/t = %f\n", s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec, g_cmds[ret].delay / s->time_action);
     }
-
-  //  now.tv_sec;  /* seconds */
-  //  now.tv_usec; /* nanoseconds divide by 1000 to get microseconds*/  
-
   push_back(c->cmds, s_cmd, CMD);
   printf("CMD == %s\n", s_cmd->label);
 }

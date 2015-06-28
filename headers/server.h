@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sun Jun 28 00:31:49 2015 Serge Heitzler
+** Last update Sun Jun 28 10:49:57 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -50,6 +50,17 @@ typedef enum		e_bool
     TRUE,
     FALSE
   }			e_bool;
+
+typedef struct		s_incantation
+{
+  int			player;
+  int			linemate;
+  int		        deraumere;
+  int			sibur;
+  int			mendiane;  
+  int			phiras;
+  int		        thystame;
+}			t_incantation;
 
 typedef struct		s_cmds
 {
@@ -111,5 +122,6 @@ extern int		g_listener;
 extern int		g_fdmax;
 extern t_objects	g_objects[8];
 extern t_cmds		g_cmds[23];
+extern t_incantation   	g_incantation[7];
 
 #endif /* !SERVER_H_ */

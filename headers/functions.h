@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sun Jun 28 00:10:16 2015 Serge Heitzler
+** Last update Sun Jun 28 11:50:23 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -168,6 +168,8 @@ int		cmd_graphic(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_incantation.c */
 int		cmd_incantation(t_server *s, t_client *c, const char *cmd, e_client_type type);
+int		is_incantation_possible(t_server *s, t_client *c, const char *cmd, e_client_type type);
+
 
 /* Function(s) in file cmd_inventory.c */
 char		*get_objects_from_inventory(t_inventory *i);
