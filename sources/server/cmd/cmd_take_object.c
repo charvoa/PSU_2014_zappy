@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sun Jun 28 23:12:25 2015 Serge Heitzler
+** Last update Mon Jun 29 00:17:41 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -80,7 +80,6 @@ int		take_rock(t_server *s, t_client *c, char *item)
 
 int		take_food(t_server *s, t_client *c)
 {
-  printf("take %d\n", s->map->objects[c->pos->y][c->pos->x]->food);
   if (s->map->objects[c->pos->y][c->pos->x]->food == 0)
     return (ERROR);
   s->map->objects[c->pos->y][c->pos->x]->food--;

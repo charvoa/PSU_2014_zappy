@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sun Jun 28 23:18:39 2015 Serge Heitzler
+** Last update Mon Jun 29 01:22:52 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -30,9 +30,9 @@ int		get_nb_players_of_my_level(t_server *s,
 
   i = 0;
   nb = 0;
+  cli = xmalloc(sizeof(t_client));
   while (i < b->nb_clients)
     {
-      cli = xmalloc(sizeof(t_client));
       cli = get_client_by_id(s->clients, b->ids[i]);
       if (cli->level == c->level)
 	nb++;
@@ -69,6 +69,7 @@ int		is_incantation_possible(t_server *s, t_client *c,
       && b->phiras >= g_incantation[c->level - 1].phiras
       && b->thystame >= g_incantation[c->level - 1].thystame)
     {
+      cmd_pic(s, c, cmd, type);
       printf("Starting incantation id[%d]-level[%d]\n", c->fd, c->level);
       send_incantation(c);
       return (YES);

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:50 2015 Serge Heitzler
-** Last update Sun Jun 28 23:25:27 2015 Serge Heitzler
+** Last update Sun Jun 28 23:53:09 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -14,7 +14,7 @@ int		get_pin_malloc(t_client *t)
 {
   int		size_malloc;
 
-  size_malloc = (15 + istm(t->fd) + istm((int)t->pos->x) + istm((int)t->pos->y)
+  size_malloc = (16 + istm(t->fd) + istm((int)t->pos->x) + istm((int)t->pos->y)
 		 + istm(t->inventory->food) + istm(t->inventory->linemate)
 		 + istm(t->inventory->deraumere) + istm(t->inventory->sibur)
 		 + istm(t->inventory->mendiane) + istm(t->inventory->phiras)

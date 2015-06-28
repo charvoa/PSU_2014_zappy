@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:20 2015 Serge Heitzler
-** Last update Sun Jun 28 23:22:33 2015 Serge Heitzler
+** Last update Sun Jun 28 23:52:45 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -30,7 +30,7 @@ int		cmd_bct(t_server *s, t_client *c,
   else
     sscanf(cmd, "bct %d %d", x, y);
   b = s->map->objects[*y][*x];
-  size_malloc = (13 + istm(*x) + istm(*y) + istm(b->food)
+  size_malloc = (14 + istm(*x) + istm(*y) + istm(b->food)
 		 + istm(b->linemate) + istm(b->deraumere) + istm(b->sibur)
 		 + istm(b->mendiane) + istm(b->phiras) + istm(b->thystame));
   final = xmalloc(sizeof(char) * size_malloc);

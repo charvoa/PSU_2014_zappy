@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 16:42:37 2015 Serge Heitzler
-** Last update Sun Jun 28 12:57:29 2015 Serge Heitzler
+** Last update Mon Jun 29 00:18:01 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -17,7 +17,6 @@ int		push_back(t_list *list, void *data, e_node_type type)
   node = xmalloc(sizeof(*node));
   node->data = data;
   node->type = type;
-  printf("JE PUSH \n");
   if (list != NULL)
     {
       if (list->start == NULL)

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Sun Jun 28 12:03:52 2015 Audibert Louis
+** Last update Mon Jun 29 01:08:11 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -35,17 +35,17 @@ void		delete_players(t_server *s, int **fds, int len)
   char		*trame;
 
   i = 0;
-  //VERIFIER SI MALLOC + FREE A CHAQUE TOUR DE BOUCLE FONCTIONNE
-  trame = xmalloc((strlen("pdi #\n") + 50) * sizeof(int));
   while (i < len)
     {
-      bzero(trame, strlen("pdi #\n") + 50);
-      printf("fds[%d][1] = %d\n", i, fds[i][1]);
+      trame = xmalloc(sizeof(char) * (7 + istm(fds[i][1])));
+      bzero(trame, (7 + istm(fds[i][1])));
       sprintf(trame, "pdi #%d\n", fds[i][1]);
       send_data_to_gui(s->clients, trame);
       remove_at_index(s->clients, fds[i][0]);
-      printf("ALLO ALLO BONJOUR\n");
+      printf("%s\n", trame);
       i++;
+      // delete le fd du player du bloc->ids !!
+      free(trame);
     }
 }
 
@@ -58,7 +58,7 @@ void		check_death(t_server *s)
   int		**delete_fds;
 
   tmp = s->clients->start;
-  delete_fds = xmalloc(get_alloc_to_delete(s) * 2 * sizeof(int));
+  delete_fds = xmalloc(get_alloc_to_delete(s) * sizeof(int));
   i = 0;
   j = 0;
   while (tmp != NULL)
@@ -67,6 +67,7 @@ void		check_death(t_server *s)
       c = tmp->data;
       if (c->inventory->food == 0)
 	{
+	  delete_fds[j] = xmalloc(sizeof(int) * 2);
 	  delete_fds[j][0] = i;
 	  delete_fds[j][1] = c->fd;
 	  j++;
