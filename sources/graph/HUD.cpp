@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:00 2015 Nicolas Girardot
-// Last update Sat Jun 27 14:16:01 2015 Nicolas Girardot
+// Last update Sun Jun 28 14:05:58 2015 Nicolas Girardot
 //
 
 #include "HUD.hh"
@@ -16,6 +16,10 @@
 
 HUD::HUD(SDL_Renderer *renderer)
 {
+  _descdrawer.x = 350;
+  _descdrawer.y = 20;
+  _descdrawer.w = 300;
+  _descdrawer.h = 50;
   this->_renderer = renderer;
   this->_font = TTF_OpenFont("fonts/font.ttf", 24);
   this->_background = IMG_Load("./background.png");
@@ -23,7 +27,9 @@ HUD::HUD(SDL_Renderer *renderer)
   if (!_font)
     std::cout << TTF_GetError() << std::endl;
 
-  this->_caseCurrent = TTF_RenderText_Solid(_font, "X Y", _white);
+  this->_caseCurrent = TTF_RenderText_Solid(_font, "X Y", _black);
+  this->_description = TTF_RenderText_Solid(_font, "INFORMATIONS !", _black);
+  this->_descriptiont = SDL_CreateTextureFromSurface(renderer, this->_description);
 
   //Right
 
@@ -152,6 +158,17 @@ void	HUD::update()
 
 }
 
+void	HUD::update_info(std::string &info)
+{
+  int	length = info.size();
+  _descdrawer.x = 500 - length / 2 * 20;
+  _descdrawer.y = 20;
+  _descdrawer.w = length * 20;
+  _descdrawer.h = 50;
+  this->_description = TTF_RenderText_Solid(_font, info.c_str(), _black);
+  this->_descriptiont = SDL_CreateTextureFromSurface(_renderer, this->_description);
+}
+
 void	HUD::draw(SDL_Renderer* renderer)
 {
   SDL_Rect _drawer;
@@ -220,6 +237,7 @@ void	HUD::drawHUDTop(SDL_Renderer* renderer)
   _drawer.w = 100;
   _drawer.h = 50;
   SDL_RenderCopy(renderer, _caseCurrentt, NULL, &_drawer);
+  SDL_RenderCopy(renderer, _descriptiont, NULL, &_descdrawer);
 }
 
 void	HUD::drawHUDRight(SDL_Renderer* renderer)

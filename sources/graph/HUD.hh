@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:23 2015 Nicolas Girardot
-// Last update Sat Jun 27 14:00:59 2015 Nicolas Girardot
+// Last update Sun Jun 28 14:06:51 2015 Nicolas Girardot
 //
 
 #ifndef _HUD_HH_
@@ -27,6 +27,10 @@ private:
   SDL_Texture *_backgroundt = NULL;
   SDL_Surface *_caseCurrent = NULL;
   SDL_Texture *_caseCurrentt = NULL;
+
+  SDL_Rect    _descdrawer;
+  SDL_Surface *_description = NULL;
+  SDL_Texture *_descriptiont = NULL;
 
   //HUD Right
 
@@ -130,6 +134,7 @@ public:
   void	updateCase(Position &);
   void	updateLocked(int, int, Case *);
   void	draw(SDL_Renderer *);
+  void	update_info(std::string &);
   void	drawHUDRight(SDL_Renderer *);
   void	drawHUDBottom(SDL_Renderer *);
   void	drawHUDTop(SDL_Renderer *);

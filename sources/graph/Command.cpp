@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 15:04:57 2015 Antoine Garcia
+// Last update Sun Jun 28 15:05:34 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -153,11 +153,13 @@ void Command::pdi(std::string cmd, GameEngine *game)
 {
   (void)game;
 
-  std::string		str(cmd.begin() + 5, cmd.end());
+  std::string		str(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(str);
   int			id;
 
   ss >> id;
+  std::cout << "Deleted id is " << id << std::endl;
+  game->deletePlayer(id);
 }
 
 void Command::pfk(std::string cmd, GameEngine *game)

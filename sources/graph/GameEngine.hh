@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Sat Jun 27 18:25:20 2015 Nicolas Girardot
+// Last update Sun Jun 28 12:08:02 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -62,6 +62,7 @@ public:
   void	setCase(std::vector<std::string> &);
   void	setLocked();
   void	draw();
+  void	deletePlayer(int);
   void	run();
   bool		isEventOnMap(int, int);
   std::pair <int, int>determinePosClicked(std::pair<int,int> &, int, int);

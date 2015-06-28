@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Sun Jun 28 11:01:59 2015 Nicolas Girardot
+// Last update Sun Jun 28 14:11:15 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -39,9 +39,33 @@ SDL_Surface &GameEngine::getSurface()
   return (*_surface);
 }
 
+void	GameEngine::deletePlayer(int id)
+{
+  std::list<IACharacter *>::iterator it = _players.begin();
+  while (it != _players.end())
+    {
+      if (id == (*it)->getId())
+	{
+	  _players.erase(it++);
+	  std::string result;
+	  std::stringstream sstm;
+	  sstm << "Player" << id << " has died of hunger.";
+	  result = sstm.str();
+	  _hud->update_info(result);
+	}
+      else
+	++it;
+    }
+}
+
 void	GameEngine::addPlayer(std::vector<std::string> &args)
 {
   IACharacter *player = new IACharacter(args);
+  std::string result;
+  std::stringstream sstm;
+  sstm << "Player" << player->getId() << " Joined the arena";
+  result = sstm.str();
+  _hud->update_info(result);
   _players.push_back(player);
 }
 
@@ -53,7 +77,7 @@ void	GameEngine::updatePlayer(std::vector<std::string> &args)
       if (id == (*it)->getId())
 	(*it)->updateAtt(args);
       else
-	{ }
+	{}
     }
 }
 
