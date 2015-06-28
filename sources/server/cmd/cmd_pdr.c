@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 23:02:25 2015 Serge Heitzler
-** Last update Sun Jun 28 23:07:50 2015 Serge Heitzler
+** Last update Sun Jun 28 23:23:07 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -20,5 +20,6 @@ int		cmd_pdr(t_client *c, t_list *clients, int type)
   bzero(str, size_malloc);
   sprintf(str, "pdr #%d %d\n", c->fd, type);
   send_data_to_gui(clients, str);
+  printf("%s", str);
   return (SUCCESS);
 }

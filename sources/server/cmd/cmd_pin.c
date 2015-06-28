@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:50 2015 Serge Heitzler
-** Last update Sun Jun 28 14:46:31 2015 Serge Heitzler
+** Last update Sun Jun 28 23:25:27 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -43,6 +43,7 @@ int		cmd_pin(t_server *s, t_client *c,
 	  t->pos->y, t->inventory->food, t->inventory->linemate,
 	  t->inventory->deraumere, t->inventory->sibur,
 	  t->inventory->mendiane, t->inventory->phiras, t->inventory->thystame);
+  printf("%s", final);
   if (type == GUI)
     send_data_to_gui(s->clients, final);
   else
