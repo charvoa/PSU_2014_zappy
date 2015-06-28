@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Sat Jun 27 23:17:54 2015 Serge Heitzler
+** Last update Sun Jun 28 10:41:33 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -17,12 +17,17 @@ int	*add_id(t_block *block, int id)
 
   newtab = xmalloc((block->nb_clients + 1) * sizeof(int));
   i = 0;
-  while (i <= block->nb_clients)
+  if (block->ids[0] != -1)
     {
-      newtab[i] = block->ids[i];
-      i++;
+      while (i <= block->nb_clients)
+	{
+	  newtab[i] = block->ids[i];
+	  i++;
+	}
+      newtab[i] = id;
     }
-  newtab[i] = id;
+  else 
+    newtab[0] = id;
   return (newtab);
 }
 
