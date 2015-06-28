@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:00:23 2015 Serge Heitzler
-** Last update Sat Jun 27 19:48:34 2015 Serge Heitzler
+** Last update Sun Jun 28 15:58:36 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -53,6 +53,7 @@ int		create_objects(t_server *s)
   sprintf(final, "bct %d %d %d %d %d %d %d %d %d\n",
 	  x, y, b->food, b->linemate, b->deraumere, b->sibur,
 	  b->mendiane, b->phiras, b->thystame);
-  send_data_to_gui(s->clients, final);
+  if (s->clients->start)
+    send_data_to_gui(s->clients, final);
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Sat Jun 27 18:25:54 2015 Nicolas Girardot
+// Last update Sun Jun 28 12:33:07 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -54,10 +54,8 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::ve
     }
     for(std::list<IACharacter *>::iterator it = players.begin(); it != players.end() ; it++)
     {
-      std::cout << "Player is being drawn at " << (*it)->_position->_x << "/" << (*it)->_position->_y << std::endl;
       if ((*it)->_position->_x >= focus._x - 3 && (*it)->_position->_x <= focus._x + 3 && (*it)->_position->_y >= focus._y - 3 && (*it)->_position->_y <= focus._y + 3)
 	{
-	  std::cout << "OLE" << std::endl;
 	  SDL_Rect rect;
 	  rect.x = (150 + ((*it)->_position->_x - focus._x + 3) * _squareSize);
 	  rect.y = (100 + ((*it)->_position->_y - focus._y + 3) * _squareSize);

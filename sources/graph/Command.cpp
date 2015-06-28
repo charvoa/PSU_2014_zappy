@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 11:27:43 2015 Antoine Garcia
+// Last update Sun Jun 28 15:07:53 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -153,11 +153,13 @@ void Command::pdi(std::string cmd, GameEngine *game)
 {
   (void)game;
 
-  std::string		str(cmd.begin() + 5, cmd.end());
+  std::string		str(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(str);
   int			id;
 
   ss >> id;
+  std::cout << "Deleted id is " << id << std::endl;
+  game->deletePlayer(id);
 }
 
 void Command::pfk(std::string cmd, GameEngine *game)
@@ -196,6 +198,47 @@ void Command::pbc(std::string cmd, GameEngine *game)
   std::tuple<int, std::string> tuple = std::make_tuple(val, str);
 }
 
+void Command::pie(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  std::vector<int>	vector;
+
+  for (int i = 0 ; i < 3 ; i++)
+    {
+      int val;
+      ss >> val;
+      vector.push_back(val);
+    }
+}
+
+void Command::pic(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  int x;
+  int y;
+  int l;
+  std::vector<int>	vector;
+  std::string		var;
+
+  ss >> x;
+  ss >> y;
+  ss >> l;
+  vector.push_back(x);
+  vector.push_back(y);
+  vector.push_back(l);
+  while (ss >> var)
+    {
+      std::string val(var.begin() + 1, var.end());
+      int value;
+      value = std::stoi(val);
+      vector.push_back(value);
+    }
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -212,6 +255,8 @@ void Command::Exec()
   _functions["pnw"] = &Command::pnw;
   _functions["seg"] = &Command::seg;
   _functions["pbc"] = &Command::pbc;
+  _functions["pie"] = &Command::pie;
+  _functions["pic"] = &Command::pic;
   /* faire de même pour chaque fonctions */
 }
 
