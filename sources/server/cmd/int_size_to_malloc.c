@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Fri May 22 11:25:41 2015 Serge Heitzler
-** Last update Sat Jun 27 18:45:27 2015 Serge Heitzler
+** Last update Sun Jun 28 11:04:44 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -20,6 +20,5 @@ int		istm(int nb)
       nb = nb / 10;
       i++;
     }
-  printf("[istm] %d\n", i);
   return (i);
 }

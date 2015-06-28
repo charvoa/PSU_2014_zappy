@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jun 27 21:26:55 2015 Serge Heitzler
+** Last update Sun Jun 28 11:58:40 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -27,6 +27,7 @@ void		init_inventory(t_client *c)
   c->inventory->mendiane = 0;
   c->inventory->phiras = 0;
   c->inventory->thystame = 0;
+  printf("ALLO ALLLO INVENTORY IS NOW SET !\n");
 }
 
 int		create_client(t_server *s, int fd)

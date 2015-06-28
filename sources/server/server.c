@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sun Jun 28 01:45:42 2015 Serge Heitzler
+** Last update Sun Jun 28 11:50:46 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -33,7 +33,7 @@ void	handler_ctrl_c(int sig)
 void		loop_server(t_server *s, char **argv)
 {
   int		i;
-
+  
   while (42)
     {
       i = 0;
