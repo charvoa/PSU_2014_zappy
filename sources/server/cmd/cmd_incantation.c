@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sun Jun 28 12:00:26 2015 Serge Heitzler
+** Last update Sun Jun 28 12:47:03 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -21,7 +21,8 @@ t_incantation	g_incantation[7] =
     {6, 2, 2, 2, 2, 2, 1}
   };
 
-int		get_nb_players_of_my_level(t_server *s, t_client *c)
+int		get_nb_players_of_my_level(t_server *s,
+					   t_client *c, t_block *b)
 {
   t_client	*cli;
   int		nb;
@@ -29,11 +30,10 @@ int		get_nb_players_of_my_level(t_server *s, t_client *c)
 
   i = 0;
   nb = 0;
-  while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients)
+  while (i < b->nb_clients)
     {
       cli = xmalloc(sizeof(t_client));
-      cli = get_client_by_id(s->clients,
-			     s->map->objects[c->pos->y][c->pos->x]->ids[i]);
+      cli = get_client_by_id(s->clients, b->ids[i]);
       if (cli->level == c->level)
 	nb++;
       i++;
@@ -47,21 +47,28 @@ int		is_incantation_possible(t_server *s, t_client *c,
   (void)s;
   (void)cmd;
   (void)type;
+  t_block	*b;
   int		i;
   int		player;
 
+  b = xmalloc(sizeof(t_block));
+  b = s->map->objects[c->pos->y][c->pos->x];
   i = c->level - 1;  
-  player = get_nb_players_of_my_level(s, c);
+  player = get_nb_players_of_my_level(s, c, b);
   if (player >= g_incantation[i].player
-      && c->inventory->linemate >= g_incantation[i].linemate
-      && c->inventory->deraumere >= g_incantation[i].deraumere
-      && c->inventory->sibur >= g_incantation[i].sibur
-      && c->inventory->mendiane >= g_incantation[i].mendiane
-      && c->inventory->linemate >= g_incantation[i].phiras
-      && c->inventory->linemate >= g_incantation[i].thystame)
-    return (YES);
+      && b->linemate >= g_incantation[i].linemate
+      && b->deraumere >= g_incantation[i].deraumere
+      && b->sibur >= g_incantation[i].sibur
+      && b->mendiane >= g_incantation[i].mendiane
+      && b->phiras >= g_incantation[i].phiras
+      && b->thystame >= g_incantation[i].thystame)
+    {
+      printf("YEEEEEEEEEEEEEEEEEEEEEEEEES\n");
+      return (YES);
+    }
   else
     {
+      printf("NOOOOOOOOOOOOOOOOOOOOOOOOON\n");
       send_data(c->fd, "ko\n");
       return (NO);
     }
