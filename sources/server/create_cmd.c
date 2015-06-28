@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 00:07:48 2015 Serge Heitzler
-** Last update Sun Jun 28 01:48:33 2015 Serge Heitzler
+** Last update Sun Jun 28 12:50:38 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -53,6 +53,7 @@ void		create_cmd(t_server *s, t_client *c)
 {
   (void)s;
   int			ret;
+  char			*tmp;
   t_cmd			*s_cmd;
 
   if (c->cmds->length >= 10)
@@ -61,25 +62,24 @@ void		create_cmd(t_server *s, t_client *c)
       return;
     }
 
-  s_cmd = xmalloc(sizeof(t_cmd));
-  s_cmd->label = ring_buffer_get_next_command(c->buffer);
-
-  if (s_cmd->label == NULL)
+  tmp = ring_buffer_get_next_command(c->buffer);
+  if (tmp == NULL)
+    return;
+  if ((strncmp(tmp, "incantation", strlen("incantation"))) == 0
+      && ((is_incantation_possible(s, c, tmp, NORMAL)) == NO))
     return;
 
-  /* (void)ret; */
+  s_cmd = xmalloc(sizeof(t_cmd));
+  s_cmd->label = strdup(tmp);
+  clock_gettime(CLOCK_REALTIME, &s_cmd->exec_at);
+
+  printf("CMD = %s\n", s_cmd->label);
+
   if ((ret = (is_cmd(s_cmd->label))) != NO)
     {
-      // INIT Obligatoire de exec_at pour éviter erreur valgrind
-      clock_gettime(CLOCK_REALTIME, &s_cmd->exec_at);
       printf("BEFORE s = %ld\nns = %ld\nx/t = %f\n", s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec, g_cmds[ret].delay / s->time_action);
       manage_time(s, s_cmd, ret);
       printf("AFTER s = %ld\nns = %ld\nx/t = %f\n", s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec, g_cmds[ret].delay / s->time_action);
     }
-
-  //  now.tv_sec;  /* seconds */
-  //  now.tv_usec; /* nanoseconds divide by 1000 to get microseconds*/  
-
   push_back(c->cmds, s_cmd, CMD);
-  printf("CMD == %s\n", s_cmd->label);
 }

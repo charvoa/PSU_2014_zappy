@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:17 2015 Nicolas Girardot
-// Last update Sun Jun 28 11:07:05 2015 Antoine Garcia
+// Last update Sun Jun 28 14:45:02 2015 Antoine Garcia
 //
 
 #ifndef COMMAND_HH_
@@ -47,6 +47,8 @@ public:
   void	pfk(std::string, GameEngine *);
   void  seg(std::string, GameEngine *);
   void	pbc(std::string, GameEngine *);
+  void	pie(std::string, GameEngine *);
+  void	pic(std::string, GameEngine *);
 };
 
 #endif
