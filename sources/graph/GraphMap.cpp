@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Sun Jun 28 12:33:07 2015 Nicolas Girardot
+// Last update Mon Jun 29 11:32:23 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -54,11 +54,11 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::ve
     }
     for(std::list<IACharacter *>::iterator it = players.begin(); it != players.end() ; it++)
     {
-      if ((*it)->_position->_x >= focus._x - 3 && (*it)->_position->_x <= focus._x + 3 && (*it)->_position->_y >= focus._y - 3 && (*it)->_position->_y <= focus._y + 3)
+      if ((*it)->getPosition()->_x >= focus._x - 3 && (*it)->getPosition()->_x <= focus._x + 3 && (*it)->getPosition()->_y >= focus._y - 3 && (*it)->getPosition()->_y <= focus._y + 3)
 	{
 	  SDL_Rect rect;
-	  rect.x = (150 + ((*it)->_position->_x - focus._x + 3) * _squareSize);
-	  rect.y = (100 + ((*it)->_position->_y - focus._y + 3) * _squareSize);
+	  rect.x = (150 + ((*it)->getPosition()->_x - focus._x + 3) * _squareSize);
+	  rect.y = (100 + ((*it)->getPosition()->_y - focus._y + 3) * _squareSize);
 	  rect.w = 100;
 	  rect.h = 142;
 	  SDL_RenderCopy(renderer, _playerSkint, NULL, &rect);

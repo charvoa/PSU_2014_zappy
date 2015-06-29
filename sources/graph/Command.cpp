@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 20:17:45 2015 Antoine Garcia
+// Last update Mon Jun 29 13:20:57 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -19,7 +19,6 @@ Command::~Command(){}
 
 void Command::pin(std::string cmd, GameEngine *game)
 {
-  (void)game;
   std::vector<int>	vector;
   std::string		parse(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(parse);
@@ -30,6 +29,7 @@ void Command::pin(std::string cmd, GameEngine *game)
       ss >> val;
       vector.push_back(val);
     }
+  game->updateInventory(vector);
 }
 
 void Command::msz(std::string cmd, GameEngine *game)
@@ -254,6 +254,7 @@ void Command::pdr(std::string cmd, GameEngine *game)
 
 void Command::smg(std::string cmd, GameEngine *game)
 {
+  (void) game;
   std::string		str(cmd.begin() + 4, cmd.end());
 }
 

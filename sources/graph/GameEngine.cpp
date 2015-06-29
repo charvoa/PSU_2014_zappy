@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Sun Jun 28 14:11:15 2015 Nicolas Girardot
+// Last update Mon Jun 29 13:20:36 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -69,13 +69,30 @@ void	GameEngine::addPlayer(std::vector<std::string> &args)
   _players.push_back(player);
 }
 
+void	GameEngine::updateInventory(std::vector<int> &inv)
+{
+  for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
+    {
+      if (inv.at(0) == (*it)->getId())
+	{
+	  (*it)->updateInventory(inv);
+	}
+      else
+	{};
+    }
+}
+
 void	GameEngine::updatePlayer(std::vector<std::string> &args)
 {
   int	id = stoi(args.at(0));
   for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
     {
       if (id == (*it)->getId())
-	(*it)->updateAtt(args);
+	{
+	  (*it)->updateAtt(args);
+	  if (id == _idFocus)
+	    _focus = (*it)->getPosition();
+	}
       else
 	{}
     }
@@ -183,6 +200,14 @@ void	GameEngine::setLocked()
     {
       std::pair<int, int> posfocus(_focus->_x, _focus->_y);
       std::pair<int, int> pai = determinePosClicked(posfocus, a, b);
+      for (std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
+	{
+	  if ((*it)->getPosition()->_x == pai.first && (*it)->getPosition()->_y == pai.second)
+	    {
+	      _idFocus = (*it)->getId();
+	      _focus = (*it)->getPosition();
+	    }
+	}
       _hud->updateLocked(pai.first, pai.second, _cases.at(pai.second).at(pai.first));
       pai = determinePosClickedOnGUI(a, b);
       _gMap->setLocked(pai.first, pai.second);

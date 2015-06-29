@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
-// Last update Sun Jun 28 11:39:59 2015 Nicolas Girardot
+// Last update Mon Jun 29 13:43:20 2015 Nicolas Girardot
 //
 
 #include "IACharacter.hh"
@@ -17,7 +17,6 @@ IACharacter::IACharacter(std::vector<std::string> &args)
   this->_orientation = stoi(args.at(3));
   this->_lvl = stoi(args.at(4));
   this->_team = args.at(5);
-  std::cout << "creating Someone at Position " << _position->_x << "/" << _position->_y << std::endl;
 }
 
 IACharacter::~IACharacter()
@@ -25,11 +24,27 @@ IACharacter::~IACharacter()
 
 }
 
+Position	*IACharacter::getPosition()
+{
+  return (_position);
+}
+
 void	IACharacter::updateAtt(std::vector<std::string> &args)
 {
   this->_position->_x = stoi(args.at(1));
   this->_position->_y = stoi(args.at(2));
   this->_orientation = stoi(args.at(3));
+}
+
+void	IACharacter::updateInventory(std::vector<int> &inv)
+{
+  _food = inv.at(3);
+  _limemate = inv.at(4);
+  _deraumere = inv.at(5);
+  _sibur = inv.at(6);
+  _mendiane = inv.at(7);
+  _phiras = inv.at(8);
+  _thystame = inv.at(9);
 }
 
 int	IACharacter::getId()
