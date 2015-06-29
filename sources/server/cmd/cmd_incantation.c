@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Mon Jun 29 01:22:52 2015 Serge Heitzler
+** Last update Mon Jun 29 14:35:13 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -94,6 +94,7 @@ int		cmd_incantation(t_server *s, t_client *c,
   i = 0;
   c->level++;
   client = xmalloc(sizeof(t_client));
+  cmd_plv(s, client, cmd, GUI);
   while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients)
     {
       client = get_client_by_id(s->clients,
@@ -102,9 +103,9 @@ int		cmd_incantation(t_server *s, t_client *c,
 	  && client->fd != c->fd)
   	    {
 	      cmd_plv(s, client, cmd, GUI);
-	      cmd_bct(s, client, cmd, GUI);
   	    }
       i++;
     }
+  cmd_bct(s, c, cmd, GUI);
   return (SUCCESS);
 }
