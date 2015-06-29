@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sun Jun 28 19:44:51 2015 Antoine Garcia
+// Last update Sun Jun 28 20:09:20 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -21,7 +21,7 @@ void Command::pin(std::string cmd, GameEngine *game)
 {
   (void)game;
   std::vector<int>	vector;
-  std::string		parse(cmd.begin() + 5, cmd.end());
+  std::string		parse(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(parse);
 
   for (int i = 0; i < 10 ; i++)
@@ -137,7 +137,7 @@ void	Command::plv(std::string cmd, GameEngine *game)
 void Command::pgt(std::string cmd, GameEngine *game)
 {
   (void) game;
-  std::string		str(cmd.begin() + 5, cmd.end());
+  std::string		str(cmd.begin() + 4, cmd.end());
   std::vector<int>	vec;
   std::istringstream	ss(str);
 
@@ -166,7 +166,7 @@ void Command::pfk(std::string cmd, GameEngine *game)
 {
   (void)game;
 
-  std::string		str(cmd.begin() + 5, cmd.end());
+  std::string		str(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(str);
   int			id;
 
@@ -188,7 +188,7 @@ void Command::pbc(std::string cmd, GameEngine *game)
 {
   (void)game;
 
-  std::string		str(cmd.begin() + 5, cmd.end() - 1);
+  std::string		str(cmd.begin() + 4, cmd.end() - 1);
   std::istringstream	ss(str);
   int val;
   std::string	string;
@@ -243,7 +243,7 @@ void Command::pdr(std::string cmd, GameEngine *game)
 {
   (void)game;
 
-  std::string		str(cmd.begin() + 5, cmd.end());
+  std::string		str(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(str);
   int id;
   int id_ressource;
