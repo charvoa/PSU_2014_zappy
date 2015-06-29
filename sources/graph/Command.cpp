@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Mon Jun 29 15:20:24 2015 Nicolas Charvoz
+// Last update Mon Jun 29 16:09:01 2015 Nicolas Charvoz
 //
 
 #include "Command.hh"
@@ -259,6 +259,35 @@ void Command::smg(std::string cmd, GameEngine *game)
   std::string		str(cmd.begin() + 4, cmd.end());
 }
 
+void Command::eht(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
+void Command::ebo(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
+void Command::edi(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
+void Command::pex(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
 void Command::Exec()
 {
   _functions["msz"] = &Command::msz;
@@ -279,6 +308,9 @@ void Command::Exec()
   _functions["pic"] = &Command::pic;
   _functions["pdr"] = &Command::pdr;
   _functions["smg"] = &Command::smg;
+  _functions["eht"] = &Command::eht;
+  _functions["ebo"] = &Command::ebo;
+  _functions["edi"] = &Command::edi;
   /* faire de même pour chaque fonctions */
 }
 
