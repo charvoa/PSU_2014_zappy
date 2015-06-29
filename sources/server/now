@@ -1,0 +1,337 @@
+Binary file server.o matches
+Binary file check_death.o matches
+Binary file create_client.o matches
+Binary file cmd/cmd_fork.o matches
+cmd/cmd_kick.c:  x = c->pos->x;
+cmd/cmd_kick.c:  y = c->pos->y;
+cmd/cmd_kick.c:    y = c->pos->y - 1;
+cmd/cmd_kick.c:    x = c->pos->x - 1;
+cmd/cmd_kick.c:    y = c->pos->y + 1;
+cmd/cmd_kick.c:    x = c->pos->x + 1;
+cmd/cmd_kick.c:    moved->pos->y = caller->pos->y - 1;
+cmd/cmd_kick.c:    moved->pos->x = caller->pos->x - 1;
+cmd/cmd_kick.c:    moved->pos->y = caller->pos->y + 1;
+cmd/cmd_kick.c:    moved->pos->x = caller->pos->x + 1;
+cmd/cmd_kick.c:  cmd_pex(c, s->clients);
+cmd/cmd_kick.c:  while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients)
+cmd/cmd_kick.c:      client = get_client_by_id(s->clients,
+cmd/cmd_kick.c:				s->map->objects[c->pos->y][c->pos->x]->ids[i]);
+cmd/cmd_kick.c:      if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x)
+Binary file cmd/cmd_pin.o matches
+Binary file cmd/cmd_mct.o matches
+Binary file cmd/cmd_connect_nbr.o matches
+Binary file cmd/inventory_rocks2.o matches
+cmd/block_rocks2.c:      block->phiras--;
+Binary file cmd/determine_pos.o matches
+Binary file cmd/pointers_array.o matches
+Binary file cmd/cmd_advance.o matches
+Binary file cmd/cmd_sgt.o matches
+Binary file cmd/cmd_bct.o matches
+Binary file cmd/cmd_ppo.o matches
+cmd/cmd_sgt.c:		  (6 + istm(s->time_action)));
+cmd/cmd_sgt.c:  memset(final, 0, 6 + istm(s->time_action));
+cmd/cmd_sgt.c:  sprintf(final, "sgt %.0f\n", s->time_action);
+cmd/cmd_sgt.c:  send_data_to_gui(s->clients, final);
+cmd/advance_funcs.c:  if (client->pos->y == 0)
+cmd/advance_funcs.c:    client->pos->y = size->height - 1;
+cmd/advance_funcs.c:    client->pos->y--;
+cmd/advance_funcs.c:  if (client->pos->x == (size->width -1))
+cmd/advance_funcs.c:    client->pos->x = 0;
+cmd/advance_funcs.c:    client->pos->x++;
+cmd/advance_funcs.c:  if (client->pos->y == (size->height -1))
+cmd/advance_funcs.c:    client->pos->y = 0;
+cmd/advance_funcs.c:    client->pos->y++;
+cmd/advance_funcs.c:   if (client->pos->x == 0)
+cmd/advance_funcs.c:     client->pos->x = size->width - 1;
+cmd/advance_funcs.c:    client->pos->x--;
+cmd/cmd_drop_object.c:  if (launch_func_block(s->map->objects[c->pos->y][c->pos->x],
+cmd/cmd_drop_object.c:  cmd_pdr(c, s->clients, rock_type + 1);
+cmd/cmd_drop_object.c:  printf("drop %d\n", s->map->objects[c->pos->y][c->pos->x]->food);
+cmd/cmd_drop_object.c:  s->map->objects[c->pos->y][c->pos->x]->food++;
+cmd/cmd_drop_object.c:  cmd_pdr(c, s->clients, 0);
+Binary file cmd/cmd_pbc.o matches
+Binary file cmd/cmd_plv.o matches
+Binary file cmd/cmd_pie.o matches
+Binary file cmd/cmd_pfk.o matches
+Binary file cmd/cmd_dead.o matches
+cmd/cmd_advance.c:  s->map->objects[c->pos->y][c->pos->x]->ids =
+cmd/cmd_advance.c:    remove_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
+cmd/cmd_advance.c:  s->map->objects[c->pos->y][c->pos->x]->nb_clients--;
+cmd/cmd_advance.c:  advance[c->orientation - 1](s->map->size, c);
+cmd/cmd_advance.c:  s->map->objects[c->pos->y][c->pos->x]->ids =
+cmd/cmd_advance.c:    add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
+cmd/cmd_advance.c:  s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
+Binary file cmd/add_or_remove_id.o matches
+Binary file cmd/cmd_drop_object.o matches
+Binary file cmd/cmd_msz.o matches
+Binary file cmd/cmd_inventory.o matches
+Binary file cmd/int_size_to_malloc.o matches
+Binary file cmd/block_rocks.o matches
+Binary file cmd/cmd_team.o matches
+Binary file cmd/cmd_pnw.o matches
+cmd/cmd_broadcast.c:  sprintf(final, "message %d %d,%s\r\n", c->pos->y, c->pos->x, text);
+cmd/cmd_broadcast.c:  tmp = s->clients->start;
+cmd/cmd_broadcast.c:  send_gui_broadcast(text, s->clients, c);
+Binary file cmd/cmd_graphic.o matches
+Binary file cmd/cmd_kick.o matches
+cmd/cmd_plv.c:  target = get_client_by_id(s->clients, *id_targeted);
+cmd/cmd_plv.c:    send_data_to_gui(s->clients, final);
+cmd/cmd_connect_nbr.c:      team = get_team_by_name(s->teams, c->team_name);
+cmd/cmd_team.c:  tmp = s->teams->start;
+cmd/cmd_team.c:  c->pos->x = rand() % s->map->size->width;
+cmd/cmd_team.c:  c->pos->y = rand() % s->map->size->height;
+cmd/cmd_team.c:  s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
+cmd/cmd_team.c:  s->map->objects[c->pos->y][c->pos->x]->ids =
+cmd/cmd_team.c:    add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
+cmd/cmd_team.c:      team = get_team_by_name(s->teams, name);
+cmd/cmd_team.c:      sprintf(trame, "%d %d\n", s->map->size->width, s->map->size->height);
+cmd/cmd_fork.c:  cmd_pfk(c, s->clients);
+Binary file cmd/cmd_right.o matches
+cmd/cmd_incantation.c:      cli = get_client_by_id(s->clients, b->ids[i]);
+cmd/cmd_incantation.c:  b = s->map->objects[c->pos->y][c->pos->x];
+cmd/cmd_incantation.c:  while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients)
+cmd/cmd_incantation.c:      client = get_client_by_id(s->clients,
+cmd/cmd_incantation.c:				s->map->objects[c->pos->y][c->pos->x]->ids[i]);
+cmd/cmd_incantation.c:      if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x)
+Binary file cmd/show_items_at_position.o matches
+cmd/cmd_pin.c:  size_malloc = (16 + istm(t->fd) + istm((int)t->pos->x) + istm((int)t->pos->y)
+cmd/cmd_pin.c:  t = get_client_by_id(s->clients, *id_targeted);
+cmd/cmd_pin.c:  sprintf(final, "pin #%d %d %d %d %d %d %d %d %d %d\n", t->fd, t->pos->x,
+cmd/cmd_pin.c:	  t->pos->y, t->inventory->food, t->inventory->linemate,
+cmd/cmd_pin.c:    send_data_to_gui(s->clients, final);
+Binary file cmd/inventory_rocks.o matches
+cmd/cmd_take_object.c:  if (launch_func_block(s->map->objects[c->pos->y][c->pos->x],
+cmd/cmd_take_object.c:  cmd_pgt(c, s->clients, rock_type + 1);
+cmd/cmd_take_object.c:  if (s->map->objects[c->pos->y][c->pos->x]->food == 0)
+cmd/cmd_take_object.c:  s->map->objects[c->pos->y][c->pos->x]->food--;
+cmd/cmd_take_object.c:  cmd_pgt(c, s->clients, 0);
+Binary file cmd/cmd_left.o matches
+Binary file cmd/cmd_tna.o matches
+Binary file cmd/cmd_take_object.o matches
+Binary file cmd/cmd_pex.o matches
+cmd/determine_pos.c:    return ((c->pos->x + t) >= 0 ?
+cmd/determine_pos.c:	    (c->pos->x + t) % size->width : (size->width + c->pos->x + t));
+cmd/determine_pos.c:    return ((c->pos->x + l) >= 0 ?
+cmd/determine_pos.c:	    (c->pos->x + l) % size->width : (size->width + c->pos->x + l));
+cmd/determine_pos.c:    return ((c->pos->x - t) >= 0 ?
+cmd/determine_pos.c:	    (c->pos->x - t) % size->width : (size->width + c->pos->x - t));
+cmd/determine_pos.c:    return ((c->pos->x - l) >= 0 ?
+cmd/determine_pos.c:	    (c->pos->x - l) % size->width : (size->width + c->pos->x - l));
+cmd/determine_pos.c:    return ((c->pos->y - l) < 0 ?
+cmd/determine_pos.c:	    (size->height + c->pos->y - l) : c->pos->y - l);
+cmd/determine_pos.c:    return ((c->pos->y + t) >= 0 ?
+cmd/determine_pos.c:	    (c->pos->y + t) % size->height : (size->height + c->pos->y + t));
+cmd/determine_pos.c:    return ((c->pos->y + l) >= size->height ?
+cmd/determine_pos.c:	    (c->pos->y + l) % size->height : c->pos->y + l);
+cmd/determine_pos.c:    return ((c->pos->y - t) >= 0 ?
+cmd/determine_pos.c:	    (c->pos->y - t) % size->height : (size->height + c->pos->y - t));
+cmd/cmd_sst.c:  s->time_action = atoi(value);
+cmd/cmd_sst.c:    send_data_to_gui(s->clients, final);
+Binary file cmd/cmd_sst.o matches
+cmd/inventory_rocks2.c:      inventory->phiras--;
+cmd/cmd_pnw.c:		 + istm((int)c->pos->x)
+cmd/cmd_pnw.c:		 + istm((int)c->pos->y)
+cmd/cmd_pnw.c:  sprintf(final, "pnw #%d %d %d %d %d %s\n", c->fd, c->pos->x,
+cmd/cmd_pnw.c:	  c->pos->y, c->orientation, c->level, c->team_name);
+cmd/cmd_pnw.c:    send_data_to_gui(s->clients, final);
+cmd/cmd_pnw.c:  if (s->clients->length > 0)
+cmd/cmd_pnw.c:      tmp = s->clients->start;
+Binary file cmd/cmd_pgt.o matches
+Binary file cmd/cmd_pdr.o matches
+cmd/cmd_view.c:	      x = determine_pos_x(c, s->map->size, t, l);
+cmd/cmd_view.c:	      y = determine_pos_y(c, s->map->size, t, l);
+cmd/cmd_view.c:		   (istm((int)c->pos->x) + istm((int)c->pos->y) + 2));
+cmd/cmd_view.c:  memset(pos[0], 0, istm((int)c->pos->x) + istm((int)c->pos->y) + 2);
+cmd/cmd_view.c:  sprintf(pos[0], "%d %d", (int)c->pos->x, (int)c->pos->y);
+cmd/cmd_bct.c:      *x = c->pos->x;
+cmd/cmd_bct.c:      *y = c->pos->y;
+cmd/cmd_bct.c:  b = s->map->objects[*y][*x];
+cmd/cmd_bct.c:    send_data_to_gui(s->clients, final);
+Binary file cmd/cmd_pic.o matches
+cmd/cmd_tna.c:  while (i < get_nbr_of(TEAM, s->teams))
+cmd/cmd_tna.c:    size += (strlen(get_team_name_at_index(s->teams, i++)) + 1);
+cmd/cmd_tna.c:  while (i < get_nbr_of(TEAM, s->teams))
+cmd/cmd_tna.c:    sprintf(res, "%s%s\n", res, get_team_name_at_index(s->teams, i++));
+cmd/cmd_tna.c:    send_data_to_gui(s->clients, final);
+cmd/cmd_mct.c:  while (y < s->map->size->height)
+cmd/cmd_mct.c:      while (x < s->map->size->width)
+cmd/cmd_mct.c:	  if (s->map->full[y][x] == '1')
+cmd/cmd_mct.c:  while (y < s->map->size->height)
+cmd/cmd_mct.c:      while (x < s->map->size->width)
+cmd/cmd_mct.c:  while (y < s->map->size->height)
+cmd/cmd_mct.c:      while (x < s->map->size->width)
+cmd/cmd_pic.c:  b = s->map->objects[c->pos->y][c->pos->x];
+cmd/cmd_pic.c:      cli = get_client_by_id(s->clients, b->ids[i]);
+cmd/cmd_pic.c:  size_malloc = 10 + istm(c->pos->x) + istm(c->pos->y) + istm(c->level) + istm(c->fd);
+cmd/cmd_pic.c:    sprintf(final, "pic %d %d %d #%d%s\n", c->pos->x, c->pos->y, c->level, c->fd, tmp);
+cmd/cmd_pic.c:    sprintf(final, "pic %d %d %d #%d\n", c->pos->x, c->pos->y, c->level, c->fd);
+cmd/cmd_pic.c:  send_data_to_gui(s->clients, final);
+cmd/cmd_ppo.c:  target = get_client_by_id(s->clients, *id_targeted);
+cmd/cmd_ppo.c:		 + istm((int)target->pos->x)
+cmd/cmd_ppo.c:		 + istm((int)target->pos->y)
+cmd/cmd_ppo.c:	  target->pos->x, target->pos->y, target->orientation);
+cmd/cmd_ppo.c:    send_data_to_gui(s->clients, final);
+cmd/cmd_msz.c:  final = xmalloc(sizeof(char) * (6  + istm((int)s->map->size->width)
+cmd/cmd_msz.c:				  + istm((int)s->map->size->height)));
+cmd/cmd_msz.c:  memset(final, 0, (6 + istm((int)s->map->size->width)
+cmd/cmd_msz.c:		    + istm((int)s->map->size->height)));
+cmd/cmd_msz.c:  sprintf(final, "msz %d %d\n", s->map->size->width, s->map->size->height);
+Binary file cmd/block_rocks2.o matches
+Binary file cmd/cmd_broadcast.o matches
+cmd/pointers_array.c:  cmd = c->cmds->start->data;
+cmd/show_items_at_position.c:  block = s->map->objects[y][x];
+cmd/show_items_at_position.c:  block = s->map->objects[y][x];
+Binary file cmd/advance_funcs.o matches
+Binary file cmd/cmd_view.o matches
+Binary file cmd/cmd_incantation.o matches
+server.c:  while (i <= s->fdmax)
+server.c:      if (FD_ISSET(i, &(s->read_fds)))
+server.c:	  if (i == s->listener)
+server.c:      s->read_fds = s->master;
+server.c:      if (select(s->fdmax + 1, &(s->read_fds), NULL, NULL, &tv) == -1)
+server.c:  s->o = xmalloc(sizeof(*s->o));
+server.c:  s->port = 4242;
+server.c:  s->time_action = 1;
+server.c:  s->teams = create_list();
+server.c:  s->clients = create_list();
+server.c:  s->o->argc = argc;
+server.c:  s->o->argv = get_tab(argc, argv);
+server.c:      s->o->opt = opt;
+server.c:      s->o->optarg = optarg;
+server.c:      s->o->optind = optind;
+server.c:  set_slot_for_team(s->teams, "slot_rest", 10);
+server.c:  set_slot_for_team(s->teams, "slot_team", 10);
+Binary file list/get_team_in_list.o matches
+Binary file list/create_list.o matches
+Binary file list/push_back.o matches
+Binary file list/free_list.o matches
+Binary file list/get_client_in_list.o matches
+Binary file list/remove_front.o matches
+Binary file list/get_nbr_of.o matches
+Binary file list/remove_back.o matches
+Binary file list/push_front.o matches
+Binary file list/size_list.o matches
+Binary file list/remove_at_index.o matches
+Binary file list/get_node_at_index.o matches
+Binary file list/push_at_index.o matches
+Binary file list/show_list.o matches
+Binary file options2.o matches
+Binary file options.o matches
+utilis.c:  FD_ZERO(&s->master);
+utilis.c:  FD_ZERO(&s->read_fds);
+utilis.c:  s->listener = xsocket(AF_INET, SOCK_STREAM, 0);
+utilis.c:  g_listener = s->listener;
+utilis.c:  if (setsockopt(s->listener, SOL_SOCKET, SO_REUSEADDR, &yes,
+utilis.c:  s->serveraddr.sin_family = AF_INET;
+utilis.c:  s->serveraddr.sin_addr.s_addr = INADDR_ANY;
+utilis.c:  s->serveraddr.sin_port = htons(port);
+utilis.c:  memset(&(s->serveraddr.sin_zero), '\0', 8);
+utilis.c:  xbind(s->listener, (struct sockaddr *)&(s->serveraddr),
+utilis.c:	sizeof(s->serveraddr));
+utilis.c:  s->addrlen = sizeof(s->clientaddr);
+utilis.c:  if ((s->newfd = accept(s->listener, (struct sockaddr *)&(s->clientaddr),
+utilis.c:			 (socklen_t*)&(s->addrlen))) == -1)
+utilis.c:      FD_SET(s->newfd, &(s->master));
+utilis.c:      if (s->newfd > s->fdmax)
+utilis.c:	  s->fdmax = s->newfd;
+utilis.c:	  g_fdmax = s->fdmax;
+utilis.c:      create_client(s, s->newfd);
+utilis.c:	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
+utilis.c:      protocole_connexion(s, s->newfd);
+utilis.c:  c = get_client_by_id(s->clients, i);
+utilis.c:  /* clock_gettime(CLOCK_REALTIME, &s->now); */
+utilis.c:  /* printf("current s = %ld\nns = %ld\n\n", s->now.tv_sec, s->now.tv_nsec); */
+utilis.c:	  /* remove_from_socket(s->clients, i); */
+utilis.c:	  remove_client_by_id(s->clients, i);
+utilis.c:      FD_CLR(i, &(s->master));
+utilis.c:      s->i = i;
+Binary file main.o matches
+Binary file protocole_connexion.o matches
+Binary file ring_buffer.o matches
+create_map.c:  s->map = xmalloc(sizeof(*(s->map)));
+create_map.c:  s->map->size = xmalloc(sizeof(*(s->map->size)));
+create_map.c:  s->map->size->width = width;
+create_map.c:  s->map->size->height = height;
+create_map.c:  s->map->objects = xmalloc((width * height) * sizeof(t_block));
+create_map.c:      s->map->objects[y] = xmalloc(width * sizeof(t_block));
+create_map.c:	  s->map->objects[y][x] = xmalloc(sizeof(t_block));
+create_map.c:	  s->map->objects[y][x]->ids = NULL;
+create_map.c:	  init_block(s->map->objects[y][x]);
+create_map.c:      s->map->objects[y][x] = NULL;
+create_map.c:  s->map->objects[y] = NULL;
+create_map.c:  s->map->full = init_full_tab(width, height);
+Binary file check_exec.o matches
+protocole_connexion.c:      client = get_client_by_id(s->clients, fd);
+Binary file size_of_tab.o matches
+create_objects.c:  x = rand() % s->map->size->width;
+create_objects.c:  y = rand() % s->map->size->height;
+create_objects.c:  b = s->map->objects[y][x];
+create_objects.c:  if (s->clients->start)
+create_objects.c:    send_data_to_gui(s->clients, final);
+Binary file my_printf.o matches
+Binary file utilis.o matches
+options.c:  if (is_number(s->o->optarg) != -1)
+options.c:    s->port = atoi(s->o->optarg);
+options.c:  s->o->optind--;
+options.c:  while (s->o->optind < s->o->argc && *(s->o->argv[s->o->optind]) != '-')
+options.c:      push_back(s->teams, create_team(s, s->o->argv[s->o->optind], 10), TEAM);
+options.c:      printf("s->o->argv[s->o->optind] = %s\n", s->o->argv[s->o->optind]);
+options.c:      s->o->optind++;
+options.c:  if (is_number(s->o->optarg) != -1)
+options.c:    set_slot_for_team(s->teams, "slot_max", atoi(s->o->optarg));
+options.c:  if (is_number(s->o->optarg) != -1)
+options.c:    s->time_action = atoi(s->o->optarg);
+Binary file create_cmd.o matches
+Binary file create_team.o matches
+Binary file zappy_server matches
+create_client.c:  push_back(s->clients, c, PLAYER);
+create_food.c:  x = rand() % s->map->size->width;
+create_food.c:  y = rand() % s->map->size->height;
+create_food.c:  s->map->objects[y][x]->food++;
+check_death.c:  tmp = s->clients->start;
+check_death.c:      send_data_to_gui(s->clients, trame);
+check_death.c:      remove_at_index(s->clients, fds[i][0]);
+check_death.c:  tmp = s->clients->start;
+create_cmd.c:  rate = g_cmds[index].delay / s->time_action;
+create_cmd.c:  if (c->cmds->length >= 10)
+Binary file distances.o matches
+send_data.c:  tmp = clients->start;
+check_exec.c:  tmp_cli = s->clients->start;
+check_exec.c:  while (i < s->clients->length)
+check_exec.c:      if (c->cmds->length > 0)
+check_exec.c:	  tmp_cmd = c->cmds->start;
+check_exec.c:	  /* if (cmd->exec_at.tv_sec < s->now.tv_sec || ((cmd->exec_at.tv_sec == s->now.tv_sec) && (cmd->exec_at.tv_nsec <= s->now.tv_nsec))) /\* || i < s->clients->length *\/ // diff time current_time && send_at || ATTENTION deuxieme condition toujours vraie !!! -> Pour test */
+Binary file create_objects.o matches
+Binary file create_map.o matches
+count_teams.c:  save = s->o->optind;
+count_teams.c:  while (s->o->optind < s->o->argc && *(s->o->argv[s->o->optind]) != '-')
+count_teams.c:      s->o->optind++;
+count_teams.c:  s->o->optind = save;
+Binary file send_data.o matches
+create_rock.c:  x = rand() % s->map->size->width;
+create_rock.c:  y = rand() % s->map->size->height;
+create_rock.c:    s->map->objects[x][y]->linemate++;
+create_rock.c:    s->map->objects[x][y]->deraumere++;
+create_rock.c:    s->map->objects[x][y]->sibur++;
+create_rock.c:    s->map->objects[x][y]->mendiane++;
+create_rock.c:    s->map->objects[x][y]->phiras++;
+create_rock.c:    s->map->objects[x][y]->thystame++;
+Binary file count_teams.o matches
+set_options.c:  if (check_opt(s->o->opt) != -1)
+set_options.c:    options[check_opt(s->o->opt)](s);
+options2.c:  if (is_number(s->o->optarg) != -1)
+options2.c:      printf("s->map->width = %d\n", s->map->size->width);
+options2.c:      s->map->size->width = atoi(s->o->optarg);
+options2.c:  if (is_number(s->o->optarg) != -1)
+options2.c:      s->map->size->height = atoi(s->o->optarg);
+distances.c:  if ((unsigned int)abs(f_pos->x - s_pos->x) >= limit)
+distances.c:    l = calcul_length(f_pos->x, s_pos->x, map);
+distances.c:    l = abs(f_pos->x - s_pos->x);
+distances.c:  if ((unsigned int)abs(f_pos->y - s_pos->y) >= limit)
+distances.c:    w = calcul_width(f_pos->y, s_pos->y, map);
+distances.c:    w = abs(f_pos->y - s_pos->y);
+main.c:  xlisten(s->listener, 10);
+main.c:  FD_SET(s->listener, &(s->master));
+main.c:  s->fdmax = s->listener;
+Binary file rand_orientations.o matches
+Binary file set_options.o matches
