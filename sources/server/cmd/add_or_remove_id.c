@@ -5,35 +5,21 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Mon Jun 29 11:09:01 2015 Audibert Louis
+** Last update Mon Jun 29 11:24:32 2015 Audibert Louis
 */
 
 #include "functions.h"
 
 int		remove_from_socket(t_list *list, int id, t_list *teams)
 {
-  t_node	*tmp;
   t_client	*c;
-  int		i;
   t_team	*team;
 
-  tmp = list->start;
-  i = 0;
-  while (tmp)
-    {
-      c = tmp->data;
-      if (c->fd == id)
-	{
-	  printf("remove_at_index i = %d\n", i);
-	  team = get_team_by_name(teams, c->team_name);
-	  team->slot_rest++;
-	  remove_client_by_id(list, id);
-	  return (SUCCESS);
-	}
-      i++;
-      tmp = tmp->next;
-    }
-  return (ERROR);
+  c = get_client_by_id(list, id);
+  team = get_team_by_name(teams, c->team_name);
+  team->slot_rest++;
+  remove_client_by_id(list, id);
+  return (SUCCESS);
 }
 
 int		*add_id(t_block *block, int id)
