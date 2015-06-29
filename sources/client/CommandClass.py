@@ -226,11 +226,12 @@ class CommandClass():
         else:
             return 0
 
-    def broadcast_cmd(self, s, p, mess):
+    def broadcast_cmd(self, s, p, mess, obj):
         if (p.getVerbose()):
             print('broadcast >>')
-        var = 'broadcast'
-        var += '\r\n'
+        var = 'broadcast '
+        var += obj
+        var += '\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
         if (p.getVerbose()):
@@ -250,6 +251,8 @@ class CommandClass():
         var += '\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        if (p.getVerbose()):
+            print(rec)
         if (rec == 'mort\n'):
             print('You died\n')
             sys.exit(0)

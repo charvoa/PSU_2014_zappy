@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Sun Jun 28 12:08:02 2015 Nicolas Girardot
+// Last update Mon Jun 29 13:16:40 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -46,6 +46,7 @@ private:
   Position	*_focus;
   GraphMap	*_gMap;
   HUD		*_hud;
+  int		_idFocus = -1;
 public:
   GameEngine();
   ~GameEngine();
@@ -62,6 +63,7 @@ public:
   void	setCase(std::vector<std::string> &);
   void	setLocked();
   void	draw();
+  void	updateInventory(std::vector<int>&);
   void	deletePlayer(int);
   void	run();
   bool		isEventOnMap(int, int);

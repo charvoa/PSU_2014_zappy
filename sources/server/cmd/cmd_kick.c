@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Sun Jun 28 23:10:21 2015 Serge Heitzler
+** Last update Mon Jun 29 14:06:13 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -26,10 +26,9 @@ char		*get_trame_deplacement(t_client *c)
     y = c->pos->y + 1;
   else
     x = c->pos->x + 1;
-  trame = xmalloc((strlen("deplacement: ") + 8) * sizeof(char));
-  bzero(trame, strlen("deplacement: ") + 8);
+  trame = xmalloc((strlen("deplacement: ") + 3 + istm(x) + istm(y)) * sizeof(char));
+  bzero(trame, strlen("deplacement: ") + 3 + istm(x) + istm(y));
   sprintf(trame, "deplacement: %d %d\n", x, y);
-  printf("trame = %s", trame);
   return (trame);
 }
 

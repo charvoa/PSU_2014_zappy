@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Mon Jun 29 11:14:36 2015 Serge Heitzler
+** Last update Mon Jun 29 15:11:52 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -53,7 +53,7 @@ void		loop_server(t_server *s, char **argv)
   struct timeval tv;
   
   tv.tv_sec = 0;
-  tv.tv_usec = 1000;
+  tv.tv_usec = 1000000 / s->time_action;
   while (42)
     {
       s->read_fds = s->master;
