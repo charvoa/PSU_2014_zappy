@@ -14,6 +14,16 @@ class CommandClass():
         self.phiras = 0
         self.thystame = 0
 
+    def getMessage(self, rec):
+        print(rec)
+
+    def check_message(self, s, p, mess):
+        rec = mess.readMessage(s)
+        while ('message' in rec):
+            self.getMessage(rec)
+            rec = mess.readMessage(s)
+        return rec
+
     def avance_cmd(self, s, p, mess):
         self.prend_cmd(s, p, mess, 'nourriture')
         if (p.getVerbose()):
@@ -21,7 +31,8 @@ class CommandClass():
         var = 'avance'
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        #rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
         if (rec == 'ok\n'):
             return 1
         elif (rec == 'mort\n'):
@@ -37,7 +48,8 @@ class CommandClass():
         var = 'droite'
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        #rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ok\n'):
@@ -55,7 +67,8 @@ class CommandClass():
         var = 'gauche'
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
+#        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ok\n'):
@@ -72,7 +85,8 @@ class CommandClass():
         var = 'voir'
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        #rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ko\n'):
@@ -180,7 +194,8 @@ class CommandClass():
         var += obj
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
+#        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ok\n'):
@@ -198,7 +213,8 @@ class CommandClass():
         var += obj
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
+#        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ok\n'):
@@ -215,7 +231,8 @@ class CommandClass():
         var = 'expulse'
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
+ #       rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ok\n'):
@@ -233,7 +250,8 @@ class CommandClass():
         var += obj
         var += '\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
+#        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ok\n'):
@@ -250,7 +268,8 @@ class CommandClass():
         var = 'incantation'
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
+#        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'mort\n'):
@@ -273,7 +292,8 @@ class CommandClass():
         var = 'fork'
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
+#        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ok\n'):
@@ -290,7 +310,8 @@ class CommandClass():
         var = 'connect_nbr'
         var += '\r\n'
         mess.sendMessage(s, var)
-        rec = mess.readMessage(s)
+        rec = self.check_message(s, p, mess)
+#        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
         if (rec == 'mort\n'):
