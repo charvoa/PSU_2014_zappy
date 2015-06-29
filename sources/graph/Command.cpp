@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Mon Jun 29 00:07:32 2015 Antoine Garcia
+// Last update Mon Jun 29 17:25:25 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -286,6 +286,27 @@ void Command::pex(std::string cmd, GameEngine *game)
   (void)game;
   std::string		str(cmd.begin() + 4, cmd.end());
   int val = std::stoi(str);
+}
+
+void Command::enw(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  std::vector<int>	vec;
+  int			e;
+  int			n;
+  int			x;
+  int			y;
+
+  ss >> e;
+  ss >> n;
+  ss >> x;
+  ss >> y;
+  vec.push_back(e);
+  vec.push_back(n);
+  vec.push_back(x);
+  vec.push_back(y);
 }
 
 void Command::Exec()
