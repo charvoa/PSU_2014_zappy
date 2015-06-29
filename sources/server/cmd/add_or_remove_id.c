@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Sun Jun 28 12:50:25 2015 Audibert Louis
+** Last update Mon Jun 29 10:42:23 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -42,7 +42,7 @@ int		*add_id(t_block *block, int id)
   i = 0;
   if (block->ids[0] != -1)
     {
-      while (i <= block->nb_clients)
+      while (i < block->nb_clients)
 	{
 	  newtab[i] = block->ids[i];
 	  i++;
