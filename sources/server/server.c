@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sun Jun 28 11:50:46 2015 Audibert Louis
+** Last update Mon Jun 29 11:14:36 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -30,32 +30,42 @@ void	handler_ctrl_c(int sig)
   exit(0);
 }
 
-void		loop_server(t_server *s, char **argv)
+void		check_fds(t_server *s, char **argv)
 {
   int		i;
+
+  i = 0;
+  while (i <= s->fdmax)
+    {
+      if (FD_ISSET(i, &(s->read_fds)))
+	{
+	  if (i == s->listener)
+	    accept_server(s, argv);
+	  else
+	    read_write_server(s, i, argv);
+	}
+      i++;
+    }
+}
+
+void		loop_server(t_server *s, char **argv)
+{
+  struct timeval tv;
   
+  tv.tv_sec = 0;
+  tv.tv_usec = 1000;
   while (42)
     {
-      i = 0;
       s->read_fds = s->master;
+      clock_gettime(CLOCK_REALTIME, &s->now);
+      check_death(s);
       signal(SIGINT, handler_ctrl_c);
-      if (select(s->fdmax + 1, &(s->read_fds), NULL, NULL, NULL) == -1)
+      if (select(s->fdmax + 1, &(s->read_fds), NULL, NULL, &tv) == -1)
 	{
 	  perror("Server-select() error !");
 	  exit(1);
-	}
-      check_death(s);
-      while (i <= s->fdmax)
-	{
-	  if (FD_ISSET(i, &(s->read_fds)))
-	    {
-	      if (i == s->listener)
-		accept_server(s, argv);
-	      else
-		read_write_server(s, i, argv);
-	    }
-	  i++;
-	}
+	}      
+      check_fds(s, argv);
       create_objects(s);
     }
 }
