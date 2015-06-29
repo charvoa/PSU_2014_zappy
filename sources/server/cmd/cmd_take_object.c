@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Mon Jun 29 00:17:41 2015 Serge Heitzler
+** Last update Mon Jun 29 09:51:54 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -53,8 +53,7 @@ int		launch_func_block(t_block *block, int rock_type, e_flag_rock flag)
 	{
 	  if (rocks[i].ptr_func(block, flag) == SUCCESS)
 	    return (SUCCESS);
-	  else
-	    return (ERROR);
+	  return (ERROR);
 	}
       i++;
     }
@@ -67,10 +66,10 @@ int		take_rock(t_server *s, t_client *c, char *item)
 
   if ((rock_type = check_rock(item)) == ERROR)
     return (ERROR);
-  if (launch_func_inventory(c, rock_type, ADD) == ERROR)
-    return (ERROR);
   if (launch_func_block(s->map->objects[c->pos->y][c->pos->x],
 			rock_type, REMOVE) == ERROR)
+    return (ERROR);
+  if (launch_func_inventory(c, rock_type, ADD) == ERROR)
     return (ERROR);
   cmd_pgt(c, s->clients, rock_type + 1);
   cmd_pin(s, c, "protocole", GUI);
@@ -80,7 +79,7 @@ int		take_rock(t_server *s, t_client *c, char *item)
 
 int		take_food(t_server *s, t_client *c)
 {
-  if (s->map->objects[c->pos->y][c->pos->x]->food == 0)
+  if (s->map->objects[c->pos->y][c->pos->x]->food <= 0)
     return (ERROR);
   s->map->objects[c->pos->y][c->pos->x]->food--;
   c->inventory->food++;
