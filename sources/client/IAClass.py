@@ -111,15 +111,58 @@ class IAClass():
             self.thystame = self.cc.getThystame()
             self.food = self.cc.getFood()
             self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
-            rand = random.randint(1, 7)
-            randTab = random.randint(0, 5)
-            if (self.cc.incantation_cmd(self.s, self.p, self.mess) == 1):
-                self.level += 1
-            self.cc.prend_cmd(self.s, self.p, self.mess, self.rocksTab[randTab])
             print('Current Level : ', self.getLevel())
             self.playerNeeded, self.linemateNeeded, self.deraumereNeeded, self.siburNeeded, self.mendianeNeeded, self.phirasNeeded, self.thystameNeeded, self.itemsNeeded = self.defineWhatWeNeedMost()
             x, y = self.move.getMovements(self.checkBestCase())
             self.moveAI(x, y)
+            self.cc.prend_cmd(self.s, self.p, self.mess, 'linemate')
+            self.cc.prend_cmd(self.s, self.p, self.mess, 'phiras')
+            self.cc.prend_cmd(self.s, self.p, self.mess, 'deraumere')
+            self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
+            self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
+            self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
+            self.cc.inventaire_cmd(self.s, self.p, self.mess)
+            self.food = self.cc.getFood()
+            self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
+            if (self.food >= 5):
+                self.cc.pose_cmd(self.s, self.p, self.mess, 'linemate')
+                self.cc.pose_cmd(self.s, self.p, self.mess, 'phiras')
+                self.cc.pose_cmd(self.s, self.p, self.mess, 'deraumere')
+                self.cc.pose_cmd(self.s, self.p, self.mess, 'thystame')
+                self.cc.pose_cmd(self.s, self.p, self.mess, 'sibur')
+                self.cc.pose_cmd(self.s, self.p, self.mess, 'mendiane')
+                if (self.getNbPlayerRequired() == 1):
+                    incant = self.cc.incantation_cmd(self.s, self.p, self.mess)
+                    if (incant == 1):
+                        self.level += 1
+            else:
+                self.cc.prend_cmd(self.s, self.p, self.mess, 'linemate')
+                self.cc.prend_cmd(self.s, self.p, self.mess, 'phiras')
+                self.cc.prend_cmd(self.s, self.p, self.mess, 'deraumere')
+                self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
+                self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
+                self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
+                while (self.cc.getFood() < 5):
+                    self.playerNeeded, self.linemateNeeded, self.deraumereNeeded, self.siburNeeded, self.mendianeNeeded, self.phirasNeeded, self.thystameNeeded, self.itemsNeeded = self.defineWhatWeNeedMost()
+                    x, y = self.move.getMovements(self.checkBestCase())
+                    self.moveAI(x, y)
+
+
+    def getNbPlayerRequired(self):
+        nbPlayer = 1
+        if (self.getLevel() <= 2):
+            nbPlayer = 1
+        elif (self.getLevel() > 2 and self.getLevel() < 4):
+            nbPlayer = 2
+        elif (self.getLevel() > 4 and self.getLevel() < 6):
+            nbPlayer = 4
+        elif (self.getLevel() > 6):
+            nbPlayer = 6
+        case0 = self.inFrontOfMe[0]
+        if (case0.count('joueur') >= nbPlayer):
+            return 1
+        else:
+            return 0
 
     def moveAI(self, x, y):
         while (y > 0):
