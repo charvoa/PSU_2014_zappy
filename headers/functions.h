@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Tue Jun 30 17:56:21 2015 Antoine Garcia
+** Last update Wed Jul  1 13:47:09 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -38,6 +38,7 @@ int		create_food(t_server *s);
 /* Function(s) in file create_map.c */
 char		**init_full_tab(int width, int height);
 void		init_map(t_server *s, unsigned int width, unsigned int height);
+void		launch_init_map(t_server *s);
 
 /* Function(s) in file create_objects.c */
 int		create_objects(t_server *s);

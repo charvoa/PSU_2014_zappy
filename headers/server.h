@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed Jul  1 12:54:42 2015 Serge Heitzler
+** Last update Wed Jul  1 13:41:45 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -94,6 +94,7 @@ typedef struct		s_server
   unsigned int		port; // -p
   float			time_action; // -t
   t_opt			*o;
+  int			map_set[2];
 
   // Charvo's struct
   fd_set		master;
