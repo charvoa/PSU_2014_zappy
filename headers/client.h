@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:41:12 2015 Audibert Louis
-** Last update Sat Jun 27 17:48:49 2015 Serge Heitzler
+** Last update Tue Jun 30 15:55:34 2015 Audibert Louis
 */
 
 #ifndef _CLIENT_H_
@@ -26,6 +26,12 @@ typedef enum		e_client_type
     GUI,
     NORMAL
   }			e_client_type;
+
+typedef enum		e_client_state
+  {
+    CHILD,
+    ADULT
+  }			e_client_state;
 
 typedef struct		s_inventory
 {
@@ -55,6 +61,7 @@ typedef struct		s_client
   t_position		*pos;
   t_inventory		*inventory;
   t_list		*cmds;
+  e_client_state	state;
 
   t_ring_buffer		*buffer;
 }			t_client;

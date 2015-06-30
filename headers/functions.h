@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Tue Jun 30 14:29:36 2015 Audibert Louis
+** Last update Tue Jun 30 15:58:45 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -27,7 +27,8 @@ int		count_teams(t_server *s);
 
 /* Function(s) in file create_client.c */
 void		init_orientation(void (*orientation[4])(t_client *));
-void		init_inventory(t_client *c);
+void		init_inventory(t_client *c, int food);
+void		create_client_from_egg(t_server *s, t_egg *egg, int index);
 int		create_client(t_server *, int);
 
 /* Function(s) in file create_food.c */
@@ -163,6 +164,15 @@ int		launch_func_inventory(t_client *c, int rock, e_flag_rock flag);
 int		drop_rock(t_server *s, t_client *c, char *item);
 int		drop_food(t_server *s, t_client *c);
 int		cmd_drop_object(t_server *s, t_client *c, const char *cmd, e_client_type type);
+
+/* Function(s) in file cmd_ebo.c */
+int		cmd_ebo(t_egg *egg, t_list *clients);
+
+/* Function(s) in file cmd_edi.c */
+int		cmd_edi(t_egg *egg, t_list *clients);
+
+/* Function(s) in file cmd_eht.c */
+int		cmd_eht(t_egg *egg, t_list *clients);
 
 /* Function(s) in file cmd_enw.c */
 int		cmd_enw(t_server *s, t_client *c, e_client_type type, int id);

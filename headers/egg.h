@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:31:12 2015 Audibert Louis
-** Last update Tue Jun 30 15:59:56 2015 Serge Heitzler
+** Last update Tue Jun 30 16:03:31 2015 Serge Heitzler
 */
 
 #ifndef _EGG_H_
