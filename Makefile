@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:23:38 2015 Serge Heitzler
-## Last update Sat Jun 27 19:22:07 2015 Nicolas Charvoz
+## Last update Tue Jun 30 15:38:42 2015 Nicolas Charvoz
 ##
 
 MAKE		= 	make -C
@@ -36,7 +36,7 @@ clean		:
 fclean		:
 			$(MAKE) $(DIR_SERV) fclean
 			$(MAKE) $(DIR_GRAPH) fclean
-			rm zappy_ai
+			rm -f zappy_ai
 
 re		:	 fclean all
 

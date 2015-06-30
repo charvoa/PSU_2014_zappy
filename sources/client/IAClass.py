@@ -64,6 +64,12 @@ class IAClass():
         string += self.uid
         return string
 
+    def buildOkMessage(self, senderId):
+        string = 'NEED OK '
+        string += str(senderId)
+        string += ' '
+        string += self.uid
+
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage();
         if (mess != ""):
