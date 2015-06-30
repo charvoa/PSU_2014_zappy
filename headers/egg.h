@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:31:12 2015 Audibert Louis
-** Last update Tue Jun 30 14:20:01 2015 Audibert Louis
+** Last update Tue Jun 30 15:59:56 2015 Serge Heitzler
 */
 
 #ifndef _EGG_H_
@@ -13,21 +13,20 @@
 
 # include "position.h"
 
-typedef enum e_state_egg
+typedef enum		e_state_egg
   {
     ASLEEP,
     BORN,
     DEAD
-  }	     e_state_egg;
+  }			e_state_egg;
 
-typedef struct	s_egg
+typedef struct		s_egg
 {
-  int		id;
-  int		fd_egg;
-  t_position	*pos;
-  char		*team_name;
-  struct timeval eclos;
-  e_state_egg	state;
-}		t_egg;
+  int			id;
+  int			fd;
+  t_position		*pos;
+  char			*team_name;
+  struct timespec	eclos;
+}			t_egg;
 
 #endif /* _EGG_H_ */
