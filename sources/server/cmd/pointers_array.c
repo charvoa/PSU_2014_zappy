@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Sun Jun 28 12:14:25 2015 Serge Heitzler
+** Last update Mon Jun 29 13:32:13 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -18,7 +18,7 @@ t_cmds	g_cmds[23] =
     {"droite", &cmd_right, 7},
     {"gauche", &cmd_left, 7},
     {"voir", &cmd_view, 7},
-    {"inventaire", &cmd_inventory, 7},
+    {"inventaire", &cmd_inventory, 1},
     {"prend", &cmd_take_object, 7},
     {"pose", &cmd_drop_object, 7},
     {"expulse", &cmd_kick, 7},

@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:43 2015 Serge Heitzler
-// Last update Sat Jun 27 15:18:23 2015 Nicolas Girardot
+// Last update Tue Jun 30 13:51:24 2015 Nicolas Girardot
 //
 
 #ifndef CASE_HH_
@@ -44,6 +44,7 @@ public:
   void		decrement(e_type type);
   void		setAll(int, int, int, int, int, int, int);
   int		getType();
+  void		setIncant(bool);
   int		get(e_type type);
 
  private:
@@ -56,7 +57,7 @@ public:
   int			_food;
   e_texture_type       	_textureType;
   std::vector<IACharacter *>	_list;
-
+  bool			_isIncant = false;
 };
 
 #endif /* CASE_HH_ */

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Mon Jun 29 15:34:02 2015 Nicolas Girardot
+// Last update Tue Jun 30 14:09:08 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -29,7 +29,6 @@ void Command::pin(std::string cmd, GameEngine *game)
       ss >> val;
       vector.push_back(val);
     }
-  std::cout << "IN INVETORY" << vector.at(3) << " " << vector.at(4) << " " << vector.at(5) << " " << vector.at(6) << " " << vector.at(7) << " " << vector.at(8) << " " << vector.at(9) << " " << std::endl;
   game->updateInventory(vector);
 }
 
@@ -212,33 +211,35 @@ void Command::pie(std::string cmd, GameEngine *game)
       ss >> val;
       vector.push_back(val);
     }
+  game->endIncant(vector);
 }
 
 void Command::pic(std::string cmd, GameEngine *game)
 {
   (void) game;
   (void) cmd;
-  // std::string		str(cmd.begin() + 4, cmd.end());
-  // std::istringstream	ss(str);
-  // int x;
-  // int y;
-  // int l;
-  // std::vector<int>	vector;
-  // std::string		var;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  int x;
+  int y;
+  int l;
+  std::vector<int>	vector;
+  std::string		var;
 
-  // ss >> x;
-  // ss >> y;
-  // ss >> l;
-  // vector.push_back(x);
-  // vector.push_back(y);
-  // vector.push_back(l);
-  // while (ss >> var)
-  //   {
-  //     std::string val(var.begin() + 1, var.end());
-  //     int value;
-  //     value = std::stoi(val);
-  //     vector.push_back(value);
-  //   }
+  ss >> x;
+  ss >> y;
+  ss >> l;
+  vector.push_back(x);
+  vector.push_back(y);
+  vector.push_back(l);
+  while (ss >> var)
+    {
+      std::string val(var.begin(), var.end());
+      int value;
+      value = std::stoi(val);
+      vector.push_back(value);
+    }
+  game->addIncant(x, y);
 }
 
 void Command::pdr(std::string cmd, GameEngine *game)
@@ -258,6 +259,56 @@ void Command::smg(std::string cmd, GameEngine *game)
 {
   (void) game;
   std::string		str(cmd.begin() + 4, cmd.end());
+}
+
+void Command::eht(std::string cmd, GameEngine *game)
+{
+  (void)game;
+
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
+void Command::ebo(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
+void Command::edi(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
+void Command::pex(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  int val = std::stoi(str);
+}
+
+void Command::enw(std::string cmd, GameEngine *game)
+{
+  (void)game;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  std::vector<int>	vec;
+  int			e;
+  int			n;
+  int			x;
+  int			y;
+
+  ss >> e;
+  ss >> n;
+  ss >> x;
+  ss >> y;
+  vec.push_back(e);
+  vec.push_back(n);
+  vec.push_back(x);
+  vec.push_back(y);
 }
 
 void Command::Exec()
@@ -280,6 +331,10 @@ void Command::Exec()
   _functions["pic"] = &Command::pic;
   _functions["pdr"] = &Command::pdr;
   _functions["smg"] = &Command::smg;
+  _functions["eht"] = &Command::eht;
+  _functions["ebo"] = &Command::ebo;
+  _functions["edi"] = &Command::edi;
+  _functions["pex"] = &Command::pex;
   /* faire de même pour chaque fonctions */
 }
 

@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Mon Jun 29 13:16:40 2015 Nicolas Girardot
+// Last update Tue Jun 30 14:14:41 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -53,6 +53,8 @@ public:
   SDL_Renderer &getRenderer();
   SDL_Window &getWindow();
   SDL_Surface &getSurface();
+  void	addIncant(int, int);
+  void	endIncant(std::vector<int> &);
   void	addPlayer(std::vector<std::string> &);
   void	init_object();
   bool	initialize();

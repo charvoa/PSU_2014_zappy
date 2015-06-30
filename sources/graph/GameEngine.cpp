@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Tue Jun 30 10:53:40 2015 Nicolas Girardot
+// Last update Tue Jun 30 14:15:59 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -36,6 +36,16 @@ SDL_Window &GameEngine::getWindow()
 SDL_Surface &GameEngine::getSurface()
 {
   return (*_surface);
+}
+
+void	GameEngine::addIncant(int x, int y)
+{
+  _cases.at(y).at(x)->setIncant(true);
+}
+
+void	GameEngine::endIncant(std::vector<int> &v)
+{
+  _cases.at(v.at(1)).at(v.at(0))->setIncant(false);
 }
 
 void	GameEngine::deletePlayer(int id)
