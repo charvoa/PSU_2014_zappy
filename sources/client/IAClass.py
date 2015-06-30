@@ -41,6 +41,15 @@ class IAClass():
         print('Here is my id : ', self.uid)
 
 
+    def buildMessageForBroadcast(self):
+        string = 'NEED '
+        string += str(self.itemsNeeded[0])
+        string += ' '
+        string += str(self.getLevel())
+        string += ' '
+        string += self.uid
+        print(string)
+
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
             return 1, 1, 0, 0, 0, 0, 0, [1, 1, 0, 0, 0, 0, 0]
@@ -144,8 +153,9 @@ class IAClass():
                     self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
                     self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
                     self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
-            #self.cc.avance_cmd(self.s, self.p, self.mess)
-            #self.cc.broadcast_cmd(self.s, self.p, self.mess, 'allo')
+            self.buildMessageForBroadcast()
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+#            self.cc.broadcast_cmd(self.s, self.p, self.mess, 'allo')
 
 
     def getNbPlayerRequired(self):
