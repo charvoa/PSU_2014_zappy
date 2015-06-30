@@ -80,6 +80,7 @@ class IAClass():
     def doNeedOk(self, nbPlayer, levelPlayer, senderId):
         if (self.getLevel() == levelPlayer):
             self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildOkMessage(senderId))
+            self.getBroadcastDirection(self.case)
             self.target = senderId;
 
 
