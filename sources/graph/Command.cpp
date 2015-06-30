@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu Jul  2 15:11:15 2015 Nicolas Girardot
+// Last update Wed Jul  1 01:42:02 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -105,7 +105,7 @@ void	Command::pnw(std::string cmd, GameEngine *game)
   int			y;
   int			o;
   int			l;
-  int			N;
+  std::string			N;
 
   ss >> n;
   ss >> x;
@@ -118,7 +118,7 @@ void	Command::pnw(std::string cmd, GameEngine *game)
   vec.push_back(y);
   vec.push_back(o);
   vec.push_back(l);
-  vec.push_back(N);
+  game->addPlayers(vec, N);
 }
 
 void	Command::ppo(std::string cmd, GameEngine *game)
