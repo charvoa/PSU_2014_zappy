@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Tue Jun 30 14:15:59 2015 Nicolas Girardot
+// Last update Tue Jun 30 17:18:06 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -36,6 +36,17 @@ SDL_Window &GameEngine::getWindow()
 SDL_Surface &GameEngine::getSurface()
 {
   return (*_surface);
+}
+
+void	GameEngine::updateLvl(int id, int lvl)
+{
+  for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
+    {
+      if (id == (*it)->getId())
+	{
+	  (*it)->setLVL(lvl);
+	}
+    }
 }
 
 void	GameEngine::addIncant(int x, int y)

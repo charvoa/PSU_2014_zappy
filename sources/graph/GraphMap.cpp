@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Tue Jun 30 14:16:34 2015 Nicolas Girardot
+// Last update Tue Jun 30 17:20:24 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -21,7 +21,7 @@ GraphMap::GraphMap(int width, int height, SDL_Renderer *renderer)
   _grasst = SDL_CreateTextureFromSurface(renderer, _grass);
   _dirt = IMG_Load("dirt.jpg");
   _dirtt = SDL_CreateTextureFromSurface(renderer, _dirt);
-  _incant = IMG_Load("incant.png");
+  _incant = IMG_Load("incantation.png");
   _incantt = SDL_CreateTextureFromSurface(renderer, _incant);
   _playerSkin = IMG_Load("spriteGame.png");
   _playerSkint = SDL_CreateTextureFromSurface(renderer, _playerSkin);
@@ -51,11 +51,18 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::ve
 	      else
 		SDL_RenderCopy(renderer, _dirtt, NULL, &rect);
 	    }
-	  rect.x = (100 + (i - focus._x + 3) * _squareSize);
-	  rect.y = (100 + (j - focus._y + 3) * _squareSize);
-	  rect.w = _squareSize / 3;
-	  rect.h = _squareSize / 3;
-	  SDL_RenderCopy(renderer, _incantt, NULL, &rect);
+	  if (j < 0 || i < 0 || j > _height - 1 || i > _width - 1);
+	  else
+	    {
+	      if (map.at(j).at(i)->getIncant() == true)
+		{
+		  rect.x = (100 + (i - focus._x + 3) * _squareSize);
+		  rect.y = (150 + (j - focus._y + 3) * _squareSize);
+		  rect.w = _squareSize / 3;
+		  rect.h = _squareSize / 3;
+		  SDL_RenderCopy(renderer, _incantt, NULL, &rect);
+		}
+	    }
 	}
     }
     for(std::list<IACharacter *>::iterator it = players.begin(); it != players.end() ; it++)

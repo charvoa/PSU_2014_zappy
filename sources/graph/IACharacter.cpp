@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
-// Last update Mon Jun 29 15:33:33 2015 Nicolas Girardot
+// Last update Tue Jun 30 17:18:46 2015 Nicolas Girardot
 //
 
 #include "IACharacter.hh"
@@ -38,7 +38,6 @@ void	IACharacter::updateAtt(std::vector<std::string> &args)
 
 void	IACharacter::updateInventory(std::vector<int> &inv)
 {
-
   _food = inv.at(3);
   _limemate = inv.at(4);
   _deraumere = inv.at(5);
@@ -48,6 +47,10 @@ void	IACharacter::updateInventory(std::vector<int> &inv)
   _thystame = inv.at(9);
 }
 
+void	IACharacter::setLVL(int lvl)
+{
+  this->_lvl = lvl;
+}
 
 std::string &IACharacter::getTeam()
 {

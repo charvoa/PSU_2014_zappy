@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Tue Jun 30 14:23:40 2015 Nicolas Girardot
+// Last update Tue Jun 30 17:19:56 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -103,7 +103,6 @@ void	Command::pnw(std::string cmd, GameEngine *game)
   while (std::getline(ss, param, ' '))
     if (param != "pnw")
       detPlayer.push_back(param);
-
   game->addPlayer(detPlayer);
 }
 
@@ -122,16 +121,14 @@ void	Command::ppo(std::string cmd, GameEngine *game)
 
 void	Command::plv(std::string cmd, GameEngine *game)
 {
-  (void) game;
-  std::string			current;
-  std::vector<std::string>	lvlPlayer;
-  std::istringstream		ss(cmd);
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  int			id;
+  int			lvl;
 
-  while (std::getline(ss, current, ' '))
-    if (current != "plv")
-      lvlPlayer.push_back(current);
-
-  // defLVL(lvlPlayer);
+  ss >> id;
+  ss >> lvl;
+  game->updateLvl(id, lvl);
 }
 
 void Command::pgt(std::string cmd, GameEngine *game)
@@ -151,8 +148,6 @@ void Command::pgt(std::string cmd, GameEngine *game)
 
 void Command::pdi(std::string cmd, GameEngine *game)
 {
-  (void)game;
-
   std::string		str(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(str);
   int			id;

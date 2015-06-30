@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Tue Jun 30 14:14:41 2015 Nicolas Girardot
+// Last update Tue Jun 30 17:19:02 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -67,6 +67,7 @@ public:
   void	draw();
   void	updateInventory(std::vector<int>&);
   void	deletePlayer(int);
+  void	updateLvl(int, int);
   void	run();
   bool		isEventOnMap(int, int);
   std::pair <int, int>determinePosClicked(std::pair<int,int> &, int, int);
