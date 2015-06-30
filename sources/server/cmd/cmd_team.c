@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Thu Jul  2 11:30:24 2015 Audibert Louis
+** Last update Thu Jul  2 13:20:37 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -63,7 +63,6 @@ void		do_team(t_server *s, char *name, t_client *c)
     send_data(c->fd, "ko\n");
   bzero(trame, 21);
   sprintf(trame, "%d %d\n", s->map->size->width, s->map->size->height);
-  printf("TRAM %s\n", trame);
   send_data(c->fd, trame);
 }
 
@@ -77,7 +76,10 @@ int		cmd_team(t_server *s, t_client *c,
   bzero(name, strlen(cmd));
   sscanf(cmd, "%s", name);
   if (strcmp(name, "GRAPHIC") == 0)
-    protocole_graphique(s, c);
+    {
+      protocole_graphique(s, c);
+      return (SUCCESS);
+    }
   if (is_a_team(s, name) == 0)
     do_team(s, name, c);
   else
@@ -87,6 +89,5 @@ int		cmd_team(t_server *s, t_client *c,
       return (ERROR);
     }
   c->team_name = strdup(name);
-  printf("T2 = %s\n", c->team_name);
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:46 2015 Serge Heitzler
-** Last update Wed Jul  1 18:43:58 2015 Serge Heitzler
+** Last update Thu Jul  2 13:55:22 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -94,7 +94,10 @@ int		cmd_mct(t_server *s, t_client *c,
 	  bzero(tmp, size_malloc);
 	  print_mct(b, tmp, x, y);
 	  printf("%s", tmp);
-	  send_data(c->fd, tmp);
+	  if (type == NORMAL)
+	    send_data(c->fd, tmp);
+	  else
+	    send_data_to_gui(s->clients, tmp);
 	  free(tmp);
 	}
     }
