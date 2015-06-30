@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:00 2015 Nicolas Girardot
-// Last update Mon Jun 29 15:38:33 2015 Nicolas Girardot
+// Last update Thu Jul  2 11:13:51 2015 Nicolas Girardot
 //
 
 #include "HUD.hh"
@@ -61,9 +61,9 @@ HUD::HUD(SDL_Renderer *renderer)
   this->_rock4Bottom = TTF_RenderText_Solid(_font, "0", _white);
   this->_rock5Bottom = TTF_RenderText_Solid(_font, "0", _white);
   this->_rock6Bottom = TTF_RenderText_Solid(_font, "0", _white);
-  this->_teamBottom = TTF_RenderText_Solid(_font, "0", _white);
-  this->_playerID = TTF_RenderText_Solid(_font, "0", _white);
-  this->_sprite = IMG_Load("./spriteBottom.png");
+  this->_teamBottom = TTF_RenderText_Solid(_font, "", _white);
+  this->_playerID = TTF_RenderText_Solid(_font, "", _white);
+  this->_sprite = IMG_Load("zelda_sprites/1-3.png");
 
   this->_foodBottomt = SDL_CreateTextureFromSurface(renderer, this->_foodBottom);
   this->_rock1Bottomt = SDL_CreateTextureFromSurface(renderer, this->_rock1Bottom);
@@ -163,7 +163,6 @@ void	HUD::updateInventory(IACharacter *charac)
   result = sstm.str();
   this->_playerID = TTF_RenderText_Solid(_font, result.c_str(), _white);
   this->_playerIDt = SDL_CreateTextureFromSurface(_renderer, this->_playerID);
-
 }
 
 void	HUD::updateLocked(int a, int b, Case *mycase)
@@ -258,8 +257,8 @@ void	HUD::drawHUDBottom(SDL_Renderer *renderer)
 {
   SDL_Rect _drawer;
 
-  _drawer.x = 280;
-  _drawer.y = 895;
+  _drawer.x = 270;
+  _drawer.y = 880;
   _drawer.w = 80;
   _drawer.h = 95;
 
@@ -277,9 +276,11 @@ void	HUD::drawHUDBottom(SDL_Renderer *renderer)
   _drawer.y = 910;
   SDL_RenderCopy(renderer, _inventoryTitlet, NULL, &_drawer);
 
-  _drawer.x = 550;
+  _drawer.x = 570;
+  _drawer.y = 905;
   SDL_RenderCopy(renderer, _foodBottomt, NULL, &_drawer);
 
+  _drawer.y = 910;
   _drawer.x = 650;
   _drawer.w = 20 * 5;
   SDL_RenderCopy(renderer, _teamBottomt, NULL, &_drawer);
@@ -287,22 +288,22 @@ void	HUD::drawHUDBottom(SDL_Renderer *renderer)
 
   _drawer.w = 20;
   _drawer.y = 960;
-  _drawer.x = 380;
+  _drawer.x = 345;
   SDL_RenderCopy(renderer, _rock1Bottomt, NULL, &_drawer);
 
-  _drawer.x = 440;
+  _drawer.x = 407;
   SDL_RenderCopy(renderer, _rock2Bottomt, NULL, &_drawer);
 
-  _drawer.x = 500;
+  _drawer.x = 472;
   SDL_RenderCopy(renderer, _rock3Bottomt, NULL, &_drawer);
 
-  _drawer.x = 560;
+  _drawer.x = 537;
   SDL_RenderCopy(renderer, _rock4Bottomt, NULL, &_drawer);
 
-  _drawer.x = 620;
+  _drawer.x = 602;
   SDL_RenderCopy(renderer, _rock5Bottomt, NULL, &_drawer);
 
-  _drawer.x = 680;
+  _drawer.x = 667;
   SDL_RenderCopy(renderer, _rock6Bottomt, NULL, &_drawer);
 }
 
@@ -326,22 +327,22 @@ void	HUD::drawHUDRight(SDL_Renderer* renderer)
   _drawer.h = 20;
   SDL_RenderCopy(renderer, _foodLockedt, NULL, &_drawer);
 
-  _drawer.y = 300;
+  _drawer.y = 287;
   SDL_RenderCopy(renderer, _rock1Lockedt, NULL, &_drawer);
 
-  _drawer.y = 375;
+  _drawer.y = 353;
   SDL_RenderCopy(renderer, _rock2Lockedt, NULL, &_drawer);
 
-  _drawer.y = 450;
+  _drawer.y = 418;
   SDL_RenderCopy(renderer, _rock3Lockedt, NULL, &_drawer);
 
-  _drawer.y = 525;
+  _drawer.y = 482;
   SDL_RenderCopy(renderer, _rock4Lockedt, NULL, &_drawer);
 
-  _drawer.y = 600;
+  _drawer.y = 550;
   SDL_RenderCopy(renderer, _rock5Lockedt, NULL, &_drawer);
 
-  _drawer.y = 675;
+  _drawer.y = 618;
   SDL_RenderCopy(renderer, _rock6Lockedt, NULL, &_drawer);
 
   _drawer.w = 75;

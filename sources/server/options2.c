@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 14:05:42 2015 Audibert Louis
-** Last update Wed Jul  1 14:37:47 2015 Audibert Louis
+** Last update Thu Jul  2 12:14:09 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -14,7 +14,7 @@ int	opt_width_map(t_server *s)
 {
   if (is_number(s->o->optarg) != -1)
     {
-      if (atoi(s->o->optarg) > 7)
+      if (atoi(s->o->optarg) >= 7)
 	s->map_set[0] = atoi(s->o->optarg);
       else
 	{
@@ -31,7 +31,7 @@ int	opt_height_map(t_server *s)
 {
   if (is_number(s->o->optarg) != -1)
     {
-      if (atoi(s->o->optarg) > 7)
+      if (atoi(s->o->optarg) >= 7)
 	s->map_set[1] = atoi(s->o->optarg);
       else
 	{

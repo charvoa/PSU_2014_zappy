@@ -194,6 +194,24 @@ class IAClass():
                 bestCase = i
         return bestCase
 
+    def checkSurvival(self):
+        save = 0
+        survivalBool = False
+        if (self.food < 3):
+            survivalBool = True
+            print('I\'m in survival mode')
+            i = 0
+            for p in self.inFrontOfMe:
+                print('p>>', p)
+                if ('nourriture' in p):
+                    save = i
+            i+=1
+        if (save == 0 and survivalBool):
+            save = 1
+        x, y = self.move.getMovements(save)
+        self.moveAI(x, y)
+        self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
+
     # def checkLevelUp(self):
     #     for p in self.itemsNeeded
 
@@ -201,10 +219,16 @@ class IAClass():
         i = 1
         while (i == 1):
             print('Current Level : ', self.getLevel())
-            self.cc.avance_cmd(self.s, self.p, self.mess)
-#            self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
-#            self.itemsNeeded = self.defineWhatWeNeedMost()
-#            x, y = self.move.getMovements(self.checkBestCase())
+            self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
+            self.itemsNeeded = self.defineWhatWeNeedMost()
+            x, y = self.move.getMovements(self.checkBestCase())
+            x += 1
+            y += 2
+            self.moveAI(x, y)
+            self.cc.inventaire_cmd(self.s, self.p, self.mess)
+            self.food = self.cc.getFood()
+            print('I got : ', self.food, ' nourriture')
+            self.checkSurvival()
 #            self.moveAI(x, y)
             # self.cc.inventaire_cmd(self.s, self.p, self.mess)
             # self.linemate = self.cc.getLinemate()

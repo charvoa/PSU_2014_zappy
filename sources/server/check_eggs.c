@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 14:23:33 2015 Audibert Louis
-** Last update Thu Jul  2 08:38:13 2015 Serge Heitzler
+** Last update Thu Jul  2 11:13:59 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -16,7 +16,6 @@ int		is_there_an_egg(t_list *eggs, char *team, int fd)
   t_egg		*egg;
 
   tmp = eggs->start;
-  //  egg = xmalloc(sizeof(t_egg));
   while (tmp)
     {
       egg = tmp->data;
@@ -27,7 +26,6 @@ int		is_there_an_egg(t_list *eggs, char *team, int fd)
 	}
       tmp = tmp->next;
     }
-  //  free(egg);
   return (ERROR);
 }
 
@@ -38,7 +36,6 @@ void		check_eggs(t_server *s)
   int		i;
 
   tmp = s->eggs->start;
-  //  egg = xmalloc(sizeof(t_egg));
   i = 0;
   while (tmp)
     {
@@ -55,5 +52,4 @@ void		check_eggs(t_server *s)
       i++;
       tmp = tmp->next;
     }
-  //  free(egg);
 }

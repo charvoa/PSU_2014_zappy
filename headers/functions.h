@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Thu Jul  2 10:09:05 2015 Audibert Louis
+** Last update Thu Jul  2 11:44:12 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -56,6 +56,12 @@ t_team		*create_team(t_server *s, char *name, int nb_max);
 float		calcul_distance(int w, int l);
 int		calcul_limit(int len);
 float		give_me_distance(t_map *map, t_position *f_pos, t_position *s_pos);
+
+/* Function(s) in file fill_struct_serv.c */
+char		**get_tab(int argc, char **argv);
+void		init_everything(t_server *s, int, char **);
+t_server	*fill_struct_serv(int argc, char **argv);
+
 
 /* Function(s) in file my_printf.c */
 void		my_printf(char *format, ...);
@@ -284,9 +290,18 @@ char		**get_pos_of_visible_space(t_server *s, t_client *c);
 char		*create_final_string_view(t_server *s, t_client *c, int, char **);
 int		cmd_view(t_server *s, t_client *c, char *cmd, e_client_type type);
 
+/* Function(s) in file cmd_view_support.c */
+int		malloc_cmd_view(t_server *s, t_client *c, char **pos);
+char		*create_final_support(t_server *s, t_client *c, char **pos, char *final);
+
 /* Function(s) in file determine_pos.c */
 int		determine_pos_x(t_client *c, t_size *size, int t, int l);
 int		determine_pos_y(t_client *c, t_size *size, int t, int l);
+
+/* Function(s) in file init_cmd_team.c */
+void		init_fill_ia_client(void (*orientation[4])(t_client *),
+				    t_client *c, t_team *t, char *n);
+int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
 
 /* Function(s) in file int_size_to_malloc.c */
 int		istm(int nb);

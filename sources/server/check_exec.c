@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Thu Jul  2 07:55:55 2015 Serge Heitzler
+** Last update Thu Jul  2 11:14:07 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -20,9 +20,6 @@ int		check_exec(t_server *s)
 
   i = 0;
   tmp_cli = s->clients->start;
-  //  c = xmalloc(sizeof(t_client));
-  //  cmd = xmalloc(sizeof(t_cmd));
-  //  cmd->label = xmalloc(sizeof(char) * 80);
   while (i < s->clients->length)
     {
       c = tmp_cli->data;
