@@ -5,12 +5,53 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 14:23:33 2015 Audibert Louis
-** Last update Tue Jun 30 14:29:21 2015 Audibert Louis
+** Last update Tue Jun 30 15:47:20 2015 Audibert Louis
 */
 
 #include "functions.h"
 
+int		is_there_an_egg(t_list *eggs, char *team, int fd)
+{
+  t_node	*tmp;
+  t_egg		*egg;
+
+  tmp = eggs->start;
+  egg = xmalloc(sizeof(t_egg));
+  while (tmp)
+    {
+      egg = tmp->data;
+      if (strcmp(egg->team_name, team) == 0)
+	{
+	  egg->fd = fd;
+	  return (SUCCESS);
+	}
+      tmp = tmp->next;
+    }
+  return (ERROR);
+}
+
 void		check_eggs(t_server *s)
 {
-  (void)s;
+  t_node	*tmp;
+  t_egg		*egg;
+  int		i;
+
+  tmp = s->eggs->start;
+  egg = xmalloc(sizeof(t_egg));
+  i = 0;
+  while (tmp)
+    {
+      egg = tmp->data;
+      if (egg->eclos.tv_sec < s->now.tv_sec ||
+	  ((egg->eclos.tv_sec == s->now.tv_sec) &&
+	   (egg->eclos.tv_nsec <= s->now.tv_nsec)))
+	{
+	  if (egg->fd != -1)
+	    create_client_from_egg(s, egg, i);
+	  else
+	    cmd_edi(egg, s->clients);
+	}
+      i++;
+      tmp = tmp->next;
+    }
 }
