@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Mon Jun 29 13:20:57 2015 Nicolas Girardot
+// Last update Mon Jun 29 15:34:02 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -29,6 +29,7 @@ void Command::pin(std::string cmd, GameEngine *game)
       ss >> val;
       vector.push_back(val);
     }
+  std::cout << "IN INVETORY" << vector.at(3) << " " << vector.at(4) << " " << vector.at(5) << " " << vector.at(6) << " " << vector.at(7) << " " << vector.at(8) << " " << vector.at(9) << " " << std::endl;
   game->updateInventory(vector);
 }
 
@@ -215,28 +216,29 @@ void Command::pie(std::string cmd, GameEngine *game)
 
 void Command::pic(std::string cmd, GameEngine *game)
 {
-  (void)game;
-  std::string		str(cmd.begin() + 4, cmd.end());
-  std::istringstream	ss(str);
-  int x;
-  int y;
-  int l;
-  std::vector<int>	vector;
-  std::string		var;
+  (void) game;
+  (void) cmd;
+  // std::string		str(cmd.begin() + 4, cmd.end());
+  // std::istringstream	ss(str);
+  // int x;
+  // int y;
+  // int l;
+  // std::vector<int>	vector;
+  // std::string		var;
 
-  ss >> x;
-  ss >> y;
-  ss >> l;
-  vector.push_back(x);
-  vector.push_back(y);
-  vector.push_back(l);
-  while (ss >> var)
-    {
-      std::string val(var.begin() + 1, var.end());
-      int value;
-      value = std::stoi(val);
-      vector.push_back(value);
-    }
+  // ss >> x;
+  // ss >> y;
+  // ss >> l;
+  // vector.push_back(x);
+  // vector.push_back(y);
+  // vector.push_back(l);
+  // while (ss >> var)
+  //   {
+  //     std::string val(var.begin() + 1, var.end());
+  //     int value;
+  //     value = std::stoi(val);
+  //     vector.push_back(value);
+  //   }
 }
 
 void Command::pdr(std::string cmd, GameEngine *game)
