@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Mon Jun 29 11:24:32 2015 Audibert Louis
+** Last update Tue Jun 30 17:09:34 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -17,7 +17,8 @@ int		remove_from_socket(t_list *list, int id, t_list *teams)
 
   c = get_client_by_id(list, id);
   team = get_team_by_name(teams, c->team_name);
-  team->slot_rest++;
+  if (team != NULL)
+    team->slot_rest++;
   remove_client_by_id(list, id);
   return (SUCCESS);
 }
