@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Mon Jun 29 11:03:54 2015 Audibert Louis
+** Last update Tue Jun 30 13:56:05 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -161,6 +161,9 @@ int		drop_rock(t_server *s, t_client *c, char *item);
 int		drop_food(t_server *s, t_client *c);
 int		cmd_drop_object(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
+/* Function(s) in file cmd_enw.c */
+int		cmd_enw(t_server *s, t_client *c, e_client_type type, int id);
+
 /* Function(s) in file cmd_fork.c */
 int		cmd_fork(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
@@ -170,7 +173,6 @@ int		cmd_graphic(t_server *s, t_client *c, const char *cmd, e_client_type type);
 /* Function(s) in file cmd_incantation.c */
 int		cmd_incantation(t_server *s, t_client *c, const char *cmd, e_client_type type);
 int		is_incantation_possible(t_server *s, t_client *c, const char *cmd, e_client_type type);
-
 
 /* Function(s) in file cmd_inventory.c */
 char		*get_objects_from_inventory(t_inventory *i);
