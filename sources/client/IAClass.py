@@ -1,6 +1,8 @@
 import time
 import random
 import subprocess
+import string
+
 from array import *
 from CommandClass import *
 from MoveClass import *
@@ -34,6 +36,11 @@ class IAClass():
         self.thystameNeeded = 0
         self.itemsNeeded = [1, 1, 0, 0, 0, 0, 0, 0]
         self.rows = 4
+
+#Generates unique string
+
+    def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+        return ''.join(random.choice(chars) for _ in range(size))
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
