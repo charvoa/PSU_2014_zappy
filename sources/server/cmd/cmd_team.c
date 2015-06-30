@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Sat Jun 27 23:14:25 2015 Serge Heitzler
+** Last update Tue Jun 30 15:56:12 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -34,27 +34,35 @@ int	is_a_team(t_server *s, char *team)
   return (-1);
 }
 
-void	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
+int	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
 {
   void		(*orientation[4])(t_client *);
   char		trame[21];
 
   init_orientation(orientation);
+  orientation[rand() % 4](c);
   c->type = IA;
   c->level = 1;
+  c->team_name = strdup(n);
+  t->slot_rest--;
+  if (is_there_an_egg(s->eggs, n, c->fd) == SUCCESS)
+    {
+      c->state = CHILD;
+      init_inventory(c, 5);
+      return (0);
+    }
+  c->state = ADULT;
   c->pos->x = rand() % s->map->size->width;
   c->pos->y = rand() % s->map->size->height;
   s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
   s->map->objects[c->pos->y][c->pos->x]->ids =
     add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
-  init_inventory(c);
-  orientation[rand() % 4](c);
+  init_inventory(c, 10);
   sprintf(trame, "%d", t->slot_rest);
   send_data(c->fd, trame);
   bzero(c->team_name, strlen(n));
-  c->team_name = strdup(n);
-  t->slot_rest--;
   send_data(c->fd, "ok\n");
+  return (1);
 }
 
 int	cmd_team(t_server *s, t_client *c,
@@ -73,8 +81,8 @@ int	cmd_team(t_server *s, t_client *c,
       team = get_team_by_name(s->teams, name);
       if (team->slot_rest >= 1)
 	{
-	  fill_ia_client(s, c, team, name);
-	  cmd_pnw(s, c, NULL, NORMAL);
+	  if (fill_ia_client(s, c, team, name) == 1)
+	    cmd_pnw(s, c, NULL, NORMAL);
 	}
       else
 	send_data(c->fd, "NO_SLOT_REST\r\n");

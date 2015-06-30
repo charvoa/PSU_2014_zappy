@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Tue Jun 30 14:27:26 2015 Audibert Louis
+** Last update Tue Jun 30 14:57:08 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -22,7 +22,7 @@ int		cmd_fork(t_server *s, t_client *c,
   team = get_team_by_name(s->teams, c->team_name);
   team->slot_rest++;
   egg = xmalloc(sizeof(t_egg));
-  egg->id = c->fd;
+  egg->fd = -1;
   /* egg->fd_father = c->fd; */
   /* egg->fd_egg = ?; */
   egg->pos = xmalloc(sizeof(t_position));

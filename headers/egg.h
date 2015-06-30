@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:31:12 2015 Audibert Louis
-** Last update Tue Jun 30 14:20:01 2015 Audibert Louis
+** Last update Tue Jun 30 14:56:20 2015 Audibert Louis
 */
 
 #ifndef _EGG_H_
@@ -22,8 +22,7 @@ typedef enum e_state_egg
 
 typedef struct	s_egg
 {
-  int		id;
-  int		fd_egg;
+  int		fd;
   t_position	*pos;
   char		*team_name;
   struct timeval eclos;
