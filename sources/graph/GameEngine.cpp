@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Mon Jun 29 13:20:36 2015 Nicolas Girardot
+// Last update Tue Jun 30 17:18:06 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -13,7 +13,6 @@
 
 GameEngine::GameEngine() {
   _gMap = NULL;
-  _focus = new Position(10, 10);
 }
 
 GameEngine::~GameEngine() {
@@ -37,6 +36,27 @@ SDL_Window &GameEngine::getWindow()
 SDL_Surface &GameEngine::getSurface()
 {
   return (*_surface);
+}
+
+void	GameEngine::updateLvl(int id, int lvl)
+{
+  for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
+    {
+      if (id == (*it)->getId())
+	{
+	  (*it)->setLVL(lvl);
+	}
+    }
+}
+
+void	GameEngine::addIncant(int x, int y)
+{
+  _cases.at(y).at(x)->setIncant(true);
+}
+
+void	GameEngine::endIncant(std::vector<int> &v)
+{
+  _cases.at(v.at(1)).at(v.at(0))->setIncant(false);
 }
 
 void	GameEngine::deletePlayer(int id)
@@ -76,6 +96,11 @@ void	GameEngine::updateInventory(std::vector<int> &inv)
       if (inv.at(0) == (*it)->getId())
 	{
 	  (*it)->updateInventory(inv);
+	  if (inv.at(0) == _idFocus)
+	    {
+	      std::cout << "inventory Updated" << std::endl;
+	      _hud->updateInventory((*it));
+	    }
 	}
       else
 	{};
@@ -127,24 +152,29 @@ bool	GameEngine::update()
 	      return false;
 	      break;
 	    case SDLK_UP:
+	      std::cout << _idFocus << std::endl;
+	      _idFocus = -1;
 	      if (_focus->_y <= 0)
 		_focus->_y = _gMap->getHeight() - 1;
 	      else
 		_focus->_y -= 1;
 	      break;
 	    case SDLK_DOWN:
+	      _idFocus = -1;
 	      if (_focus->_y >= _gMap->getHeight() - 1)
 		_focus->_y = 0;
 	      else
 		_focus->_y += 1;
 	      break;
 	    case SDLK_RIGHT:
+	      _idFocus = -1;
 	      if (_focus->_x >= _gMap->getWidth() - 1)
 		_focus->_x = 0;
 	      else
 		_focus->_x += 1;
 	      break;
 	    case SDLK_LEFT:
+	      _idFocus = -1;
 	      if (_focus->_x <= 0)
 		_focus->_x = _gMap->getWidth() - 1;
 	      else
@@ -177,6 +207,7 @@ void	GameEngine::createMap(std::vector<std::string> &parse)
   stry = parse.at(1);
   x = stoi(strx);
   y = stoi(stry);
+  _focus = new Position(x / 2, y / 2);
   for (int ybis = 0; ybis <= y - 1; ybis++)
     {
       for (int xbis = 0; xbis <= x - 1; xbis++)
@@ -261,7 +292,7 @@ void	GameEngine::draw()
 void	GameEngine::run()
 {
   this->_socket = new Socket("127.0.0.1", 4242, this);
-  _socket->writeOnSocket("GRAPHIC\r\n");
+  _socket->writeOnSocket("GRAPHIC\n");
   initialize();
   while (this->update())
     draw();

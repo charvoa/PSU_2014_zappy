@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:22:59 2015 Serge Heitzler
-// Last update Mon Jun 29 13:16:20 2015 Nicolas Girardot
+// Last update Tue Jun 30 17:19:20 2015 Nicolas Girardot
 //
 
 #ifndef IACharacter_HH_
@@ -17,7 +17,7 @@
 
 class		IACharacter
 {
-
+public:
   typedef enum e_type
     {
       FOOD = 0,
@@ -36,9 +36,11 @@ public:
   void		increment(e_type type);
   void		decrement(e_type type);
   int		getId();
+  void		setLVL(int);
   void		updateInventory(std::vector<int> &);
   void		updateAtt(std::vector<std::string> &);
   int		get(e_type type);
+  std::string	&getTeam();
   Position	*getPosition();
 
  private:

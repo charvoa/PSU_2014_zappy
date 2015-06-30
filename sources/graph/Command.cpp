@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Tue Jun 30 12:07:58 2015 Antoine Garcia
+// Last update Tue Jun 30 17:19:56 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -103,7 +103,6 @@ void	Command::pnw(std::string cmd, GameEngine *game)
   while (std::getline(ss, param, ' '))
     if (param != "pnw")
       detPlayer.push_back(param);
-
   game->addPlayer(detPlayer);
 }
 
@@ -122,16 +121,14 @@ void	Command::ppo(std::string cmd, GameEngine *game)
 
 void	Command::plv(std::string cmd, GameEngine *game)
 {
-  (void) game;
-  std::string			current;
-  std::vector<std::string>	lvlPlayer;
-  std::istringstream		ss(cmd);
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  int			id;
+  int			lvl;
 
-  while (std::getline(ss, current, ' '))
-    if (current != "plv")
-      lvlPlayer.push_back(current);
-
-  // defLVL(lvlPlayer);
+  ss >> id;
+  ss >> lvl;
+  game->updateLvl(id, lvl);
 }
 
 void Command::pgt(std::string cmd, GameEngine *game)
@@ -151,8 +148,6 @@ void Command::pgt(std::string cmd, GameEngine *game)
 
 void Command::pdi(std::string cmd, GameEngine *game)
 {
-  (void)game;
-
   std::string		str(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(str);
   int			id;
@@ -211,33 +206,35 @@ void Command::pie(std::string cmd, GameEngine *game)
       ss >> val;
       vector.push_back(val);
     }
+  game->endIncant(vector);
 }
 
 void Command::pic(std::string cmd, GameEngine *game)
 {
   (void) game;
   (void) cmd;
-  // std::string		str(cmd.begin() + 4, cmd.end());
-  // std::istringstream	ss(str);
-  // int x;
-  // int y;
-  // int l;
-  // std::vector<int>	vector;
-  // std::string		var;
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  int x;
+  int y;
+  int l;
+  std::vector<int>	vector;
+  std::string		var;
 
-  // ss >> x;
-  // ss >> y;
-  // ss >> l;
-  // vector.push_back(x);
-  // vector.push_back(y);
-  // vector.push_back(l);
-  // while (ss >> var)
-  //   {
-  //     std::string val(var.begin() + 1, var.end());
-  //     int value;
-  //     value = std::stoi(val);
-  //     vector.push_back(value);
-  //   }
+  ss >> x;
+  ss >> y;
+  ss >> l;
+  vector.push_back(x);
+  vector.push_back(y);
+  vector.push_back(l);
+  while (ss >> var)
+    {
+      std::string val(var.begin(), var.end());
+      int value;
+      value = std::stoi(val);
+      vector.push_back(value);
+    }
+  game->addIncant(x, y);
 }
 
 void Command::pdr(std::string cmd, GameEngine *game)
