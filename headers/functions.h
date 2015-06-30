@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Tue Jun 30 13:56:05 2015 Audibert Louis
+** Last update Tue Jun 30 14:29:36 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -15,6 +15,9 @@
 
 /* Function(s) in file check_death.c */
 void		check_death(t_server *s);
+
+/* Function(s) in file check_eggs.c */
+void		check_eggs(t_server *);
 
 /* Function(s) in file check_exec.c */
 int		check_exec(t_server *);
