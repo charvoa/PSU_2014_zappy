@@ -38,6 +38,8 @@ class IAClass():
         self.rows = 4
         chars = string.ascii_uppercase + string.digits
         self.uid = ''.join(random.choice(chars) for _ in range(6))
+        self.targets = [] # TABLEAU DE TARGETS POUR LA PARTIE A
+        self.target = 0   # FOCUS TARGET POUR LA PARTIE B
         print('Here is my id : ', self.uid)
 
 
@@ -191,3 +193,36 @@ class IAClass():
 
     def getLevel(self) -> int:
         return int(self.level)
+
+    def getBroadcastDirection(self, nb):
+        if (nb == 1):
+            self.cc.avance_cmd(self.s, self.p, self.mess);
+        elif (nb == 2):
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif (nb == 3):
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif (nb == 4):
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif(nb == 5):
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif (nb == 6):
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif(nb == 7):
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif (nb == 8):
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)

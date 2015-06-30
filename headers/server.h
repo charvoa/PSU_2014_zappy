@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sun Jun 28 10:49:57 2015 Serge Heitzler
+** Last update Tue Jun 30 14:25:52 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -94,7 +94,7 @@ typedef struct		s_server
   unsigned int		port; // -p
   float			time_action; // -t
   t_opt			*o;
-  char			**tab;
+  /* char			**tab; */
 
   // Charvo's struct
   fd_set		master;
@@ -104,9 +104,9 @@ typedef struct		s_server
   int			fdmax;
   int			listener;
   int			newfd;
-  char			*buf;
+  /* char			*buf; */
   int			addrlen;
-  char			**args;
+  /* char			**args; */
   int			i;
   char			*home;
 
@@ -114,6 +114,7 @@ typedef struct		s_server
   t_map			*map;
   t_list		*clients;
   t_list		*teams;
+  t_list		*eggs;
   struct timespec      	now;
 }			t_server;
 
