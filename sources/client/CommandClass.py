@@ -14,23 +14,19 @@ class CommandClass():
         self.phiras = 0
         self.thystame = 0
 
-    def getMessage(self, rec):
-        firstPart, lastPart = rec.split(',')
-        self.case = ''.join(i for i in firstPart if i.isdigit()).strip()
-        print(self.case)
-        if ('NEED OK' in lastPart):
-            print('Someone accepted my request')
-            need, ok, whoNeed, senderId = lastPart.rec(' ')
-        else:
-            need, nbPlayer, levelPlayer, senderId = lastPart.split(' ')
-
+    
 
     def check_message(self, s, p, mess):
         rec = mess.readMessage(s)
         while ('message' in rec):
-            self.getMessage(rec)
+            self.message = rec
             rec = mess.readMessage(s)
         return rec
+
+    def getMessage(self):
+        if (self.message):
+            return self.message
+        return ""
 
     def avance_cmd(self, s, p, mess):
         self.prend_cmd(s, p, mess, 'nourriture')

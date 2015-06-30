@@ -43,6 +43,18 @@ class IAClass():
         print('Here is my id : ', self.uid)
 
 
+    def getMessage(self, rec):
+        firstPart, lastPart = rec.split(',')
+        self.case = ''.join(i for i in firstPart if i.isdigit()).strip()
+        print(self.case)
+        if ('NEED OK' in lastPart):
+            print('Someone accepted my request')
+            need, ok, whoNeed, senderId = lastPart.rec(' ')
+            return (1, need, ok, whoNeed, senderId)
+        else:
+            need, nbPlayer, levelPlayer, senderId = lastPart.split(' ')
+            return (0, need, nbPlayer, levelPlayer, senderId)
+
     def buildMessageForBroadcast(self):
         string = 'NEED '
         string += str(self.itemsNeeded[0])
@@ -51,6 +63,25 @@ class IAClass():
         string += ' '
         string += self.uid
         return string
+
+    def buildOkMessage(self, senderId):
+        string = 'NEED OK '
+        string += str(senderId)
+        string += ' '
+        string += self.uid
+        return string
+
+    def parseBroadCastMessage(self):
+        mess = self.cc.getMessage();
+        if (mess != ""):
+            check, need, var1, var2, var3 = getMessage(mess);
+        if (check == 0):
+            self.doNeedOk()
+
+    def doNeedOk(self, nbPlayer, levelPlayer, senderId):
+        if (self.getLevel() == levelPlayer):
+            self.target = senderId;
+
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
