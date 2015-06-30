@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:53 2015 Serge Heitzler
-// Last update Sat Jun 27 14:56:14 2015 Nicolas Girardot
+// Last update Tue Jun 30 14:33:43 2015 Nicolas Girardot
 //
 
 #include "Case.hh"
@@ -91,6 +91,16 @@ void	Case::decrement(e_type type)
     _thystame--;
   if (type == FOOD && _food > 0)
     _food--;
+}
+
+bool	Case::getIncant()
+{
+  return _isIncant;
+}
+
+void	Case::setIncant(bool status)
+{
+  _isIncant = status;
 }
 
 void	Case::setAll(int limemate, int deraumere, int sibur, int mendiane, int phiras, int thystame, int food)

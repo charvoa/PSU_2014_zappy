@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:00 2015 Nicolas Girardot
-// Last update Sun Jun 28 14:05:58 2015 Nicolas Girardot
+// Last update Mon Jun 29 15:38:33 2015 Nicolas Girardot
 //
 
 #include "HUD.hh"
@@ -92,6 +92,78 @@ void	HUD::updateCase(Position &pos)
   result = sstm.str();
   this->_caseCurrent = TTF_RenderText_Solid(_font, result.c_str(), _black);
   this->_caseCurrentt = SDL_CreateTextureFromSurface(_renderer, this->_caseCurrent);
+}
+
+void	HUD::updateInventory(IACharacter *charac)
+{
+  std::string result;
+  std::stringstream sstm;
+
+  sstm << charac->get(IACharacter::FOOD);
+  result = sstm.str();
+  this->_foodBottom = TTF_RenderText_Solid(_font, result.c_str() ,_white);
+  this->_foodBottomt = SDL_CreateTextureFromSurface(_renderer, this->_foodBottom);
+
+  sstm.str("");
+  sstm.clear();
+  sstm << charac->get(IACharacter::LIMEMATE);
+  result = sstm.str();
+  this->_rock1Bottom = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_rock1Bottomt = SDL_CreateTextureFromSurface(_renderer, this->_rock1Bottom);
+
+  sstm.str("");
+  sstm.clear();
+  sstm << charac->get(IACharacter::DERAUMERE);
+  result = sstm.str();
+  this->_rock2Bottom = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_rock2Bottomt = SDL_CreateTextureFromSurface(_renderer, this->_rock2Bottom);
+
+
+  sstm.str("");
+  sstm.clear();
+  sstm << charac->get(IACharacter::SIBUR);
+  result = sstm.str();
+  this->_rock3Bottom = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_rock3Bottomt = SDL_CreateTextureFromSurface(_renderer, this->_rock3Bottom);
+
+  sstm.str("");
+  sstm.clear();
+  sstm << charac->get(IACharacter::PHIRAS);
+  result = sstm.str();
+  this->_rock4Bottom = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_rock4Bottomt = SDL_CreateTextureFromSurface(_renderer, this->_rock4Bottom);
+
+  sstm.str("");
+  sstm.clear();
+  sstm << charac->get(IACharacter::THYSTAME);
+  result = sstm.str();
+  this->_rock5Bottom = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_rock5Bottomt = SDL_CreateTextureFromSurface(_renderer, this->_rock5Bottom);
+
+
+  sstm.str("");
+  sstm.clear();
+  sstm << charac->get(IACharacter::MENDIANE);
+  result = sstm.str();
+  this->_rock6Bottom = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_rock6Bottomt = SDL_CreateTextureFromSurface(_renderer, this->_rock6Bottom);
+
+
+  sstm.str("");
+  sstm.clear();
+  sstm << charac->getTeam();
+  result = sstm.str();
+  this->_teamBottom = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_teamBottomt = SDL_CreateTextureFromSurface(_renderer, this->_teamBottom);
+
+
+  sstm.str("");
+  sstm.clear();
+  sstm << "Player" << charac->getId();
+  result = sstm.str();
+  this->_playerID = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_playerIDt = SDL_CreateTextureFromSurface(_renderer, this->_playerID);
+
 }
 
 void	HUD::updateLocked(int a, int b, Case *mycase)
@@ -193,13 +265,15 @@ void	HUD::drawHUDBottom(SDL_Renderer *renderer)
 
   SDL_RenderCopy(renderer, _spritet, NULL , &_drawer);
 
-  _drawer.x = 490;
+  _drawer.x = 490 - 80;
   _drawer.y = 860;
-  _drawer.w = 20;
+  _drawer.w = 20 * 7;
   _drawer.h = 20;
 
   SDL_RenderCopy(renderer, _playerIDt, NULL, &_drawer);
 
+
+  _drawer.w = 20;
   _drawer.y = 910;
   SDL_RenderCopy(renderer, _inventoryTitlet, NULL, &_drawer);
 
@@ -207,8 +281,11 @@ void	HUD::drawHUDBottom(SDL_Renderer *renderer)
   SDL_RenderCopy(renderer, _foodBottomt, NULL, &_drawer);
 
   _drawer.x = 650;
+  _drawer.w = 20 * 5;
   SDL_RenderCopy(renderer, _teamBottomt, NULL, &_drawer);
 
+
+  _drawer.w = 20;
   _drawer.y = 960;
   _drawer.x = 380;
   SDL_RenderCopy(renderer, _rock1Bottomt, NULL, &_drawer);

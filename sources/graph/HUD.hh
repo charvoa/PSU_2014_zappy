@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:23 2015 Nicolas Girardot
-// Last update Sun Jun 28 14:06:51 2015 Nicolas Girardot
+// Last update Mon Jun 29 15:16:51 2015 Nicolas Girardot
 //
 
 #ifndef _HUD_HH_
@@ -17,6 +17,7 @@
 #include <SDL2/SDL_ttf.h>
 #include "Position.hpp"
 #include "Case.hh"
+#include "IACharacter.hh"
 
 class HUD
 {
@@ -133,6 +134,7 @@ public:
   void	update();
   void	updateCase(Position &);
   void	updateLocked(int, int, Case *);
+  void	updateInventory(IACharacter *);
   void	draw(SDL_Renderer *);
   void	update_info(std::string &);
   void	drawHUDRight(SDL_Renderer *);

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:33 2015 Nicolas Girardot
-// Last update Sat Jun 27 17:52:21 2015 Nicolas Girardot
+// Last update Tue Jun 30 16:09:34 2015 Nicolas Girardot
 //
 
 #ifndef GRAPHMAP_HH_
@@ -31,6 +31,12 @@ private:
 
   SDL_Surface *_dirt;
   SDL_Texture *_dirtt;
+
+  SDL_Surface *_incant;
+  SDL_Texture *_incantt;
+
+  std::vector<std::vector<SDL_Texture *> > _sprites;
+
   int	_height;
   int	_width;
   int	_squareSize;
