@@ -50,7 +50,7 @@ class IAClass():
         string += str(self.getLevel())
         string += ' '
         string += self.uid
-        print(string)
+        return string
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
@@ -111,53 +111,52 @@ class IAClass():
     def run(self):
         i = 1
         while (i == 1):
-            self.cc.inventaire_cmd(self.s, self.p, self.mess)
-            self.linemate = self.cc.getLinemate()
-            self.deraumere = self.cc.getDeraumere()
-            self.sibur = self.cc.getSibur()
-            self.mendiane = self.cc.getMendiane()
-            self.phiras = self.cc.getPhiras()
-            self.thystame = self.cc.getThystame()
-            self.food = self.cc.getFood()
-            self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
-            print('Current Level : ', self.getLevel())
-            x, y = self.move.getMovements(self.checkBestCase())
-            self.moveAI(x, y)
-            self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
-            self.cc.prend_cmd(self.s, self.p, self.mess, 'linemate')
-            self.cc.prend_cmd(self.s, self.p, self.mess, 'phiras')
-            self.cc.prend_cmd(self.s, self.p, self.mess, 'deraumere')
-            self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
-            self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
-            self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
-            self.playerNeeded, self.linemateNeeded, self.deraumereNeeded, self.siburNeeded, \
-                self.mendianeNeeded, self.phirasNeeded, self.thystameNeeded, \
-                self.itemsNeeded = self.defineWhatWeNeedMost()
-            x += 1
-            y += 2
-            self.cc.inventaire_cmd(self.s, self.p, self.mess)
-            self.food = self.cc.getFood()
-            if (self.food > 5):
-                self.cc.pose_cmd(self.s, self.p, self.mess, 'linemate')
-                self.cc.pose_cmd(self.s, self.p, self.mess, 'phiras')
-                self.cc.pose_cmd(self.s, self.p, self.mess, 'deraumere')
-                self.cc.pose_cmd(self.s, self.p, self.mess, 'thystame')
-                self.cc.pose_cmd(self.s, self.p, self.mess, 'sibur')
-                self.cc.pose_cmd(self.s, self.p, self.mess, 'mendiane')
-                incant = self.cc.incantation_cmd(self.s, self.p, self.mess)
-                if (incant == 1):
-                    self.level += 1
-                else:
-                    self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
-                    self.cc.prend_cmd(self.s, self.p, self.mess, 'linemate')
-                    self.cc.prend_cmd(self.s, self.p, self.mess, 'phiras')
-                    self.cc.prend_cmd(self.s, self.p, self.mess, 'deraumere')
-                    self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
-                    self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
-                    self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
-            self.buildMessageForBroadcast()
+            # self.cc.inventaire_cmd(self.s, self.p, self.mess)
+            # self.linemate = self.cc.getLinemate()
+            # self.deraumere = self.cc.getDeraumere()
+            # self.sibur = self.cc.getSibur()
+            # self.mendiane = self.cc.getMendiane()
+            # self.phiras = self.cc.getPhiras()
+            # self.thystame = self.cc.getThystame()
+            # self.food = self.cc.getFood()
+            # self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
+            # print('Current Level : ', self.getLevel())
+            # x, y = self.move.getMovements(self.checkBestCase())
+            # self.moveAI(x, y)
+            # self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
+            # self.cc.prend_cmd(self.s, self.p, self.mess, 'linemate')
+            # self.cc.prend_cmd(self.s, self.p, self.mess, 'phiras')
+            # self.cc.prend_cmd(self.s, self.p, self.mess, 'deraumere')
+            # self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
+            # self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
+            # self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
+            # self.playerNeeded, self.linemateNeeded, self.deraumereNeeded, self.siburNeeded, \
+            #     self.mendianeNeeded, self.phirasNeeded, self.thystameNeeded, \
+            #     self.itemsNeeded = self.defineWhatWeNeedMost()
+            # x += 1
+            # y += 2
+            # self.cc.inventaire_cmd(self.s, self.p, self.mess)
+            # self.food = self.cc.getFood()
+            # if (self.food > 5):
+            #     self.cc.pose_cmd(self.s, self.p, self.mess, 'linemate')
+            #     self.cc.pose_cmd(self.s, self.p, self.mess, 'phiras')
+            #     self.cc.pose_cmd(self.s, self.p, self.mess, 'deraumere')
+            #     self.cc.pose_cmd(self.s, self.p, self.mess, 'thystame')
+            #     self.cc.pose_cmd(self.s, self.p, self.mess, 'sibur')
+            #     self.cc.pose_cmd(self.s, self.p, self.mess, 'mendiane')
+            #     incant = self.cc.incantation_cmd(self.s, self.p, self.mess)
+            #     if (incant == 1):
+            #         self.level += 1
+            #     else:
+            #         self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
+            #         self.cc.prend_cmd(self.s, self.p, self.mess, 'linemate')
+            #         self.cc.prend_cmd(self.s, self.p, self.mess, 'phiras')
+            #         self.cc.prend_cmd(self.s, self.p, self.mess, 'deraumere')
+            #         self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
+            #         self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
+            #         self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
             self.cc.avance_cmd(self.s, self.p, self.mess)
-#            self.cc.broadcast_cmd(self.s, self.p, self.mess, 'allo')
+            self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildMessageForBroadcast())
 
 
     def getNbPlayerRequired(self):
