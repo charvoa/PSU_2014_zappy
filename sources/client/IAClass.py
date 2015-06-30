@@ -41,7 +41,6 @@ class IAClass():
         self.target = 0   # FOCUS TARGET POUR LA PARTIE B
         print('Here is my id : ', self.uid)
 
-
     def getMessage(self, rec):
         firstPart, lastPart = rec.split(',')
         self.case = ''.join(i for i in firstPart if i.isdigit()).strip()
@@ -81,7 +80,6 @@ class IAClass():
         if (self.getLevel() == levelPlayer):
             self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildOkMessage(senderId))
             self.target = senderId;
-
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
