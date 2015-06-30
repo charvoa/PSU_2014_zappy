@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue Jun 30 17:50:00 2015 Antoine Garcia
+## Last update Tue Jun 30 17:55:43 2015 Antoine Garcia
 ##
 
 CC		= 	gcc
@@ -47,6 +47,7 @@ SRCS		= 	main.c	 				\
 			utilis.c				\
 			size_of_tab.c				\
 			check_eggs.c				\
+			width_and_length.c			\
 			$(X_DIR)xmalloc.c	 		\
 			$(X_DIR)xlisten.c	 		\
 			$(X_DIR)xbind.c		 		\

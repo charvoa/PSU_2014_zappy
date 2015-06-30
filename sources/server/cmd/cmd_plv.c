@@ -5,13 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:57 2015 Serge Heitzler
-** Last update Sun Jun 28 22:47:20 2015 Serge Heitzler
+** Last update Wed Jul  1 10:24:10 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 int		cmd_plv(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   int		*id_targeted;
   char		*final;
