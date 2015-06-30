@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Wed Jul  1 01:29:13 2015 Antoine Garcia
+// Last update Wed Jul  1 01:39:48 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -124,13 +124,19 @@ void	Command::pnw(std::string cmd, GameEngine *game)
 void	Command::ppo(std::string cmd, GameEngine *game)
 {
   (void) game;
-  std::string			param;
-  std::vector<std::string>	detPlayer;
-  std::istringstream		ss(cmd);
+  std::string			str(cmd.begin() + 5, cmd.end());
+  std::vector<int>		detPlayer;
+  std::istringstream		ss(str);
+  int				x;
+  int				y;
+  int				o;
 
-  while (std::getline(ss, param, ' '))
-    if (param != "ppo")
-      detPlayer.push_back(param);
+  ss >> x;
+  ss >> y;
+  ss >> o;
+  detPlayer.push_back(x);
+  detPlayer.push_back(y);
+  detPlayer.push_back(o);
   game->updatePlayer(detPlayer);
 }
 
