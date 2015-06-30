@@ -69,6 +69,7 @@ class IAClass():
         string += str(senderId)
         string += ' '
         string += self.uid
+        return string
 
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage();
