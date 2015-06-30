@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Tue Jun 30 15:58:45 2015 Audibert Louis
+** Last update Tue Jun 30 16:06:35 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -18,6 +18,8 @@ void		check_death(t_server *s);
 
 /* Function(s) in file check_eggs.c */
 void		check_eggs(t_server *);
+int		is_there_an_egg(t_list *eggs, char *team, int fd);
+
 
 /* Function(s) in file check_exec.c */
 int		check_exec(t_server *);
@@ -261,7 +263,7 @@ int		cmd_take_object(t_server *s, t_client *c, const char *cmd, e_client_type ty
 
 /* Function(s) in file cmd_team.c */
 int		is_a_team(t_server *s, char *team);
-void		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
+int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
 int		cmd_team(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_tna.c */

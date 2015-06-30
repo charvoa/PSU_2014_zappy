@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Tue Jun 30 16:03:16 2015 Serge Heitzler
+** Last update Tue Jun 30 16:07:23 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -29,7 +29,6 @@ int		cmd_fork(t_server *s, t_client *c,
   egg->pos->x = c->pos->x;
   egg->pos->y = c->pos->y;
   egg->team_name = strdup(c->team_name);
-  egg->state = ASLEEP;
   push_back(s->eggs, egg, EGG);
   cmd_enw(s, c, type, egg->id);
   return (SUCCESS);
