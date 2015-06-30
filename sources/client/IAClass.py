@@ -75,10 +75,11 @@ class IAClass():
         if (mess != ""):
             check, need, var1, var2, var3 = getMessage(mess);
         if (check == 0):
-            self.doNeedOk()
+            self.doNeedOk(nbPlayer, levelPlayer, senderId)
 
     def doNeedOk(self, nbPlayer, levelPlayer, senderId):
         if (self.getLevel() == levelPlayer):
+            self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildOkMessage(senderId))
             self.target = senderId;
 
 

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Tue Jun 30 15:56:12 2015 Audibert Louis
+** Last update Tue Jun 30 16:53:32 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -48,7 +48,7 @@ int	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   if (is_there_an_egg(s->eggs, n, c->fd) == SUCCESS)
     {
       c->state = CHILD;
-      init_inventory(c, 5);
+      init_inventory(c, 10);
       return (0);
     }
   c->state = ADULT;

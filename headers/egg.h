@@ -5,20 +5,13 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:31:12 2015 Audibert Louis
-** Last update Tue Jun 30 16:03:31 2015 Serge Heitzler
+** Last update Tue Jun 30 16:07:06 2015 Serge Heitzler
 */
 
 #ifndef _EGG_H_
 # define _EGG_H_
 
 # include "position.h"
-
-typedef enum		e_state_egg
-  {
-    ASLEEP,
-    BORN,
-    DEAD
-  }			e_state_egg;
 
 typedef struct		s_egg
 {
