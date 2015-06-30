@@ -75,9 +75,11 @@ class IAClass():
         if (mess != ""):
             check, need, var1, var2, var3 = getMessage(mess);
         if (check == 0):
-            self.doNeedOk(nbPlayer, levelPlayer, senderId)
+            self.sendNeedOk(nbPlayer, levelPlayer, senderId)
+        else:
+            self.receiveNeedOk(senderId)
 
-    def doNeedOk(self, nbPlayer, levelPlayer, senderId):
+    def sendNeedOk(self, nbPlayer, levelPlayer, senderId):
         if (self.target != 0):
             self.target = senderId;
 
@@ -85,6 +87,8 @@ class IAClass():
             self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildOkMessage(senderId))
             self.getBroadcastDirection(self.case)
 
+    def receiveNeedOk(self, senderId):
+        self.targets.append(senderId)
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
