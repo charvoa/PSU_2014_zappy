@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Wed Jul  1 00:12:56 2015 Antoine Garcia
+// Last update Wed Jul  1 01:29:13 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -97,14 +97,28 @@ void	Command::tna(std::string cmd, GameEngine *game)
 void	Command::pnw(std::string cmd, GameEngine *game)
 {
   (void) game;
-  std::string			param;
-  std::vector<std::string>	detPlayer;
-  std::istringstream		ss(cmd);
+  std::string		str(cmd.begin() + 5, cmd.end());
+  std::istringstream	ss(str);
+  std::vector<int>	vec;
+  int			n;
+  int			x;
+  int			y;
+  int			o;
+  int			l;
+  int			N;
 
-  while (std::getline(ss, param, ' '))
-    if (param != "pnw")
-      detPlayer.push_back(param);
-  game->addPlayer(detPlayer);
+  ss >> n;
+  ss >> x;
+  ss >> y;
+  ss >> o;
+  ss >> l;
+  ss >> N;
+  vec.push_back(n);
+  vec.push_back(x);
+  vec.push_back(y);
+  vec.push_back(o);
+  vec.push_back(l);
+  vec.push_back(N);
 }
 
 void	Command::ppo(std::string cmd, GameEngine *game)
