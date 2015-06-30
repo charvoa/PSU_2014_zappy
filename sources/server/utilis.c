@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Mon Jun 29 11:16:09 2015 Serge Heitzler
+** Last update Mon Jun 29 16:23:38 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -96,7 +96,6 @@ void		read_write_server(t_server *s, int i, char **argv)
       ring_buffer_write(c->buffer, tmp, strlen(tmp));
       s->i = i;
       create_cmd(s, c);
-      check_exec(s);
     }
   free(tmp);
   /* free(c->team_name); */

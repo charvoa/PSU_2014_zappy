@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:50 2015 Serge Heitzler
-** Last update Sun Jun 28 23:53:09 2015 Serge Heitzler
+** Last update Tue Jun 30 09:22:38 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -30,7 +30,7 @@ int		cmd_pin(t_server *s, t_client *c,
   char		*final;
   t_client	*t;
 
-  id_targeted = xmalloc(sizeof(int));  
+  id_targeted = xmalloc(sizeof(int));
   if (type == GUI)
     *id_targeted = c->fd;
   else

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Mon Jun 29 09:51:54 2015 Audibert Louis
+** Last update Tue Jun 30 09:24:25 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -15,7 +15,7 @@ int		check_rock(char *rock)
   char	**rocks;
   int	i;
 
-  rocks = malloc(7 * sizeof(char*));
+  rocks = xmalloc(7 * sizeof(char*));
   rocks[0] = "linemate";
   rocks[1] = "deraumere";
   rocks[2] = "sibur";
