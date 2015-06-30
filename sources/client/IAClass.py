@@ -39,6 +39,7 @@ class IAClass():
         self.uid = ''.join(random.choice(chars) for _ in range(6))
         self.targets = [] # TABLEAU DE TARGETS POUR LA PARTIE A
         self.target = 0   # FOCUS TARGET POUR LA PARTIE B
+        self.hasTarget = False
         print('Here is my id : ', self.uid)
 
 
