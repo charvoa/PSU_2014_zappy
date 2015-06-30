@@ -26,7 +26,6 @@ class IAClass():
         self.phiras = 0
         self.thystame = 0
         self.inFrontOfMe = None
-        self.level = 1
         self.playerNeeded = 1
         self.linemateNeeded = 1
         self.deraumereNeeded = 0
@@ -38,7 +37,52 @@ class IAClass():
         self.rows = 4
         chars = string.ascii_uppercase + string.digits
         self.uid = ''.join(random.choice(chars) for _ in range(6))
+        self.targets = [] # TABLEAU DE TARGETS POUR LA PARTIE A
+        self.target = 0   # FOCUS TARGET POUR LA PARTIE B
         print('Here is my id : ', self.uid)
+
+
+    def getMessage(self, rec):
+        firstPart, lastPart = rec.split(',')
+        self.case = ''.join(i for i in firstPart if i.isdigit()).strip()
+        print(self.case)
+        if ('NEED OK' in lastPart):
+            print('Someone accepted my request')
+            need, ok, whoNeed, senderId = lastPart.rec(' ')
+            return (1, need, ok, whoNeed, senderId)
+        else:
+            need, nbPlayer, levelPlayer, senderId = lastPart.split(' ')
+            return (0, need, nbPlayer, levelPlayer, senderId)
+
+    def buildMessageForBroadcast(self):
+        string = 'NEED '
+        string += str(self.itemsNeeded[0])
+        string += ' '
+        string += str(self.getLevel())
+        string += ' '
+        string += self.uid
+        return string
+
+    def buildOkMessage(self, senderId):
+        string = 'NEED OK '
+        string += str(senderId)
+        string += ' '
+        string += self.uid
+        return string
+
+    def parseBroadCastMessage(self):
+        mess = self.cc.getMessage();
+        if (mess != ""):
+            check, need, var1, var2, var3 = getMessage(mess);
+        if (check == 0):
+            self.doNeedOk(nbPlayer, levelPlayer, senderId)
+
+    def doNeedOk(self, nbPlayer, levelPlayer, senderId):
+        if (self.getLevel() == levelPlayer):
+            self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildOkMessage(senderId))
+            self.getBroadcastDirection(self.case)
+            if (self.target != 0):
+                self.target = senderId;
 
 
     def defineWhatWeNeedMost(self):
@@ -135,7 +179,7 @@ class IAClass():
                 self.cc.pose_cmd(self.s, self.p, self.mess, 'mendiane')
                 incant = self.cc.incantation_cmd(self.s, self.p, self.mess)
                 if (incant == 1):
-                    self.level += 1
+                    continue
                 else:
                     self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
                     self.cc.prend_cmd(self.s, self.p, self.mess, 'linemate')
@@ -144,8 +188,8 @@ class IAClass():
                     self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
                     self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
                     self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
-            #self.cc.avance_cmd(self.s, self.p, self.mess)
-            #self.cc.broadcast_cmd(self.s, self.p, self.mess, 'allo')
+            # self.cc.avance_cmd(self.s, self.p, self.mess)
+            # self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildMessageForBroadcast())
 
 
     def getNbPlayerRequired(self):
@@ -180,4 +224,37 @@ class IAClass():
                         x += 1
 
     def getLevel(self) -> int:
-        return int(self.level)
+        return int(self.cc.getLevel())
+
+    def getBroadcastDirection(self, nb):
+        if (nb == 1):
+            self.cc.avance_cmd(self.s, self.p, self.mess);
+        elif (nb == 2):
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif (nb == 3):
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif (nb == 4):
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif(nb == 5):
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif (nb == 6):
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+            self.cc.gauche_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif(nb == 7):
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+        elif (nb == 8):
+            self.cc.avance_cmd(self.s, self.p, self.mess)
+            self.cc.droite_cmd(self.s, self.p, self.mess)
+            self.cc.avance_cmd(self.s, self.p, self.mess)

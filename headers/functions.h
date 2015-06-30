@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Tue Jun 30 13:56:05 2015 Audibert Louis
+** Last update Tue Jun 30 16:06:35 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -16,6 +16,11 @@
 /* Function(s) in file check_death.c */
 void		check_death(t_server *s);
 
+/* Function(s) in file check_eggs.c */
+void		check_eggs(t_server *);
+int		is_there_an_egg(t_list *eggs, char *team, int fd);
+
+
 /* Function(s) in file check_exec.c */
 int		check_exec(t_server *);
 
@@ -24,7 +29,8 @@ int		count_teams(t_server *s);
 
 /* Function(s) in file create_client.c */
 void		init_orientation(void (*orientation[4])(t_client *));
-void		init_inventory(t_client *c);
+void		init_inventory(t_client *c, int food);
+void		create_client_from_egg(t_server *s, t_egg *egg, int index);
 int		create_client(t_server *, int);
 
 /* Function(s) in file create_food.c */
@@ -161,6 +167,15 @@ int		drop_rock(t_server *s, t_client *c, char *item);
 int		drop_food(t_server *s, t_client *c);
 int		cmd_drop_object(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
+/* Function(s) in file cmd_ebo.c */
+int		cmd_ebo(t_egg *egg, t_list *clients);
+
+/* Function(s) in file cmd_edi.c */
+int		cmd_edi(t_egg *egg, t_list *clients);
+
+/* Function(s) in file cmd_eht.c */
+int		cmd_eht(t_egg *egg, t_list *clients);
+
 /* Function(s) in file cmd_enw.c */
 int		cmd_enw(t_server *s, t_client *c, e_client_type type, int id);
 
@@ -248,7 +263,7 @@ int		cmd_take_object(t_server *s, t_client *c, const char *cmd, e_client_type ty
 
 /* Function(s) in file cmd_team.c */
 int		is_a_team(t_server *s, char *team);
-void		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
+int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
 int		cmd_team(t_server *s, t_client *c, const char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_tna.c */

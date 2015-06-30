@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Sun Jun 28 13:04:10 2015 Serge Heitzler
+** Last update Tue Jun 30 14:52:18 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -22,7 +22,7 @@ int		check_exec(t_server *s)
   tmp_cli = s->clients->start;
   c = xmalloc(sizeof(t_client));
   cmd = xmalloc(sizeof(t_cmd));
-  cmd->label = xmalloc(sizeof(char) * 50); // 50 en dur;
+  cmd->label = xmalloc(sizeof(char) * 80);
   while (i < s->clients->length)
     {
       c = tmp_cli->data;
@@ -30,11 +30,13 @@ int		check_exec(t_server *s)
 	{
 	  tmp_cmd = c->cmds->start;
 	  cmd = tmp_cmd->data;
-	  /* if (cmd->exec_at.tv_sec < s->now.tv_sec || ((cmd->exec_at.tv_sec == s->now.tv_sec) && (cmd->exec_at.tv_nsec <= s->now.tv_nsec))) /\* || i < s->clients->length *\/ // diff time current_time && send_at || ATTENTION deuxieme condition toujours vraie !!! -> Pour test */
-	  /* 	{ */
-	  exec_cmd(s, c);
-	  remove_front(c->cmds);
-	  /* } */
+	  if (cmd->exec_at.tv_sec < s->now.tv_sec ||
+	      ((cmd->exec_at.tv_sec == s->now.tv_sec) &&
+	       (cmd->exec_at.tv_nsec <= s->now.tv_nsec)))
+	    {
+	      exec_cmd(s, c);
+	      remove_front(c->cmds);
+	    }
 	}
       i++;
       tmp_cli = tmp_cli->next;

@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Tue Jun 30 11:08:51 2015 Audibert Louis
+** Last update Tue Jun 30 15:33:06 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -59,6 +59,7 @@ void		loop_server(t_server *s, char **argv)
       s->read_fds = s->master;
       clock_gettime(CLOCK_REALTIME, &s->now);
       check_death(s);
+      check_eggs(s);
       signal(SIGINT, handler_ctrl_c);
       if (select(s->fdmax + 1, &(s->read_fds), NULL, NULL, &tv) == -1)
 	{
@@ -67,6 +68,7 @@ void		loop_server(t_server *s, char **argv)
 	}      
       check_fds(s, argv);
       create_objects(s);
+      check_exec(s);
     }
 }
 
@@ -107,6 +109,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
   s->teams = create_list();
   init_opt_server(s);
   s->clients = create_list();
+  s->eggs = create_list();
   s->o->argc = argc;
   s->o->argv = get_tab(argc, argv);
   while ((opt = getopt(argc, argv,"p:x:y:n:c:t:v")) != -1)

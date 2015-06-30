@@ -13,16 +13,27 @@ class CommandClass():
         self.mendiane = 0
         self.phiras = 0
         self.thystame = 0
-
-    def getMessage(self, rec):
-        print(rec)
+        self.level = 1
 
     def check_message(self, s, p, mess):
         rec = mess.readMessage(s)
         while ('message' in rec):
-            self.getMessage(rec)
-            rec = mess.readMessage(s)
+            self.message = rec
+            rec = self.check_incantation(s, p, mess)
         return rec
+
+    # def check_incantation(self, s, p, mess):
+    #     rec = mess.readMessage(s)
+    #     while ('elevation' in rec):
+    #         self.message = rec
+    #         rec = mess.readMessage(s)
+    #         self.level += 1
+    #     return rec
+
+    def getMessage(self):
+        if (self.message):
+            return self.message
+        return ""
 
     def avance_cmd(self, s, p, mess):
         self.prend_cmd(s, p, mess, 'nourriture')
@@ -133,9 +144,7 @@ class CommandClass():
                     self.phiras = p
                 elif (i == 6):
                     self.thystame = p
-                i+=1
-
-#############Getters for food and Rocks ###################################
+                i +=1
 
     def getLinemate(self) -> int:
         s = self.linemate
@@ -185,7 +194,9 @@ class CommandClass():
         if (s):
             return int(s)
         return 0
-################################################################
+
+    def getLevel(self) -> int:
+        return self.level
 
     def prend_cmd(self, s, p, mess, obj):
         if (p.getVerbose()):
@@ -282,6 +293,7 @@ class CommandClass():
             if (rec == 'mort\n'):
                 print('You died\n')
                 sys.exit(0)
+            self.level += 1
             return 1
         else:
             return 0
