@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:20 2015 Serge Heitzler
-** Last update Wed Jul  1 18:45:18 2015 Serge Heitzler
+** Last update Wed Jul  1 19:35:47 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -22,7 +22,6 @@ int		cmd_bct(t_server *s, t_client *c,
   b = xmalloc(sizeof(t_block));
   x = xmalloc(sizeof(int));
   y = xmalloc(sizeof(int));
-
   if (type == GUI)
     {
       *x = c->pos->x;
@@ -30,7 +29,6 @@ int		cmd_bct(t_server *s, t_client *c,
     }
   else
     sscanf(cmd, "bct %d %d", x, y);
-
   b = s->map->objects[*y][*x];
   size_malloc = (14 + istm(*x) + istm(*y) + istm(b->food)
 		 + istm(b->linemate) + istm(b->deraumere) + istm(b->sibur)

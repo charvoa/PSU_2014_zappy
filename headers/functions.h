@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Wed Jul  1 14:28:16 2015 Serge Heitzler
+** Last update Wed Jul  1 19:42:54 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -275,7 +275,7 @@ int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
 int		cmd_team(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_tna.c */
-char		*get_all_teams_in_str(t_server *s);
+void	        send_all_teams(t_server *s, t_client *c);
 int		cmd_tna(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_view.c */
