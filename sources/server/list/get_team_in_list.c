@@ -5,10 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 23 18:36:37 2015 Audibert Louis
-** Last update Wed Jun 24 09:25:14 2015 Audibert Louis
+** Last update Wed Jul  1 14:30:57 2015 Audibert Louis
 */
 
-#include "server.h"
+#include "functions.h"
 
 char		*get_team_name_at_index(t_list *list, int index)
 {
@@ -58,11 +58,11 @@ t_team		*get_team_by_name(t_list *list, char *name)
   tmp = list->start;
   team = xmalloc(sizeof(t_team));
   team = tmp->data;
-  printf("Name = %s\n", name);
+  my_printf("Name = %s\n", name);
   while (tmp)
     {
       team = tmp->data;
-      printf("team->name = %s\n", team->name);
+      my_printf("team->name = %s\n", team->name);
       if (strcmp(name, team->name) == 0)
 	return (team);
       tmp = tmp->next;

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:34:34 2015 Audibert Louis
-** Last update Sat Jun 27 10:43:42 2015 Audibert Louis
+** Last update Wed Jul  1 14:28:34 2015 Audibert Louis
 */
 
 #include <ctype.h>
@@ -41,7 +41,7 @@ int	opt_teams(t_server *s)
   while (s->o->optind < s->o->argc && *(s->o->argv[s->o->optind]) != '-')
     {
       push_back(s->teams, create_team(s, s->o->argv[s->o->optind], 10), TEAM);
-      printf("s->o->argv[s->o->optind] = %s\n", s->o->argv[s->o->optind]);
+      my_printf("s->o->argv[s->o->optind] = %s\n", s->o->argv[s->o->optind]);
       s->o->optind++;
     }
   return (0);

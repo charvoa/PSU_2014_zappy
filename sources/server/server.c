@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed Jul  1 13:43:44 2015 Audibert Louis
+** Last update Wed Jul  1 14:26:04 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -104,7 +104,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
 {
   t_server	*s;
   int		opt;
-  int		(*options[6])(t_server *s);
+  int		(*options[7])(t_server *s);
 
   s = xmalloc(sizeof(t_server));
   init_opt(options);
