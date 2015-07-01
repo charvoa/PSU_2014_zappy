@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 10:50:53 2015 Serge Heitzler
-// Last update Tue Jun 30 14:33:43 2015 Nicolas Girardot
+// Last update Wed Jul  1 10:42:01 2015 Nicolas Girardot
 //
 
 #include "Case.hh"
@@ -21,7 +21,6 @@ Case::Case(int limemate, int deraumere, int sibur, int mendiane, int phiras, int
   _thystame = thystame;
   _food = food;
   int tex = rand() % 2;
-  std::cout << tex << std::endl;
   if (tex == 1)
     _textureType = GRASS;
   else

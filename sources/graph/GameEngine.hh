@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Tue Jun 30 17:19:02 2015 Nicolas Girardot
+// Last update Wed Jul  1 14:11:55 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -29,6 +29,7 @@
 #include "GraphMap.hh"
 #include "Case.hh"
 #include "Position.hpp"
+#include "Egg.hh"
 #include "HUD.hh"
 
 class Socket;
@@ -58,13 +59,16 @@ public:
   void	addPlayer(std::vector<std::string> &);
   void	init_object();
   bool	initialize();
+  void	deleteEgg(int);
   void	updatePlayer(std::vector<std::string> &);
+  void	broadcast(std::tuple<int, std::string> &);
   bool	update();
   void	getMousePos();
   void	createMap(std::vector<std::string> &);
   void	setCase(std::vector<std::string> &);
   void	setLocked();
   void	draw();
+  void	addEgg(std::vector<int> &);
   void	updateInventory(std::vector<int>&);
   void	deletePlayer(int);
   void	updateLvl(int, int);
@@ -75,6 +79,7 @@ public:
 private:
   std::vector<std::vector<Case*> > _cases;
   std::list<IACharacter *> _players;
+  std::list<Egg *>		_eggs;
 };
 
 #endif

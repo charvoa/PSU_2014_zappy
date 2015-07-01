@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Tue Jun 30 17:18:06 2015 Nicolas Girardot
+// Last update Wed Jul  1 14:15:09 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -38,6 +38,19 @@ SDL_Surface &GameEngine::getSurface()
   return (*_surface);
 }
 
+void	GameEngine::broadcast(std::tuple<int, std::string> &tuple)
+{
+  for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
+    {
+      if (std::get<0>(tuple) == (*it)->getId())
+	{
+	  (*it)->broadcast();
+	}
+      else
+	{}
+    }
+}
+
 void	GameEngine::updateLvl(int id, int lvl)
 {
   for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
@@ -46,6 +59,37 @@ void	GameEngine::updateLvl(int id, int lvl)
 	{
 	  (*it)->setLVL(lvl);
 	}
+    }
+}
+
+void	GameEngine::addEgg(std::vector<int> &att)
+{
+  std::cout << "Laying egg " << std::endl;
+  Egg *egg = new Egg(att);
+  std::string result;
+  std::stringstream sstm;
+  sstm << "Player" << att.at(1) << " laid an Egg";
+  result = sstm.str();
+  _hud->update_info(result);
+  _eggs.push_back(egg);
+}
+
+void	GameEngine::deleteEgg(int id)
+{
+  std::list<Egg *>::iterator it = _eggs.begin();
+  while (it != _eggs.end())
+    {
+      if (id == (*it)->getID())
+	{
+	  _eggs.erase(it++);
+	  std::string result;
+	  std::stringstream sstm;
+	  sstm << "Egg" << id << " just hatched ! It's a Girl";
+	  result = sstm.str();
+	  _hud->update_info(result);
+	}
+      else
+	++it;
     }
 }
 
@@ -285,7 +329,7 @@ void	GameEngine::draw()
   SDL_RenderClear(_renderer);
   _hud->draw(_renderer);
   if (_gMap != NULL)
-    _gMap->draw(_renderer, *_focus, _cases, _players);
+    _gMap->draw(_renderer, *_focus, _cases, _players, _eggs);
   SDL_RenderPresent(_renderer);
 }
 

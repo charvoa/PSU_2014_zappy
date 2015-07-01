@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:22:59 2015 Serge Heitzler
-// Last update Tue Jun 30 17:19:20 2015 Nicolas Girardot
+// Last update Wed Jul  1 13:16:32 2015 Nicolas Girardot
 //
 
 #ifndef IACharacter_HH_
@@ -37,6 +37,9 @@ public:
   void		decrement(e_type type);
   int		getId();
   void		setLVL(int);
+  bool		isBroadcasting();
+  void		updateBroadcast();
+  void		broadcast();
   void		updateInventory(std::vector<int> &);
   void		updateAtt(std::vector<std::string> &);
   int		get(e_type type);
@@ -56,6 +59,8 @@ public:
   int		_id;
   int		_lvl;
   std::string	_team;
+  bool		_broadcasting = false;
+  int		_broadcastCountdown;
 };
 
 #endif /* IACharacter_HH_ */
