@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed Jul  1 13:41:45 2015 Audibert Louis
+** Last update Wed Jul  1 14:28:30 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -113,6 +113,7 @@ typedef struct		s_server
   t_list		*teams;
   t_list		*eggs;
   struct timespec      	now;
+  struct timespec      	next;
 }			t_server;
 
 extern int		g_verbose;

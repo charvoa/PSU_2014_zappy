@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Wed Jul  1 10:41:32 2015 Audibert Louis
+** Last update Wed Jul  1 14:17:56 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -72,17 +72,15 @@ void		read_write_server(t_server *s, int i, char **argv)
   c = get_client_by_id(s->clients, i);
   tmp = xmalloc(4096 * sizeof(char));
   memset(tmp, '\0', 4096);
-
-  /* clock_gettime(CLOCK_REALTIME, &s->now); */
-  /* printf("current s = %ld\nns = %ld\n\n", s->now.tv_sec, s->now.tv_nsec); */
-
   if ((nbytes = read(i, tmp, 4096)) <= 0)
     {
       if (nbytes == 0)
 	{
 	  /* remove_from_socket(s->clients, i); */
+	  cmd_pdi(s, c);
 	  ring_buffer_destroy(c->buffer);
 	  remove_from_socket(s->clients, i, s->teams);
+	  close(i);
 	  /* remove_client_by_id(s->clients, i); */
 	  printf("%s: socket %d hung up\n", argv[0], i);
 	}

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:33 2015 Nicolas Girardot
-// Last update Tue Jun 30 16:09:34 2015 Nicolas Girardot
+// Last update Wed Jul  1 13:17:30 2015 Nicolas Girardot
 //
 
 #ifndef GRAPHMAP_HH_
@@ -13,6 +13,7 @@
 
 #include "Position.hpp"
 #include "Case.hh"
+#include "Egg.hh"
 #include <SDL2/SDL_image.h>
 #include <list>
 #include <iterator>
@@ -35,6 +36,12 @@ private:
   SDL_Surface *_incant;
   SDL_Texture *_incantt;
 
+  SDL_Surface *_egg;
+  SDL_Texture *_eggt;
+
+  SDL_Surface *_bubble;
+  SDL_Texture *_bubblet;
+
   std::vector<std::vector<SDL_Texture *> > _sprites;
 
   int	_height;
@@ -44,7 +51,7 @@ private:
 public:
   GraphMap(int, int, SDL_Renderer *);
   ~GraphMap();
-  void	draw(SDL_Renderer *, Position &, std::vector<std::vector<Case *> >, std::list<IACharacter *> &);
+  void	draw(SDL_Renderer *, Position &, std::vector<std::vector<Case *> >, std::list<IACharacter *> &, std::list<Egg *>&);
   void	setLocked(int, int);
   int	getHeight();
   int	getWidth();

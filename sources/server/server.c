@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed Jul  1 14:26:04 2015 Audibert Louis
+** Last update Wed Jul  1 14:33:56 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -54,10 +54,11 @@ void		loop_server(t_server *s, char **argv)
   
   tv.tv_sec = 0;
   tv.tv_usec = 1000000 / s->time_action;
+  clock_gettime(CLOCK_REALTIME, &s->next);
   while (42)
     {
       s->read_fds = s->master;
-      clock_gettime(CLOCK_REALTIME, &s->now);
+      check_food(s);
       check_death(s);
       /* check_end_game(s); */
       check_eggs(s);

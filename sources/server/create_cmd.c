@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun Jun 28 00:07:48 2015 Serge Heitzler
-** Last update Wed Jul  1 14:30:14 2015 Audibert Louis
+** Last update Wed Jul  1 14:34:08 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -73,11 +73,7 @@ void		create_cmd(t_server *s, t_client *c)
   s_cmd->label = strdup(tmp);
   clock_gettime(CLOCK_REALTIME, &s_cmd->exec_at);
   if ((ret = (is_cmd(s_cmd->label))) != NO)
-    {
-      my_printf("Time when received %ld,%ld\n", s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec);
-      manage_time(s, s_cmd, ret);
-      my_printf("Exec cmd at %ld,%ld\n", s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec);
-    }
+    manage_time(s, s_cmd, ret);
   push_back(c->cmds, s_cmd, CMD);
   free(tmp);
 }
