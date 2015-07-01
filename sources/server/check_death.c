@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Wed Jul  1 10:16:21 2015 Audibert Louis
+** Last update Wed Jul  1 10:48:06 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -65,9 +65,9 @@ void		check_death(t_server *s)
   delete_fds = xmalloc(get_alloc_to_delete(s) * sizeof(int));
   i = 0;
   j = 0;
+  c = xmalloc(sizeof(t_client));
   while (tmp != NULL)
     {
-      c = xmalloc(sizeof(t_client));
       c = tmp->data;
       if (c->inventory->food == 0)
 	{

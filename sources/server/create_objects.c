@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:00:23 2015 Serge Heitzler
-** Last update Mon Jun 29 11:21:42 2015 Audibert Louis
+** Last update Wed Jul  1 10:57:41 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -40,7 +40,6 @@ int		create_objects(t_server *s)
   int		size_malloc;
 
   b = xmalloc(sizeof(t_block));
-  //  b->ids = xmalloc(sizeof(int) * nb_clients); faut il malloc ca ?
   x = rand() % s->map->size->width;
   y = rand() % s->map->size->height;
   b = s->map->objects[y][x];
@@ -55,5 +54,6 @@ int		create_objects(t_server *s)
 	  b->mendiane, b->phiras, b->thystame);
   if (s->clients->start)
     send_data_to_gui(s->clients, final);
+  free(final);
   return (SUCCESS);
 }
