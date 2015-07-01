@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed Jul  1 11:34:00 2015 Audibert Louis
+** Last update Wed Jul  1 13:07:57 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -59,6 +59,7 @@ void		loop_server(t_server *s, char **argv)
       s->read_fds = s->master;
       clock_gettime(CLOCK_REALTIME, &s->now);
       check_death(s);
+      /* check_food(s); */
       /* check_end_game(s); */
       check_eggs(s);
       signal(SIGINT, handler_ctrl_c);
