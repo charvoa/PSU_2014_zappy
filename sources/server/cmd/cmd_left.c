@@ -5,13 +5,13 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sun May 17 11:30:51 2015 Serge Heitzler
-** Last update Sat Jun 27 22:45:08 2015 Serge Heitzler
+** Last update Wed Jul  1 10:29:30 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 int		cmd_left(t_server *s, t_client *c,
-			 const char *cmd, e_client_type type)
+			 char *cmd, e_client_type type)
 {
   (void)type;
   (void)s;

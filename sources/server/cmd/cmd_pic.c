@@ -5,13 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 23:26:08 2015 Serge Heitzler
-** Last update Mon Jun 29 01:32:03 2015 Serge Heitzler
+** Last update Wed Jul  1 10:25:19 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 int		*get_fds(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   (void)cmd;
   (void)type;
@@ -41,7 +41,7 @@ int		*get_fds(t_server *s, t_client *c,
 }
 
 char		*get_other_fds(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			       char *cmd, e_client_type type)
 {
   int		size_malloc;
   char		*final;
@@ -69,7 +69,7 @@ char		*get_other_fds(t_server *s, t_client *c,
 }
 
 int		cmd_pic(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   (void)cmd;
   (void)type;

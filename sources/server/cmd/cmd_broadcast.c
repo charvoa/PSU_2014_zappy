@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Sat Jun 27 17:31:20 2015 Serge Heitzler
+** Last update Wed Jul  1 10:33:56 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -33,7 +33,7 @@ static void	send_gui_broadcast(char *msg, t_list *clients, t_client *c)
   send_data_to_gui(clients, str);
 }
 
-void		get_text(char *text, const char *cmd)
+void		get_text(char *text, char *cmd)
 {
   int	i;
   int	j;
@@ -52,7 +52,7 @@ void		get_text(char *text, const char *cmd)
 }
 
 int		cmd_broadcast(t_server *s, t_client *c,
-			      const char *cmd, e_client_type type)
+			      char *cmd, e_client_type type)
 {
   (void)type;
   char			*text;

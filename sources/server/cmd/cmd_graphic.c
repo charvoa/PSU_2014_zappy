@@ -5,13 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sat Jun 27 21:28:42 2015 Serge Heitzler
-** Last update Sat Jun 27 22:09:05 2015 Serge Heitzler
+** Last update Wed Jul  1 10:31:12 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 int		cmd_graphic(t_server *s, t_client *c,
-			    const char *cmd, e_client_type type)
+			    char *cmd, e_client_type type)
 {
   (void)cmd;
   (void)type;

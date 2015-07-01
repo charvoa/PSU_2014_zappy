@@ -5,14 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:52 2015 Serge Heitzler
-** Last update Sat Jun 27 15:25:34 2015 Serge Heitzler
+** Last update Wed Jul  1 10:22:23 2015 Serge Heitzler
 */
 
-#include "server.h"
 #include "functions.h"
 
 int		cmd_sst(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   char		*final;
   char		value[6];
@@ -21,8 +20,8 @@ int		cmd_sst(t_server *s, t_client *c,
   sscanf(cmd, "sst %s", value);
   s->time_action = atoi(value);
   final = xmalloc(sizeof(char) *
-		  (5 + strlen(value)));
-  memset(final, 0, 5 + strlen(value));
+		  (6 + strlen(value)));
+  memset(final, 0, 6 + strlen(value));
   sprintf(final, "sgt %s\n", value);
   if (type == GUI)
     send_data_to_gui(s->clients, final);

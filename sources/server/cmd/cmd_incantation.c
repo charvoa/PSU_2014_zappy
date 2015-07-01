@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Mon Jun 29 14:35:13 2015 Serge Heitzler
+** Last update Wed Jul  1 10:30:53 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -53,7 +53,7 @@ void		send_incantation(t_client *c)
 }
 
 int		is_incantation_possible(t_server *s, t_client *c,
-				const char *cmd, e_client_type type)
+					char *cmd, e_client_type type)
 {
   (void)cmd;
   (void)type;
@@ -83,7 +83,7 @@ int		is_incantation_possible(t_server *s, t_client *c,
 }
 
 int		cmd_incantation(t_server *s, t_client *c,
-				const char *cmd, e_client_type type)
+			        char *cmd, e_client_type type)
 {
   (void)type;
   (void)cmd;
@@ -102,6 +102,7 @@ int		cmd_incantation(t_server *s, t_client *c,
       if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x)
 	  && client->fd != c->fd)
   	    {
+	      // PB ICI REVOIR INCANTATION
 	      cmd_plv(s, client, cmd, GUI);
   	    }
       i++;

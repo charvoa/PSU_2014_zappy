@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Mon Jun 29 13:32:13 2015 Serge Heitzler
+** Last update Wed Jul  1 10:18:05 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -37,7 +37,7 @@ t_cmds	g_cmds[23] =
     {"connect_nbr", &cmd_connect_nbr, 7},
   };
 
-int		is_cmd(const char *cmd)
+int		is_cmd(char *cmd)
 {
   int	i;
 

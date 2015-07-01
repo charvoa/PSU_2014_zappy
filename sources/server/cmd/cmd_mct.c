@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:46 2015 Serge Heitzler
-** Last update Sat Jun 27 17:03:18 2015 Serge Heitzler
+** Last update Wed Jul  1 10:28:59 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -54,7 +54,7 @@ int		get_all_malloc_size(t_server *s)
 }
 
 int		cmd_mct(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   (void)type;
   (void)cmd;
@@ -65,6 +65,7 @@ int		cmd_mct(t_server *s, t_client *c,
   char		*final;
 
   busy = number_of_busy_space(s);
+  printf("[MCT]-BUSY = %d\n", busy);
   final = xmalloc(sizeof(char) * ((9 * busy) + get_all_malloc_size(s)));
   memset(final, 0, ((9 * busy) + get_all_malloc_size(s)));
   y = 0;

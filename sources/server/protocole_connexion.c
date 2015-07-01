@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 14:38:32 2015 Audibert Louis
-** Last update Sat Jun 27 21:51:12 2015 Serge Heitzler
+** Last update Tue Jun 30 20:13:57 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -18,6 +18,7 @@ void	protocole_graphique(t_server *s, t_client *c)
   cmd_mct(s, c, "protocole", NORMAL);
   cmd_tna(s, c, "protocole", NORMAL);
   cmd_pnw_all(s, c, "protocole", GUI);
+  cmd_enw_all(s, c, GUI);
 }
 
 void		protocole_connexion(t_server *s, int fd)

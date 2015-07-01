@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:50 2015 Serge Heitzler
-** Last update Tue Jun 30 09:22:38 2015 Audibert Louis
+** Last update Wed Jul  1 10:24:29 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -23,7 +23,7 @@ int		get_pin_malloc(t_client *t)
 }
 
 int		cmd_pin(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   int		size_malloc;
   int		*id_targeted;

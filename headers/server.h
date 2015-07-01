@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Tue Jun 30 14:25:52 2015 Audibert Louis
+** Last update Wed Jul  1 10:40:04 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -73,7 +73,7 @@ typedef struct		s_cmd
 {
   /* "delay" à diviser par t au moment du calcul
      du delay si changement de t par le client */
-  const char	       	*label;
+  char		       	*label;
   long			delay;
   struct timespec       exec_at;
   long			precision;
