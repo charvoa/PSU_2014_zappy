@@ -109,6 +109,7 @@ class IAClass():
             level -= 1
         return nb
 
+
     def convertVoirToBinary(self):
         self.rows = self.getNbRows()
         col = 7
