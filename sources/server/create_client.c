@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Tue Jun 30 15:58:30 2015 Audibert Louis
+** Last update Tue Jun 30 17:58:36 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -55,7 +55,7 @@ int		create_client(t_server *s, int fd)
   c->pos = xmalloc(sizeof(t_position));
   c->type = IA;
   c->team_name = strdup("DEFAULT");
-  c->inventory = xmalloc(sizeof(t_client));
+  c->inventory = xmalloc(sizeof(t_inventory));
   c->cmds = create_list();
   c->buffer = ring_buffer_create(1024);
   push_back(s->clients, c, PLAYER);

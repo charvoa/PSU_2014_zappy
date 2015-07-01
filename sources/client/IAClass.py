@@ -39,6 +39,7 @@ class IAClass():
         self.uid = ''.join(random.choice(chars) for _ in range(6))
         self.targets = [] # TABLEAU DE TARGETS POUR LA PARTIE A
         self.target = 0   # FOCUS TARGET POUR LA PARTIE B
+        self.hasTarget = False
         print('Here is my id : ', self.uid)
 
     def getMessage(self, rec):
@@ -69,19 +70,29 @@ class IAClass():
         string += self.uid
         return string
 
+    #def whereisIaTarget(self) S'occupe d'envoyer T ou.
+
+    #def cancelNeed(self) # S'occupe de reset les targets si pas assez de targets dans le tableau.
+
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage();
         if (mess != ""):
             check, need, var1, var2, var3 = getMessage(mess);
         if (check == 0):
-            self.doNeedOk(nbPlayer, levelPlayer, senderId)
+            self.sendNeedOk(nbPlayer, levelPlayer, senderId)
+        else:
+            self.receiveNeedOk(senderId)
 
-    def doNeedOk(self, nbPlayer, levelPlayer, senderId):
-        if (self.getLevel() == levelPlayer):
+    def sendNeedOk(self, nbPlayer, levelPlayer, senderId):
+        if (self.target != 0):
+            self.target = senderId;
+
+        if (self.getLevel() == levelPlayer and self.target == senderId):
             self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildOkMessage(senderId))
             self.getBroadcastDirection(self.case)
-            if (self.target != 0):
-                self.target = senderId;
+
+    def receiveNeedOk(self, senderId):
+        self.targets.append(senderId)
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):

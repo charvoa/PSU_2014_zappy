@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sat Jun 27 15:10:59 2015 Serge Heitzler
-** Last update Sat Jun 27 22:16:47 2015 Serge Heitzler
+** Last update Wed Jul  1 10:24:04 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -36,7 +36,7 @@ int		cmd_pnw_normal(t_server *s, t_client *c,
 }
 
 int		cmd_pnw_all(t_server *s, t_client *c,
-			    const char *cmd, e_client_type type)
+			    char *cmd, e_client_type type)
 {
   (void)type;
   (void)cmd;
@@ -50,7 +50,7 @@ int		cmd_pnw_all(t_server *s, t_client *c,
 	{
 	  cli = xmalloc(sizeof(t_client));
 	  cli = tmp->data;
-	  if (cli->type == IA)
+	  if (cli->type == IA && cli->state == ADULT)
 	    cmd_pnw_normal(s, cli, IA, c->fd);
 	  tmp = tmp->next;
 	}
@@ -59,7 +59,7 @@ int		cmd_pnw_all(t_server *s, t_client *c,
 }
 
 int		cmd_pnw(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   (void)cmd;
 

@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue Jun 30 15:52:33 2015 Audibert Louis
+## Last update Tue Jun 30 17:55:43 2015 Antoine Garcia
 ##
 
 CC		= 	gcc
@@ -22,6 +22,8 @@ X_DIR		=	../xfuncs/
 CMD_DIR		=	./cmd/
 
 LIST_DIR	=	./list/
+
+FREE_DIR	=	./free_cmd/
 
 SRCS		= 	main.c	 				\
 			ring_buffer.c				\
@@ -45,6 +47,7 @@ SRCS		= 	main.c	 				\
 			utilis.c				\
 			size_of_tab.c				\
 			check_eggs.c				\
+			width_and_length.c			\
 			$(X_DIR)xmalloc.c	 		\
 			$(X_DIR)xlisten.c	 		\
 			$(X_DIR)xbind.c		 		\
@@ -108,7 +111,8 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)get_nbr_of.c			\
 			$(LIST_DIR)remove_at_index.c		\
 			$(LIST_DIR)remove_front.c		\
-			$(LIST_DIR)remove_back.c		
+			$(LIST_DIR)remove_back.c		\
+			$(FREE_DIR)free_struct_cmd.c
 
 NAME		= 	zappy_server
 

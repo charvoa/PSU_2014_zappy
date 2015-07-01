@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:48 2015 Serge Heitzler
-** Last update Sat Jun 27 15:26:00 2015 Serge Heitzler
+** Last update Wed Jul  1 10:20:42 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -23,13 +23,14 @@ char		*get_all_teams_in_str(t_server *s)
   res = xmalloc(sizeof(char) * size);
   memset(res, 0, size);
   i = 0;
+  sprintf(res, "%s\n", get_team_name_at_index(s->teams, i++));  
   while (i < get_nbr_of(TEAM, s->teams))
     sprintf(res, "%s%s\n", res, get_team_name_at_index(s->teams, i++));
   return (res);
 }
 
 int		cmd_tna(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   (void)cmd;
   char		*final;

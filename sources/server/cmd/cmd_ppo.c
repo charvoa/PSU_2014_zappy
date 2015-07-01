@@ -5,13 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:54 2015 Serge Heitzler
-** Last update Sat Jun 27 18:52:26 2015 Serge Heitzler
+** Last update Wed Jul  1 10:23:33 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 int		cmd_ppo(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   int		size_malloc;
   int		*id_targeted;

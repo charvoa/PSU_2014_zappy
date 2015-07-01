@@ -1,11 +1,11 @@
 /*
 ** check_death.c for zappy in /home/audibe_l/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Audibert Louis
 ** Login   <audibe_l@epitech.net>
-** 
+**
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Mon Jun 29 11:29:23 2015 Audibert Louis
+** Last update Tue Jun 30 17:58:33 2015 Antoine Garcia
 */
 
 #include "functions.h"
@@ -27,6 +27,18 @@ int		get_alloc_to_delete(t_server *s)
       tmp = tmp->next;
     }
   return (i);
+}
+
+static void		free_delete_fds(t_server *s, int **fds)
+{
+  int	nb = get_alloc_to_delete(s);
+  int	i = 0;
+
+  while (i < nb)
+    {
+      free(fds[i]);
+    }
+  free(fds);
 }
 
 void		delete_players(t_server *s, int **fds, int len)
@@ -51,6 +63,7 @@ void		delete_players(t_server *s, int **fds, int len)
       i++;
       free(trame);
     }
+  free_delete_fds(s, fds);
 }
 
 void		check_death(t_server *s)
@@ -65,9 +78,9 @@ void		check_death(t_server *s)
   delete_fds = xmalloc(get_alloc_to_delete(s) * sizeof(int));
   i = 0;
   j = 0;
+  c = xmalloc(sizeof(t_client));
   while (tmp != NULL)
     {
-      c = xmalloc(sizeof(t_client));
       c = tmp->data;
       if (c->inventory->food == 0)
 	{

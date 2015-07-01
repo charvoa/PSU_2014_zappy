@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Tue Jun 30 09:24:25 2015 Audibert Louis
+** Last update Wed Jul  1 10:21:54 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -33,7 +33,8 @@ int		check_rock(char *rock)
   return (ERROR);
 }
 
-int		launch_func_block(t_block *block, int rock_type, e_flag_rock flag)
+int		launch_func_block(t_block *block,
+				  int rock_type, e_flag_rock flag)
 {
   int		i;
   t_objects	rocks[6] =
@@ -90,7 +91,7 @@ int		take_food(t_server *s, t_client *c)
 }
 
 int		cmd_take_object(t_server *s, t_client *c,
-				const char *cmd, e_client_type type)
+				char *cmd, e_client_type type)
 {
   (void)type;
   char		*item;

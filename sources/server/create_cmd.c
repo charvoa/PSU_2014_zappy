@@ -1,11 +1,11 @@
 /*
 ** prepare_for_exec.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <sergeheitzler@epitech.net>
-** 
+**
 ** Started on  Sun Jun 28 00:07:48 2015 Serge Heitzler
-** Last update Mon Jun 29 10:48:23 2015 Serge Heitzler
+** Last update Tue Jun 30 18:05:32 2015 Antoine Garcia
 */
 
 #include "functions.h"
@@ -25,7 +25,7 @@ void		delay_superior(t_cmd *cmd, long ns_delay, int billion)
 {
   int		mod;
 
-  cmd->exec_at.tv_sec += ns_delay / billion; 
+  cmd->exec_at.tv_sec += ns_delay / billion;
   mod = ns_delay % billion;
   if (cmd->exec_at.tv_nsec + mod > billion)
     {
@@ -79,4 +79,5 @@ void		create_cmd(t_server *s, t_client *c)
       printf("Exec cmd at %ld,%ld\n", s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec);
     }
   push_back(c->cmds, s_cmd, CMD);
+  free(tmp);
 }

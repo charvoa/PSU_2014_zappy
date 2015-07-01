@@ -5,13 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 23:28:44 2015 Serge Heitzler
-** Last update Sun Jun 28 23:28:56 2015 Serge Heitzler
+** Last update Wed Jul  1 10:24:56 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 int		cmd_pie(t_server *s, t_client *c,
-			const char *cmd, e_client_type type)
+			char *cmd, e_client_type type)
 {
   (void)s;
   (void)c;
