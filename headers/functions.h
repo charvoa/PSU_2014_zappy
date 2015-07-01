@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Wed Jul  1 13:47:09 2015 Audibert Louis
+** Last update Wed Jul  1 14:28:16 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -25,6 +25,9 @@ int		check_exec(t_server *);
 
 /* Function(s) in file count_teams.c */
 int		count_teams(t_server *s);
+
+/* Function(s) in file check_food.c */
+int		check_food(t_server *s);
 
 /* Function(s) in file create_client.c */
 void		init_orientation(void (*orientation[4])(t_client *));
@@ -217,7 +220,7 @@ int		cmd_msz(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		cmd_pbc(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_pdi.c */
-int		cmd_pdi(t_server *s, t_client *c, char *cmd, e_client_type type);
+int		cmd_pdi(t_server *s, t_client *c);
 
 /* Function(s) in file cmd_pex.c */
 int		cmd_pex(t_client *c, t_list *clients);
