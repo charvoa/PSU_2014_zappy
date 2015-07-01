@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 11:10:30 2015 Audibert Louis
-** Last update Tue Jun 30 20:12:50 2015 Serge Heitzler
+** Last update Wed Jul  1 13:24:24 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -57,7 +57,7 @@ int		cmd_enw(t_server *s, t_client *c,
 {
  if (type == GUI)
    cmd_enw_normal(s, c, e, type);
-  else
-    cmd_enw_all(s, c, type);
-  return (SUCCESS);
+ else
+   cmd_enw_all(s, c, type);
+ return (SUCCESS);
 }
