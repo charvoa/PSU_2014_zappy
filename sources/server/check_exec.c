@@ -1,11 +1,11 @@
 /*
 ** check_exec.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <sergeheitzler@epitech.net>
-** 
+**
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Wed Jul  1 10:58:26 2015 Audibert Louis
+** Last update Tue Jun 30 18:03:32 2015 Antoine Garcia
 */
 
 #include "functions.h"
@@ -41,5 +41,6 @@ int		check_exec(t_server *s)
       i++;
       tmp_cli = tmp_cli->next;
     }
+  // free(cmd->label);
   return (SUCCESS);
 }

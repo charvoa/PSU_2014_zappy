@@ -1,11 +1,11 @@
 /*
 ** functions.h for zappy in /home/audibe_l/rendu/PSU_2014_zappy/headers
-** 
+**
 ** Made by Audibert Louis
 ** Login   <audibe_l@epitech.net>
-** 
+**
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Wed Jul  1 10:37:57 2015 Serge Heitzler
+** Last update Tue Jun 30 17:56:21 2015 Antoine Garcia
 */
 
 #ifndef _FUNCTIONS_H_
@@ -356,5 +356,9 @@ void		show_list(t_list *list);
 
 /* Function(s) in file size_list.c */
 size_t		size_list(t_list *list);
+
+/* ---------------------$(FREE)--------------------- */
+
+void		free_struct_cmd(t_cmd *);
 
 #endif /* _FUNCTIONS_H_ */
