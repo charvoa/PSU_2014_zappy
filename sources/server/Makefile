@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Tue Jun 30 17:55:43 2015 Antoine Garcia
+## Last update Wed Jul  1 14:19:36 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -36,6 +36,7 @@ SRCS		= 	main.c	 				\
 			protocole_connexion.c			\
 			check_exec.c				\
 			check_death.c				\
+			check_food.c				\
 			distances.c				\
 			my_printf.c				\
 			options.c				\
@@ -92,6 +93,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_eht.c			\
 			$(CMD_DIR)cmd_ebo.c			\
 			$(CMD_DIR)cmd_edi.c			\
+			$(CMD_DIR)cmd_pdi.c			\
 			$(CMD_DIR)cmd_graphic.c			\
 			$(CMD_DIR)advance_funcs.c		\
 			$(CMD_DIR)int_size_to_malloc.c		\

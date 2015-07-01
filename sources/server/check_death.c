@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Tue Jun 30 17:58:33 2015 Antoine Garcia
+** Last update Wed Jul  1 14:26:42 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -50,18 +50,18 @@ void		delete_players(t_server *s, int **fds, int len)
   i = 0;
   while (i < len)
     {
-      team = get_team_by_name(s->teams, get_client_by_id(s->clients,
-							 fds[i][1])->team_name);
+      team = get_team_by_name(s->teams,
+			      get_client_by_id(s->clients, fds[i][1])->team_name);
       trame = xmalloc(sizeof(char) * (7 + istm(fds[i][1])));
       bzero(trame, (7 + istm(fds[i][1])));
       sprintf(trame, "pdi #%d\n", fds[i][1]);
       send_data_to_gui(s->clients, trame);
+      printf("%s", trame);
+      free(trame);
       remove_at_index(s->clients, fds[i][0]);
       team->slot_rest++;
-      printf("%s\n", trame);
       close(fds[i][1]);
       i++;
-      free(trame);
     }
   free_delete_fds(s, fds);
 }

@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed Jul  1 13:07:57 2015 Serge Heitzler
+** Last update Wed Jul  1 14:12:07 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -54,12 +54,12 @@ void		loop_server(t_server *s, char **argv)
   
   tv.tv_sec = 0;
   tv.tv_usec = 1000000 / s->time_action;
+  clock_gettime(CLOCK_REALTIME, &s->next);
   while (42)
     {
       s->read_fds = s->master;
-      clock_gettime(CLOCK_REALTIME, &s->now);
+      check_food(s);
       check_death(s);
-      /* check_food(s); */
       /* check_end_game(s); */
       check_eggs(s);
       signal(SIGINT, handler_ctrl_c);
@@ -96,7 +96,7 @@ void	init_opt_server(t_server *s)
 {
   s->o = xmalloc(sizeof(*s->o));
   s->port = 4242;
-  s->time_action = 1;
+  s->time_action = 100;
 }
 
 t_server	*fill_struct_serv(int argc, char **argv)
