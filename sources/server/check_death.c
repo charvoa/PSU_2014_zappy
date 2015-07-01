@@ -5,11 +5,10 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Tue Jun 30 17:23:35 2015 Antoine Garcia
+** Last update Tue Jun 30 17:58:33 2015 Antoine Garcia
 */
 
 #include "functions.h"
-
 
 int		get_alloc_to_delete(t_server *s)
 {
