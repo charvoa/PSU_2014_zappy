@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Tue Jun 30 17:19:56 2015 Nicolas Girardot
+// Last update Wed Jul  1 14:30:27 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -181,8 +181,6 @@ void Command::seg(std::string cmd, GameEngine *game)
 
 void Command::pbc(std::string cmd, GameEngine *game)
 {
-  (void)game;
-
   std::string		str(cmd.begin() + 4, cmd.end() - 1);
   std::istringstream	ss(str);
   int val;
@@ -191,6 +189,7 @@ void Command::pbc(std::string cmd, GameEngine *game)
   ss >> val;
   ss >> string;
   std::tuple<int, std::string> tuple = std::make_tuple(val, str);
+  game->broadcast(tuple);
 }
 
 void Command::pie(std::string cmd, GameEngine *game)
@@ -248,6 +247,7 @@ void Command::pdr(std::string cmd, GameEngine *game)
   ss >> id;
   ss >> id_ressource;
   std::tuple<int, int> tuple = std::make_tuple(id, id_ressource);
+  (void) tuple;
 }
 
 void Command::smg(std::string cmd, GameEngine *game)
@@ -258,10 +258,9 @@ void Command::smg(std::string cmd, GameEngine *game)
 
 void Command::eht(std::string cmd, GameEngine *game)
 {
-  (void)game;
-
   std::string		str(cmd.begin() + 4, cmd.end());
   int val = std::stoi(str);
+  game->deleteEgg(val);
 }
 
 void Command::ebo(std::string cmd, GameEngine *game)
@@ -269,6 +268,8 @@ void Command::ebo(std::string cmd, GameEngine *game)
   (void)game;
   std::string		str(cmd.begin() + 4, cmd.end());
   int val = std::stoi(str);
+
+  val = val;
 }
 
 void Command::edi(std::string cmd, GameEngine *game)
@@ -276,6 +277,7 @@ void Command::edi(std::string cmd, GameEngine *game)
   (void)game;
   std::string		str(cmd.begin() + 4, cmd.end());
   int val = std::stoi(str);
+  val = val;
 }
 
 void Command::pex(std::string cmd, GameEngine *game)
@@ -283,6 +285,8 @@ void Command::pex(std::string cmd, GameEngine *game)
   (void)game;
   std::string		str(cmd.begin() + 4, cmd.end());
   int val = std::stoi(str);
+
+  val = val;
 }
 
 void Command::enw(std::string cmd, GameEngine *game)
@@ -304,6 +308,7 @@ void Command::enw(std::string cmd, GameEngine *game)
   vec.push_back(n);
   vec.push_back(x);
   vec.push_back(y);
+  game->addEgg(vec);
 }
 
 void Command::Exec()

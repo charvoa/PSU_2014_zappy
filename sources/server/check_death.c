@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Wed Jul  1 14:26:42 2015 Serge Heitzler
+** Last update Wed Jul  1 14:40:32 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -37,6 +37,7 @@ static void		free_delete_fds(t_server *s, int **fds)
   while (i < nb)
     {
       free(fds[i]);
+      i++;
     }
   free(fds);
 }

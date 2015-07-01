@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
-// Last update Tue Jun 30 17:18:46 2015 Nicolas Girardot
+// Last update Wed Jul  1 13:25:29 2015 Nicolas Girardot
 //
 
 #include "IACharacter.hh"
@@ -22,6 +22,24 @@ IACharacter::IACharacter(std::vector<std::string> &args)
 IACharacter::~IACharacter()
 {
 
+}
+
+void	IACharacter::updateBroadcast()
+{
+  _broadcastCountdown--;
+  if (_broadcastCountdown <= 0)
+    _broadcasting = false;
+}
+
+bool	IACharacter::isBroadcasting()
+{
+  return (_broadcasting);
+}
+
+void	IACharacter::broadcast()
+{
+  _broadcasting = true;
+  _broadcastCountdown = 1000;
 }
 
 Position	*IACharacter::getPosition()

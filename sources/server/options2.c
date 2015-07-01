@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 14:05:42 2015 Audibert Louis
-** Last update Wed Jul  1 13:54:15 2015 Audibert Louis
+** Last update Wed Jul  1 14:37:47 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -48,5 +48,6 @@ int	opt_verbose(t_server *s)
 {
   (void)s;
   g_verbose = 1;
+  my_printf("OPT VERBOSE\n");
   return (0);
 }

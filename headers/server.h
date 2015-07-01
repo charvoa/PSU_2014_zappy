@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Wed Jul  1 14:28:30 2015 Serge Heitzler
+** Last update Wed Jul  1 17:05:40 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -86,6 +86,7 @@ typedef struct		s_opt
   int			optind;
   int			argc;
   char			**argv;
+  int			team_active;
 }			t_opt;
 
 typedef struct		s_server

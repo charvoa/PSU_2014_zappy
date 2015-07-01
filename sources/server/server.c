@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed Jul  1 14:29:55 2015 Serge Heitzler
+** Last update Wed Jul  1 17:09:13 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -105,7 +105,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
 {
   t_server	*s;
   int		opt;
-  int		(*options[6])(t_server *s);
+  int		(*options[7])(t_server *s);
 
   s = xmalloc(sizeof(t_server));
   init_opt(options);
@@ -115,12 +115,20 @@ t_server	*fill_struct_serv(int argc, char **argv)
   s->eggs = create_list();
   s->o->argc = argc;
   s->o->argv = get_tab(argc, argv);
+  s->o->team_active = 0;
   while ((opt = getopt(argc, argv,"p:x:y:n:c:t:v")) != -1)
     {
+      if (opt == 'n')
+	s->o->team_active = 1;
       s->o->opt = opt;
       s->o->optarg = optarg;
       s->o->optind = optind;
       exec_option(s, options);
+    }
+  if (s->o->team_active == 0)
+    {
+      printf("Usage: ./zappy_server -n 'team' 'team' ...\n");
+      exit(-1);
     }
   launch_init_map(s);
   set_slot_for_team(s->teams, "slot_rest", 10);

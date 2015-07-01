@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 23 17:57:11 2015 Audibert Louis
-** Last update Sat Jun 27 10:43:14 2015 Audibert Louis
+** Last update Wed Jul  1 14:28:14 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -19,6 +19,6 @@ t_team		*create_team(t_server *s, char *name, int nb_max)
   team->name = strdup(name);
   team->slot_rest = nb_max;
   team->slot_max = nb_max;
-  printf("Team %s created !\n", name);
+  my_printf("Team %s created !\n", name);
   return (team);
 }
