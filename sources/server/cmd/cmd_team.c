@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Tue Jun 30 16:53:32 2015 Serge Heitzler
+** Last update Wed Jul  1 11:45:35 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -25,12 +25,14 @@ int	is_a_team(t_server *s, char *team)
 	{
 	  /* free(t_iterate->name); */
 	  /* free(t_iterate); */
+	  printf("Team exist %s\n", team);
 	  return (0);
 	}
       tmp = tmp->next;
     }
   /* free(t_iterate->name); */
   /* free(t_iterate); */
+  printf("Team doesnt exist %s\n", team);
   return (-1);
 }
 
@@ -78,6 +80,7 @@ int	cmd_team(t_server *s, t_client *c,
   sscanf(cmd, "%s", name);
   if (is_a_team(s, name) == 0)
     {
+      printf("Im in cmd_team when is_a_team send 0\n");
       team = get_team_by_name(s->teams, name);
       if (team->slot_rest >= 1)
 	{

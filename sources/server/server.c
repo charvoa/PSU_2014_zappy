@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed Jul  1 11:34:00 2015 Audibert Louis
+** Last update Wed Jul  1 12:56:57 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -105,7 +105,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
   int		(*options[6])(t_server *s);
 
   s = xmalloc(sizeof(t_server));
-  init_map(s, 20, 20);
+  init_map(s, 7, 7);
   init_opt(options);
   s->teams = create_list();
   init_opt_server(s);
