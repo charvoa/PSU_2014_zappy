@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 14:23:33 2015 Audibert Louis
-** Last update Tue Jun 30 15:47:20 2015 Audibert Louis
+** Last update Wed Jul  1 10:52:42 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -27,6 +27,7 @@ int		is_there_an_egg(t_list *eggs, char *team, int fd)
 	}
       tmp = tmp->next;
     }
+  free(egg);
   return (ERROR);
 }
 
@@ -54,4 +55,5 @@ void		check_eggs(t_server *s)
       i++;
       tmp = tmp->next;
     }
+  free(egg);
 }
