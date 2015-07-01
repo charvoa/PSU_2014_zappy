@@ -5,12 +5,12 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 20:04:00 2015 Serge Heitzler
-** Last update Wed Jul  1 11:09:39 2015 Audibert Louis
+** Last update Wed Jul  1 12:54:48 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-int		send_data(int socket, const char *buffer)
+int		send_data(int socket, char *buffer)
 {
   int		n;
   size_t	len;
@@ -24,7 +24,7 @@ int		send_data(int socket, const char *buffer)
   return (n);
 }
 
-int		send_data_to_gui(t_list *clients, const char *msg)
+int		send_data_to_gui(t_list *clients, char *msg)
 {
   t_node *tmp;
   t_client *client;

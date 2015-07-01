@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Tue Jun 30 09:20:15 2015 Audibert Louis
+** Last update Wed Jul  1 10:29:53 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -47,7 +47,7 @@ void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
 }
 
 int		cmd_kick(t_server *s, t_client *c,
-			 const char *cmd, e_client_type type)
+			 char *cmd, e_client_type type)
 {
   t_client	*client;
   char		*final;

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Sun Jun 28 23:03:26 2015 Serge Heitzler
+** Last update Wed Jul  1 10:32:26 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -69,7 +69,7 @@ int		drop_food(t_server *s, t_client *c)
 }
 
 int		cmd_drop_object(t_server *s, t_client *c,
-				const char *cmd, e_client_type type)
+				char *cmd, e_client_type type)
 {
   (void)type;
   char		*item;

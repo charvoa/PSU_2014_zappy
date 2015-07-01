@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Wed Jul  1 11:45:35 2015 Audibert Louis
+** Last update Wed Jul  1 12:57:48 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -68,7 +68,7 @@ int	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
 }
 
 int	cmd_team(t_server *s, t_client *c,
-		 const char *cmd, e_client_type type)
+		 char *cmd, e_client_type type)
 {
   (void)type;
   char		trame[21];

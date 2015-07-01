@@ -5,13 +5,13 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 17:10:37 2015 Audibert Louis
-** Last update Mon Jun 29 09:47:37 2015 Audibert Louis
+** Last update Wed Jul  1 10:33:05 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 int		cmd_connect_nbr(t_server *s, t_client *c,
-				const char *cmd, e_client_type type)
+				char *cmd, e_client_type type)
 {
   (void)cmd;
   (void)type;
@@ -26,6 +26,7 @@ int		cmd_connect_nbr(t_server *s, t_client *c,
       send_data(c->fd, trame);
       return (SUCCESS);
     }
-  send_data(c->fd, "ko\n");
+  else
+    send_data(c->fd, "ko\n");
   return (ERROR);
 }

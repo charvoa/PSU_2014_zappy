@@ -71,6 +71,11 @@ class IAClass():
         string += self.uid
         return string
 
+    #def whereisIaTarget(self) S'occupe d'envoyer T ou.
+
+    #def cancelNeed(self) # S'occupe de reset les targets si pas assez de targets dans le tableau.
+
+    
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage();
         if (mess != ""):

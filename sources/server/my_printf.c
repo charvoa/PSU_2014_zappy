@@ -5,14 +5,14 @@
 ** Login   <girard_s@epitech.net>
 **
 ** Started on  Tue May  5 14:41:57 2015 Nicolas Girardot
-** Last update Sat Jun 27 10:43:25 2015 Audibert Louis
+** Last update Wed Jul  1 11:11:23 2015 Serge Heitzler
 */
 
 #include <stdarg.h>
 #include <stdio.h>
 #include "functions.h"
 
-void	my_printf(const char *format, ...)
+void	my_printf(char *format, ...)
 {
   va_list args;
 

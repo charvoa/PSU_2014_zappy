@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:03:06 2015 Serge Heitzler
-** Last update Sat Jun 27 23:19:46 2015 Serge Heitzler
+** Last update Wed Jul  1 10:36:57 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -20,7 +20,7 @@ void		init_advance(void (*advance[5])(t_size *, t_client *))
 }
 
 int			cmd_advance(t_server *s, t_client *c,
-				    const char *cmd, e_client_type type)
+				    char *cmd, e_client_type type)
 {
   (void)type;
   (void)cmd;
