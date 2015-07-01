@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Wed Jul  1 14:26:43 2015 Serge Heitzler
+** Last update Wed Jul  1 14:30:18 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -41,6 +41,5 @@ int		check_exec(t_server *s)
       i++;
       tmp_cli = tmp_cli->next;
     }
-  // free(cmd->label);
   return (SUCCESS);
 }

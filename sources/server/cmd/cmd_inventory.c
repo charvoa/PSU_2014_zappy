@@ -1,11 +1,11 @@
 /*
 ** cmd_inventory.c for zappy in /home/sergeheitzler/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Serge Heitzler
 ** Login   <sergeheitzler@epitech.net>
-** 
+**
 ** Started on  Fri Jun 19 11:29:41 2015 Serge Heitzler
-** Last update Wed Jul  1 10:30:20 2015 Serge Heitzler
+** Last update Tue Jun 30 18:22:04 2015 Antoine Garcia
 */
 
 #include "functions.h"
@@ -38,5 +38,6 @@ int		cmd_inventory(t_server *s, t_client *c,
 
   final = get_objects_from_inventory(c->inventory);
   send_data(c->fd, final);
+  free(final);
   return (SUCCESS);
 }

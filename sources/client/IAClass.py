@@ -42,7 +42,6 @@ class IAClass():
         self.hasTarget = False
         print('Here is my id : ', self.uid)
 
-
     def getMessage(self, rec):
         firstPart, lastPart = rec.split(',')
         self.case = ''.join(i for i in firstPart if i.isdigit()).strip()
@@ -75,7 +74,6 @@ class IAClass():
 
     #def cancelNeed(self) # S'occupe de reset les targets si pas assez de targets dans le tableau.
 
-    
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage();
         if (mess != ""):
@@ -121,6 +119,7 @@ class IAClass():
             nb += ((level * 2) + 1)
             level -= 1
         return nb
+
 
     def convertVoirToBinary(self):
         self.rows = self.getNbRows()

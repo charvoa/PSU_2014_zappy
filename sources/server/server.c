@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed Jul  1 14:12:07 2015 Serge Heitzler
+** Last update Wed Jul  1 14:29:55 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -97,6 +97,8 @@ void	init_opt_server(t_server *s)
   s->o = xmalloc(sizeof(*s->o));
   s->port = 4242;
   s->time_action = 100;
+  s->map_set[0] = 0;
+  s->map_set[1] = 0;
 }
 
 t_server	*fill_struct_serv(int argc, char **argv)
@@ -106,7 +108,6 @@ t_server	*fill_struct_serv(int argc, char **argv)
   int		(*options[6])(t_server *s);
 
   s = xmalloc(sizeof(t_server));
-  init_map(s, 20, 20);
   init_opt(options);
   s->teams = create_list();
   init_opt_server(s);
@@ -121,6 +122,7 @@ t_server	*fill_struct_serv(int argc, char **argv)
       s->o->optind = optind;
       exec_option(s, options);
     }
+  launch_init_map(s);
   set_slot_for_team(s->teams, "slot_rest", 10);
   set_slot_for_team(s->teams, "slot_team", 10);
   return (s);

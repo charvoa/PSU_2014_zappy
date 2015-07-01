@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 14:05:42 2015 Audibert Louis
-** Last update Sat Jun 27 10:48:11 2015 Audibert Louis
+** Last update Wed Jul  1 13:54:15 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -14,10 +14,13 @@ int	opt_width_map(t_server *s)
 {
   if (is_number(s->o->optarg) != -1)
     {
-      printf("before atoi X\n");
-      printf("s->map->width = %d\n", s->map->size->width);
-      s->map->size->width = atoi(s->o->optarg);
-      printf("after atoi X\n");
+      if (atoi(s->o->optarg) > 7)
+	s->map_set[0] = atoi(s->o->optarg);
+      else
+	{
+	  printf("Map width and height have to be at least 7 * 7\n");
+	  exit(-1);
+	}
     }
   else
     return (-1);
@@ -28,9 +31,13 @@ int	opt_height_map(t_server *s)
 {
   if (is_number(s->o->optarg) != -1)
     {
-      printf("before atoi Y\n");
-      s->map->size->height = atoi(s->o->optarg);
-      printf("after atoi Y\n");
+      if (atoi(s->o->optarg) > 7)
+	s->map_set[1] = atoi(s->o->optarg);
+      else
+	{
+	  printf("Map width and height have to be at least 7 * 7\n");
+	  exit(-1);
+	}
     }
   else
     return (-1);

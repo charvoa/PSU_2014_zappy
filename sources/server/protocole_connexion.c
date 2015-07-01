@@ -1,11 +1,11 @@
 /*
 ** protocole_connexion.c for zappy in /home/audibe_l/rendu/PSU_2014_zappy/sources/server
-** 
+**
 ** Made by Audibert Louis
 ** Login   <audibe_l@epitech.net>
-** 
+**
 ** Started on  Sat Jun 27 14:38:32 2015 Audibert Louis
-** Last update Tue Jun 30 20:13:57 2015 Serge Heitzler
+** Last update Tue Jun 30 18:18:13 2015 Antoine Garcia
 */
 
 #include "functions.h"

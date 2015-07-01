@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Sun Jun 28 10:40:03 2015 Audibert Louis
+** Last update Wed Jul  1 13:53:55 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -68,4 +68,16 @@ void		init_map(t_server *s, unsigned int width, unsigned int height)
     }
   s->map->objects[y] = NULL;
   s->map->full = init_full_tab(width, height);
+}
+
+void		launch_init_map(t_server *s)
+{
+  if (s->map_set[0] != 0 && s->map_set[1] != 0)
+    init_map(s, s->map_set[1], s->map_set[0]);
+  else if (s->map_set[0] != 0 && s->map_set[1] == 0)
+    init_map(s, s->map_set[1], 7);
+  else if (s->map_set[0] == 0 && s->map_set[1] != 0)
+    init_map(s, 7, s->map_set[0]);
+  else
+    init_map(s, 7, 7);
 }
