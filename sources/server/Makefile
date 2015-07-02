@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu Jul  2 15:01:59 2015 Serge Heitzler
+## Last update Thu Jul  2 16:56:29 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -35,6 +35,7 @@ SRCS		= 	main.c	 				\
 			create_objects.c			\
 			protocole_connexion.c			\
 			check_exec.c				\
+			check_end_game.c			\
 			check_death.c				\
 			check_food.c				\
 			distances.c				\

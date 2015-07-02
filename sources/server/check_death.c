@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Thu Jul  2 16:42:19 2015 Serge Heitzler
+** Last update Thu Jul  2 16:57:25 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -90,7 +90,6 @@ void		check_death(t_server *s)
 	  delete_fds[j][1] = c->fd;
 	  j++;
 	}
-      printf("-%d- P %p --\n", i, (void*)c);
       i++;
       tmp = tmp->next;
     }

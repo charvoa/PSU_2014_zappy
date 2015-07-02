@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Thu Jul  2 13:51:56 2015 Audibert Louis
+** Last update Thu Jul  2 16:54:38 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -60,7 +60,7 @@ void		loop_server(t_server *s, char **argv)
   struct timeval tv;
   
   tv.tv_sec = 0;
-  tv.tv_usec = 1000000 / s->time_action;
+  tv.tv_usec = 100000 / s->time_action;
   clock_gettime(CLOCK_REALTIME, &s->next);
   while (42)
     {
