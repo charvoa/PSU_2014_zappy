@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Thu Jul  2 15:00:57 2015 Audibert Louis
+** Last update Thu Jul  2 16:56:59 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -83,6 +83,7 @@ int		opt_verbose(t_server *s);
 
 /* Function(s) in file create_cmd.c */
 void	        create_cmd(t_server *s, t_client *c);
+int		manage_time(t_server *s, t_cmd *cmd, int index);
 
 /* Function(s) in file protocole_connexion.c */
 void		protocole_graphique(t_server *s, t_client *c);
@@ -269,6 +270,9 @@ int		cmd_sgt(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_sst.c */
 int		cmd_sst(t_server *s, t_client *c, char *cmd, e_client_type type);
+
+/* Function(s) in file cmd_sst.c */
+int		cmd_seg(t_list *clients, char *name);
 
 /* Function(s) in file cmd_take_object.c */
 int		check_rock(char *rock);

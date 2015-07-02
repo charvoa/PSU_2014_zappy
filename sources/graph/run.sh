@@ -6,7 +6,7 @@ file=$(pwd)"/zappy_graph"
 if [ -f "$file" ]
 then
     echo "Running Graph Zappy";
-    ./zappy_graph;
+    gdb ./zappy_graph;
 else
     make re; ./zappy_graph;
 fi

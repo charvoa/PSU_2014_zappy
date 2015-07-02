@@ -41,6 +41,7 @@ class IAClass():
         self.target = ""   # FOCUS TARGET POUR LA PARTIE B
         self.hasTarget = False
         self.needState = False
+        self.whereState = False
         print('Here is my id : ', self.uid)
 
     def getMessage(self, rec):
@@ -140,21 +141,21 @@ class IAClass():
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
-            return 1, 1, 0, 0, 0, 0, 0, [1, 1, 0, 0, 0, 0, 0]
+            return [1, 1, 0, 0, 0, 0, 0]
         elif (self.getLevel() == 2):
-            return 2, 1, 1, 1, 0, 0, 0, [2, 1, 1, 1, 0, 0, 0]
+            return [2, 1, 1, 1, 0, 0, 0]
         elif (self.getLevel() == 3):
-            return 2, 2, 0, 1, 0, 2, 0, [2, 2, 0, 1, 0, 2, 0]
+            return [2, 2, 0, 1, 0, 2, 0]
         elif (self.getLevel() == 4):
-            return 4, 1, 1, 2, 0, 1, 0, [4, 1, 1, 2, 0, 1, 0]
+            return [4, 1, 1, 2, 0, 1, 0]
         elif(self.getLevel() == 5):
-            return 4, 1, 2, 1, 3, 0, 0, [4, 1, 2, 1, 3, 0, 0]
+            return [4, 1, 2, 1, 3, 0, 0]
         elif(self.getLevel() == 6):
-            return 6, 1, 2, 3, 0, 1, 0, [6, 1, 2, 3, 0, 1, 0]
+            return [6, 1, 2, 3, 0, 1, 0]
         elif(self.getLevel() == 7):
-            return 6, 2, 2, 2, 2, 2, 1, [6, 2, 2, 2, 2, 2, 1]
+            return [6, 2, 2, 2, 2, 2, 1]
         elif(self.getLevel() == 8):
-            return 0, 0, 0, 0, 0, 0, 0, [0, 0, 0, 0, 0, 0, 0]
+            return [0, 0, 0, 0, 0, 0, 0]
 
     def getNbRows(self):
         level = self.getLevel()
@@ -168,31 +169,50 @@ class IAClass():
         self.rows = self.getNbRows()
         col = 7
         myList = [[0 for x in range(col)] for x in range(self.rows)]
+        i = 0
         for p in self.inFrontOfMe:
-            for i in range(self.rows):
-                myList[i][0] = p.count('joueur')
-                myList[i][1] = p.count('linemate')
-                myList[i][2] = p.count('deraumere')
-                myList[i][3] = p.count('sibur')
-                myList[i][4] = p.count('mendiane')
-                myList[i][5] = p.count('phiras')
-                myList[i][6] = p.count('thystame')
+            myList[i][0] = p.count('joueur')
+            myList[i][1] = p.count('linemate')
+            myList[i][2] = p.count('deraumere')
+            myList[i][3] = p.count('sibur')
+            myList[i][4] = p.count('mendiane')
+            myList[i][5] = p.count('phiras')
+            myList[i][6] = p.count('thystame')
+            i += 1
         return myList
 
+
+    def buildXor(self):
+        return [0, 0, 0, 0, 0, 0]
+
     def checkBestCase(self):
-        best = 0
+        tmp = list(self.itemsNeeded)
+        del tmp[0]
+        myList = list(self.convertVoirToBinary())
+        xor = list(self.buildXor())
         save = 0
-        bestCase = 0
-        myList = self.convertVoirToBinary()
-        for i in range(self.rows):
-            best = 0
-            for j in range(7):
-                if (myList[i][j] >= self.itemsNeeded[j]):
-                    best += 1
-            if (best >= save):
-                save = best
-                bestCase = i
-        return bestCase
+        case = 1
+        tmpSave = 0
+        h = 0
+        for p in myList:
+            del p[0]
+        for i in myList:
+            j = 0
+            for k in i: # k is myList[i]
+                if (tmp[j] > 0):
+                    if (k > 0):
+                        xor[j] = 1
+                    else:
+                        xor[j] = 0
+                else:
+                    xor[j] = 0
+                j += 1
+            h+=1
+            tmpSave = xor.count(1)
+            if (tmpSave > save):
+                save = tmpSave
+                case = h
+        return case
 
     def checkSurvival(self):
         save = 0
@@ -206,14 +226,82 @@ class IAClass():
                 if ('nourriture' in p):
                     save = i
             i+=1
-        if (save == 0 and survivalBool):
-            save = 1
+        if ((save == 0 and survivalBool == False) or self.whereState == False):
+            save = random.randint(1, 81)
         x, y = self.move.getMovements(save)
         self.moveAI(x, y)
         self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
 
-    # def checkLevelUp(self):
-    #     for p in self.itemsNeeded
+
+    def checkNeedMode(self):
+        if (self.linemate >= self.itemsNeeded[1]):
+            if (self.deraumere >= self.itemsNeeded[2]):
+                if (self.sibur >= self.itemsNeeded[3]):
+                    if (self.mendiane >= self.itemsNeeded[4]):
+                        if (self.phiras >= self.itemsNeeded[5]):
+                            if (self.thystame >= self.itemsNeeded[6]):
+                                if (self.getLevel() > 1):
+                                    self.cc.broadcast_cmd(self.s, self.p, self.mess, \
+                                                          self.buildMessageForBroadcast())
+                                else:
+                                    print('Je peux incanter')
+                                    self.dropRocks()
+                                    self.cc.incantation_cmd(self.s, self.p, self.mess)
+
+
+    def takeEvery(self):
+        tmp = self.inFrontOfMe[0]
+        tmp.strip()
+        tab = tmp.split(' ')
+        for i in tab:
+            if (i != 'joueur' and i != ''):
+                while (1):
+                    if (self.cc.prend_cmd(self.s, self.p, self.mess, i) == 0):
+                        break
+
+    def dropRocks(self):
+        self.takeEvery()
+        tmp = list(self.itemsNeeded)
+        del tmp[0]
+        print('debut')
+        while (tmp[0] > 0):
+            if (self.cc.pose_cmd(self.s, self.p, self.mess, 'linemate') == 1):
+                tmp[0] -= 1
+        while (tmp[1] > 0):
+            if (self.cc.pose_cmd(self.s, self.p, self.mess, 'deraumere') == 1):
+                tmp[1] -= 1
+        while (tmp[2] > 0):
+            if (self.cc.pose_cmd(self.s, self.p, self.mess, 'sibur') == 1):
+                tmp[2] -= 1
+        while (tmp[3] > 0):
+            if (self.cc.pose_cmd(self.s, self.p, self.mess, 'mendiane') == 1):
+                tmp[3] -= 1
+        while (tmp[4] > 0):
+            if (self.cc.pose_cmd(self.s, self.p, self.mess, 'phiras') == 1):
+                tmp[4] -= 1
+        while (tmp[5] > 0):
+            if (self.cc.pose_cmd(self.s, self.p, self.mess, 'thystame') == 1):
+                tmp[5] -= 1
+        print('fin')
+
+
+    def changeItemsNeed(self):
+        self.itemsNeeded[1] -= self.linemate
+        self.itemsNeeded[2] -= self.deraumere
+        self.itemsNeeded[3] -= self.sibur
+        self.itemsNeeded[4] -= self.mendiane
+        self.itemsNeeded[5] -= self.phiras
+        self.itemsNeeded[6] -= self.thystame
+
+    def takeRocks(self):
+        tmp = list(self.itemsNeeded)
+        del tmp[0]
+        j = 0
+        for i in tmp:
+            while i > 0:
+                self.cc.prend_cmd(self.s, self.p, self.mess, self.rocksTab[j])
+                i -= 1
+            j += 1
 
     def run(self):
         i = 1
@@ -221,23 +309,23 @@ class IAClass():
             print('Current Level : ', self.getLevel())
             self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
             self.itemsNeeded = self.defineWhatWeNeedMost()
-            x, y = self.move.getMovements(self.checkBestCase())
-            x += 1
-            y += 2
-            self.moveAI(x, y)
             self.cc.inventaire_cmd(self.s, self.p, self.mess)
             self.food = self.cc.getFood()
-            print('I got : ', self.food, ' nourriture')
             self.checkSurvival()
-#            self.moveAI(x, y)
-            # self.cc.inventaire_cmd(self.s, self.p, self.mess)
-            # self.linemate = self.cc.getLinemate()
-            # self.deraumere = self.cc.getDeraumere()
-            # self.sibur = self.cc.getSibur()
-            # self.mendiane = self.cc.getMendiane()
-            # self.phiras = self.cc.getPhiras()
-            # self.thystame = self.cc.getThystame()
-            # self.food = self.cc.getFood()
+            self.cc.inventaire_cmd(self.s, self.p, self.mess)
+            self.linemate = self.cc.getLinemate()
+            self.deraumere = self.cc.getDeraumere()
+            self.sibur = self.cc.getSibur()
+            self.mendiane = self.cc.getMendiane()
+            self.phiras = self.cc.getPhiras()
+            self.thystame = self.cc.getThystame()
+            self.changeItemsNeed()
+            self.checkNeedMode()
+            x, y = self.move.getMovements(self.checkBestCase())
+            self.takeRocks()
+            print('i got : ', self.linemate, ' linemate ', self.deraumere, 'deraumere', \
+                  self.sibur, ' sibur ', self.mendiane, ' mendiane ', self.phiras, ' phiras', \
+                  self.thystame, ' thystame ', self.food, ' food')
             # if (self.needState):
             #     while (1):
             #         self.cc.incantation_cmd(self.s, self.p, self.mess)
@@ -248,15 +336,7 @@ class IAClass():
             # self.mendiane = self.cc.getMendiane()
             # self.phiras = self.cc.getPhiras()
             # self.thystame = self.cc.getThystame()
-            # self.food = self.cc.getFood()
             # self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
-            # self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
-            # self.cc.prend_cmd(self.s, self.p, self.mess, 'linemate')
-            # self.cc.prend_cmd(self.s, self.p, self.mess, 'phiras')
-            # self.cc.prend_cmd(self.s, self.p, self.mess, 'deraumere')
-            # self.cc.prend_cmd(self.s, self.p, self.mess, 'thystame')
-            # self.cc.prend_cmd(self.s, self.p, self.mess, 'sibur')
-            # self.cc.prend_cmd(self.s, self.p, self.mess, 'mendiane')
             # self.playerNeeded, self.linemateNeeded, self.deraumereNeeded, self.siburNeeded, \
             #     self.mendianeNeeded, self.phirasNeeded, self.thystameNeeded, \
             #     self.itemsNeeded = self.defineWhatWeNeedMost()
