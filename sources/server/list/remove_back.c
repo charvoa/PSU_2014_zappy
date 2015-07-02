@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Tue May 26 21:34:12 2015 Serge Heitzler
-** Last update Tue May 26 23:24:13 2015 Serge Heitzler
+** Last update Thu Jul  2 16:45:38 2015 Serge Heitzler
 */
 
 #include "server.h"
@@ -28,6 +28,7 @@ int		remove_back(t_list *list)
     {
       tmp = list->end;
       list->end = tmp->prev;
+      tmp->prev->next = NULL;
       del = tmp;
     }
   free(del->data);

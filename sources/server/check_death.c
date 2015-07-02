@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Thu Jul  2 14:40:38 2015 Serge Heitzler
+** Last update Thu Jul  2 16:42:19 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -62,7 +62,7 @@ void		delete_players(t_server *s, int **fds, int len)
       free(trame);
       team->slot_rest++;
       remove_at_index(s->clients, fds[i][0]);
-      send_data(fds[i][1], "mort");
+      send_data(fds[i][1], "mort\n");
       i++;
     }
   free_delete_fds(s, fds);
@@ -76,10 +76,10 @@ void		check_death(t_server *s)
   int		j;
   int		**delete_fds;
 
-  tmp = s->clients->start;
-  delete_fds = xmalloc(get_alloc_to_delete(s) * sizeof(int) * 2);
   i = 0;
   j = 0;
+  tmp = s->clients->start;
+  delete_fds = xmalloc(get_alloc_to_delete(s) * sizeof(int) * 2);
   while (tmp != NULL)
     {
       c = tmp->data;
@@ -90,6 +90,7 @@ void		check_death(t_server *s)
 	  delete_fds[j][1] = c->fd;
 	  j++;
 	}
+      printf("-%d- P %p --\n", i, (void*)c);
       i++;
       tmp = tmp->next;
     }
