@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Thu Jul  2 11:04:31 2015 Serge Heitzler
+** Last update Thu Jul  2 15:15:05 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -79,7 +79,6 @@ char		*fill_final_string(t_server *s, int size_malloc,
   return (final);
 }
 
-// free list
 int		get_size_malloc_at_position(t_server* s, int x, int y)
 {
   int		size_malloc;
