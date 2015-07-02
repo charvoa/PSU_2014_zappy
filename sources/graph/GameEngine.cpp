@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jul  2 14:14:11 2015 Nicolas Girardot
+// Last update Thu Jul  2 15:10:09 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -122,7 +122,7 @@ void	GameEngine::deletePlayer(int id)
     }
 }
 
-void	GameEngine::addPlayer(std::vector<std::string> &args)
+void	GameEngine::addPlayer(std::vector<std::int> &args, std::string teamName)
 {
   IACharacter *player = new IACharacter(args);
   std::string result;
@@ -130,7 +130,7 @@ void	GameEngine::addPlayer(std::vector<std::string> &args)
   sstm << "Player" << player->getId() << " Joined the arena";
   result = sstm.str();
   _hud->update_info(result);
-  _players.push_back(player);
+  _players.push_back(player, teamName);
 }
 
 void	GameEngine::updateInventory(std::vector<int> &inv)

@@ -5,18 +5,18 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
-// Last update Thu Jul  2 14:08:07 2015 Nicolas Girardot
+// Last update Thu Jul  2 15:09:27 2015 Nicolas Girardot
 //
 
 #include "IACharacter.hh"
 
-IACharacter::IACharacter(std::vector<std::string> &args)
+IACharacter::IACharacter(std::vector<std::int> &args, std::string teamName)
 {
-  this->_id = stoi(args.at(0));
-  this->_position = new Position(stoi(args.at(1)), stoi(args.at(2)));
-  this->_orientation = stoi(args.at(3));
-  this->_lvl = stoi(args.at(4));
-  this->_team = args.at(5);
+  this->_id = args.at(0);
+  this->_position = new Position(args.at(1), args.at(2));
+  this->_orientation = args.at(3);
+  this->_lvl = args.at(4);
+  this->_team = teamName;
 }
 
 IACharacter::~IACharacter()
