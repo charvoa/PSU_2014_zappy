@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:00 2015 Nicolas Girardot
-// Last update Thu Jul  2 11:13:51 2015 Nicolas Girardot
+// Last update Thu Jul  2 14:37:46 2015 Nicolas Girardot
 //
 
 #include "HUD.hh"
@@ -264,7 +264,7 @@ void	HUD::drawHUDBottom(SDL_Renderer *renderer)
 
   SDL_RenderCopy(renderer, _spritet, NULL , &_drawer);
 
-  _drawer.x = 490 - 80;
+  _drawer.x = 430;
   _drawer.y = 860;
   _drawer.w = 20 * 7;
   _drawer.h = 20;
@@ -280,8 +280,8 @@ void	HUD::drawHUDBottom(SDL_Renderer *renderer)
   _drawer.y = 905;
   SDL_RenderCopy(renderer, _foodBottomt, NULL, &_drawer);
 
-  _drawer.y = 910;
-  _drawer.x = 650;
+  _drawer.y = 900;
+  _drawer.x = 620;
   _drawer.w = 20 * 5;
   SDL_RenderCopy(renderer, _teamBottomt, NULL, &_drawer);
 

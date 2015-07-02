@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:22:59 2015 Serge Heitzler
-// Last update Thu Jul  2 11:18:59 2015 Nicolas Girardot
+// Last update Thu Jul  2 14:08:24 2015 Nicolas Girardot
 //
 
 #ifndef IACharacter_HH_
@@ -46,7 +46,7 @@ public:
   void		updateAtt(std::vector<std::string> &);
   int		get(e_type type);
   std::string	&getTeam();
-  Position	*getPosition();
+  Position	&getPosition();
 
  private:
   Position	*_position;

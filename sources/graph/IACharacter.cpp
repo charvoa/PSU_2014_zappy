@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
-// Last update Thu Jul  2 11:19:19 2015 Nicolas Girardot
+// Last update Thu Jul  2 14:08:07 2015 Nicolas Girardot
 //
 
 #include "IACharacter.hh"
@@ -52,9 +52,9 @@ void	IACharacter::broadcast()
   _broadcastCountdown = 1000;
 }
 
-Position	*IACharacter::getPosition()
+Position	&IACharacter::getPosition()
 {
-  return (_position);
+  return (*_position);
 }
 
 void	IACharacter::updateAtt(std::vector<std::string> &args)

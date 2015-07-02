@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Wed Jul  1 14:15:09 2015 Nicolas Girardot
+// Last update Thu Jul  2 14:14:11 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -159,8 +159,11 @@ void	GameEngine::updatePlayer(std::vector<std::string> &args)
       if (id == (*it)->getId())
 	{
 	  (*it)->updateAtt(args);
-	  if (id == _idFocus)
-	    _focus = (*it)->getPosition();
+	  if (_idFocus == id)
+	    {
+	      _focus = (*it)->getPosition();
+	    }
+	  std::cout << _focus._x << " POS IS " << _focus._y << std::endl;
 	}
       else
 	{}
@@ -198,31 +201,31 @@ bool	GameEngine::update()
 	    case SDLK_UP:
 	      std::cout << _idFocus << std::endl;
 	      _idFocus = -1;
-	      if (_focus->_y <= 0)
-		_focus->_y = _gMap->getHeight() - 1;
+	      if (_focus._y <= 0)
+		_focus._y = _gMap->getHeight() - 1;
 	      else
-		_focus->_y -= 1;
+		_focus._y -= 1;
 	      break;
 	    case SDLK_DOWN:
 	      _idFocus = -1;
-	      if (_focus->_y >= _gMap->getHeight() - 1)
-		_focus->_y = 0;
+	      if (_focus._y >= _gMap->getHeight() - 1)
+		_focus._y = 0;
 	      else
-		_focus->_y += 1;
+		_focus._y += 1;
 	      break;
 	    case SDLK_RIGHT:
 	      _idFocus = -1;
-	      if (_focus->_x >= _gMap->getWidth() - 1)
-		_focus->_x = 0;
+	      if (_focus._x >= _gMap->getWidth() - 1)
+		_focus._x = 0;
 	      else
-		_focus->_x += 1;
+		_focus._x += 1;
 	      break;
 	    case SDLK_LEFT:
 	      _idFocus = -1;
-	      if (_focus->_x <= 0)
-		_focus->_x = _gMap->getWidth() - 1;
+	      if (_focus._x <= 0)
+		_focus._x = _gMap->getWidth() - 1;
 	      else
-		_focus->_x -= 1;
+		_focus._x -= 1;
 	      break;
 	    default:
 	      break;
@@ -251,7 +254,7 @@ void	GameEngine::createMap(std::vector<std::string> &parse)
   stry = parse.at(1);
   x = stoi(strx);
   y = stoi(stry);
-  _focus = new Position(x / 2, y / 2);
+  _focus = (*new Position(x / 2, y / 2));
   for (int ybis = 0; ybis <= y - 1; ybis++)
     {
       for (int xbis = 0; xbis <= x - 1; xbis++)
@@ -273,11 +276,11 @@ void	GameEngine::setLocked()
   Position pos(a, b);
   if (isEventOnMap(a, b) == true)
     {
-      std::pair<int, int> posfocus(_focus->_x, _focus->_y);
+      std::pair<int, int> posfocus(_focus._x, _focus._y);
       std::pair<int, int> pai = determinePosClicked(posfocus, a, b);
       for (std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
 	{
-	  if ((*it)->getPosition()->_x == pai.first && (*it)->getPosition()->_y == pai.second)
+	  if ((*it)->getPosition()._x == pai.first && (*it)->getPosition()._y == pai.second)
 	    {
 	      _idFocus = (*it)->getId();
 	      _focus = (*it)->getPosition();
@@ -285,7 +288,8 @@ void	GameEngine::setLocked()
 	}
       _hud->updateLocked(pai.first, pai.second, _cases.at(pai.second).at(pai.first));
       pai = determinePosClickedOnGUI(a, b);
-      _gMap->setLocked(pai.first, pai.second);
+      if (_idFocus != -1)
+	_gMap->setLocked(pai.first, pai.second);
     }
 }
 
@@ -299,7 +303,7 @@ void	GameEngine::getMousePos()
     {
         if (isEventOnMap(a, b) == true)
 	  {
-	    std::pair<int, int> posfocus(_focus->_x, _focus->_y);
+	    std::pair<int, int> posfocus(_focus._x, _focus._y);
 	    std::pair<int, int> pai = determinePosClicked(posfocus, a, b);
 	    if (pai.first >= _gMap->getWidth() || pai.second >= _gMap->getHeight());
 	    else
@@ -329,7 +333,7 @@ void	GameEngine::draw()
   SDL_RenderClear(_renderer);
   _hud->draw(_renderer);
   if (_gMap != NULL)
-    _gMap->draw(_renderer, *_focus, _cases, _players, _eggs);
+    _gMap->draw(_renderer, _focus, _cases, _players, _eggs);
   SDL_RenderPresent(_renderer);
 }
 

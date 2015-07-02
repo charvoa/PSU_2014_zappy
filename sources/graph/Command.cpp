@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu Jul  2 11:12:38 2015 Nicolas Girardot
+// Last update Thu Jul  2 13:56:52 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -342,7 +342,7 @@ void Command::Exec()
 void Command::Parse(std::string command, GameEngine *game)
 {
   std::string cmd(command, 0, 3);
-  std::cout << command << std::endl;
+  //  std::cout << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)

@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Wed Jul  1 14:11:55 2015 Nicolas Girardot
+// Last update Thu Jul  2 14:07:50 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -44,7 +44,7 @@ private:
   SDL_Renderer	*_renderer;
   Position	_mousePos;
   Socket	*_socket;
-  Position	*_focus;
+  Position	_focus;
   GraphMap	*_gMap;
   HUD		*_hud;
   int		_idFocus = -1;
