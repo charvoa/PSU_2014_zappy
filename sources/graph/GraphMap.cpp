@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Wed Jul  1 13:53:06 2015 Nicolas Girardot
+// Last update Thu Jul  2 10:32:02 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -17,6 +17,7 @@ GraphMap::GraphMap(int width, int height, SDL_Renderer *renderer)
   _width = width;
   _height = height;
   _squareSize = 100;
+  initSprites();
   _grass = IMG_Load("grass.jpg");
   _grasst = SDL_CreateTextureFromSurface(renderer, _grass);
   _dirt = IMG_Load("dirt.jpg");
@@ -29,9 +30,28 @@ GraphMap::GraphMap(int width, int height, SDL_Renderer *renderer)
   _eggt = SDL_CreateTextureFromSurface(renderer, _egg);
   _bubble = IMG_Load("bubble.png");
   _bubblet = SDL_CreateTextureFromSurface(renderer, _bubble);
+  _food = IMG_Load("gems/food.png");
+  _foodt = SDL_CreateTextureFromSurface(renderer, _food);
+  _rock1 = IMG_Load("gems/rock1.png");
+  _rock1t = SDL_CreateTextureFromSurface(renderer, _rock1);
+  _rock2 = IMG_Load("gems/rock2.png");
+  _rock2t = SDL_CreateTextureFromSurface(renderer, _rock2);
+  _rock3 = IMG_Load("gems/rock3.png");
+  _rock3t = SDL_CreateTextureFromSurface(renderer, _rock3);
+  _rock4 = IMG_Load("gems/rock4.png");
+  _rock4t = SDL_CreateTextureFromSurface(renderer, _rock4);
+  _rock5 = IMG_Load("gems/rock5.png");
+  _rock5t = SDL_CreateTextureFromSurface(renderer, _rock5);
+  _rock6 = IMG_Load("gems/rock6.png");
+  _rock6t = SDL_CreateTextureFromSurface(renderer, _rock6);
 }
 
 GraphMap::~GraphMap() {}
+
+void	GraphMap::initSprites()
+{
+
+}
 
 void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::vector<Case *> > map, std::list<IACharacter *> &players, std::list<Egg *> &eggs)
 {
@@ -54,6 +74,48 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::ve
 		SDL_RenderCopy(renderer, _grasst, NULL, &rect);
 	      else
 		SDL_RenderCopy(renderer, _dirtt, NULL, &rect);
+	    }
+	  if (j < 0 || i < 0 || j > _height - 1 || i > _width - 1);
+	  else
+	    {
+	      rect.w = 20;
+	      rect.h = 20;
+	      if (map.at(j).at(i)->get(Case::FOOD) >= 1)
+		{
+		  rect.x = (150 + (i - focus._x + 3) * _squareSize);
+		  SDL_RenderCopy(renderer, _foodt, NULL, &rect);
+		}
+	      if (map.at(j).at(i)->get(Case::LIMEMATE) >= 1)
+		{
+		  rect.x = (170 + (i - focus._x + 3) * _squareSize);
+		  SDL_RenderCopy(renderer, _rock1t, NULL, &rect);
+		}
+	      if (map.at(j).at(i)->get(Case::DERAUMERE) >= 1)
+		{
+		  rect.x = (190 + (i - focus._x + 3) * _squareSize);
+		  SDL_RenderCopy(renderer, _rock2t, NULL, &rect);
+		}
+	      if (map.at(j).at(i)->get(Case::SIBUR) >= 1)
+		{
+		  rect.x = (210 + (i - focus._x + 3) * _squareSize);
+		  SDL_RenderCopy(renderer, _rock3t, NULL, &rect);
+		}
+	      if (map.at(j).at(i)->get(Case::MENDIANE) >= 1)
+		{
+		  rect.x = (230 + (i - focus._x + 3) * _squareSize);
+		  SDL_RenderCopy(renderer, _rock4t, NULL, &rect);
+		}
+	      if (map.at(j).at(i)->get(Case::PHIRAS) >= 1)
+		{
+		  rect.y = (170 + (j - focus._y + 3) * _squareSize);
+		  rect.x = (150 + (i - focus._x + 3) * _squareSize);
+		  SDL_RenderCopy(renderer, _rock5t, NULL, &rect);
+		}
+	      if (map.at(j).at(i)->get(Case::THYSTAME) >= 1)
+		{
+		  rect.x = (170 + (i - focus._x + 3) * _squareSize);
+		  SDL_RenderCopy(renderer, _rock6t, NULL, &rect);
+		}
 	    }
 	}
     }
