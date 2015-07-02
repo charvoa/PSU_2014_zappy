@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Thu Jul  2 16:12:59 2015 Serge Heitzler
+** Last update Thu Jul  2 16:42:19 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -83,7 +83,6 @@ void		check_death(t_server *s)
   while (tmp != NULL)
     {
       c = tmp->data;
-      printf("[%d]\n", s->clients->length);
       if (c->type == IA && c->inventory->food <= 0)
 	{
 	  delete_fds[j] = xmalloc(sizeof(int) * 2);
@@ -91,9 +90,9 @@ void		check_death(t_server *s)
 	  delete_fds[j][1] = c->fd;
 	  j++;
 	}
+      printf("-%d- P %p --\n", i, (void*)c);
       i++;
       tmp = tmp->next;
     }
-  printf("------------------------------------J %d\n", j);
   delete_players(s, delete_fds, j);
 }
