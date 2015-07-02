@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu Jul  2 15:30:57 2015 Nicolas Girardot
+// Last update Thu Jul  2 16:15:41 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -74,6 +74,16 @@ void	Command::mct(std::string cmd, GameEngine *game)
       ss.clear();
       this->bct(newCmd, game);
     }
+}
+
+void	Command::sgt(std::string cmd, GameEngine *game)
+{
+  std::string		parse(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(parse);
+  int	speed;
+  ss >> speed;
+
+  //  game->updateSpeed(speed);
 }
 
 void	Command::tna(std::string cmd, GameEngine *game)
@@ -320,15 +330,19 @@ void Command::enw(std::string cmd, GameEngine *game)
   std::istringstream	ss(str);
   std::vector<int>	vec;
   int			e;
+  std::string		nbis;
   int			n;
   int			x;
   int			y;
 
   ss >> e;
-  std::istringstream	tmp(ss.str());
-  tmp >> n;
-  tmp >> x;
-  tmp >> y;
+  ss >> nbis;
+  nbis.erase(0, 1);
+  std::cout << nbis << std::endl;
+  n = stoi(nbis);
+  std::cout << n << std::endl;
+  ss >> x;
+  ss >> y;
   vec.push_back(e);
   vec.push_back(n);
   vec.push_back(x);
@@ -361,6 +375,7 @@ void Command::Exec()
   _functions["edi"] = &Command::edi;
   _functions["pex"] = &Command::pex;
   _functions["enw"] = &Command::enw;
+  _functions["sgt"] = &Command::sgt;
   /* faire de même pour chaque fonctions */
 }
 

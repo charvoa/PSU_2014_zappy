@@ -106,7 +106,7 @@ def main():
                                 print('Shutting down.')
                                 flag = True
                                 break
-                            elif data == 'mort':
+                            elif data == 'mort\n':
                                 print('You died')
                                 flag = True
                                 break
