@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu Jul  2 11:25:00 2015 Audibert Louis
+## Last update Thu Jul  2 11:44:07 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -59,6 +59,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_right.c			\
 			$(CMD_DIR)cmd_left.c			\
 			$(CMD_DIR)cmd_view.c			\
+			$(CMD_DIR)cmd_view_support.c		\
 			$(CMD_DIR)cmd_advance.c			\
 			$(CMD_DIR)cmd_inventory.c		\
 			$(CMD_DIR)cmd_take_object.c		\

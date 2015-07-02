@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
-// Last update Wed Jul  1 13:25:29 2015 Nicolas Girardot
+// Last update Thu Jul  2 11:19:19 2015 Nicolas Girardot
 //
 
 #include "IACharacter.hh"
@@ -22,6 +22,16 @@ IACharacter::IACharacter(std::vector<std::string> &args)
 IACharacter::~IACharacter()
 {
 
+}
+
+int	IACharacter::getLVL()
+{
+  return (_lvl);
+}
+
+int	IACharacter::getOrientation()
+{
+  return (_orientation);
 }
 
 void	IACharacter::updateBroadcast()
