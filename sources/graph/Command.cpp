@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Wed Jul  1 01:42:02 2015 Antoine Garcia
+// Last update Thu Jul  2 15:30:57 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -118,7 +118,7 @@ void	Command::pnw(std::string cmd, GameEngine *game)
   vec.push_back(y);
   vec.push_back(o);
   vec.push_back(l);
-  game->addPlayers(vec, N);
+  game->addPlayer(vec, N);
 }
 
 void	Command::ppo(std::string cmd, GameEngine *game)
@@ -130,10 +130,13 @@ void	Command::ppo(std::string cmd, GameEngine *game)
   int				x;
   int				y;
   int				o;
+  int			n;
 
+  ss >> n;
   ss >> x;
   ss >> y;
   ss >> o;
+  detPlayer.push_back(n);
   detPlayer.push_back(x);
   detPlayer.push_back(y);
   detPlayer.push_back(o);
@@ -169,7 +172,7 @@ void Command::pgt(std::string cmd, GameEngine *game)
 
 void Command::pdi(std::string cmd, GameEngine *game)
 {
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   int			id;
 
@@ -313,7 +316,7 @@ void Command::pex(std::string cmd, GameEngine *game)
 void Command::enw(std::string cmd, GameEngine *game)
 {
   (void)game;
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   std::vector<int>	vec;
   int			e;

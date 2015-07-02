@@ -5,12 +5,12 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:25:03 2015 Serge Heitzler
-// Last update Thu Jul  2 15:09:27 2015 Nicolas Girardot
+// Last update Thu Jul  2 15:17:28 2015 Nicolas Girardot
 //
 
 #include "IACharacter.hh"
 
-IACharacter::IACharacter(std::vector<std::int> &args, std::string teamName)
+IACharacter::IACharacter(std::vector<int> &args, std::string &teamName)
 {
   this->_id = args.at(0);
   this->_position = new Position(args.at(1), args.at(2));
@@ -57,11 +57,11 @@ Position	&IACharacter::getPosition()
   return (*_position);
 }
 
-void	IACharacter::updateAtt(std::vector<std::string> &args)
+void	IACharacter::updateAtt(std::vector<int> &args)
 {
-  this->_position->_x = stoi(args.at(1));
-  this->_position->_y = stoi(args.at(2));
-  this->_orientation = stoi(args.at(3));
+  this->_position->_x = args.at(1);
+  this->_position->_y = args.at(2);
+  this->_orientation = args.at(3);
 }
 
 void	IACharacter::updateInventory(std::vector<int> &inv)

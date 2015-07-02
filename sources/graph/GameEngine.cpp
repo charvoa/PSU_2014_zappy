@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Thu Jul  2 15:10:09 2015 Nicolas Girardot
+// Last update Thu Jul  2 15:29:18 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -68,6 +68,7 @@ void	GameEngine::addEgg(std::vector<int> &att)
   Egg *egg = new Egg(att);
   std::string result;
   std::stringstream sstm;
+  std::cout << " egggg " << att.at(2) << " " << att.at(3);
   sstm << "Player" << att.at(1) << " laid an Egg";
   result = sstm.str();
   _hud->update_info(result);
@@ -122,15 +123,15 @@ void	GameEngine::deletePlayer(int id)
     }
 }
 
-void	GameEngine::addPlayer(std::vector<std::int> &args, std::string teamName)
+void	GameEngine::addPlayer(std::vector<int> &args, std::string &teamName)
 {
-  IACharacter *player = new IACharacter(args);
+  IACharacter *player = new IACharacter(args, teamName);
   std::string result;
   std::stringstream sstm;
   sstm << "Player" << player->getId() << " Joined the arena";
   result = sstm.str();
   _hud->update_info(result);
-  _players.push_back(player, teamName);
+  _players.push_back(player);
 }
 
 void	GameEngine::updateInventory(std::vector<int> &inv)
@@ -151,9 +152,9 @@ void	GameEngine::updateInventory(std::vector<int> &inv)
     }
 }
 
-void	GameEngine::updatePlayer(std::vector<std::string> &args)
+void	GameEngine::updatePlayer(std::vector<int> &args)
 {
-  int	id = stoi(args.at(0));
+  int	id = args.at(0);
   for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
     {
       if (id == (*it)->getId())
