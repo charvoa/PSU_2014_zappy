@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Thu Jul  2 11:44:12 2015 Serge Heitzler
+** Last update Thu Jul  2 14:32:11 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -80,6 +80,7 @@ int		opt_verbose(t_server *s);
 
 /* Function(s) in file create_cmd.c */
 void	        create_cmd(t_server *s, t_client *c);
+int		manage_time(t_server *s, t_cmd *cmd, int index);
 
 /* Function(s) in file protocole_connexion.c */
 void		protocole_graphique(t_server *s, t_client *c);
