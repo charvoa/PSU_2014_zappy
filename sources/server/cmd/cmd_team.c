@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Wed Jul  1 14:54:48 2015 Nicolas Girardot
+** Last update Thu Jul  2 08:46:58 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -46,6 +46,7 @@ int	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   c->type = IA;
   c->level = 1;
   c->team_name = strdup(n);
+  printf("T1 = %s\n", c->team_name);
   t->slot_rest--;
   if (is_there_an_egg(s->eggs, n, c->fd) == SUCCESS)
     {
@@ -98,5 +99,7 @@ int	cmd_team(t_server *s, t_client *c,
     }
   else
     send_data(c->fd, "ko\n");
+  c->team_name = strdup(name);
+  printf("T2 = %s\n", c->team_name);
   return (0);
 }

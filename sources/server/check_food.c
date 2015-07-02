@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jul  1 13:05:17 2015 Serge Heitzler
-** Last update Wed Jul  1 13:47:16 2015 Serge Heitzler
+** Last update Thu Jul  2 08:41:53 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -55,10 +55,10 @@ void			decrement_food(t_server *s)
   t_node		*tmp;
   t_client		*c;
 
-  c = xmalloc(sizeof(t_client));
   tmp = s->clients->start;
   if (s->clients->length > 0)
     {
+      //      c = xmalloc(sizeof(t_client));
       while (tmp)
 	{
 	  c = tmp->data;
@@ -76,6 +76,7 @@ int			check_food(t_server *s)
       ((s->next.tv_sec == s->now.tv_sec) &&
        (s->next.tv_nsec <= s->now.tv_nsec)))
     {
+      create_objects(s);
       decrement_food(s);
       new_ultimatum(s);
     }

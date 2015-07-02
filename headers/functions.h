@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Wed Jul  1 19:42:54 2015 Serge Heitzler
+** Last update Wed Jul  1 23:08:19 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -309,7 +309,7 @@ void		exec_cmd(t_server *s, t_client *c);
 /* Function(s) in file show_items_at_position.c */
 int		*get_nb_items(t_block *block);
 int		get_last_wrote(int *nb_items);
-char		*fill_final_string(int size_malloc, int *nb_items);
+char		*fill_final_string(t_server *s, int size_malloc, int x, int y);
 int		get_size_malloc_at_position(t_server* s, int x, int y);
 char		*show_items_at_position(t_server * s, int x, int y);
 
@@ -363,6 +363,8 @@ size_t		size_list(t_list *list);
 
 /* ---------------------$(FREE)--------------------- */
 
-void		free_struct_cmd(t_cmd *);
+void		free_cmd(t_cmd *cmd);
+void		free_client(t_client *c);
+void		free_team(t_team *t);
 
 #endif /* _FUNCTIONS_H_ */

@@ -5,11 +5,13 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:41:12 2015 Audibert Louis
-** Last update Tue Jun 30 15:55:34 2015 Audibert Louis
+** Last update Wed Jul  1 23:02:57 2015 Serge Heitzler
 */
 
 #ifndef _CLIENT_H_
 # define _CLIENT_H_
+
+#include "team.h"
 
 typedef enum		e_orientation
   {
@@ -43,13 +45,6 @@ typedef struct		s_inventory
   int			phiras;
   int			thystame;
 }			t_inventory;
-
-typedef struct		s_team
-{
-  char			*name;
-  int			slot_rest;
-  int			slot_max;
-}			t_team;
 
 typedef struct		s_client
 {

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 23 18:36:37 2015 Audibert Louis
-** Last update Wed Jul  1 14:30:57 2015 Audibert Louis
+** Last update Thu Jul  2 08:32:24 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -56,7 +56,7 @@ t_team		*get_team_by_name(t_list *list, char *name)
   t_team	*team;
 
   tmp = list->start;
-  team = xmalloc(sizeof(t_team));
+  //  team = xmalloc(sizeof(t_team));
   team = tmp->data;
   my_printf("Name = %s\n", name);
   while (tmp)

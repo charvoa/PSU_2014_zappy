@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Wed Jul  1 17:09:13 2015 Audibert Louis
+** Last update Wed Jul  1 23:09:31 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -69,7 +69,6 @@ void		loop_server(t_server *s, char **argv)
 	  exit(1);
 	}      
       check_fds(s, argv);
-      create_objects(s);
       check_exec(s);
     }
 }

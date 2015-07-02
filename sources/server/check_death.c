@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Wed Jul  1 14:40:32 2015 Audibert Louis
+** Last update Thu Jul  2 08:37:12 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -16,7 +16,7 @@ int		get_alloc_to_delete(t_server *s)
   t_client	*c;
   int		i;
 
-  c = xmalloc(sizeof(t_client));
+  //  c = xmalloc(sizeof(t_client));
   tmp = s->clients->start;
   i = 0;
   while (tmp != NULL)
@@ -31,9 +31,11 @@ int		get_alloc_to_delete(t_server *s)
 
 static void		free_delete_fds(t_server *s, int **fds)
 {
-  int	nb = get_alloc_to_delete(s);
-  int	i = 0;
+  int	nb;
+  int	i;
 
+  i = 0;
+  nb = get_alloc_to_delete(s);
   while (i < nb)
     {
       free(fds[i]);
@@ -51,6 +53,7 @@ void		delete_players(t_server *s, int **fds, int len)
   i = 0;
   while (i < len)
     {
+      printf("[CHECK-DEATH]-TEAM_NAME = %s\n", get_client_by_id(s->clients, fds[i][1])->team_name);
       team = get_team_by_name(s->teams,
 			      get_client_by_id(s->clients, fds[i][1])->team_name);
       trame = xmalloc(sizeof(char) * (7 + istm(fds[i][1])));
@@ -59,8 +62,8 @@ void		delete_players(t_server *s, int **fds, int len)
       send_data_to_gui(s->clients, trame);
       printf("%s", trame);
       free(trame);
-      remove_at_index(s->clients, fds[i][0]);
       team->slot_rest++;
+      remove_at_index(s->clients, fds[i][0]);
       close(fds[i][1]);
       i++;
     }
@@ -76,14 +79,14 @@ void		check_death(t_server *s)
   int		**delete_fds;
 
   tmp = s->clients->start;
-  delete_fds = xmalloc(get_alloc_to_delete(s) * sizeof(int));
+  delete_fds = xmalloc(get_alloc_to_delete(s) * sizeof(int) * 2);
   i = 0;
   j = 0;
-  c = xmalloc(sizeof(t_client));
+  //  c = xmalloc(sizeof(t_client));
   while (tmp != NULL)
     {
       c = tmp->data;
-      if (c->inventory->food == 0)
+      if (c->inventory->food <= 0)
 	{
 	  delete_fds[j] = xmalloc(sizeof(int) * 2);
 	  delete_fds[j][0] = i;
