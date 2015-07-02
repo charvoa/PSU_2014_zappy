@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Thu Jul  2 08:43:40 2015 Serge Heitzler
+** Last update Thu Jul  2 11:12:47 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -40,7 +40,7 @@ void	bind_socket(t_server *s, int port)
   printf("Server-bind() is OK ...\n");
 }
 
-void	accept_server(t_server *s, char **argv)
+int	accept_server(t_server *s, char **argv)
 {
   (void)argv;
   s->addrlen = sizeof(s->clientaddr);
@@ -59,8 +59,19 @@ void	accept_server(t_server *s, char **argv)
       create_client(s, s->newfd);
       printf("New connection from %s on socket %d\n",
 	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
-      protocole_connexion(s, s->newfd);
+      if (protocole_connexion(s, s->newfd) == ERROR)
+	return (ERROR);
     }
+  return (SUCCESS);
+}
+
+void		destroy_socket(t_server *s, t_client *c, int i, char **argv)
+{
+  cmd_pdi(s, c);
+  ring_buffer_destroy(c->buffer);
+  remove_from_socket(s->clients, i, s->teams);
+  close(i);
+  printf("%s: socket %d hung up\n", argv[0], i);
 }
 
 void		read_write_server(t_server *s, int i, char **argv)
@@ -69,22 +80,15 @@ void		read_write_server(t_server *s, int i, char **argv)
   char		*tmp;
   t_client	*c;
 
-  c = get_client_by_id(s->clients, i);
+  if ((c = get_client_by_id(s->clients, i)) == NULL)
+    return;
   tmp = xmalloc(4096 * sizeof(char));
   memset(tmp, '\0', 4096);
   if ((nbytes = read(i, tmp, 4096)) <= 0)
     {
       if (nbytes == 0)
-	{
-	  /* remove_from_socket(s->clients, i); */
-	  cmd_pdi(s, c);
-	  ring_buffer_destroy(c->buffer);
-	  remove_from_socket(s->clients, i, s->teams);
-	  close(i);
-	  /* remove_client_by_id(s->clients, i); */
-	  printf("%s: socket %d hung up\n", argv[0], i);
-	}
-      else
+	destroy_socket(s, c, i, argv);
+     else
 	perror("read() error!");
       close(i);
       FD_CLR(i, &(s->master));
@@ -95,11 +99,4 @@ void		read_write_server(t_server *s, int i, char **argv)
       create_cmd(s, c);
     }
   free(tmp);
-  /* free(c->team_name); */
-  /* free(c->pos); */
-  /* free_list(c->inventory); */
-  /* free_list(c->cmds); */
-  /* free(c->buffer->buffer); */
-  /* free(c->buffer); */
-  /* free(c); */
 }

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 14:38:32 2015 Audibert Louis
-** Last update Tue Jun 30 18:18:13 2015 Antoine Garcia
+** Last update Thu Jul  2 10:09:20 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -21,7 +21,7 @@ void	protocole_graphique(t_server *s, t_client *c)
   cmd_enw_all(s, c, GUI);
 }
 
-void		protocole_connexion(t_server *s, int fd)
+int		protocole_connexion(t_server *s, int fd)
 {
   char		*tmp;
   t_client	*client;
@@ -33,8 +33,13 @@ void		protocole_connexion(t_server *s, int fd)
   if ((nb = read(fd, tmp, 1024) > 0))
     {
       client = get_client_by_id(s->clients, fd);
-      cmd_team(s, client, tmp, NORMAL);
+      if (cmd_team(s, client, tmp, NORMAL) == ERROR)
+	return (ERROR);
     }
   else
-    send_data(fd, "ko\n");
+    {
+      send_data(fd, "ko\n");
+      return (ERROR);
+    }
+  return (SUCCESS);
 }

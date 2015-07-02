@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:33 2015 Nicolas Girardot
-// Last update Wed Jul  1 13:17:30 2015 Nicolas Girardot
+// Last update Wed Jul  1 18:44:47 2015 Nicolas Girardot
 //
 
 #ifndef GRAPHMAP_HH_
@@ -42,6 +42,27 @@ private:
   SDL_Surface *_bubble;
   SDL_Texture *_bubblet;
 
+  SDL_Surface *_food;
+  SDL_Texture *_foodt;
+
+  SDL_Surface *_rock1;
+  SDL_Texture *_rock1t;
+
+  SDL_Surface *_rock2;
+  SDL_Texture *_rock2t;
+
+  SDL_Surface *_rock3;
+  SDL_Texture *_rock3t;
+
+  SDL_Surface *_rock4;
+  SDL_Texture *_rock4t;
+
+  SDL_Surface *_rock5;
+  SDL_Texture *_rock5t;
+
+  SDL_Surface *_rock6;
+  SDL_Texture *_rock6t;
+
   std::vector<std::vector<SDL_Texture *> > _sprites;
 
   int	_height;
@@ -55,6 +76,7 @@ public:
   void	setLocked(int, int);
   int	getHeight();
   int	getWidth();
+  void	initSprites();
 };
 
 #endif

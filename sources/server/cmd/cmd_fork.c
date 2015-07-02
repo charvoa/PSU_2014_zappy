@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Wed Jul  1 13:27:25 2015 Audibert Louis
+** Last update Thu Jul  2 11:16:11 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -25,7 +25,7 @@ void		delay_sup(t_egg *e, int billion, long ns_delay)
 {
   int		mod;
 
-  e->eclos.tv_sec += ns_delay / billion; 
+  e->eclos.tv_sec += ns_delay / billion;
   mod = ns_delay % billion;
   if (e->eclos.tv_nsec + mod > billion)
     {

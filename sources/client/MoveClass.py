@@ -3,9 +3,8 @@ class MoveClass():
     """ MoveClass a class that get the best movement for an AI"""
 
     def getMovements(self, target):
-        movement = []
         if (target == 0):
-            return (movement)
+            return (0, 0)
         y = 1
         x = 0
         res = 0

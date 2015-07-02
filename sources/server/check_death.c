@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Thu Jul  2 08:37:12 2015 Serge Heitzler
+** Last update Thu Jul  2 11:13:46 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -16,7 +16,6 @@ int		get_alloc_to_delete(t_server *s)
   t_client	*c;
   int		i;
 
-  //  c = xmalloc(sizeof(t_client));
   tmp = s->clients->start;
   i = 0;
   while (tmp != NULL)
@@ -82,7 +81,6 @@ void		check_death(t_server *s)
   delete_fds = xmalloc(get_alloc_to_delete(s) * sizeof(int) * 2);
   i = 0;
   j = 0;
-  //  c = xmalloc(sizeof(t_client));
   while (tmp != NULL)
     {
       c = tmp->data;
