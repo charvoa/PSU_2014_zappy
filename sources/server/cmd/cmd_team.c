@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Thu Jul  2 09:48:51 2015 Audibert Louis
+** Last update Thu Jul  2 10:42:54 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -64,7 +64,7 @@ int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   sprintf(trame, "%d", t->slot_rest);
   send_data(c->fd, trame);
   bzero(c->team_name, strlen(n));
-  send_data(c->fd, "ok\n");
+  /* send_data(c->fd, "ok\n"); */
   return (1);
 }
 
