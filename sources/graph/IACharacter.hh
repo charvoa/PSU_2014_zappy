@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:22:59 2015 Serge Heitzler
-// Last update Wed Jul  1 13:16:32 2015 Nicolas Girardot
+// Last update Thu Jul  2 11:18:59 2015 Nicolas Girardot
 //
 
 #ifndef IACharacter_HH_
@@ -39,6 +39,8 @@ public:
   void		setLVL(int);
   bool		isBroadcasting();
   void		updateBroadcast();
+  int		getLVL();
+  int		getOrientation();
   void		broadcast();
   void		updateInventory(std::vector<int> &);
   void		updateAtt(std::vector<std::string> &);

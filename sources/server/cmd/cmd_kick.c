@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Wed Jul  1 10:29:53 2015 Serge Heitzler
+** Last update Thu Jul  2 14:11:24 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -27,14 +27,16 @@ char		*get_trame_deplacement(t_client *c)
   else
     x = c->pos->x + 1;
   trame = xmalloc((strlen("deplacement: ")
-		   + 3 + istm(x) + istm(y)) * sizeof(char));
-  bzero(trame, strlen("deplacement: ") + 3 + istm(x) + istm(y));
+		   + 4 + istm(x) + istm(y)) * sizeof(char));
+  bzero(trame, strlen("deplacement: ") + 4 + istm(x) + istm(y));
   sprintf(trame, "deplacement: %d %d\n", x, y);
   return (trame);
 }
 
 void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
 {
+  s->map->objects[moved->pos->y][moved->pos->x]->ids =
+    remove_id(s->map->objects[moved->pos->y][moved->pos->x], moved->fd);
   if (caller->orientation == NORD)
     moved->pos->y = caller->pos->y - 1;
   else if (caller->orientation == EST)
@@ -43,6 +45,8 @@ void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
     moved->pos->y = caller->pos->y + 1;
   else
     moved->pos->x = caller->pos->x + 1;
+  s->map->objects[moved->pos->y][moved->pos->x]->ids =
+    add_id(s->map->objects[moved->pos->y][moved->pos->x], moved->fd);
   cmd_ppo(s, moved, "protocole", GUI);
 }
 
@@ -63,7 +67,7 @@ int		cmd_kick(t_server *s, t_client *c,
     {
       client = get_client_by_id(s->clients,
 				s->map->objects[c->pos->y][c->pos->x]->ids[i]);
-      if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->x)
+      if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->y)
 	  && client->fd != c->fd)
   	    {
 	      move_client_from_ori(s, c, client);
