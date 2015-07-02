@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Thu Jul  2 11:39:02 2015 Nicolas Girardot
+// Last update Thu Jul  2 14:47:03 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -150,20 +150,20 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::ve
     }
   for(std::list<IACharacter *>::iterator it = players.begin(); it != players.end() ; it++)
     {
-      if ((*it)->getPosition()->_x >= focus._x - 3 && (*it)->getPosition()->_x <= focus._x + 3 && (*it)->getPosition()->_y >= focus._y - 3 && (*it)->getPosition()->_y <= focus._y + 3)
+      if ((*it)->getPosition()._x >= focus._x - 3 && (*it)->getPosition()._x <= focus._x + 3 && (*it)->getPosition()._y >= focus._y - 3 && (*it)->getPosition()._y <= focus._y + 3)
 	{
 	  SDL_Rect rect;
 	  if ((*it)->isBroadcasting())
 	    {
-	      rect.x = (220 + ((*it)->getPosition()->_x - focus._x + 3) * _squareSize);
-	      rect.y = (50 + ((*it)->getPosition()->_y - focus._y + 3) * _squareSize);
+	      rect.x = (220 + ((*it)->getPosition()._x - focus._x + 3) * _squareSize);
+	      rect.y = (50 + ((*it)->getPosition()._y - focus._y + 3) * _squareSize);
 	      rect.w = 50;
 	      rect.h = 50;
 	      SDL_RenderCopy(renderer, _bubblet, NULL, &rect);
 	      (*it)->updateBroadcast();
 	    }
-	  rect.x = (150 + ((*it)->getPosition()->_x - focus._x + 3) * _squareSize);
-	  rect.y = (100 + ((*it)->getPosition()->_y - focus._y + 3) * _squareSize);
+	  rect.x = (150 + ((*it)->getPosition()._x - focus._x + 3) * _squareSize);
+	  rect.y = (100 + ((*it)->getPosition()._y - focus._y + 3) * _squareSize);
 	  rect.w = 100;
 	  rect.h = 142;
 	  SDL_RenderCopy(renderer, _sprites.at((*it)->getLVL() - 1).at((*it)->getOrientation() - 1), NULL, &rect);

@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Wed Jul  1 01:29:13 2015 Antoine Garcia
+// Last update Wed Jul  1 01:42:02 2015 Antoine Garcia
 //
 
 #include "Command.hh"
@@ -105,7 +105,7 @@ void	Command::pnw(std::string cmd, GameEngine *game)
   int			y;
   int			o;
   int			l;
-  int			N;
+  std::string			N;
 
   ss >> n;
   ss >> x;
@@ -118,19 +118,25 @@ void	Command::pnw(std::string cmd, GameEngine *game)
   vec.push_back(y);
   vec.push_back(o);
   vec.push_back(l);
-  vec.push_back(N);
+  game->addPlayers(vec, N);
 }
 
 void	Command::ppo(std::string cmd, GameEngine *game)
 {
   (void) game;
-  std::string			param;
-  std::vector<std::string>	detPlayer;
-  std::istringstream		ss(cmd);
+  std::string			str(cmd.begin() + 5, cmd.end());
+  std::vector<int>		detPlayer;
+  std::istringstream		ss(str);
+  int				x;
+  int				y;
+  int				o;
 
-  while (std::getline(ss, param, ' '))
-    if (param != "ppo")
-      detPlayer.push_back(param);
+  ss >> x;
+  ss >> y;
+  ss >> o;
+  detPlayer.push_back(x);
+  detPlayer.push_back(y);
+  detPlayer.push_back(o);
   game->updatePlayer(detPlayer);
 }
 
@@ -358,7 +364,7 @@ void Command::Exec()
 void Command::Parse(std::string command, GameEngine *game)
 {
   std::string cmd(command, 0, 3);
-  std::cout << command << std::endl;
+  //  std::cout << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)

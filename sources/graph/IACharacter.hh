@@ -5,7 +5,7 @@
 // Login   <sergeheitzler@epitech.net>
 //
 // Started on  Thu Jun 25 17:22:59 2015 Serge Heitzler
-// Last update Thu Jul  2 11:18:59 2015 Nicolas Girardot
+// Last update Thu Jul  2 15:10:56 2015 Nicolas Girardot
 //
 
 #ifndef IACharacter_HH_
@@ -30,7 +30,7 @@ public:
     }	e_type;
 
 public:
-  IACharacter(std::vector<std::string> &);
+  IACharacter(std::vector<std::int> &, std::string);
   ~IACharacter();
 
   void		increment(e_type type);
@@ -46,7 +46,7 @@ public:
   void		updateAtt(std::vector<std::string> &);
   int		get(e_type type);
   std::string	&getTeam();
-  Position	*getPosition();
+  Position	&getPosition();
 
  private:
   Position	*_position;
