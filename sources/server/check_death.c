@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Thu Jul  2 13:34:55 2015 Serge Heitzler
+** Last update Thu Jul  2 14:40:38 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -83,7 +83,7 @@ void		check_death(t_server *s)
   while (tmp != NULL)
     {
       c = tmp->data;
-      if (c->inventory->food <= 0)
+      if (c->type == IA && c->inventory->food <= 0)
 	{
 	  delete_fds[j] = xmalloc(sizeof(int) * 2);
 	  delete_fds[j][0] = i;
