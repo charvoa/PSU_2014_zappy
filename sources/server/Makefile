@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Wed Jul  1 14:19:36 2015 Serge Heitzler
+## Last update Thu Jul  2 11:25:00 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -48,6 +48,7 @@ SRCS		= 	main.c	 				\
 			utilis.c				\
 			size_of_tab.c				\
 			check_eggs.c				\
+			fill_struct_serv.c			\
 			width_and_length.c			\
 			$(X_DIR)xmalloc.c	 		\
 			$(X_DIR)xlisten.c	 		\
@@ -100,6 +101,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)pointers_array.c		\
 			$(CMD_DIR)show_items_at_position.c	\
 			$(CMD_DIR)determine_pos.c		\
+			$(CMD_DIR)init_cmd_team.c		\
 			$(LIST_DIR)push_back.c 			\
 			$(LIST_DIR)push_at_index.c 		\
 			$(LIST_DIR)push_front.c 		\

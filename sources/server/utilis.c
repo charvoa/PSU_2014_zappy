@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Thu Jul  2 10:22:15 2015 Audibert Louis
+** Last update Thu Jul  2 11:12:47 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -65,6 +65,15 @@ int	accept_server(t_server *s, char **argv)
   return (SUCCESS);
 }
 
+void		destroy_socket(t_server *s, t_client *c, int i, char **argv)
+{
+  cmd_pdi(s, c);
+  ring_buffer_destroy(c->buffer);
+  remove_from_socket(s->clients, i, s->teams);
+  close(i);
+  printf("%s: socket %d hung up\n", argv[0], i);
+}
+
 void		read_write_server(t_server *s, int i, char **argv)
 {
   ssize_t	nbytes;
@@ -78,16 +87,8 @@ void		read_write_server(t_server *s, int i, char **argv)
   if ((nbytes = read(i, tmp, 4096)) <= 0)
     {
       if (nbytes == 0)
-	{
-	  /* remove_from_socket(s->clients, i); */
-	  cmd_pdi(s, c);
-	  ring_buffer_destroy(c->buffer);
-	  remove_from_socket(s->clients, i, s->teams);
-	  close(i);
-	  /* remove_client_by_id(s->clients, i); */
-	  printf("%s: socket %d hung up\n", argv[0], i);
-	}
-      else
+	destroy_socket(s, c, i, argv);
+     else
 	perror("read() error!");
       close(i);
       FD_CLR(i, &(s->master));
@@ -98,11 +99,4 @@ void		read_write_server(t_server *s, int i, char **argv)
       create_cmd(s, c);
     }
   free(tmp);
-  /* free(c->team_name); */
-  /* free(c->pos); */
-  /* free_list(c->inventory); */
-  /* free_list(c->cmds); */
-  /* free(c->buffer->buffer); */
-  /* free(c->buffer); */
-  /* free(c); */
 }

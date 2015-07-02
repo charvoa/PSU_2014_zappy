@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Wed Jul  1 10:18:05 2015 Serge Heitzler
+** Last update Thu Jul  2 11:34:13 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -61,10 +61,9 @@ void		exec_cmd(t_server *s, t_client *c)
   cmd = c->cmds->start->data;
   if ((ret = is_cmd(cmd->label)) != NO)
     {
-      printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd->label); // dbg
+      printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd->label);
       g_cmds[ret].ptr_func(s, c, cmd->label);
     }
   else
     fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd->label);
-  // free(cmd); Risque d'invalid read/write ?
 }
