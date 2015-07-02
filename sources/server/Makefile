@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu Jul  2 11:44:07 2015 Serge Heitzler
+## Last update Thu Jul  2 15:01:59 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -96,6 +96,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_ebo.c			\
 			$(CMD_DIR)cmd_edi.c			\
 			$(CMD_DIR)cmd_pdi.c			\
+			$(CMD_DIR)cmd_seg.c			\
 			$(CMD_DIR)cmd_graphic.c			\
 			$(CMD_DIR)advance_funcs.c		\
 			$(CMD_DIR)int_size_to_malloc.c		\
