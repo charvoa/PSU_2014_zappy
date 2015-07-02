@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Wed Jul  1 22:53:58 2015 Serge Heitzler
+** Last update Thu Jul  2 11:04:31 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -67,11 +67,10 @@ char		*fill_final_string(t_server *s, int size_malloc,
   while (++i < 8)
     {
       x = -1;
-      printf("%s %d\n", g_objects[i].label, items[i]);
       while (++x < items[i])
 	{
 	  if (total == 1)
-	    sprintf(final, "%s%s,", final, g_objects[i].label);
+	    sprintf(final, "%s%s", final, g_objects[i].label);
 	  else
 	    sprintf(final, "%s%s ", final, g_objects[i].label);
 	  total--;
