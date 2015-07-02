@@ -5,14 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Wed Jul  1 10:18:05 2015 Serge Heitzler
+** Last update Thu Jul  2 15:20:01 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
-t_cmds	g_cmds[23] =
+t_cmds	g_cmds[22] =
   {
-    {"GRAPHIC", &cmd_graphic, 0},
     {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},
     {"droite", &cmd_right, 7},
@@ -42,7 +41,7 @@ int		is_cmd(char *cmd)
   int	i;
 
   i = 0;
-  while (i < 23)
+  while (i < 22)
     {
       if (!strncmp(g_cmds[i].name, cmd, strlen(g_cmds[i].name)))
 	return (i);
@@ -56,15 +55,12 @@ void		exec_cmd(t_server *s, t_client *c)
   t_cmd		*cmd;
   int		ret;
 
-  cmd = xmalloc(sizeof(t_cmd));
-  cmd->label = xmalloc(sizeof(char) * 50); //50 en dur déterminer taille maximale CMD
   cmd = c->cmds->start->data;
   if ((ret = is_cmd(cmd->label)) != NO)
     {
-      printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd->label); // dbg
+      printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd->label);
       g_cmds[ret].ptr_func(s, c, cmd->label);
     }
   else
     fprintf(stderr, RED "IA sent a bad cmd [%s]\n" RESET, cmd->label);
-  // free(cmd); Risque d'invalid read/write ?
 }

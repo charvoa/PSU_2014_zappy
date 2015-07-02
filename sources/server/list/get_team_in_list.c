@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 23 18:36:37 2015 Audibert Louis
-** Last update Thu Jul  2 08:32:24 2015 Serge Heitzler
+** Last update Thu Jul  2 12:06:36 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -16,7 +16,7 @@ char		*get_team_name_at_index(t_list *list, int index)
   t_team	*team;
   int		i;
 
-  i = 1;
+  i = 0;
   tmp = list->start;
   team = xmalloc(sizeof(t_team));
   team = tmp->data;

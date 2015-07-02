@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Wed Jul  1 14:19:36 2015 Serge Heitzler
+## Last update Thu Jul  2 15:01:59 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -48,6 +48,7 @@ SRCS		= 	main.c	 				\
 			utilis.c				\
 			size_of_tab.c				\
 			check_eggs.c				\
+			fill_struct_serv.c			\
 			width_and_length.c			\
 			$(X_DIR)xmalloc.c	 		\
 			$(X_DIR)xlisten.c	 		\
@@ -58,6 +59,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_right.c			\
 			$(CMD_DIR)cmd_left.c			\
 			$(CMD_DIR)cmd_view.c			\
+			$(CMD_DIR)cmd_view_support.c		\
 			$(CMD_DIR)cmd_advance.c			\
 			$(CMD_DIR)cmd_inventory.c		\
 			$(CMD_DIR)cmd_take_object.c		\
@@ -94,12 +96,14 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_ebo.c			\
 			$(CMD_DIR)cmd_edi.c			\
 			$(CMD_DIR)cmd_pdi.c			\
+			$(CMD_DIR)cmd_seg.c			\
 			$(CMD_DIR)cmd_graphic.c			\
 			$(CMD_DIR)advance_funcs.c		\
 			$(CMD_DIR)int_size_to_malloc.c		\
 			$(CMD_DIR)pointers_array.c		\
 			$(CMD_DIR)show_items_at_position.c	\
 			$(CMD_DIR)determine_pos.c		\
+			$(CMD_DIR)init_cmd_team.c		\
 			$(LIST_DIR)push_back.c 			\
 			$(LIST_DIR)push_at_index.c 		\
 			$(LIST_DIR)push_front.c 		\

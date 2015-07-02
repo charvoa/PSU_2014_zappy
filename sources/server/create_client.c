@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Tue Jun 30 17:58:36 2015 Audibert Louis
+** Last update Thu Jul  2 12:25:28 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -53,7 +53,8 @@ int		create_client(t_server *s, int fd)
   c = xmalloc(sizeof(t_client));
   c->fd = fd;
   c->pos = xmalloc(sizeof(t_position));
-  c->type = IA;
+  c->type = GUI;
+  c->state = ADULT;
   c->team_name = strdup("DEFAULT");
   c->inventory = xmalloc(sizeof(t_inventory));
   c->cmds = create_list();

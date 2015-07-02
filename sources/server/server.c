@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Thu Jul  2 10:12:25 2015 Audibert Louis
+** Last update Thu Jul  2 13:51:56 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -78,66 +78,4 @@ void		loop_server(t_server *s, char **argv)
       if (check_fds(s, argv) == SUCCESS)
 	check_exec(s);
     }
-}
-
-char	**get_tab(int argc, char **argv)
-{
-  char	**tab;
-  int	i;
-
-  tab = xmalloc((argc + 1) * sizeof(char*));
-  i = 0;
-  while (argv[i])
-    {
-      tab[i] = xmalloc((strlen(argv[i]) + 1) * sizeof(char));
-      bzero(tab[i], (strlen(argv[i]) + 1));
-      strcpy(tab[i], argv[i]);
-      i++;
-    }
-  tab[i] = NULL;
-  return (tab);
-}
-
-void	init_opt_server(t_server *s)
-{
-  s->o = xmalloc(sizeof(*s->o));
-  s->port = 4242;
-  s->time_action = 100;
-  s->map_set[0] = 0;
-  s->map_set[1] = 0;
-}
-
-t_server	*fill_struct_serv(int argc, char **argv)
-{
-  t_server	*s;
-  int		opt;
-  int		(*options[7])(t_server *s);
-
-  s = xmalloc(sizeof(t_server));
-  init_opt(options);
-  s->teams = create_list();
-  init_opt_server(s);
-  s->clients = create_list();
-  s->eggs = create_list();
-  s->o->argc = argc;
-  s->o->argv = get_tab(argc, argv);
-  s->o->team_active = 0;
-  while ((opt = getopt(argc, argv,"p:x:y:n:c:t:v")) != -1)
-    {
-      if (opt == 'n')
-      	s->o->team_active = 1;
-      s->o->opt = opt;
-      s->o->optarg = optarg;
-      s->o->optind = optind;
-      exec_option(s, options);
-    }
-  if (s->o->team_active == 0)
-    {
-      printf("Usage: ./zappy_server -n 'team' 'team' ...\n");
-      exit(-1);
-    }
-  launch_init_map(s);
-  set_slot_for_team(s->teams, "slot_rest", 10);
-  set_slot_for_team(s->teams, "slot_team", 10);
-  return (s);
 }
