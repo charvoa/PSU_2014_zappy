@@ -5,11 +5,12 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu Jul  2 11:12:38 2015 Nicolas Girardot
+// Last update Wed Jul  1 01:29:13 2015 Antoine Garcia
 //
 
 #include "Command.hh"
 #include <tuple>
+
 Command::Command()
 {
   Exec();
@@ -20,7 +21,7 @@ Command::~Command(){}
 void Command::pin(std::string cmd, GameEngine *game)
 {
   std::vector<int>	vector;
-  std::string		parse(cmd.begin() + 4, cmd.end());
+  std::string		parse(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(parse);
 
   for (int i = 0; i < 10 ; i++)
@@ -96,14 +97,28 @@ void	Command::tna(std::string cmd, GameEngine *game)
 void	Command::pnw(std::string cmd, GameEngine *game)
 {
   (void) game;
-  std::string			param;
-  std::vector<std::string>	detPlayer;
-  std::istringstream		ss(cmd);
+  std::string		str(cmd.begin() + 5, cmd.end());
+  std::istringstream	ss(str);
+  std::vector<int>	vec;
+  int			n;
+  int			x;
+  int			y;
+  int			o;
+  int			l;
+  int			N;
 
-  while (std::getline(ss, param, ' '))
-    if (param != "pnw")
-      detPlayer.push_back(param);
-  game->addPlayer(detPlayer);
+  ss >> n;
+  ss >> x;
+  ss >> y;
+  ss >> o;
+  ss >> l;
+  ss >> N;
+  vec.push_back(n);
+  vec.push_back(x);
+  vec.push_back(y);
+  vec.push_back(o);
+  vec.push_back(l);
+  vec.push_back(N);
 }
 
 void	Command::ppo(std::string cmd, GameEngine *game)
@@ -121,7 +136,7 @@ void	Command::ppo(std::string cmd, GameEngine *game)
 
 void	Command::plv(std::string cmd, GameEngine *game)
 {
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   int			id;
   int			lvl;
@@ -134,7 +149,7 @@ void	Command::plv(std::string cmd, GameEngine *game)
 void Command::pgt(std::string cmd, GameEngine *game)
 {
   (void) game;
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::vector<int>	vec;
   std::istringstream	ss(str);
 
@@ -161,7 +176,7 @@ void Command::pfk(std::string cmd, GameEngine *game)
 {
   (void)game;
 
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   int			id;
 
@@ -181,7 +196,7 @@ void Command::seg(std::string cmd, GameEngine *game)
 
 void Command::pbc(std::string cmd, GameEngine *game)
 {
-  std::string		str(cmd.begin() + 4, cmd.end() - 1);
+  std::string		str(cmd.begin() + 5, cmd.end() - 1);
   std::istringstream	ss(str);
   int val;
   std::string	string;
@@ -212,7 +227,7 @@ void Command::pic(std::string cmd, GameEngine *game)
 {
   (void) game;
   (void) cmd;
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   int x;
   int y;
@@ -228,7 +243,7 @@ void Command::pic(std::string cmd, GameEngine *game)
   vector.push_back(l);
   while (ss >> var)
     {
-      std::string val(var.begin(), var.end());
+      std::string val(var.begin() + 1, var.end());
       int value;
       value = std::stoi(val);
       vector.push_back(value);
@@ -240,7 +255,7 @@ void Command::pdr(std::string cmd, GameEngine *game)
 {
   (void)game;
 
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   int id;
   int id_ressource;
@@ -258,7 +273,7 @@ void Command::smg(std::string cmd, GameEngine *game)
 
 void Command::eht(std::string cmd, GameEngine *game)
 {
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   int val = std::stoi(str);
   game->deleteEgg(val);
 }
@@ -266,7 +281,7 @@ void Command::eht(std::string cmd, GameEngine *game)
 void Command::ebo(std::string cmd, GameEngine *game)
 {
   (void)game;
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   int val = std::stoi(str);
 
   val = val;
@@ -275,7 +290,7 @@ void Command::ebo(std::string cmd, GameEngine *game)
 void Command::edi(std::string cmd, GameEngine *game)
 {
   (void)game;
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   int val = std::stoi(str);
   val = val;
 }
@@ -301,9 +316,10 @@ void Command::enw(std::string cmd, GameEngine *game)
   int			y;
 
   ss >> e;
-  ss >> n;
-  ss >> x;
-  ss >> y;
+  std::istringstream	tmp(ss.str());
+  tmp >> n;
+  tmp >> x;
+  tmp >> y;
   vec.push_back(e);
   vec.push_back(n);
   vec.push_back(x);
