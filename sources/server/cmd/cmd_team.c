@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Thu Jul  2 13:20:37 2015 Serge Heitzler
+** Last update Thu Jul  2 15:59:08 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -78,6 +78,7 @@ int		cmd_team(t_server *s, t_client *c,
   if (strcmp(name, "GRAPHIC") == 0)
     {
       protocole_graphique(s, c);
+      c->type = GUI;
       return (SUCCESS);
     }
   if (is_a_team(s, name) == 0)
