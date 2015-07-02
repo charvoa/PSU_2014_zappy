@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Thu Jul  2 11:44:12 2015 Serge Heitzler
+** Last update Thu Jul  2 15:00:57 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -22,6 +22,9 @@ int		is_there_an_egg(t_list *eggs, char *team, int fd);
 
 /* Function(s) in file check_exec.c */
 int		check_exec(t_server *);
+
+/* Function(s) in file check_end_game.c */
+void		check_end_game(t_server *);
 
 /* Function(s) in file count_teams.c */
 int		count_teams(t_server *s);
