@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jul  1 13:05:17 2015 Serge Heitzler
-** Last update Thu Jul  2 11:14:16 2015 Audibert Louis
+** Last update Thu Jul  2 14:11:48 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -59,12 +59,12 @@ void			decrement_food(t_server *s)
   if (s->clients->length > 0)
     {
       while (tmp)
-	{
-	  c = tmp->data;
-	  if (c->type == IA)
-	    c->inventory->food--;
-	  tmp = tmp->next;
-	}
+  	{
+  	  c = tmp->data;
+  	  if (c->type == IA)
+  	    c->inventory->food--;
+  	  tmp = tmp->next;
+  	}
     }
 }
 
