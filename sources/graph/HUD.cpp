@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:00 2015 Nicolas Girardot
-// Last update Thu Jul  2 10:51:06 2015 Nicolas Girardot
+// Last update Thu Jul  2 11:13:51 2015 Nicolas Girardot
 //
 
 #include "HUD.hh"

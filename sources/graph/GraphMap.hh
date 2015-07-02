@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:33 2015 Nicolas Girardot
-// Last update Wed Jul  1 18:44:47 2015 Nicolas Girardot
+// Last update Thu Jul  2 11:23:09 2015 Nicolas Girardot
 //
 
 #ifndef GRAPHMAP_HH_
@@ -18,6 +18,7 @@
 #include <list>
 #include <iterator>
 #include <iostream>
+#include <sstream>
 
 class GameEngine;
 
@@ -76,7 +77,7 @@ public:
   void	setLocked(int, int);
   int	getHeight();
   int	getWidth();
-  void	initSprites();
+  void	initSprites(SDL_Renderer *);
 };
 
 #endif

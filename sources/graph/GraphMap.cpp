@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Thu Jul  2 10:32:02 2015 Nicolas Girardot
+// Last update Thu Jul  2 11:39:02 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -17,7 +17,7 @@ GraphMap::GraphMap(int width, int height, SDL_Renderer *renderer)
   _width = width;
   _height = height;
   _squareSize = 100;
-  initSprites();
+  initSprites(renderer);
   _grass = IMG_Load("grass.jpg");
   _grasst = SDL_CreateTextureFromSurface(renderer, _grass);
   _dirt = IMG_Load("dirt.jpg");
@@ -48,9 +48,26 @@ GraphMap::GraphMap(int width, int height, SDL_Renderer *renderer)
 
 GraphMap::~GraphMap() {}
 
-void	GraphMap::initSprites()
+void	GraphMap::initSprites(SDL_Renderer *renderer)
 {
-
+  std::stringstream	ss;
+  std::vector<SDL_Texture *> tmp;
+  for (int i = 1; i <= 8; i++)
+    {
+      tmp.clear();
+      for (int j = 1; j <=4; j++)
+	{
+	  SDL_Surface *surface;
+	  SDL_Texture *texture;
+	  ss.str("");
+	  ss.clear();
+	  ss << "zelda_sprites/" <<  i << "-" << j << ".png";
+	  surface = IMG_Load(ss.str().c_str());
+	  texture = SDL_CreateTextureFromSurface(renderer, surface);
+	  tmp.push_back(texture);
+	}
+      _sprites.push_back(tmp);
+    }
 }
 
 void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::vector<Case *> > map, std::list<IACharacter *> &players, std::list<Egg *> &eggs)
@@ -149,7 +166,7 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::ve
 	  rect.y = (100 + ((*it)->getPosition()->_y - focus._y + 3) * _squareSize);
 	  rect.w = 100;
 	  rect.h = 142;
-	  SDL_RenderCopy(renderer, _playerSkint, NULL, &rect);
+	  SDL_RenderCopy(renderer, _sprites.at((*it)->getLVL() - 1).at((*it)->getOrientation() - 1), NULL, &rect);
 	}
     }
   for(i = focus._x - 3  ; i <= focus._x + 3 ; i++)
