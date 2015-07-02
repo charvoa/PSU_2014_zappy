@@ -5,12 +5,12 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Wed Jul  1 14:54:48 2015 Nicolas Girardot
+** Last update Thu Jul  2 09:36:17 2015 Audibert Louis
 */
 
 #include "functions.h"
 
-int	is_a_team(t_server *s, char *team)
+int		is_a_team(t_server *s, char *team)
 {
   t_node	*tmp;
   t_team	*t_iterate;
@@ -36,7 +36,7 @@ int	is_a_team(t_server *s, char *team)
   return (-1);
 }
 
-int	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
+int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
 {
   void		(*orientation[4])(t_client *);
   char		trame[21];
@@ -67,8 +67,27 @@ int	fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   return (1);
 }
 
-int	cmd_team(t_server *s, t_client *c,
-		 char *cmd, e_client_type type)
+int		get_index_to_delete(t_server *s, t_client *c)
+{
+  int		i;
+  t_node	*tmp;
+  t_client	*client;
+
+  tmp = s->clients->start;
+  i = 0;
+  while (tmp)
+    {
+      client = tmp->data;
+      if (client->fd == c->fd)
+	return (i);
+      tmp = tmp->next;
+      i++;
+    }
+  return (-1);
+}
+
+int		cmd_team(t_server *s, t_client *c,
+			 char *cmd, e_client_type type)
 {
   (void)type;
   char		trame[21];
@@ -90,13 +109,16 @@ int	cmd_team(t_server *s, t_client *c,
 	    cmd_pnw(s, c, NULL, NORMAL);
 	}
       else
-	send_data(c->fd, "NO_SLOT_REST\r\n");
+	send_data(c->fd, "ko\n");
       bzero(trame, 21);
       sprintf(trame, "%d %d\n", s->map->size->width, s->map->size->height);
       printf("TRAM %s\n", trame);
       send_data(c->fd, trame);
     }
   else
-    send_data(c->fd, "ko\n");
+    {
+      send_data(c->fd, "ko\n");
+      remove_at_index(s->clients, get_index_to_delete(s, c));
+    }
   return (0);
 }

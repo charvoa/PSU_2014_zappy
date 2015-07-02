@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Wed Jul  1 14:40:32 2015 Audibert Louis
+** Last update Wed Jul  1 17:52:15 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -29,18 +29,18 @@ int		get_alloc_to_delete(t_server *s)
   return (i);
 }
 
-static void		free_delete_fds(t_server *s, int **fds)
-{
-  int	nb = get_alloc_to_delete(s);
-  int	i = 0;
+/* static void		free_delete_fds(t_server *s, int **fds) */
+/* { */
+/*   int	nb = get_alloc_to_delete(s); */
+/*   int	i = 0; */
 
-  while (i < nb)
-    {
-      free(fds[i]);
-      i++;
-    }
-  free(fds);
-}
+/*   while (i < nb) */
+/*     { */
+/*       free(fds[i]); */
+/*       i++; */
+/*     } */
+/*   free(fds); */
+/* } */
 
 void		delete_players(t_server *s, int **fds, int len)
 {
@@ -64,7 +64,7 @@ void		delete_players(t_server *s, int **fds, int len)
       close(fds[i][1]);
       i++;
     }
-  free_delete_fds(s, fds);
+  /* free_delete_fds(s, fds); */
 }
 
 void		check_death(t_server *s)
