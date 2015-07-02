@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:20 2015 Serge Heitzler
-** Last update Wed Jul  1 10:36:44 2015 Serge Heitzler
+** Last update Wed Jul  1 19:35:47 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -33,6 +33,7 @@ int		cmd_bct(t_server *s, t_client *c,
   size_malloc = (14 + istm(*x) + istm(*y) + istm(b->food)
 		 + istm(b->linemate) + istm(b->deraumere) + istm(b->sibur)
 		 + istm(b->mendiane) + istm(b->phiras) + istm(b->thystame));
+
   final = xmalloc(sizeof(char) * size_malloc);
   memset(final, 0, size_malloc);
   sprintf(final, "bct %d %d %d %d %d %d %d %d %d\n",

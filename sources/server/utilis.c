@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Thu Jul  2 09:30:24 2015 Audibert Louis
+** Last update Thu Jul  2 10:22:15 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -40,7 +40,7 @@ void	bind_socket(t_server *s, int port)
   printf("Server-bind() is OK ...\n");
 }
 
-void	accept_server(t_server *s, char **argv)
+int	accept_server(t_server *s, char **argv)
 {
   (void)argv;
   s->addrlen = sizeof(s->clientaddr);
@@ -59,8 +59,10 @@ void	accept_server(t_server *s, char **argv)
       create_client(s, s->newfd);
       printf("New connection from %s on socket %d\n",
 	     inet_ntoa(s->clientaddr.sin_addr), s->newfd);
-      protocole_connexion(s, s->newfd);
+      if (protocole_connexion(s, s->newfd) == ERROR)
+	return (ERROR);
     }
+  return (SUCCESS);
 }
 
 void		read_write_server(t_server *s, int i, char **argv)
@@ -69,7 +71,8 @@ void		read_write_server(t_server *s, int i, char **argv)
   char		*tmp;
   t_client	*c;
 
-  c = get_client_by_id(s->clients, i);
+  if ((c = get_client_by_id(s->clients, i)) == NULL)
+    return;
   tmp = xmalloc(4096 * sizeof(char));
   memset(tmp, '\0', 4096);
   if ((nbytes = read(i, tmp, 4096)) <= 0)

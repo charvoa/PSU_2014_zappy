@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Sun Jun 28 15:40:42 2015 Serge Heitzler
+** Last update Wed Jul  1 22:53:58 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -21,6 +21,16 @@ t_objects	g_objects[8] =
     {"phiras", NULL},
     {"thystame", NULL}
   };
+
+int		get_last_wrote(int *nb_items)
+{
+  int		i;
+
+  i = 7;
+  while (i >= 0 && nb_items[i] == 0)
+    i--;
+  return (i);
+}
 
 int		*get_nb_items(t_block *block)
 {
@@ -38,38 +48,33 @@ int		*get_nb_items(t_block *block)
   return (nb_items);
 }
 
-int		get_last_wrote(int *nb_items)
+char		*fill_final_string(t_server *s, int size_malloc,
+				   int x, int y)
 {
   int		i;
-
-  i = 7;
-  while (i >= 0 && nb_items[i] == 0)
-    i--;
-  return (i);
-}
-
-char		*fill_final_string(int size_malloc, int *nb_items)
-{
-  int		i;
+  int		total;
   char		*final;
+  int		*items;
+  t_block	*b;
 
   i = -1;
-  final = xmalloc(sizeof(char) * (size_malloc + 1));
-  memset(final, 0, size_malloc + 1);
-  while (++i <= get_last_wrote(nb_items))
+  final = xmalloc(sizeof(char) * (size_malloc));
+  memset(final, 0, size_malloc);
+  b = s->map->objects[y][x];
+  total = b->food + b->nb_clients + b->linemate + b->deraumere
+    + b->sibur + b->mendiane + b->phiras + b->thystame;
+  items = get_nb_items(b);
+  while (++i < 8)
     {
-      if (nb_items[i] > 0)
+      x = -1;
+      printf("%s %d\n", g_objects[i].label, items[i]);
+      while (++x < items[i])
 	{
-	  if (i == get_last_wrote(nb_items))
-	    {
-	      strcat(final, g_objects[i].label);
-	      sprintf(final, "%s %d", final, nb_items[i]);
-	    }
+	  if (total == 1)
+	    sprintf(final, "%s%s,", final, g_objects[i].label);
 	  else
-	    {
-	      strcat(final, g_objects[i].label);
-	      sprintf(final, "%s %d, ", final, nb_items[i]);
-	    }
+	    sprintf(final, "%s%s ", final, g_objects[i].label);
+	  total--;
 	}
     }
   return (final);
@@ -78,41 +83,28 @@ char		*fill_final_string(int size_malloc, int *nb_items)
 // free list
 int		get_size_malloc_at_position(t_server* s, int x, int y)
 {
-  int		i;
-  int		*nb_items;
   int		size_malloc;
-  t_block	*block;
+  t_block	*b;
 
-  i = 0;
   size_malloc = 0;
-  block = s->map->objects[y][x];
-  nb_items = get_nb_items(block);
-  while (i < 8)
-    {
-      if (nb_items[i] > 0 && i == get_last_wrote(nb_items))
-	{
-	  size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 1);
-	}
-      else if (nb_items[i] > 0)
-	{
-	  size_malloc += (strlen(g_objects[i].label) + 1 + istm(nb_items[i]) + 2);
-	}
-      i++;
-    }
+  b = s->map->objects[y][x];
+  size_malloc = (b->food * (strlen(g_objects[0].label) + 1))
+    + (b->nb_clients * (strlen(g_objects[1].label) + 1))
+    + (b->linemate * (strlen(g_objects[2].label) + 1))
+    + (b->deraumere * (strlen(g_objects[3].label) + 1))
+    + (b->sibur * (strlen(g_objects[4].label) + 1))
+    + (b->mendiane * (strlen(g_objects[5].label) + 1))
+    + (b->phiras * (strlen(g_objects[6].label) + 1))
+    + (b->thystame * (strlen(g_objects[7].label) + 1));
   return (size_malloc);
 }
 
 char		*show_items_at_position(t_server * s, int x, int y)
 {
-  int		*nb_items;
   int		size_malloc;
-  t_block	*block;
   char		*final;
 
-  block = xmalloc(sizeof(t_block));
-  block = s->map->objects[y][x];
-  nb_items = get_nb_items(block);
   size_malloc = get_size_malloc_at_position(s, x, y);
-  final = fill_final_string(size_malloc, nb_items);
+  final = fill_final_string(s, size_malloc, x, y);
   return (final);
 }

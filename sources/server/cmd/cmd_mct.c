@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:46 2015 Serge Heitzler
-** Last update Wed Jul  1 10:28:59 2015 Serge Heitzler
+** Last update Wed Jul  1 18:43:58 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -53,6 +53,23 @@ int		get_all_malloc_size(t_server *s)
   return (all_malloc_size);
 }
 
+int		get_malloc_mct(t_block *b, int x, int y)
+{
+  int		size_malloc;
+
+  size_malloc = (14 + istm(x) + istm(y) + istm(b->food)
+		 + istm(b->linemate) + istm(b->deraumere) + istm(b->sibur)
+		 + istm(b->mendiane) + istm(b->phiras) + istm(b->thystame));
+  return (size_malloc);
+}
+
+void		print_mct(t_block *b, char *tmp, int x, int y)
+{
+  sprintf(tmp, "bct %d %d %d %d %d %d %d %d %d\n", x, y, b->food,
+	  b->linemate, b->deraumere, b->sibur,
+	  b->mendiane, b->phiras, b->thystame);
+}
+
 int		cmd_mct(t_server *s, t_client *c,
 			char *cmd, e_client_type type)
 {
@@ -60,27 +77,26 @@ int		cmd_mct(t_server *s, t_client *c,
   (void)cmd;
   int		x;
   int	 	y;
-  int		busy;
+  t_block	*b;
+  int		size_malloc;
   char		*tmp;
-  char		*final;
 
-  busy = number_of_busy_space(s);
-  printf("[MCT]-BUSY = %d\n", busy);
-  final = xmalloc(sizeof(char) * ((9 * busy) + get_all_malloc_size(s)));
-  memset(final, 0, ((9 * busy) + get_all_malloc_size(s)));
-  y = 0;
-  while (y < s->map->size->height)
+  y = -1;
+  b = xmalloc(sizeof(t_block));
+  while (++y < s->map->size->height)
     {
-      x = 0;
-      while (x < s->map->size->width)
+      x = -1;
+      while (++x < s->map->size->width)
 	{
-	  tmp = show_items_at_position(s, x, y);
-	  sprintf(final, "%sbct %d %d {%s}\n", final, x, y, tmp);
+	  b = s->map->objects[y][x];
+	  size_malloc = get_malloc_mct(b, x, y);
+	  tmp = xmalloc(sizeof(char) * size_malloc);
+	  bzero(tmp, size_malloc);
+	  print_mct(b, tmp, x, y);
+	  printf("%s", tmp);
+	  send_data(c->fd, tmp);
 	  free(tmp);
-	  x++;
 	}
-      y++;
     }
-  send_data(c->fd, final);
   return (SUCCESS);
 }

@@ -14,21 +14,23 @@ class CommandClass():
         self.phiras = 0
         self.thystame = 0
         self.level = 1
+        self.message = ""
 
     def check_message(self, s, p, mess):
         rec = mess.readMessage(s)
         while ('message' in rec):
+            print(rec)
             self.message = rec
             rec = self.check_incantation(s, p, mess)
         return rec
 
-    # def check_incantation(self, s, p, mess):
-    #     rec = mess.readMessage(s)
-    #     while ('elevation' in rec):
-    #         self.message = rec
-    #         rec = mess.readMessage(s)
-    #         self.level += 1
-    #     return rec
+    def check_incantation(self, s, p, mess):
+        rec = mess.readMessage(s)
+        while ('elevation' in rec):
+            self.message = rec
+            rec = mess.readMessage(s)
+            self.level += 1
+        return rec
 
     def getMessage(self):
         if (self.message):
@@ -120,7 +122,7 @@ class CommandClass():
         if (p.getVerbose()):
             print(rec)
         if (rec == 'ko\n'):
-            return 0
+            return []
         elif (rec == 'mort\n'):
             print('You died\n')
             sys.exit(0)
@@ -287,7 +289,7 @@ class CommandClass():
             print('You died\n')
             sys.exit(0)
         elif (rec == 'elevation en cours\n'):
-            rec = mess.readMessage(s)
+            rec = self.check_message(s, p, mess)
             if (p.getVerbose()):
                 print('During Elevation', rec)
             if (rec == 'mort\n'):

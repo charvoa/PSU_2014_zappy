@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Wed Jul  1 14:28:16 2015 Serge Heitzler
+** Last update Thu Jul  2 10:09:05 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -77,7 +77,7 @@ void	        create_cmd(t_server *s, t_client *c);
 
 /* Function(s) in file protocole_connexion.c */
 void		protocole_graphique(t_server *s, t_client *c);
-void		protocole_connexion(t_server *s, int fd);
+int		protocole_connexion(t_server *s, int fd);
 
 /* Function(s) in file rand_orientations.c */
 void		ori_up(t_client *client);
@@ -117,8 +117,7 @@ int		size_of_tab(char **tab);
 /* Function(s) in file utilis.c */
 void		init_socket(t_server *s);
 void		bind_socket(t_server *s, int port);
-void		protocole_connexion(t_server *s, int fd);
-void		accept_server(t_server *s, char **argv);
+int		accept_server(t_server *s, char **argv);
 void		read_write_server(t_server *s, int i, char **argv);
 
 /* Function(s) in file width_and_length.c */
@@ -275,7 +274,7 @@ int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
 int		cmd_team(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_tna.c */
-char		*get_all_teams_in_str(t_server *s);
+void	        send_all_teams(t_server *s, t_client *c);
 int		cmd_tna(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_view.c */
@@ -309,7 +308,7 @@ void		exec_cmd(t_server *s, t_client *c);
 /* Function(s) in file show_items_at_position.c */
 int		*get_nb_items(t_block *block);
 int		get_last_wrote(int *nb_items);
-char		*fill_final_string(int size_malloc, int *nb_items);
+char		*fill_final_string(t_server *s, int size_malloc, int x, int y);
 int		get_size_malloc_at_position(t_server* s, int x, int y);
 char		*show_items_at_position(t_server * s, int x, int y);
 
@@ -363,6 +362,8 @@ size_t		size_list(t_list *list);
 
 /* ---------------------$(FREE)--------------------- */
 
-void		free_struct_cmd(t_cmd *);
+void		free_cmd(t_cmd *cmd);
+void		free_client(t_client *c);
+void		free_team(t_team *t);
 
 #endif /* _FUNCTIONS_H_ */

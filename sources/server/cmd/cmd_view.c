@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Wed Jul  1 10:18:55 2015 Serge Heitzler
+** Last update Wed Jul  1 22:54:27 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -65,6 +65,10 @@ char		**get_pos_of_visible_space(t_server *s, t_client *c)
 		   (istm((int)c->pos->x) + istm((int)c->pos->y) + 2));
   memset(pos[0], 0, istm((int)c->pos->x) + istm((int)c->pos->y) + 2);
   sprintf(pos[0], "%d %d", (int)c->pos->x, (int)c->pos->y);
+  printf("pos[0] = %s\n", pos[0]);
+  printf("pos[1] = %s\n", pos[1]);
+  printf("pos[2] = %s\n", pos[2]);
+  printf("pos[3] = %s\n", pos[3]);
   pos[nb_visible_space] = NULL;
   return (pos);
 }
@@ -78,21 +82,29 @@ char		*create_final_string_view(t_server *s, t_client *c,
   int		*y;
   int		i;
 
-  i = 0;
-  size_malloc += 3;
+  i = 1;
   final = xmalloc(sizeof(char) * (size_malloc));
   bzero(final, size_malloc);
   x = xmalloc(sizeof(int));
   y = xmalloc(sizeof(int));
+
+
+
+  sscanf(pos[0], "%d %d", x, y);
+  tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y));
+  bzero(tmp, get_size_malloc_at_position(s, *x, *y));
+  tmp = show_items_at_position(s, *x, *y);
+  sprintf(final, "%s", tmp);
   while (i < get_number_of_visible_space(c->level))
     {
+
       sscanf(pos[i], "%d %d", x, y);
-      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y) + 1);
-      bzero(tmp, get_size_malloc_at_position(s, *x, *y) + 1);
+      tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y));
+      bzero(tmp, get_size_malloc_at_position(s, *x, *y));
       tmp = show_items_at_position(s, *x, *y);
-      sprintf(final, "%s%s", final, tmp);
-      sprintf(final, "%s,", final);
+      sprintf(final, "%s%s,", final, tmp);
       free(tmp);
+
       i++;
     }
   return (final);
@@ -109,6 +121,7 @@ int		cmd_view(t_server *s, t_client *c,
   int		size_malloc;
   char		**pos;
   char		*final;
+  char		*tmp;
 
   i = 0;
   pos = get_pos_of_visible_space(s, c);
@@ -119,12 +132,16 @@ int		cmd_view(t_server *s, t_client *c,
     {
       sscanf(pos[i], "%d %d", x, y);
       if (size_malloc += (get_size_malloc_at_position(s, *x, *y)) == 0)
-	{
-	}
+	size_malloc++;
       i++;
     }
-  final = create_final_string_view(s, c, size_malloc, pos);
-  //  sprintf(final, "{%s}", final);
+  tmp = create_final_string_view(s, c, size_malloc, pos);
+
+
+  final = xmalloc(sizeof(char) * (size_malloc + 4));
+  bzero(final, size_malloc + 4);
+  sprintf(final, "{%s}\n", tmp);
+  printf("%s", final);
   send_data(c->fd, final);
   return (SUCCESS);
 }

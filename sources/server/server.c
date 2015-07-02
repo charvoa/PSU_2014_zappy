@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Thu Jul  2 09:35:57 2015 Audibert Louis
+** Last update Thu Jul  2 10:12:25 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -30,7 +30,7 @@ void	handler_ctrl_c(int sig)
   exit(0);
 }
 
-void		check_fds(t_server *s, char **argv)
+int		check_fds(t_server *s, char **argv)
 {
   int		i;
 
@@ -40,12 +40,19 @@ void		check_fds(t_server *s, char **argv)
       if (FD_ISSET(i, &(s->read_fds)))
 	{
 	  if (i == s->listener)
-	    accept_server(s, argv);
+	    {
+	      if (accept_server(s, argv) == ERROR)
+		{
+		  printf("accept server sent error\n");
+		  return (ERROR);
+		}
+	    }
 	  else
 	    read_write_server(s, i, argv);
 	}
       i++;
     }
+  return (SUCCESS);
 }
 
 void		loop_server(t_server *s, char **argv)
@@ -67,10 +74,9 @@ void		loop_server(t_server *s, char **argv)
 	{
 	  perror("Server-select() error !");
 	  exit(1);
-	}      
-      check_fds(s, argv);
-      create_objects(s);
-      check_exec(s);
+	}
+      if (check_fds(s, argv) == SUCCESS)
+	check_exec(s);
     }
 }
 
