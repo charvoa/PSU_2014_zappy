@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Thu Jul  2 11:16:11 2015 Audibert Louis
+** Last update Fri Jul  3 16:06:49 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -71,9 +71,8 @@ int		cmd_fork(t_server *s, t_client *c,
   egg->pos->x = c->pos->x;
   egg->pos->y = c->pos->y;
   egg->team_name = strdup(c->team_name);
-  printf("before get_eclosion\n");
+  clock_gettime(CLOCK_REALTIME, &egg->eclos);
   get_eclosion(s, egg);
-  printf("after get_eclosion\n");
   push_back(s->eggs, egg, EGG);
   cmd_enw(s, c, egg, GUI);
   return (SUCCESS);

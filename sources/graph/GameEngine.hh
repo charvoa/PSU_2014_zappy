@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Fri Jul  3 14:44:01 2015 Nicolas Girardot
+// Last update Fri Jul  3 15:57:55 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -60,7 +60,7 @@ public:
   void	addPlayer(std::vector<int> &, std::string &);
   void	init_object();
   bool	initialize();
-  void	deleteEgg(int);
+  void	deleteEgg(int, int);
   void	updatePlayer(std::vector<int> &);
   void	broadcast(std::tuple<int, std::string> &);
   bool	update();
