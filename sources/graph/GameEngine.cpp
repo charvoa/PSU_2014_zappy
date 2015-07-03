@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Fri Jul  3 18:13:32 2015 Antoine Garcia
+// Last update Fri Jul  3 18:37:50 2015 Antoine Garcia
 //
 
 #include "GameEngine.hh"
@@ -14,6 +14,7 @@
 Sound&	GameEngine::_sound = Sound::getInstance();
 GameEngine::GameEngine() {
   _gMap = NULL;
+  _sound.initialize();
   _sound.registerSound("./Sound/main_theme.mp3", "main");
 }
 
