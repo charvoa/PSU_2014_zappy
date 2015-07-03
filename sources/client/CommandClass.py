@@ -28,6 +28,10 @@ class CommandClass():
         while ('elevation' in rec):
             self.message = rec
             rec = mess.readMessage(s)
+            while ('niveau' in rec):
+                self.message = rec
+                rec = mess.readMessage(s)
+                print(rec)
             self.level += 1
         return rec
 
