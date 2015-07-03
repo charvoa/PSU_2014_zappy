@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Fri Jul  3 14:03:48 2015 Nicolas Girardot
+// Last update Fri Jul  3 15:57:48 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -28,6 +28,11 @@ SDL_Renderer &GameEngine::getRenderer()
   return (*_renderer);
 }
 
+void		GameEngine::getSpeed(int s)
+{
+  _speed = s;
+}
+
 SDL_Window &GameEngine::getWindow()
 {
   return (*_window);
@@ -46,8 +51,6 @@ void	GameEngine::broadcast(std::tuple<int, std::string> &tuple)
 	{
 	  (*it)->broadcast();
 	}
-      else
-	{}
     }
 }
 
@@ -75,7 +78,7 @@ void	GameEngine::addEgg(std::vector<int> &att)
   _eggs.push_back(egg);
 }
 
-void	GameEngine::deleteEgg(int id)
+void	GameEngine::deleteEgg(int id, int i)
 {
   std::list<Egg *>::iterator it = _eggs.begin();
   while (it != _eggs.end())
@@ -85,7 +88,10 @@ void	GameEngine::deleteEgg(int id)
 	  _eggs.erase(it++);
 	  std::string result;
 	  std::stringstream sstm;
-	  sstm << "Egg" << id << " just hatched ! It's a Girl";
+	  if (i == 1)
+	    sstm << "Egg" << id << " just hatched ! It's a Girl";
+	  else
+	    sstm << "OH NO ! EGG" << id << " IS BEING USED FOR AN OMELETTE";
 	  result = sstm.str();
 	  _hud->update_info(result);
 	}
@@ -147,8 +153,6 @@ void	GameEngine::updateInventory(std::vector<int> &inv)
 	      _hud->updateInventory((*it));
 	    }
 	}
-      else
-	{};
     }
 }
 
@@ -166,8 +170,6 @@ void	GameEngine::updatePlayer(std::vector<int> &args)
 	    }
 	  std::cout << _focus._x << " POS IS " << _focus._y << std::endl;
 	}
-      else
-	{}
     }
 }
 
@@ -182,7 +184,26 @@ bool	GameEngine::initialize()
   TTF_Init();
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
+  _socket->writeOnSocket("sgt\r\n");
   return true;
+}
+
+void	GameEngine::updateTime(int i)
+{
+  std::stringstream sstm;
+  sstm.str("");
+  sstm.clear();
+  if (i == 1)
+    {
+      sstm << "sst " << _speed + 10 << "\r\n";
+      _socket->writeOnSocket(sstm.str());
+    }
+  else
+    {
+      sstm << "sst " << _speed - 10 << "\r\n";
+      _socket->writeOnSocket(sstm.str());
+    }
+  std::cout << "Speed is " << _speed << std::endl;
 }
 
 bool	GameEngine::update()
@@ -208,10 +229,10 @@ bool	GameEngine::update()
 		_focus._y -= 1;
 	      break;
 	    case SDLK_KP_PLUS:
-	      std::cout << "PLUS" << std::endl;
+	      updateTime(1);
 	      break;
 	    case SDLK_KP_MINUS:
-	      std::cout << "MOINS" << std::endl;
+	      updateTime(0);
 	      break;
 	    case SDLK_DOWN:
 	      _idFocus = -1;
@@ -291,6 +312,7 @@ void	GameEngine::setLocked()
 	    {
 	      _idFocus = (*it)->getId();
 	      _focus = (*it)->getPosition();
+	      _hud->updateInventory(*it);
 	    }
 	}
       _hud->updateLocked(pai.first, pai.second, _cases.at(pai.second).at(pai.first));

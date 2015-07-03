@@ -35,6 +35,7 @@ class IAClass():
         self.phirasNeeded = 0
         self.thystameNeeded = 0
         self.itemsNeeded = [1, 1, 0, 0, 0, 0, 0, 0]
+        self.itemsNeededStill = [1, 1, 0, 0, 0, 0, 0, 0]
         self.rows = 4
         chars = string.ascii_uppercase + string.digits
         self.uid = ''.join(random.choice(chars) for _ in range(6))
@@ -70,6 +71,7 @@ class IAClass():
         string += ' '
         string += self.uid
         self.needState = True
+        print('jenvoie : ', string)
         return string
 
     def buildMessageWhere(self):
@@ -86,9 +88,21 @@ class IAClass():
         print('I send : ', string)
         return string
 
+    def sendNeedOk(self, nbPlayer, levelPlayer, senderId):
+        if (self.hasTarget == False):
+            if (self.getLevel() == int(levelPlayer)):
+                if (self.target == ""):
+                    self.target = senderId;
+                    self.cc.broadcast_cmd(self.s, self.p, self.mess, \
+                                          self.buildOkMessage(senderId))
+                    print('ma target est : ', self.target)
+                    self.hasTarget = True
+
     def whereisIaTarget(self): #S'occupe d'envoyer WHERE.
         string = 'WHERE '
         string += str(self.uid)
+        self.whereState = True
+        return string
 
     def cancelNeed(self): # S'occupe de reset les targets si pas assez de targets dans le tableau.
         string = 'NEED CANCEL '
@@ -103,11 +117,21 @@ class IAClass():
 
     def receiveWhere(self, senderId, case):
         print('Case ou on doit aller : ', case)
+        if (case == 0):
+            print('ON est ensemble')
+            sys.exit(0)
+        self.whereState = True
         if (senderId == self.target):
             if (case == 0):
                 self.needState = True
             self.getBroadcastDirection(case)
             self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildMessageWhere())
+
+    def receiveNeedOk(self, senderId):
+        self.hasTarget = True
+        self.targets.append(senderId)
+        if (len(self.targets) >= self.getNbPlayerRequired()):
+            self.cc.broadcast_cmd(self.s, self.p, self.mess, self.whereisIaTarget())
 
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage()
@@ -125,20 +149,6 @@ class IAClass():
             self.receiveNeedOk(var3)
         elif (check == -2):
             self.receiveWhere(need, var1)
-        else:
-            print('coucou')
-
-    def sendNeedOk(self, nbPlayer, levelPlayer, senderId):
-        if (self.target == ""):
-            self.target = senderId;
-        if (self.getLevel() == int(levelPlayer) and self.target == senderId):
-            self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildOkMessage(senderId))
-
-    def receiveNeedOk(self, senderId):
-        self.hasTarget = True
-        self.targets.append(senderId)
-        if (len(self.targets) >= self.getNbPlayerRequired()):
-            self.hasTarget = True
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
@@ -171,16 +181,40 @@ class IAClass():
         col = 7
         myList = [[0 for x in range(col)] for x in range(self.rows)]
         i = 0
-        for p in self.inFrontOfMe:
-            myList[i][0] = p.count('joueur')
-            myList[i][1] = p.count('linemate')
-            myList[i][2] = p.count('deraumere')
-            myList[i][3] = p.count('sibur')
-            myList[i][4] = p.count('mendiane')
-            myList[i][5] = p.count('phiras')
-            myList[i][6] = p.count('thystame')
-            i += 1
-        return myList
+        try:
+            for p in self.inFrontOfMe:
+                if ('joueur' in p):
+                    myList[i][0] = p.count('joueur')
+                else:
+                    myList[i][0] = 0
+                if ('linemate' in p):
+                    myList[i][1] = p.count('linemate')
+                else:
+                    myList[i][1] = 0
+                if ('deraumere' in p):
+                    myList[i][2] = p.count('deraumere')
+                else:
+                    myList[i][2] = 0
+                if ('sibur' in p):
+                    myList[i][3] = p.count('sibur')
+                else:
+                    myList[i][3] = 0
+                if ('mendiane' in p):
+                    myList[i][4] = p.count('mendiane')
+                else:
+                    myList[i][4] = 0
+                if ('phiras' in p):
+                    myList[i][5] = p.count('phiras')
+                else:
+                    myList[i][6] = 0
+                if ('thystame' in p):
+                    myList[i][6] = p.count('thystame')
+                else:
+                    myList[i][6] = 0
+                i += 1
+                return myList
+        except:
+            return [1, 0, 0, 0, 0, 0, 0]
 
 
     def buildXor(self):
@@ -241,16 +275,18 @@ class IAClass():
                         if (self.phiras >= self.itemsNeeded[5]):
                             if (self.thystame >= self.itemsNeeded[6]):
                                 if (self.getLevel() > 1):
-                                    self.cc.broadcast_cmd(self.s, self.p, self.mess, \
-                                                          self.buildMessageForBroadcast())
+                                    if (self.hasTarget == False):
+                                        self.cc.broadcast_cmd(self.s, self.p, self.mess, \
+                                                              self.buildMessageForBroadcast())
                                 else:
                                     print('Je peux incanter')
                                     self.dropRocks()
-                                    self.cc.incantation_cmd(self.s, self.p, self.mess)
+                                    if (self.cc.incantation_cmd(self.s, self.p, self.mess) != 1):
+                                        self.takeEvery()
 
 
     def takeEvery(self):
-        tmp = self.inFrontOfMe[0]
+        tmp = self.cc.voir_cmd(self.s, self.p, self.mess)[0]
         tmp.strip()
         tab = tmp.split(' ')
         for i in tab:
@@ -261,8 +297,7 @@ class IAClass():
 
     def dropRocks(self):
         self.takeEvery()
-        self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
-        tmp = list(self.itemsNeeded)
+        tmp = list(self.itemsNeededStill)
         del tmp[0]
         while (tmp[0] > 0):
             if (self.cc.pose_cmd(self.s, self.p, self.mess, 'linemate') == 1):
@@ -282,7 +317,6 @@ class IAClass():
         while (tmp[5] > 0):
             if (self.cc.pose_cmd(self.s, self.p, self.mess, 'thystame') == 1):
                 tmp[5] -= 1
-
 
     def changeItemsNeed(self):
         self.itemsNeeded[1] -= self.linemate
@@ -305,12 +339,6 @@ class IAClass():
     def run(self):
         i = 1
         while (i == 1):
-            print('Current Level : ', self.getLevel())
-            self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
-            self.itemsNeeded = self.defineWhatWeNeedMost()
-            self.cc.inventaire_cmd(self.s, self.p, self.mess)
-            self.food = self.cc.getFood()
-            self.checkSurvival()
             self.cc.inventaire_cmd(self.s, self.p, self.mess)
             self.linemate = self.cc.getLinemate()
             self.deraumere = self.cc.getDeraumere()
@@ -318,13 +346,22 @@ class IAClass():
             self.mendiane = self.cc.getMendiane()
             self.phiras = self.cc.getPhiras()
             self.thystame = self.cc.getThystame()
-            self.changeItemsNeed()
-            self.checkNeedMode()
-            x, y = self.move.getMovements(self.checkBestCase())
-            self.takeRocks()
+            self.food = self.cc.getFood()
             print('i got : ', self.linemate, ' linemate ', self.deraumere, 'deraumere', \
                   self.sibur, ' sibur ', self.mendiane, ' mendiane ', self.phiras, ' phiras', \
                   self.thystame, ' thystame ', self.food, ' food')
+            self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
+            self.itemsNeeded = self.defineWhatWeNeedMost()
+            self.itemsNeededStill = self.defineWhatWeNeedMost()
+            self.checkSurvival()
+            self.changeItemsNeed()
+            self.checkNeedMode()
+            if (self.whereState == False):
+                x, y = self.move.getMovements(self.checkBestCase())
+            self.takeRocks()
+            if (self.getLevel() > 1):
+                self.parseBroadCastMessage()
+            print('Current Level : ', self.getLevel())
             # if (self.needState):
             #     while (1):
             #         self.cc.incantation_cmd(self.s, self.p, self.mess)

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Fri Jul  3 15:57:35 2015 Serge Heitzler
+** Last update Fri Jul  3 18:21:03 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -95,7 +95,8 @@ int		is_incantation_possible(t_server *s, t_client *c,
       && b->sibur == g_incantation[c->level - 1].sibur
       && b->mendiane == g_incantation[c->level - 1].mendiane
       && b->phiras == g_incantation[c->level - 1].phiras
-      && b->thystame == g_incantation[c->level - 1].thystame)
+      && b->thystame == g_incantation[c->level - 1].thystame
+      && c->level < 8)
     {
       cmd_pic(s, c, cmd, type);
       printf("Starting incantation id[%d]-level[%d]\n", c->fd, c->level);
@@ -109,7 +110,7 @@ int		is_incantation_possible(t_server *s, t_client *c,
       return (NO);
     }
 }
-
+// 26 lignes !
 int		cmd_incantation(t_server *s, t_client *c,
 			        char *cmd, e_client_type type)
 {
@@ -118,11 +119,11 @@ int		cmd_incantation(t_server *s, t_client *c,
   int		i;
   int		x;
 
-  i = 0;
+  i = -1;
   x = 1;
   cmd_pic(s, c, cmd, GUI);
   c->level++;
-  while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
+  while (++i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
 	 && x < g_incantation[c->level - 1].player)
     {
       client = get_client_by_id(s->clients,
@@ -134,7 +135,6 @@ int		cmd_incantation(t_server *s, t_client *c,
 	  cmd_plv(s, client, cmd, GUI);
 	  x++;
 	}
-      i++;
     }
   cmd_pie(s, c, cmd, GUI);
   cmd_plv(s, c, cmd, GUI);

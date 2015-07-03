@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Fri Jul  3 11:11:18 2015 Nicolas Girardot
+// Last update Fri Jul  3 15:56:17 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -83,7 +83,7 @@ void	Command::sgt(std::string cmd, GameEngine *game)
   int	speed;
   ss >> speed;
 
-  //  game->updateSpeed(speed);
+  game->getSpeed(speed);
 }
 
 void	Command::tna(std::string cmd, GameEngine *game)
@@ -292,7 +292,7 @@ void Command::eht(std::string cmd, GameEngine *game)
 {
   std::string		str(cmd.begin() + 5, cmd.end());
   int val = std::stoi(str);
-  game->deleteEgg(val);
+  game->deleteEgg(val, 1);
 }
 
 void Command::ebo(std::string cmd, GameEngine *game)
@@ -308,8 +308,7 @@ void Command::edi(std::string cmd, GameEngine *game)
 {
   std::string		str(cmd.begin() + 5, cmd.end());
   int val = stoi(str);
-  std::cout << "Egg is " << val << std::endl;
-  game->deleteEgg(val);
+  game->deleteEgg(val, 0);
 }
 
 void Command::pex(std::string cmd, GameEngine *game)
