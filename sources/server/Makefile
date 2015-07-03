@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Fri Jul  3 11:19:24 2015 Audibert Louis
+## Last update Fri Jul  3 15:10:35 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -85,6 +85,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_ppo.c			\
 			$(CMD_DIR)cmd_plv.c			\
 			$(CMD_DIR)cmd_pin.c			\
+			$(CMD_DIR)cmd_sbp.c			\
 			$(CMD_DIR)cmd_pex.c			\
 			$(CMD_DIR)cmd_pfk.c			\
 			$(CMD_DIR)cmd_pnw.c			\
@@ -99,6 +100,8 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_edi.c			\
 			$(CMD_DIR)cmd_pdi.c			\
 			$(CMD_DIR)cmd_seg.c			\
+			$(CMD_DIR)cmd_suc.c			\
+			$(CMD_DIR)cmd_smg.c			\
 			$(CMD_DIR)cmd_graphic.c			\
 			$(CMD_DIR)advance_funcs.c		\
 			$(CMD_DIR)int_size_to_malloc.c		\

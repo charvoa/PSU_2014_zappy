@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Fri Jul  3 11:11:18 2015 Nicolas Girardot
+// Last update Fri Jul  3 14:22:30 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -83,7 +83,7 @@ void	Command::sgt(std::string cmd, GameEngine *game)
   int	speed;
   ss >> speed;
 
-  //  game->updateSpeed(speed);
+  game->getSpeed(speed);
 }
 
 void	Command::tna(std::string cmd, GameEngine *game)
