@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Thu Jul  2 15:10:27 2015 Nicolas Girardot
+// Last update Thu Jul  2 15:16:29 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -56,11 +56,11 @@ public:
   SDL_Surface &getSurface();
   void	addIncant(int, int);
   void	endIncant(std::vector<int> &);
-  void	addPlayer(std::vector<std::int> &, std::string);
+  void	addPlayer(std::vector<int> &, std::string &);
   void	init_object();
   bool	initialize();
   void	deleteEgg(int);
-  void	updatePlayer(std::vector<std::string> &);
+  void	updatePlayer(std::vector<int> &);
   void	broadcast(std::tuple<int, std::string> &);
   bool	update();
   void	getMousePos();

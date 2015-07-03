@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Wed Jul  1 02:03:25 2015 Antoine Garcia
+// Last update Fri Jul  3 10:43:57 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -76,6 +76,16 @@ void	Command::mct(std::string cmd, GameEngine *game)
     }
 }
 
+void	Command::sgt(std::string cmd, GameEngine *game)
+{
+  std::string		parse(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(parse);
+  int	speed;
+  ss >> speed;
+
+  //  game->updateSpeed(speed);
+}
+
 void	Command::tna(std::string cmd, GameEngine *game)
 {
   (void) game;
@@ -118,7 +128,7 @@ void	Command::pnw(std::string cmd, GameEngine *game)
   vec.push_back(y);
   vec.push_back(o);
   vec.push_back(l);
-  game->addPlayers(vec, N);
+  game->addPlayer(vec, N);
 }
 
 void	Command::ppo(std::string cmd, GameEngine *game)
@@ -130,10 +140,13 @@ void	Command::ppo(std::string cmd, GameEngine *game)
   int				x;
   int				y;
   int				o;
+  int			n;
 
+  ss >> n;
   ss >> x;
   ss >> y;
   ss >> o;
+  detPlayer.push_back(n);
   detPlayer.push_back(x);
   detPlayer.push_back(y);
   detPlayer.push_back(o);
@@ -169,7 +182,7 @@ void Command::pgt(std::string cmd, GameEngine *game)
 
 void Command::pdi(std::string cmd, GameEngine *game)
 {
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   int			id;
 
@@ -231,8 +244,6 @@ void Command::pie(std::string cmd, GameEngine *game)
 
 void Command::pic(std::string cmd, GameEngine *game)
 {
-  (void) game;
-  (void) cmd;
   std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   int x;
@@ -295,10 +306,10 @@ void Command::ebo(std::string cmd, GameEngine *game)
 
 void Command::edi(std::string cmd, GameEngine *game)
 {
-  (void)game;
   std::string		str(cmd.begin() + 5, cmd.end());
-  int val = std::stoi(str);
-  val = val;
+  int val = stoi(str);
+  std::cout << "Egg is " << val << std::endl;
+  game->deleteEgg(val);
 }
 
 void Command::pex(std::string cmd, GameEngine *game)
@@ -313,20 +324,23 @@ void Command::pex(std::string cmd, GameEngine *game)
 void Command::enw(std::string cmd, GameEngine *game)
 {
   (void)game;
-  std::string		str(cmd.begin() + 4, cmd.end());
+  std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   std::vector<int>	vec;
   int			e;
+  std::string		nbis;
   int			n;
   int			x;
   int			y;
 
   ss >> e;
-  std::string		tmpstring(ss.str().begin() + 1, ss.str().end());
-  std::istringstream	tmp(tmpstring);
-  tmp >> n;
-  tmp >> x;
-  tmp >> y;
+  ss >> nbis;
+  nbis.erase(0, 1);
+  std::cout << nbis << std::endl;
+  n = stoi(nbis);
+  std::cout << n << std::endl;
+  ss >> x;
+  ss >> y;
   vec.push_back(e);
   vec.push_back(n);
   vec.push_back(x);
@@ -359,13 +373,14 @@ void Command::Exec()
   _functions["edi"] = &Command::edi;
   _functions["pex"] = &Command::pex;
   _functions["enw"] = &Command::enw;
+  _functions["sgt"] = &Command::sgt;
   /* faire de même pour chaque fonctions */
 }
 
 void Command::Parse(std::string command, GameEngine *game)
 {
   std::string cmd(command, 0, 3);
-  //  std::cout << command << std::endl;
+  std::cout << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)
