@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Thu Jul  2 16:54:38 2015 Audibert Louis
+** Last update Fri Jul  3 09:28:18 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -67,7 +67,7 @@ void		loop_server(t_server *s, char **argv)
       s->read_fds = s->master;
       check_food(s);
       check_death(s);
-      /* check_end_game(s); */
+      check_end_game(s);
       check_eggs(s);
       signal(SIGINT, handler_ctrl_c);
       if (select(s->fdmax + 1, &(s->read_fds), NULL, NULL, &tv) == -1)
