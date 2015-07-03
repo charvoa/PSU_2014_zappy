@@ -5,83 +5,42 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Wed Jul  1 11:14:16 2015 Audibert Louis
-** Last update Thu Jul  2 15:16:54 2015 Audibert Louis
+** Last update Fri Jul  3 10:17:31 2015 Audibert Louis
 */
 
 #include "functions.h"
 
-char		**get_tab_of_IA(t_list *clients)
+void		end_the_game(t_server *s, char *name)
 {
-  t_node	*tmp;
-  char		**tab;
-  t_client	*c;
-  int		i;
-
-  tmp = clients->start;
-  tab = xmalloc((clients->length + 1) * sizeof(char));
-  i = 0;
-  while (tmp)
-    {
-      c = tmp->data;
-      if (c->level == 8)
-	{
-	  tab[i] = xmalloc((strlen(c->team_name) + 1) * sizeof(char));
-	  bzero(tab[i], strlen(c->team_name) + 1);
-	  strcpy(tab[i], c->team_name);
-	  printf("tab[i] = %s\n", tab[i]);
-	  i++;
-	}
-      tmp = tmp->next;
-    }
-  tab[i] = NULL;
-  return (tab);
-}
-
-int		recursv_team(char **tab, int j)
-{
-  int	i;
-  int	nb_ia_lvl_max;
-
-  i = 0;
-  nb_ia_lvl_max = 0;
-  if (j <= i)
-    {
-      while (tab[i])
-	{
-	  if (strcmp(tab[j], tab[i]) == 0)
-	    nb_ia_lvl_max++;
-	  i++;
-	}
-      if (nb_ia_lvl_max >= 6)
-	return (SUCCESS);
-      else
-	recursv_team(tab, j++);
-    }
-  return (ERROR);
-}
-
-void		free_tab(char **tab)
-{
-  int		i;
-
-  i = 0;
-  while (tab[i])
-    {
-      free(tab[i]);
-      i++;
-    }
-  free(tab);
+  cmd_seg(s->clients, name);
+  exit(0);
 }
 
 void		check_end_game(t_server *s)
 {
-  char		**tab;
+  t_node	*tmp_team;
+  t_node	*tmp_client;
+  t_team	*team;
+  t_client	*client;
 
-  if (s->clients->length > 0)
+  tmp_team = s->teams->start;
+  while (tmp_team)
     {
-      tab = get_tab_of_IA(s->clients);
-      if (recursv_team(tab, 0) == SUCCESS)
-	exit(0);
-      free_tab(tab);
+      team = tmp_team->data;
+      team->pro = 0;
+      tmp_client = s->clients->start;
+      while (tmp_client)
+	{
+	  client = tmp_client->data;
+	  if (client->level == 8 && strcmp(client->team_name, team->name) == 0)
+	    team->pro++;
+	  tmp_client = tmp_client->next;
+	}
+      if (team->pro >= 6)
+	{
+	  printf("Team %s Won !\n", team->name);
+	  end_the_game(s, team->name);
+	}
+      tmp_team = tmp_team->next;
     }
 }
