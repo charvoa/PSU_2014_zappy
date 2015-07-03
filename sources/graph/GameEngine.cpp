@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Fri Jul  3 15:29:58 2015 Nicolas Girardot
+// Last update Fri Jul  3 15:37:45 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -187,7 +187,7 @@ bool	GameEngine::initialize()
   TTF_Init();
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
-  _socket->writeOnSocket("sgt\n");
+  _socket->writeOnSocket("sgt\r\n");
   return true;
 }
 
