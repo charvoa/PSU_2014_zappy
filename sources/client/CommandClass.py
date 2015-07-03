@@ -19,7 +19,6 @@ class CommandClass():
     def check_message(self, s, p, mess):
         rec = mess.readMessage(s)
         while ('message' in rec):
-            print(rec)
             self.message = rec
             rec = self.check_incantation(s, p, mess)
         return rec
@@ -46,9 +45,9 @@ class CommandClass():
         mess.sendMessage(s, var)
         #rec = mess.readMessage(s)
         rec = self.check_message(s, p, mess)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -65,9 +64,9 @@ class CommandClass():
         rec = self.check_message(s, p, mess)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -84,9 +83,9 @@ class CommandClass():
 #        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -104,7 +103,7 @@ class CommandClass():
             print(rec)
         if (rec == 'ko\n'):
             return 0
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -123,7 +122,7 @@ class CommandClass():
             print(rec)
         if (rec == 'ko\n'):
             return []
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -211,9 +210,9 @@ class CommandClass():
 #        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -230,9 +229,9 @@ class CommandClass():
 #        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -248,9 +247,9 @@ class CommandClass():
  #       rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -261,15 +260,15 @@ class CommandClass():
             print('broadcast >>')
         var = 'broadcast '
         var += obj
-        var += '\n'
+        var += '\r\n'
         mess.sendMessage(s, var)
         rec = self.check_message(s, p, mess)
 #        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -282,17 +281,18 @@ class CommandClass():
         var += '\r\n'
         mess.sendMessage(s, var)
         rec = self.check_message(s, p, mess)
-#        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'mort\n'):
+        print(rec)
+        if ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         elif (rec == 'elevation en cours\n'):
             rec = self.check_message(s, p, mess)
             if (p.getVerbose()):
                 print('During Elevation', rec)
-            if (rec == 'mort\n'):
+            print(rec)
+            if ('mort' in rec):
                 print('You died\n')
                 sys.exit(0)
             self.level += 1
@@ -310,9 +310,9 @@ class CommandClass():
 #        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -328,7 +328,7 @@ class CommandClass():
 #        rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'mort\n'):
+        if ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:
@@ -343,9 +343,9 @@ class CommandClass():
         rec = mess.readMessage(s)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ok\n'):
+        if ('ok' in rec):
             return 1
-        elif (rec == 'mort\n'):
+        elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
         else:

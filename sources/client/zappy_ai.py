@@ -2,6 +2,7 @@
 
 import signal
 import select
+import sys
 
 from ModuleConnect import *
 from GetOptions import *
@@ -27,13 +28,12 @@ cc = CommandClass()
 s = None
 
 def send_name_to_server(s):
-    print(p.getName())
     if (p.getName()):
         var = p.getName()
     else:
         self.team = 'Team'
         self.team += str(random.randint(1,10))
-    var += '\n'
+    var += '\r\n'
     mess.sendMessage(s, var)
 
 def protocol(s):
