@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Thu Jul  2 15:16:29 2015 Nicolas Girardot
+// Last update Fri Jul  3 14:44:01 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -47,6 +47,7 @@ private:
   Position	_focus;
   GraphMap	*_gMap;
   HUD		*_hud;
+  int		_speed;
   int		_idFocus = -1;
 public:
   GameEngine();
@@ -72,8 +73,10 @@ public:
   void	updateInventory(std::vector<int>&);
   void	deletePlayer(int);
   void	updateLvl(int, int);
+  void	updateTime(int);
   void	run();
   bool		isEventOnMap(int, int);
+  void	getSpeed(int);
   std::pair <int, int>determinePosClicked(std::pair<int,int> &, int, int);
   std::pair <int, int>determinePosClickedOnGUI(int, int);
 private:

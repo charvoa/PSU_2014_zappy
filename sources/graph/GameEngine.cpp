@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Fri Jul  3 14:03:48 2015 Nicolas Girardot
+// Last update Fri Jul  3 15:29:58 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -26,6 +26,11 @@ GameEngine::~GameEngine() {
 SDL_Renderer &GameEngine::getRenderer()
 {
   return (*_renderer);
+}
+
+void		GameEngine::getSpeed(int s)
+{
+  _speed = s;
 }
 
 SDL_Window &GameEngine::getWindow()
@@ -182,7 +187,26 @@ bool	GameEngine::initialize()
   TTF_Init();
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
+  _socket->writeOnSocket("sgt\n");
   return true;
+}
+
+void	GameEngine::updateTime(int i)
+{
+  std::stringstream sstm;
+  sstm.str("");
+  sstm.clear();
+  if (i == 1)
+    {
+      sstm << "sst " << _speed + 10 << "\r\n";
+      _socket->writeOnSocket(sstm.str());
+    }
+  else
+    {
+      sstm << "sst " << _speed - 10 << "\r\n";
+      _socket->writeOnSocket(sstm.str());
+    }
+  std::cout << "Speed is " << _speed << std::endl;
 }
 
 bool	GameEngine::update()
@@ -208,10 +232,10 @@ bool	GameEngine::update()
 		_focus._y -= 1;
 	      break;
 	    case SDLK_KP_PLUS:
-	      std::cout << "PLUS" << std::endl;
+	      updateTime(1);
 	      break;
 	    case SDLK_KP_MINUS:
-	      std::cout << "MOINS" << std::endl;
+	      updateTime(0);
 	      break;
 	    case SDLK_DOWN:
 	      _idFocus = -1;
