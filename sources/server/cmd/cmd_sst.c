@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:52 2015 Serge Heitzler
-** Last update Wed Jul  1 10:22:23 2015 Serge Heitzler
+** Last update Fri Jul  3 18:50:47 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -27,5 +27,6 @@ int		cmd_sst(t_server *s, t_client *c,
     send_data_to_gui(s->clients, final);
   else
     send_data(c->fd, final);
+  free(final);
   return (SUCCESS);
 }

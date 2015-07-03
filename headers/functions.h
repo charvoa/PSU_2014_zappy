@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Fri Jul  3 18:16:31 2015 Serge Heitzler
+** Last update Fri Jul  3 19:29:15 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -133,7 +133,7 @@ void		read_write_server(t_server *s, int i, char **argv);
 int		calcul_length(int, int, t_map *);
 int		calcul_width(int, int, t_map *);
 int		get_l(t_map *map, int f_pos_x, int s_pos_x);
-  int		get_w(t_map *map, int f_pos_y, int s_pos_y);
+int		get_w(t_map *map, int f_pos_y, int s_pos_y);
 
 /* --------------------$(CMD)--------------------- */
 
@@ -222,7 +222,6 @@ int		cmd_kick(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		cmd_left(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_mct.c */
-int		number_of_busy_space(t_server *s);
 int		get_all_malloc_size(t_server *s);
 int		cmd_mct(t_server *s, t_client *c, char *cmd, e_client_type type);
 
@@ -332,8 +331,8 @@ int		is_cmd(char *cmd);
 void		exec_cmd(t_server *s, t_client *c);
 
 /* Function(s) in file show_items_at_position.c */
+char		*malloc_and_memset(int size_malloc);
 int		*get_nb_items(t_block *block);
-int		get_last_wrote(int *nb_items);
 char		*fill_final_string(t_server *s, int size_malloc, int x, int y);
 int		get_size_malloc_at_position(t_server* s, int x, int y);
 char		*show_items_at_position(t_server * s, int x, int y);

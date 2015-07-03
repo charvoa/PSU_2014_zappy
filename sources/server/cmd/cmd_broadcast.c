@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Fri Jul  3 18:16:05 2015 Serge Heitzler
+** Last update Fri Jul  3 19:07:23 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -109,5 +109,6 @@ int		cmd_broadcast(t_server *s, t_client *c,
       tmp_n = tmp_n->next;
     }
   cmd_pbc(s, c, cmd, type);
+  free(msg);
   return (SUCCESS);
 }

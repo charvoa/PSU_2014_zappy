@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 23:30:52 2015 Serge Heitzler
-** Last update Fri Jul  3 18:11:15 2015 Serge Heitzler
+** Last update Fri Jul  3 19:30:11 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -26,7 +26,7 @@ int		cmd_pbc(t_server *s, t_client *c,
   bzero(final, size_final);
   sprintf(final, "pbc #%d %s\n", c->fd, tmp);
   send_data_to_gui(s->clients, final);
-  printf("%s", final);
+  free(tmp);
   free(final);
   return (SUCCESS);
 }

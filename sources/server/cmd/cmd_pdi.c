@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jul  1 14:05:33 2015 Serge Heitzler
-** Last update Wed Jul  1 14:20:34 2015 Serge Heitzler
+** Last update Fri Jul  3 19:47:03 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -20,7 +20,6 @@ int		cmd_pdi(t_server *s, t_client *c)
   bzero(trame, size_malloc);
   sprintf(trame, "pdi #%d\n", c->fd);
   send_data_to_gui(s->clients, trame);
-  printf("%s", trame);
   free(trame);
   return (SUCCESS);
 }

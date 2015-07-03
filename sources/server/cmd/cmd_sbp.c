@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jul  3 14:46:01 2015 Audibert Louis
-** Last update Fri Jul  3 15:01:41 2015 Audibert Louis
+** Last update Fri Jul  3 18:51:12 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -18,5 +18,6 @@ int		cmd_sbp(t_client *client)
   bzero(trame, 5);
   sprintf(trame, "sbp\n");
   send_data(client->fd, trame);
+  free(trame);
   return (SUCCESS);
 }

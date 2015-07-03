@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 17:10:37 2015 Audibert Louis
-** Last update Wed Jul  1 10:33:05 2015 Serge Heitzler
+** Last update Fri Jul  3 19:06:55 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -21,9 +21,10 @@ int		cmd_connect_nbr(t_server *s, t_client *c,
   if (is_a_team(s, c->team_name) == 0)
     {
       team = get_team_by_name(s->teams, c->team_name);
-      trame = xmalloc((istm(team->slot_rest) + 2) * sizeof(char));
+      trame = malloc_and_memset(istm(team->slot_rest) + 2);
       sprintf(trame, "%d\n", team->slot_rest);
       send_data(c->fd, trame);
+      free(trame);
       return (SUCCESS);
     }
   else

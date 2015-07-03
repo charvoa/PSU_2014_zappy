@@ -5,18 +5,17 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Thu Jul  2 15:59:08 2015 Serge Heitzler
+** Last update Fri Jul  3 19:48:57 2015 Serge Heitzler
 */
 
 #include "functions.h"
-
+// Send_data team doesnt exist ?
 int		is_a_team(t_server *s, char *team)
 {
   t_node	*tmp;
   t_team	*t_iterate;
 
   tmp = s->teams->start;
-  t_iterate = xmalloc(sizeof(t_team));
   t_iterate = tmp->data;
   while (tmp)
     {
@@ -90,5 +89,6 @@ int		cmd_team(t_server *s, t_client *c,
       return (ERROR);
     }
   c->team_name = strdup(name);
+  free(name);
   return (SUCCESS);
 }

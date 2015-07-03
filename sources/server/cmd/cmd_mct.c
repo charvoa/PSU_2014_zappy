@@ -5,32 +5,10 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:46 2015 Serge Heitzler
-** Last update Thu Jul  2 13:55:22 2015 Serge Heitzler
+** Last update Fri Jul  3 19:29:39 2015 Serge Heitzler
 */
 
 #include "functions.h"
-
-int		number_of_busy_space(t_server *s)
-{
-  int		busy;
-  int		x;
-  int		y;
-
-  y = 0;
-  busy = 0;
-  while (y < s->map->size->height)
-    {
-      x = 0;
-      while (x < s->map->size->width)
-	{
-	  if (s->map->full[y][x] == '1')
-	    busy++;
-	  x++;
-	}
-      y++;
-    }
-  return (busy);
-}
 
 int		get_all_malloc_size(t_server *s)
 {
@@ -82,7 +60,6 @@ int		cmd_mct(t_server *s, t_client *c,
   char		*tmp;
 
   y = -1;
-  b = xmalloc(sizeof(t_block));
   while (++y < s->map->size->height)
     {
       x = -1;
@@ -93,7 +70,6 @@ int		cmd_mct(t_server *s, t_client *c,
 	  tmp = xmalloc(sizeof(char) * size_malloc);
 	  bzero(tmp, size_malloc);
 	  print_mct(b, tmp, x, y);
-	  printf("%s", tmp);
 	  if (type == NORMAL)
 	    send_data(c->fd, tmp);
 	  else

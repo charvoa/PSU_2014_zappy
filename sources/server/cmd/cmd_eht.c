@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 15:42:54 2015 Audibert Louis
-** Last update Tue Jun 30 15:53:56 2015 Audibert Louis
+** Last update Fri Jul  3 19:20:16 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -16,9 +16,8 @@ int		cmd_eht(t_egg *egg, t_list *clients)
   char		*str;
 
   size_malloc = 7 + istm(egg->id);
-  str = xmalloc(sizeof(char) * size_malloc);
+  str = malloc_and_memset(size_malloc);
   sprintf(str, "eht #%d\n", egg->id);
-  printf("%s", str);
   send_data_to_gui(clients, str);
   return (SUCCESS);
 }

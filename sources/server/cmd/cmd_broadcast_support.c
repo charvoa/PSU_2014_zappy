@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jul  3 18:08:32 2015 Serge Heitzler
-** Last update Fri Jul  3 18:16:26 2015 Serge Heitzler
+** Last update Fri Jul  3 19:19:41 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -28,6 +28,5 @@ void		generate_broadcast(t_server *s, t_client *c,
   bzero(tmp, size_malloc);
   sprintf(tmp, "message %d, %s", sound, msg);
   send_data(cli->fd, tmp);
-  printf("%s", tmp);
   free(tmp);
 }

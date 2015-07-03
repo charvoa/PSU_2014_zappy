@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Fri Jul  3 18:21:03 2015 Serge Heitzler
+** Last update Fri Jul  3 19:22:33 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -30,7 +30,6 @@ int		get_nb_players_of_my_level(t_server *s,
 
   i = 0;
   nb = 0;
-  cli = xmalloc(sizeof(t_client));
   while (i < b->nb_clients)
     {
       cli = get_client_by_id(s->clients, b->ids[i]);
@@ -53,7 +52,7 @@ void		push_incantation_in_front(t_server *s, t_client *c)
     manage_time(s, cmd, ret);
   push_front(c->cmds, cmd, CMD);
 }
-
+// 26 lignes !
 void		send_incantation(t_server *s, t_client *c)
 {
   char		*final;
@@ -65,7 +64,7 @@ void		send_incantation(t_server *s, t_client *c)
   x = 1;
   i = -1;
   size_malloc = 37 + istm(c->level);
-  final = xmalloc(sizeof(char) * size_malloc);
+  final = malloc_and_memset(size_malloc);
   sprintf(final, "elevation en cours niveau actuel : %d\n", c->level);
   send_data(c->fd, final);
   while (++i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
@@ -81,6 +80,7 @@ void		send_incantation(t_server *s, t_client *c)
 	  x++;
 	}
     }
+  free(final);
 }
 
 int		is_incantation_possible(t_server *s, t_client *c,

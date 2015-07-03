@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Fri Jul  3 18:21:22 2015 Serge Heitzler
+## Last update Fri Jul  3 19:46:04 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -74,7 +74,6 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_kick.c			\
 			$(CMD_DIR)cmd_incantation.c		\
 			$(CMD_DIR)cmd_fork.c			\
-			$(CMD_DIR)cmd_dead.c			\
 			$(CMD_DIR)cmd_broadcast.c		\
 			$(CMD_DIR)cmd_broadcast_support.c	\
 			$(CMD_DIR)cmd_msz.c			\

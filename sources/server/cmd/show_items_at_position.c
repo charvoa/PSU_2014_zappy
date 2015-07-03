@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Thu Jul  2 15:15:05 2015 Serge Heitzler
+** Last update Fri Jul  3 18:47:09 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -21,16 +21,6 @@ t_objects	g_objects[8] =
     {"phiras", NULL},
     {"thystame", NULL}
   };
-
-int		get_last_wrote(int *nb_items)
-{
-  int		i;
-
-  i = 7;
-  while (i >= 0 && nb_items[i] == 0)
-    i--;
-  return (i);
-}
 
 int		*get_nb_items(t_block *block)
 {
@@ -48,6 +38,15 @@ int		*get_nb_items(t_block *block)
   return (nb_items);
 }
 
+char		*malloc_and_memset(int size_malloc)
+{
+  char		*final;
+
+  final = xmalloc(sizeof(char) * (size_malloc));
+  memset(final, 0, size_malloc);
+  return (final);
+}
+
 char		*fill_final_string(t_server *s, int size_malloc,
 				   int x, int y)
 {
@@ -58,8 +57,7 @@ char		*fill_final_string(t_server *s, int size_malloc,
   t_block	*b;
 
   i = -1;
-  final = xmalloc(sizeof(char) * (size_malloc));
-  memset(final, 0, size_malloc);
+  final = malloc_and_memset(size_malloc);
   b = s->map->objects[y][x];
   total = b->food + b->nb_clients + b->linemate + b->deraumere
     + b->sibur + b->mendiane + b->phiras + b->thystame;

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Fri Jul  3 16:06:49 2015 Audibert Louis
+** Last update Fri Jul  3 19:20:44 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -60,7 +60,6 @@ int		cmd_fork(t_server *s, t_client *c,
   t_team	*team;
 
   cmd_pfk(c, s->clients);
-  printf("team name in cmd_fork = %s\n", c->team_name);
   team = get_team_by_name(s->teams, c->team_name);
   team->slot_rest++;
   egg = xmalloc(sizeof(t_egg));

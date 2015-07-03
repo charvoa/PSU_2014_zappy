@@ -5,10 +5,16 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Thu Jul  2 11:14:07 2015 Audibert Louis
+** Last update Fri Jul  3 20:02:17 2015 Serge Heitzler
 */
 
 #include "functions.h"
+
+void		exec_and_remove(t_server *s, t_client *c)
+{
+  exec_cmd(s, c);
+  remove_front(c->cmds);
+}
 
 int		check_exec(t_server *s)
 {
@@ -18,9 +24,9 @@ int		check_exec(t_server *s)
   t_node	*tmp_cmd;
   t_cmd		*cmd;
 
-  i = 0;
+  i = -1;
   tmp_cli = s->clients->start;
-  while (i < s->clients->length)
+  while (++i < s->clients->length)
     {
       c = tmp_cli->data;
       if (c->cmds->length > 0)
@@ -30,12 +36,8 @@ int		check_exec(t_server *s)
 	  if (cmd->exec_at.tv_sec < s->now.tv_sec ||
 	      ((cmd->exec_at.tv_sec == s->now.tv_sec) &&
 	       (cmd->exec_at.tv_nsec <= s->now.tv_nsec)))
-	    {
-	      exec_cmd(s, c);
-	      remove_front(c->cmds);
-	    }
+	    exec_and_remove(s, c);
 	}
-      i++;
       tmp_cli = tmp_cli->next;
     }
   return (SUCCESS);

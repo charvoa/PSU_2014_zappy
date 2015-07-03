@@ -5,17 +5,17 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Thu Jul  2 13:47:39 2015 Audibert Louis
+** Last update Fri Jul  3 18:50:32 2015 Serge Heitzler
 */
 
 #include "functions.h"
-
+// Free rock tab ?
 int		check_rock(char *rock)
 {
   char	**rocks;
   int	i;
 
-  rocks = xmalloc(7 * sizeof(char*));
+  rocks = xmalloc(7 * sizeof(char *));
   rocks[0] = "linemate";
   rocks[1] = "deraumere";
   rocks[2] = "sibur";
@@ -32,7 +32,7 @@ int		check_rock(char *rock)
     }
   return (ERROR);
 }
-
+// On a le droite déclarer un tableau comme ca dans une fonction à l'initialisation ?
 int		launch_func_block(t_block *block,
 				  int rock_type, e_flag_rock flag)
 {
