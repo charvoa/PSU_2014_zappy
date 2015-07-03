@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Thu Jul  2 16:15:41 2015 Nicolas Girardot
+// Last update Fri Jul  3 10:43:57 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -244,8 +244,6 @@ void Command::pie(std::string cmd, GameEngine *game)
 
 void Command::pic(std::string cmd, GameEngine *game)
 {
-  (void) game;
-  (void) cmd;
   std::string		str(cmd.begin() + 5, cmd.end());
   std::istringstream	ss(str);
   int x;
@@ -308,10 +306,10 @@ void Command::ebo(std::string cmd, GameEngine *game)
 
 void Command::edi(std::string cmd, GameEngine *game)
 {
-  (void)game;
   std::string		str(cmd.begin() + 5, cmd.end());
-  int val = std::stoi(str);
-  val = val;
+  int val = stoi(str);
+  std::cout << "Egg is " << val << std::endl;
+  game->deleteEgg(val);
 }
 
 void Command::pex(std::string cmd, GameEngine *game)
@@ -382,7 +380,7 @@ void Command::Exec()
 void Command::Parse(std::string command, GameEngine *game)
 {
   std::string cmd(command, 0, 3);
-  //  std::cout << command << std::endl;
+  std::cout << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)
