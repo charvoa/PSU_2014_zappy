@@ -71,6 +71,7 @@ class IAClass():
         string += ' '
         string += self.uid
         self.needState = True
+        print('jenvoie : ', string)
         return string
 
     def buildMessageWhere(self):
@@ -87,9 +88,21 @@ class IAClass():
         print('I send : ', string)
         return string
 
+    def sendNeedOk(self, nbPlayer, levelPlayer, senderId):
+        if (self.hasTarget == False):
+            if (self.getLevel() == int(levelPlayer)):
+                if (self.target == ""):
+                    self.target = senderId;
+                    self.cc.broadcast_cmd(self.s, self.p, self.mess, \
+                                          self.buildOkMessage(senderId))
+                    print('ma target est : ', self.target)
+                    self.hasTarget = True
+
     def whereisIaTarget(self): #S'occupe d'envoyer WHERE.
         string = 'WHERE '
         string += str(self.uid)
+        self.whereState = True
+        return string
 
     def cancelNeed(self): # S'occupe de reset les targets si pas assez de targets dans le tableau.
         string = 'NEED CANCEL '
@@ -104,11 +117,21 @@ class IAClass():
 
     def receiveWhere(self, senderId, case):
         print('Case ou on doit aller : ', case)
+        if (case == 0):
+            print('ON est ensemble')
+            sys.exit(0)
+        self.whereState = True
         if (senderId == self.target):
             if (case == 0):
                 self.needState = True
             self.getBroadcastDirection(case)
             self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildMessageWhere())
+
+    def receiveNeedOk(self, senderId):
+        self.hasTarget = True
+        self.targets.append(senderId)
+        if (len(self.targets) >= self.getNbPlayerRequired()):
+            self.cc.broadcast_cmd(self.s, self.p, self.mess, self.whereisIaTarget())
 
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage()
@@ -126,20 +149,6 @@ class IAClass():
             self.receiveNeedOk(var3)
         elif (check == -2):
             self.receiveWhere(need, var1)
-        else:
-            print('coucou')
-
-    def sendNeedOk(self, nbPlayer, levelPlayer, senderId):
-        if (self.target == ""):
-            self.target = senderId;
-        if (self.getLevel() == int(levelPlayer) and self.target == senderId):
-            self.cc.broadcast_cmd(self.s, self.p, self.mess, self.buildOkMessage(senderId))
-
-    def receiveNeedOk(self, senderId):
-        self.hasTarget = True
-        self.targets.append(senderId)
-        if (len(self.targets) >= self.getNbPlayerRequired()):
-            self.hasTarget = True
 
     def defineWhatWeNeedMost(self):
         if (self.getLevel() == 1):
@@ -266,8 +275,9 @@ class IAClass():
                         if (self.phiras >= self.itemsNeeded[5]):
                             if (self.thystame >= self.itemsNeeded[6]):
                                 if (self.getLevel() > 1):
-                                    self.cc.broadcast_cmd(self.s, self.p, self.mess, \
-                                                          self.buildMessageForBroadcast())
+                                    if (self.hasTarget == False):
+                                        self.cc.broadcast_cmd(self.s, self.p, self.mess, \
+                                                              self.buildMessageForBroadcast())
                                 else:
                                     print('Je peux incanter')
                                     self.dropRocks()
@@ -340,15 +350,18 @@ class IAClass():
             print('i got : ', self.linemate, ' linemate ', self.deraumere, 'deraumere', \
                   self.sibur, ' sibur ', self.mendiane, ' mendiane ', self.phiras, ' phiras', \
                   self.thystame, ' thystame ', self.food, ' food')
-            print('Current Level : ', self.getLevel())
             self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
             self.itemsNeeded = self.defineWhatWeNeedMost()
             self.itemsNeededStill = self.defineWhatWeNeedMost()
             self.checkSurvival()
             self.changeItemsNeed()
             self.checkNeedMode()
-            x, y = self.move.getMovements(self.checkBestCase())
+            if (self.whereState == False):
+                x, y = self.move.getMovements(self.checkBestCase())
             self.takeRocks()
+            if (self.getLevel() > 1):
+                self.parseBroadCastMessage()
+            print('Current Level : ', self.getLevel())
             # if (self.needState):
             #     while (1):
             #         self.cc.incantation_cmd(self.s, self.p, self.mess)
