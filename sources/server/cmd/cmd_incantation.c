@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Fri Jul  3 10:25:10 2015 Audibert Louis
+** Last update Fri Jul  3 16:39:12 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -95,7 +95,8 @@ int		is_incantation_possible(t_server *s, t_client *c,
       && b->sibur == g_incantation[c->level - 1].sibur
       && b->mendiane == g_incantation[c->level - 1].mendiane
       && b->phiras == g_incantation[c->level - 1].phiras
-      && b->thystame == g_incantation[c->level - 1].thystame)
+      && b->thystame == g_incantation[c->level - 1].thystame
+      && c->level < 8)
     {
       cmd_pic(s, c, cmd, type);
       printf("Starting incantation id[%d]-level[%d]\n", c->fd, c->level);
