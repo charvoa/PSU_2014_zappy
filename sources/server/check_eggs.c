@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 14:23:33 2015 Audibert Louis
-** Last update Fri Jul  3 16:35:50 2015 Audibert Louis
+** Last update Fri Jul  3 16:44:14 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -50,7 +50,8 @@ void		check_eggs(t_server *s)
 	    {
 	      cmd_edi(egg, s->clients);
 	      remove_at_index(s->eggs, i);
-	      break;
+	      if (i == 0)
+		break;
 	    }
 	}
       i++;
