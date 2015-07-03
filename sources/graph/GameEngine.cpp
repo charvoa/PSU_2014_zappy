@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Fri Jul  3 15:37:45 2015 Nicolas Girardot
+// Last update Fri Jul  3 15:57:48 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -51,8 +51,6 @@ void	GameEngine::broadcast(std::tuple<int, std::string> &tuple)
 	{
 	  (*it)->broadcast();
 	}
-      else
-	{}
     }
 }
 
@@ -80,7 +78,7 @@ void	GameEngine::addEgg(std::vector<int> &att)
   _eggs.push_back(egg);
 }
 
-void	GameEngine::deleteEgg(int id)
+void	GameEngine::deleteEgg(int id, int i)
 {
   std::list<Egg *>::iterator it = _eggs.begin();
   while (it != _eggs.end())
@@ -90,7 +88,10 @@ void	GameEngine::deleteEgg(int id)
 	  _eggs.erase(it++);
 	  std::string result;
 	  std::stringstream sstm;
-	  sstm << "Egg" << id << " just hatched ! It's a Girl";
+	  if (i == 1)
+	    sstm << "Egg" << id << " just hatched ! It's a Girl";
+	  else
+	    sstm << "OH NO ! EGG" << id << " IS BEING USED FOR AN OMELETTE";
 	  result = sstm.str();
 	  _hud->update_info(result);
 	}
@@ -152,8 +153,6 @@ void	GameEngine::updateInventory(std::vector<int> &inv)
 	      _hud->updateInventory((*it));
 	    }
 	}
-      else
-	{};
     }
 }
 
@@ -171,8 +170,6 @@ void	GameEngine::updatePlayer(std::vector<int> &args)
 	    }
 	  std::cout << _focus._x << " POS IS " << _focus._y << std::endl;
 	}
-      else
-	{}
     }
 }
 
@@ -315,6 +312,7 @@ void	GameEngine::setLocked()
 	    {
 	      _idFocus = (*it)->getId();
 	      _focus = (*it)->getPosition();
+	      _hud->updateInventory(*it);
 	    }
 	}
       _hud->updateLocked(pai.first, pai.second, _cases.at(pai.second).at(pai.first));
