@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Fri Jul  3 10:38:28 2015 Nicolas Girardot
+// Last update Fri Jul  3 14:03:48 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -206,6 +206,12 @@ bool	GameEngine::update()
 		_focus._y = _gMap->getHeight() - 1;
 	      else
 		_focus._y -= 1;
+	      break;
+	    case SDLK_KP_PLUS:
+	      std::cout << "PLUS" << std::endl;
+	      break;
+	    case SDLK_KP_MINUS:
+	      std::cout << "MOINS" << std::endl;
 	      break;
 	    case SDLK_DOWN:
 	      _idFocus = -1;

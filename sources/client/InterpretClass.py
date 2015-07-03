@@ -1,3 +1,5 @@
+import sys
+
 class InterpretClass():
 
     """ A class that interpret messages received """
@@ -10,7 +12,7 @@ class InterpretClass():
         if (p.getVerbose()):
             print("bienvenue")
             print(rec)
-        if (rec == "BIENVENUE\n"):
+        if ("BIENVENUE" in rec):
             return 1
         return 0
 
@@ -19,7 +21,7 @@ class InterpretClass():
             if (p.getVerbose()):
                 print("num client :")
                 print(rec)
-            if (rec == 'ko\n'):
+            if ('ko' in rec):
                 return -1
             nbr_client = int(rec)
         except ValueError:

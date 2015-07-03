@@ -3,6 +3,7 @@ import random
 import subprocess
 import string
 import re
+import sys
 from array import *
 from CommandClass import *
 from MoveClass import *
@@ -222,7 +223,6 @@ class IAClass():
             print('I\'m in survival mode')
             i = 0
             for p in self.inFrontOfMe:
-                print('p>>', p)
                 if ('nourriture' in p):
                     save = i
             i+=1
@@ -261,9 +261,9 @@ class IAClass():
 
     def dropRocks(self):
         self.takeEvery()
+        self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
         tmp = list(self.itemsNeeded)
         del tmp[0]
-        print('debut')
         while (tmp[0] > 0):
             if (self.cc.pose_cmd(self.s, self.p, self.mess, 'linemate') == 1):
                 tmp[0] -= 1
@@ -282,7 +282,6 @@ class IAClass():
         while (tmp[5] > 0):
             if (self.cc.pose_cmd(self.s, self.p, self.mess, 'thystame') == 1):
                 tmp[5] -= 1
-        print('fin')
 
 
     def changeItemsNeed(self):
