@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Fri Jul  3 10:25:10 2015 Audibert Louis
+** Last update Fri Jul  3 15:57:35 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -130,8 +130,8 @@ int		cmd_incantation(t_server *s, t_client *c,
       if ((client->pos->x == c->pos->x) && (client->pos->y == c->pos->y)
 	  && client->fd != c->fd && c->level == client->level)
 	{
-	  cmd_plv(s, client, cmd, GUI);
 	  client->level++;
+	  cmd_plv(s, client, cmd, GUI);
 	  x++;
 	}
       i++;

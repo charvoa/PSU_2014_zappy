@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Fri Jul  3 11:18:54 2015 Audibert Louis
+** Last update Fri Jul  3 18:16:31 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -64,7 +64,6 @@ float		give_me_distance(t_map *map, t_position *f_pos, t_position *s_pos);
 char		**get_tab(int argc, char **argv);
 void		init_everything(t_server *s, int, char **);
 t_server	*fill_struct_serv(int argc, char **argv);
-
 
 /* Function(s) in file my_printf.c */
 void		my_printf(char *format, ...);
@@ -167,9 +166,14 @@ int		cmd_advance(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		cmd_bct(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_broadcast.c */
-char		*get_trame_broadcast(t_client *c, char *text);
-void		get_text(char *text, char *cmd);
+int		case_l_superior(t_client *c, t_client *cli, int l, int w);
+int		case_l_inferior(t_client *c, t_client *cli, int l, int w);
+int		case_l_equal(t_client *c, t_client *cli, int l, int w);
+int		determine_last_case(t_client *c, t_client *cli, int l, int w);
 int		cmd_broadcast(t_server *s, t_client *c, char *cmd, e_client_type type);
+
+/* Function(s) in cmd_broadcast_support.c */
+void		generate_broadcast(t_server *s, t_client *c, t_client *cli, char *msg);
 
 /* Function(s) in file cmd_connect_nbr.c */
 int		cmd_connect_nbr(t_server *s, t_client *c, char *cmd, e_client_type type);

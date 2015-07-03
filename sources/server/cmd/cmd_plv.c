@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:28:57 2015 Serge Heitzler
-** Last update Wed Jul  1 10:24:10 2015 Serge Heitzler
+** Last update Fri Jul  3 16:00:54 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -28,6 +28,7 @@ int		cmd_plv(t_server *s, t_client *c,
   memset(final, 0, (8 + istm(target->fd)
 		    + istm((int)target->level)));
   sprintf(final, "plv #%d %d\n", target->fd, target->level);
+  printf("%s", final);
   if (type == GUI)
     send_data_to_gui(s->clients, final);
   else
