@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Fri Jul  3 10:43:57 2015 Nicolas Girardot
+// Last update Fri Jul  3 11:11:18 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -244,7 +244,7 @@ void Command::pie(std::string cmd, GameEngine *game)
 
 void Command::pic(std::string cmd, GameEngine *game)
 {
-  std::string		str(cmd.begin() + 5, cmd.end());
+  std::string		str(cmd.begin() + 4, cmd.end());
   std::istringstream	ss(str);
   int x;
   int y;
