@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 14:23:33 2015 Audibert Louis
-** Last update Fri Jul  3 15:58:41 2015 Audibert Louis
+** Last update Fri Jul  3 16:35:50 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -46,11 +46,13 @@ void		check_eggs(t_server *s)
 	{
 	  if (egg->fd != -1)
 	    create_client_from_egg(s, egg, i);
+	  else
+	    {
+	      cmd_edi(egg, s->clients);
+	      remove_at_index(s->eggs, i);
+	      break;
+	    }
 	}
-      else if (egg->eclos.tv_sec > s->now.tv_sec ||
-	       ((egg->eclos.tv_sec > s->now.tv_sec) &&
-		(egg->eclos.tv_nsec > s->now.tv_nsec)))
-	cmd_edi(egg, s->clients);
       i++;
       tmp = tmp->next;
     }
