@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:00:23 2015 Serge Heitzler
-** Last update Wed Jul  1 19:35:24 2015 Serge Heitzler
+** Last update Fri Jul  3 11:17:53 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -15,8 +15,8 @@ void		add_objects(t_block *b, int x, int y)
   int		r;
 
   r = (rand() + (rand() * x) + (rand() * y) + x + y) % 18;
-  if (r == 0 || (r > 6 && r <= 12))
-    b->food++;
+  /* if (r == 0 || (r > 6 && r <= 12)) */
+  /*   b->food++; */
   if (r == 1)
     b->linemate++;
   if (r == 2)
@@ -43,6 +43,7 @@ int		create_objects(t_server *s)
   x = rand() % s->map->size->width;
   y = rand() % s->map->size->height;
   b = s->map->objects[y][x];
+  create_food(s);
   add_objects(b, x, y);
   size_malloc = (14 + istm(x) + istm(y) + istm(b->food)
 		 + istm(b->linemate) + istm(b->deraumere) + istm(b->sibur)

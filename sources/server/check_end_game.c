@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Wed Jul  1 11:14:16 2015 Audibert Louis
-** Last update Fri Jul  3 10:17:31 2015 Audibert Louis
+** Last update Fri Jul  3 10:43:09 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -13,6 +13,7 @@
 void		end_the_game(t_server *s, char *name)
 {
   cmd_seg(s->clients, name);
+  sleep(5);
   exit(0);
 }
 

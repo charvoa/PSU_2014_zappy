@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Thu Jul  2 16:56:29 2015 Audibert Louis
+## Last update Fri Jul  3 11:19:24 2015 Audibert Louis
 ##
 
 CC		= 	gcc
@@ -31,6 +31,7 @@ SRCS		= 	main.c	 				\
 			create_map.c				\
 			create_cmd.c				\
 			create_client.c				\
+			create_food.c				\
 			create_team.c				\
 			create_objects.c			\
 			protocole_connexion.c			\

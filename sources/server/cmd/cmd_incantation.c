@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Thu Jul  2 14:33:02 2015 Serge Heitzler
+** Last update Fri Jul  3 10:25:10 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -120,8 +120,7 @@ int		cmd_incantation(t_server *s, t_client *c,
 
   i = 0;
   x = 1;
-  cmd_pie(s, c, cmd, GUI);
-  cmd_plv(s, c, cmd, GUI);
+  cmd_pic(s, c, cmd, GUI);
   c->level++;
   while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
 	 && x < g_incantation[c->level - 1].player)
@@ -137,6 +136,8 @@ int		cmd_incantation(t_server *s, t_client *c,
 	}
       i++;
     }
+  cmd_pie(s, c, cmd, GUI);
+  cmd_plv(s, c, cmd, GUI);
   cmd_bct(s, c, cmd, GUI);
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Thu Jul  2 16:56:59 2015 Audibert Louis
+** Last update Fri Jul  3 11:18:54 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -26,11 +26,11 @@ int		check_exec(t_server *);
 /* Function(s) in file check_end_game.c */
 void		check_end_game(t_server *);
 
-/* Function(s) in file count_teams.c */
-int		count_teams(t_server *s);
-
 /* Function(s) in file check_food.c */
 int		check_food(t_server *s);
+
+/* Function(s) in file count_teams.c */
+int		count_teams(t_server *s);
 
 /* Function(s) in file create_client.c */
 void		init_orientation(void (*orientation[4])(t_client *));
