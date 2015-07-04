@@ -1,11 +1,11 @@
 //
-// SoundManager.hh for SoundManager in /home/antgar/rendu/cpp_bomberman/Sound
+// SoundManager.hh for  in /home/nicolaschr/Work/PSU_2014_zappy/sources/graph/Sound
 //
-// Made by Antoine Garcia
-// Login   <antgar@epitech.net>
+// Made by Nicolas Charvoz
+// Login   <nicolaschr@epitech.net>
 //
-// Started on  Wed May 13 03:58:34 2015 Antoine Garcia
-// Last update Wed May 27 17:09:03 2015 Nicolas Charvoz
+// Started on  Sat Jul  4 17:09:20 2015 Nicolas Charvoz
+// Last update Sat Jul  4 17:09:21 2015 Nicolas Charvoz
 //
 
 #ifndef SOUNDMANAGER_HH_
