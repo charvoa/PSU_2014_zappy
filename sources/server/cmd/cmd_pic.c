@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 23:26:08 2015 Serge Heitzler
-** Last update Fri Jul  3 19:35:54 2015 Serge Heitzler
+** Last update Sat Jul  4 13:36:34 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -66,6 +66,15 @@ char		*get_other_fds(t_server *s, t_client *c,
   return (final);
 }
 
+int		get_malloc_pic(t_client *c)
+{
+  int		size_malloc;
+
+  size_malloc = 10 + istm(c->pos->x) + istm(c->pos->y)
+    + istm(c->level) + istm(c->fd);
+  return (size_malloc);
+}
+
 int		cmd_pic(t_server *s, t_client *c,
 			char *cmd, e_client_type type)
 {
@@ -75,20 +84,23 @@ int		cmd_pic(t_server *s, t_client *c,
   char		*final;
   int		size_malloc;
 
-  size_malloc = 10 + istm(c->pos->x) + istm(c->pos->y) + istm(c->level) + istm(c->fd);
+  size_malloc = get_malloc_pic(c);
   if (c->level > 1)
     {
       tmp = get_other_fds(s, c, cmd, type);
       size_malloc += strlen(tmp);
     }
-  final = xmalloc(sizeof(char) * size_malloc);
-  bzero(final, size_malloc);
+  final = malloc_and_memset(size_malloc);
   if (c->level > 1)
-    sprintf(final, "pic %d %d %d #%d%s\n", c->pos->x, c->pos->y, c->level, c->fd, tmp);
+    {
+      sprintf(final, "pic %d %d %d #%d%s\n",
+	      c->pos->x, c->pos->y, c->level, c->fd, tmp);
+      free(tmp);
+    }
   else
-    sprintf(final, "pic %d %d %d #%d\n", c->pos->x, c->pos->y, c->level, c->fd);
+    sprintf(final, "pic %d %d %d #%d\n", c->pos->x,
+	    c->pos->y, c->level, c->fd);
   send_data_to_gui(s->clients, final);
-  free(tmp);
   free(final);
   return (SUCCESS);
 }

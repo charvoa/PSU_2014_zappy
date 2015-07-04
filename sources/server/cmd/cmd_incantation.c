@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sat Jul  4 08:50:42 2015 Serge Heitzler
+** Last update Sat Jul  4 13:48:27 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -89,27 +89,27 @@ int		is_incantation_possible(t_server *s, t_client *c,
   t_block	*b;
 
   b = s->map->objects[c->pos->y][c->pos->x];
-  if (get_nb_players_of_my_level(s, c, b) >= g_incantation[c->level - 1].player
-      && b->linemate == g_incantation[c->level - 1].linemate
-      && b->deraumere == g_incantation[c->level - 1].deraumere
-      && b->sibur == g_incantation[c->level - 1].sibur
-      && b->mendiane == g_incantation[c->level - 1].mendiane
-      && b->phiras == g_incantation[c->level - 1].phiras
-      && b->thystame == g_incantation[c->level - 1].thystame
-      && c->level < 8)
-    {
+  /* if (get_nb_players_of_my_level(s, c, b) >= g_incantation[c->level - 1].player */
+  /*     && b->linemate == g_incantation[c->level - 1].linemate */
+  /*     && b->deraumere == g_incantation[c->level - 1].deraumere */
+  /*     && b->sibur == g_incantation[c->level - 1].sibur */
+  /*     && b->mendiane == g_incantation[c->level - 1].mendiane */
+  /*     && b->phiras == g_incantation[c->level - 1].phiras */
+  /*     && b->thystame == g_incantation[c->level - 1].thystame */
+  /*     && c->level < 8) */
+  /*   { */
       cmd_pic(s, c, cmd, type);
       printf("Starting incantation id[%d]-level[%d]\n", c->fd, c->level);
       send_incantation(s, c);
       reset_block(b);
       return (YES);
-    }
-  else
-    {
-      printf("Incantation request" RED " [REFUSED]" RESET "\n");
-      send_data(c->fd, "ko\n");
-      return (NO);
-    }
+  /*   } */
+  /* else */
+  /*   { */
+  /*     printf("Incantation request" RED " [REFUSED]" RESET "\n"); */
+  /*     send_data(c->fd, "ko\n"); */
+  /*     return (NO); */
+  /*   } */
 }
 // 26 lignes !
 int		cmd_incantation(t_server *s, t_client *c,
@@ -122,10 +122,11 @@ int		cmd_incantation(t_server *s, t_client *c,
 
   i = -1;
   x = 1;
-  cmd_pic(s, c, cmd, GUI);
   c->level++;
+  cmd_pie(s, c, cmd, GUI);
+  cmd_plv(s, c, cmd, GUI);
   while (++i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
-	 && x < g_incantation[c->level - 1].player)
+	 && x < g_incantation[c->level - 1].player - 1)
     {
       client = get_client_by_id(s->clients,
 				s->map->objects[c->pos->y][c->pos->x]->ids[i]);
@@ -137,8 +138,6 @@ int		cmd_incantation(t_server *s, t_client *c,
 	  x++;
 	}
     }
-  cmd_pie(s, c, cmd, GUI);
-  cmd_plv(s, c, cmd, GUI);
   cmd_bct(s, c, cmd, GUI);
   return (SUCCESS);
 }
