@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Wed Jul  1 10:32:26 2015 Serge Heitzler
+** Last update Fri Jul  3 19:05:52 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -57,7 +57,6 @@ int		drop_rock(t_server *s, t_client *c, char *item)
 
 int		drop_food(t_server *s, t_client *c)
 {
-  printf("drop %d\n", s->map->objects[c->pos->y][c->pos->x]->food);
   if (c->inventory->food <= 0)
     return (ERROR);
   c->inventory->food--;
@@ -94,5 +93,6 @@ int		cmd_drop_object(t_server *s, t_client *c,
 	}
     }
   send_data(c->fd, "ok\n");
+  free(item);
   return (SUCCESS);
 }

@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Tue May 26 23:55:47 2015 Serge Heitzler
-** Last update Thu Jul  2 16:46:10 2015 Serge Heitzler
+** Last update Fri Jul  3 18:42:47 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -42,6 +42,7 @@ int		remove_at_index(t_list *list, int index)
       tmp = tmp->next;      
       i++;
     }
+  tmp->prev->next = tmp->next;
   del = tmp;
   free(del->data);
   free(del);

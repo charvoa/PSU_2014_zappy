@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Thu Jul  2 14:11:24 2015 Audibert Louis
+** Last update Fri Jul  3 19:28:14 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -27,8 +27,8 @@ char		*get_trame_deplacement(t_client *c)
   else
     x = c->pos->x + 1;
   trame = xmalloc((strlen("deplacement: ")
-		   + 4 + istm(x) + istm(y)) * sizeof(char));
-  bzero(trame, strlen("deplacement: ") + 4 + istm(x) + istm(y));
+		   + 3 + istm(x) + istm(y)) * sizeof(char));
+  bzero(trame, strlen("deplacement: ") + 3 + istm(x) + istm(y));
   sprintf(trame, "deplacement: %d %d\n", x, y);
   return (trame);
 }
@@ -49,18 +49,17 @@ void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
     add_id(s->map->objects[moved->pos->y][moved->pos->x], moved->fd);
   cmd_ppo(s, moved, "protocole", GUI);
 }
-
+// envoi de ok et ko à la suite ??
 int		cmd_kick(t_server *s, t_client *c,
 			 char *cmd, e_client_type type)
 {
+  (void)type;
+  (void)cmd;
   t_client	*client;
   char		*final;
   int		i;
 
-  (void)type;
-  (void)cmd;
   i = 0;
-  client = xmalloc(sizeof(t_client));
   final = get_trame_deplacement(c);
   cmd_pex(c, s->clients);
   while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients)
@@ -77,5 +76,6 @@ int		cmd_kick(t_server *s, t_client *c,
       i++;
     }
   send_data(c->fd, "ko\n");
+  free(final);
   return (SUCCESS);
 }

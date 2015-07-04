@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Fri Jul  3 11:18:54 2015 Audibert Louis
+** Last update Sat Jul  4 08:50:27 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -64,7 +64,6 @@ float		give_me_distance(t_map *map, t_position *f_pos, t_position *s_pos);
 char		**get_tab(int argc, char **argv);
 void		init_everything(t_server *s, int, char **);
 t_server	*fill_struct_serv(int argc, char **argv);
-
 
 /* Function(s) in file my_printf.c */
 void		my_printf(char *format, ...);
@@ -134,7 +133,7 @@ void		read_write_server(t_server *s, int i, char **argv);
 int		calcul_length(int, int, t_map *);
 int		calcul_width(int, int, t_map *);
 int		get_l(t_map *map, int f_pos_x, int s_pos_x);
-  int		get_w(t_map *map, int f_pos_y, int s_pos_y);
+int		get_w(t_map *map, int f_pos_y, int s_pos_y);
 
 /* --------------------$(CMD)--------------------- */
 
@@ -167,9 +166,14 @@ int		cmd_advance(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		cmd_bct(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_broadcast.c */
-char		*get_trame_broadcast(t_client *c, char *text);
-void		get_text(char *text, char *cmd);
+int		case_l_superior(t_client *c, t_client *cli, int l, int w);
+int		case_l_inferior(t_client *c, t_client *cli, int l, int w);
+int		case_l_equal(t_client *c, t_client *cli, int l, int w);
+int		determine_last_case(t_client *c, t_client *cli, int l, int w);
 int		cmd_broadcast(t_server *s, t_client *c, char *cmd, e_client_type type);
+
+/* Function(s) in cmd_broadcast_support.c */
+void		generate_broadcast(t_server *s, t_client *c, t_client *cli, char *msg);
 
 /* Function(s) in file cmd_connect_nbr.c */
 int		cmd_connect_nbr(t_server *s, t_client *c, char *cmd, e_client_type type);
@@ -206,6 +210,9 @@ int		cmd_graphic(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		cmd_incantation(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		is_incantation_possible(t_server *s, t_client *c, char *cmd, e_client_type type);
 
+/* Function(s) in file cmd_incantation_support.c */
+void		reset_block(t_block *b);
+
 /* Function(s) in file cmd_inventory.c */
 char		*get_objects_from_inventory(t_inventory *i);
 int		cmd_inventory(t_server *s, t_client *c, char *cmd, e_client_type type);
@@ -218,7 +225,6 @@ int		cmd_kick(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		cmd_left(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_mct.c */
-int		number_of_busy_space(t_server *s);
 int		get_all_malloc_size(t_server *s);
 int		cmd_mct(t_server *s, t_client *c, char *cmd, e_client_type type);
 
@@ -328,8 +334,8 @@ int		is_cmd(char *cmd);
 void		exec_cmd(t_server *s, t_client *c);
 
 /* Function(s) in file show_items_at_position.c */
+char		*malloc_and_memset(int size_malloc);
 int		*get_nb_items(t_block *block);
-int		get_last_wrote(int *nb_items);
 char		*fill_final_string(t_server *s, int size_malloc, int x, int y);
 int		get_size_malloc_at_position(t_server* s, int x, int y);
 char		*show_items_at_position(t_server * s, int x, int y);

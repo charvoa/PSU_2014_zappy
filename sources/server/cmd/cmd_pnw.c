@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sat Jun 27 15:10:59 2015 Serge Heitzler
-** Last update Wed Jul  1 10:24:04 2015 Serge Heitzler
+** Last update Fri Jul  3 19:55:11 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -27,11 +27,11 @@ int		cmd_pnw_normal(t_server *s, t_client *c,
   memset(final, 0, size_malloc);
   sprintf(final, "pnw #%d %d %d %d %d %s\n", c->fd, c->pos->x,
 	  c->pos->y, c->orientation, c->level, c->team_name);
-  printf("%s", final);
   if (type == GUI)
     send_data_to_gui(s->clients, final);
   else
     send_data(fd, final);
+  free(final);
   return (SUCCESS);
 }
 
@@ -48,7 +48,6 @@ int		cmd_pnw_all(t_server *s, t_client *c,
       tmp = s->clients->start;
       while (tmp)
 	{
-	  cli = xmalloc(sizeof(t_client));
 	  cli = tmp->data;
 	  if (cli->type == IA && cli->state == ADULT)
 	    cmd_pnw_normal(s, cli, IA, c->fd);
@@ -61,8 +60,6 @@ int		cmd_pnw_all(t_server *s, t_client *c,
 int		cmd_pnw(t_server *s, t_client *c,
 			char *cmd, e_client_type type)
 {
-  (void)cmd;
-
   if (type == NORMAL)
     cmd_pnw_normal(s, c, GUI, c->fd);
   else

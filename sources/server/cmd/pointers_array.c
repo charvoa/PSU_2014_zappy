@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Thu Jul  2 15:20:01 2015 Serge Heitzler
+** Last update Fri Jul  3 20:04:23 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -14,11 +14,11 @@ t_cmds	g_cmds[22] =
   {
     {"TEAM", &cmd_team, 0},
     {"avance", &cmd_advance, 7},
+    {"prend", &cmd_take_object, 7},
     {"droite", &cmd_right, 7},
     {"gauche", &cmd_left, 7},
     {"voir", &cmd_view, 7},
     {"inventaire", &cmd_inventory, 1},
-    {"prend", &cmd_take_object, 7},
     {"pose", &cmd_drop_object, 7},
     {"expulse", &cmd_kick, 7},
     {"incantation", &cmd_incantation, 300},

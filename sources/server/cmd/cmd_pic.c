@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 23:26:08 2015 Serge Heitzler
-** Last update Wed Jul  1 10:25:19 2015 Serge Heitzler
+** Last update Fri Jul  3 19:35:54 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -23,9 +23,7 @@ int		*get_fds(t_server *s, t_client *c,
 
   i = 0;
   o = 0;
-  b = xmalloc(sizeof(t_block));
   res = xmalloc(sizeof(int) * (g_incantation[c->level - 1].player - 1));
-  cli = xmalloc(sizeof(t_client));
   b = s->map->objects[c->pos->y][c->pos->x];
   while (i < b->nb_clients)
     {
@@ -90,6 +88,7 @@ int		cmd_pic(t_server *s, t_client *c,
   else
     sprintf(final, "pic %d %d %d #%d\n", c->pos->x, c->pos->y, c->level, c->fd);
   send_data_to_gui(s->clients, final);
-  printf("%s", final);
+  free(tmp);
+  free(final);
   return (SUCCESS);
 }

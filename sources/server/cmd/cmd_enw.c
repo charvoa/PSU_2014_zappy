@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 11:10:30 2015 Audibert Louis
-** Last update Thu Jul  2 11:31:23 2015 Audibert Louis
+** Last update Fri Jul  3 19:47:37 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -24,11 +24,11 @@ int		cmd_enw_normal(t_server *s, t_client *c,
   bzero(trame, size_alloc);
   sprintf(trame, "enw #%d #%d %d %d\n", e->id,
 	  e->fd_father, e->pos->x, e->pos->y);
-  printf("%s", trame);
   if (type == GUI)
     send_data_to_gui(s->clients, trame);
   else
     send_data(c->fd, trame);
+  free(trame);
   return (SUCCESS);
 }
 
@@ -44,7 +44,6 @@ int		cmd_enw_all(t_server *s, t_client *c,
       tmp = s->eggs->start;
       while (tmp)
 	{
-	  egg = xmalloc(sizeof(t_egg));
 	  egg = tmp->data;
 	  cmd_enw_normal(s, c, egg, NORMAL);
 	  tmp = tmp->next;

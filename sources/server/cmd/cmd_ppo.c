@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:54 2015 Serge Heitzler
-** Last update Fri Jul  3 15:09:43 2015 Audibert Louis
+** Last update Fri Jul  3 19:46:49 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -28,14 +28,13 @@ int		cmd_ppo(t_server *s, t_client *c,
 		 + istm((int)target->pos->x)
 		 + istm((int)target->pos->y)
 		 + istm(target->orientation));
-  final = xmalloc(sizeof(char) * size_malloc);
-  memset(final, 0, size_malloc);
+  final = malloc_and_memset(size_malloc);
   sprintf(final, "ppo #%d %d %d %d\n", target->fd,
 	  target->pos->x, target->pos->y, target->orientation);
-  printf("%s", final);
   if (type == GUI)
     send_data_to_gui(s->clients, final);
   else
     send_data(c->fd, final);
+  free(final);
   return (SUCCESS);
 }
