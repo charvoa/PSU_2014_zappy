@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:15:48 2015 Serge Heitzler
-** Last update Sat Jul  4 14:27:44 2015 Serge Heitzler
+** Last update Sat Jul  4 14:29:58 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -22,12 +22,10 @@ char		*create_final_support(t_server *s, t_client *c,
   i = 0;
   x = xmalloc(sizeof(int));
   y = xmalloc(sizeof(int));
-  printf("visible space : %d , with level %d\n", get_number_of_visible_space(c->level), c->level);
   while (++i < get_number_of_visible_space(c->level))
     {
       sscanf(pos[i], "%d %d", x, y);
       size = get_size_malloc_at_position(s, *x, *y);
-      printf("[%d] with size %d\n", i, size);
       tmp = xmalloc(sizeof(char) * size);
       bzero(tmp, size);
       tmp = show_items_at_position(s, *x, *y);
