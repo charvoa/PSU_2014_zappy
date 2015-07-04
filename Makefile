@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:23:38 2015 Serge Heitzler
-## Last update Tue Jun 30 15:38:42 2015 Nicolas Charvoz
+## Last update Sat Jul  4 15:47:53 2015 Nicolas Girardot
 ##
 
 MAKE		= 	make -C
@@ -27,6 +27,8 @@ zappy_server	:
 
 graph		:
 			$(MAKE) $(DIR_GRAPH)
+			ln -s -f sources/graph/run.sh run_graph.sh
+			ln -s -f sources/graph/zappy_graph zappy_graph
 
 clean		:
 			$(MAKE) $(DIR_SERV) clean

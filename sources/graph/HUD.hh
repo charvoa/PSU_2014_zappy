@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:23 2015 Nicolas Girardot
-// Last update Mon Jun 29 15:16:51 2015 Nicolas Girardot
+// Last update Sat Jul  4 15:13:09 2015 Nicolas Girardot
 //
 
 #ifndef _HUD_HH_
