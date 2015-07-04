@@ -1,4 +1,2 @@
 Faire le projet.
-+ tablo de pointeur sure foncsion poure les opsions du sèrveure
-+ norme parser / str to wordtab + g3 makefile
-+ faire un usage sinon segfault (pas de team passé en param = SEGFAULT)
++ g3 makefile

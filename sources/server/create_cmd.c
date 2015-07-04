@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun Jun 28 00:07:48 2015 Serge Heitzler
-** Last update Sat Jul  4 22:16:46 2015 Serge Heitzler
+** Last update Sun Jul  5 01:10:02 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -15,7 +15,7 @@ void		delay_inferior(t_cmd *cmd, long ns_delay, int billion)
   if (cmd->exec_at.tv_nsec + ns_delay > billion)
     {
       cmd->exec_at.tv_sec++;
-      ns_delay = cmd->exec_at.tv_nsec + ns_delay - billion;
+      cmd->exec_at.tv_nsec = cmd->exec_at.tv_nsec + ns_delay - billion;
     }
   else
     cmd->exec_at.tv_nsec += ns_delay;
@@ -76,7 +76,7 @@ void		create_cmd(t_server *s, t_client *c)
   if ((ret = (is_cmd(s_cmd->label))) != NO)
     manage_time(s, s_cmd, ret);
   push_back(c->cmds, s_cmd, CMD);
-  printf("i = %d\n", i);
+  printf("cmd n°[%d] received %ld,%ld - exec_prevision %ld,%ld\n", i, s->now.tv_sec, s->now.tv_nsec, s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec);
   free(tmp);
   i++;
 }

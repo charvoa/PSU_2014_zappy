@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sat Jul  4 16:43:56 2015 Serge Heitzler
+** Last update Sun Jul  5 01:06:59 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -111,7 +111,7 @@ int		is_incantation_possible(t_server *s, t_client *c,
   /*     return (NO); */
   /*   } */
 }
-// 26 lignes !
+
 int		cmd_incantation(t_server *s, t_client *c,
 			        char *cmd, e_client_type type)
 {
