@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun Jun 28 00:07:48 2015 Serge Heitzler
-** Last update Sat Jul  4 13:26:47 2015 Serge Heitzler
+** Last update Sat Jul  4 22:16:46 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -54,6 +54,7 @@ int		manage_time(t_server *s, t_cmd *cmd, int index)
 void		create_cmd(t_server *s, t_client *c)
 {
   (void)s;
+  static int		i = 1;
   int			ret;
   char			*tmp;
   t_cmd			*s_cmd;
@@ -75,5 +76,7 @@ void		create_cmd(t_server *s, t_client *c)
   if ((ret = (is_cmd(s_cmd->label))) != NO)
     manage_time(s, s_cmd, ret);
   push_back(c->cmds, s_cmd, CMD);
+  printf("i = %d\n", i);
   free(tmp);
+  i++;
 }

@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Sat Jul  4 14:43:34 2015 Serge Heitzler
+** Last update Sat Jul  4 22:25:07 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -56,10 +56,10 @@ void		exec_cmd(t_server *s, t_client *c)
   int		ret;
 
   cmd = c->cmds->start->data;
-  printf("3\n");
+  printf("----!----3\n");
   if ((ret = is_cmd(cmd->label)) != NO)
     {
-      printf(BLUE "IA just sent this cmd [%s]\n" RESET, cmd->label);
+      printf(BLUE "IA [%d] execute cmd [%s]\n" RESET, c->fd, cmd->label);
       g_cmds[ret].ptr_func(s, c, cmd->label);
     }
   else

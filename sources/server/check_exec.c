@@ -5,14 +5,13 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 26 08:23:43 2015 Serge Heitzler
-** Last update Sat Jul  4 14:47:01 2015 Serge Heitzler
+** Last update Sat Jul  4 21:03:20 2015 Serge Heitzler
 */
 
 #include "functions.h"
 
 void		exec_and_remove(t_server *s, t_client *c)
 {
-  printf("3\n");
   exec_cmd(s, c);
   remove_front(c->cmds);
 }
@@ -30,7 +29,6 @@ int		check_exec(t_server *s)
   while (++i < s->clients->length)
     {
       c = tmp_cli->data;
-      //      clock_gettime(CLOCK_REALTIME, &s->now);
       if (c->cmds->length > 0)
 	{
 	  tmp_cmd = c->cmds->start;

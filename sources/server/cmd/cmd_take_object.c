@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Fri Jul  3 18:50:32 2015 Serge Heitzler
+** Last update Sat Jul  4 22:40:24 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -72,9 +72,9 @@ int		take_rock(t_server *s, t_client *c, char *item)
     return (ERROR);
   if (launch_func_inventory(c, rock_type, ADD) == ERROR)
     return (ERROR);
-  cmd_pgt(c, s->clients, rock_type + 1);
-  cmd_pin(s, c, "protocole", GUI);
-  cmd_bct(s, c, "protocole", GUI);
+  //  cmd_pgt(c, s->clients, rock_type + 1);
+  //  cmd_pin(s, c, "protocole", GUI);
+  //  cmd_bct(s, c, "protocole", GUI);
   return (SUCCESS);
 }
 
@@ -84,9 +84,9 @@ int		take_food(t_server *s, t_client *c)
     return (ERROR);
   s->map->objects[c->pos->y][c->pos->x]->food--;
   c->inventory->food++;
-  cmd_pgt(c, s->clients, 0);
-  cmd_pin(s, c, "protocole", GUI);
-  cmd_bct(s, c, "protocole", GUI);
+  //  cmd_pgt(c, s->clients, 0);
+  //  cmd_pin(s, c, "protocole", GUI);
+  //  cmd_bct(s, c, "protocole", GUI);
   return (SUCCESS);
 }
 
@@ -103,7 +103,7 @@ int		cmd_take_object(t_server *s, t_client *c,
     {
       if (take_food(s, c) == ERROR)
 	{
-	  send_data(c->fd, "ko\n");
+	  send_data(c->fd, "ko prend\n");
 	  return (ERROR);
 	}
     }
@@ -111,10 +111,10 @@ int		cmd_take_object(t_server *s, t_client *c,
     {
       if (take_rock(s, c, item) == ERROR)
 	{
-	  send_data(c->fd, "ko\n");
+	  send_data(c->fd, "ko prend\n");
 	  return (ERROR);
 	}
     }
-  send_data(c->fd, "ok\n");
+  send_data(c->fd, "ok prend\n");
   return (SUCCESS);
 }

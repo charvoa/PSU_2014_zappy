@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sat Jul  4 14:41:29 2015 Serge Heitzler
+** Last update Sat Jul  4 20:57:24 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -80,6 +80,7 @@ void		read_write_server(t_server *s, int i, char **argv)
   char		*tmp;
   t_client	*c;
 
+  printf("J'ai recu quelque chose du client %d\n", i);
   if ((c = get_client_by_id(s->clients, i)) == NULL)
     return;
   tmp = xmalloc(4096 * sizeof(char));

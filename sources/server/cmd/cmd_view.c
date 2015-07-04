@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Sat Jul  4 19:30:02 2015 Serge Heitzler
+** Last update Sat Jul  4 22:39:24 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -102,7 +102,8 @@ int		cmd_view(t_server *s, t_client *c,
   char		*tmp;
 
   pos = get_pos_of_visible_space(s, c);
-  size_malloc = malloc_cmd_view(s, c, pos);
+  //  size_malloc = malloc_cmd_view(s, c, pos);
+  size_malloc = 4096;
   tmp = create_final_string_view(s, c, size_malloc, pos);
   size_malloc += 4;
   final = xmalloc(sizeof(char) * (size_malloc));
