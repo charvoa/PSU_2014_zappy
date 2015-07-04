@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Fri Jul  3 10:22:33 2015 Audibert Louis
+** Last update Sat Jul  4 21:22:54 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -58,7 +58,7 @@ int		check_fds(t_server *s, char **argv)
 void		loop_server(t_server *s, char **argv)
 {
   struct timeval tv;
-  
+
   tv.tv_sec = 0;
   tv.tv_usec = 1000000 / s->time_action;
   clock_gettime(CLOCK_REALTIME, &s->next);
