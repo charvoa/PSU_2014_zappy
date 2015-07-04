@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Fri Jul  3 19:22:33 2015 Serge Heitzler
+** Last update Sat Jul  4 08:50:42 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -101,11 +101,12 @@ int		is_incantation_possible(t_server *s, t_client *c,
       cmd_pic(s, c, cmd, type);
       printf("Starting incantation id[%d]-level[%d]\n", c->fd, c->level);
       send_incantation(s, c);
+      reset_block(b);
       return (YES);
     }
   else
     {
-      printf("Incantation request" RED " [REFUSED], " RESET "\n");
+      printf("Incantation request" RED " [REFUSED]" RESET "\n");
       send_data(c->fd, "ko\n");
       return (NO);
     }
