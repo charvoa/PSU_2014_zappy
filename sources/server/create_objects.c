@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:00:23 2015 Serge Heitzler
-** Last update Fri Jul  3 11:17:53 2015 Audibert Louis
+** Last update Sat Jul  4 15:14:52 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -17,6 +17,7 @@ void		add_objects(t_block *b, int x, int y)
   r = (rand() + (rand() * x) + (rand() * y) + x + y) % 18;
   /* if (r == 0 || (r > 6 && r <= 12)) */
   /*   b->food++; */
+  b->linemate++;
   if (r == 1)
     b->linemate++;
   if (r == 2)
