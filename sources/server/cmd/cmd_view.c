@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:30:07 2015 Serge Heitzler
-** Last update Fri Jul  3 19:54:28 2015 Serge Heitzler
+** Last update Sat Jul  4 14:30:10 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -84,7 +84,7 @@ char		*create_final_string_view(t_server *s, t_client *c,
   tmp = xmalloc(sizeof(char) * get_size_malloc_at_position(s, *x, *y));
   bzero(tmp, get_size_malloc_at_position(s, *x, *y));
   tmp = show_items_at_position(s, *x, *y);
-  sprintf(final, "%s", tmp);
+  sprintf(final, "%s,", tmp);
   free(tmp);
   final = create_final_support(s, c, pos, final);
   return (final);
@@ -101,8 +101,9 @@ int		cmd_view(t_server *s, t_client *c,
   char		*tmp;
 
   pos = get_pos_of_visible_space(s, c);
-  size_malloc = malloc_cmd_view(s, c, pos) + 2;
+  size_malloc = malloc_cmd_view(s, c, pos) + 3;
   tmp = create_final_string_view(s, c, size_malloc, pos);
+  size_malloc += 4;
   final = xmalloc(sizeof(char) * (size_malloc));
   bzero(final, size_malloc);
   sprintf(final, "{%s}\n", tmp);

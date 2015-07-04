@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jul  4 14:02:01 2015 Audibert Louis
+** Last update Sat Jul  4 14:55:48 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -20,9 +20,7 @@ void		init_orientation(void (*orientation[4])(t_client *))
 
 void		init_inventory(t_client *c, int food)
 {
-  /* c->inventory->food = food; */
-  (void)food;
-  c->inventory->food = 10000;
+  c->inventory->food = food;
   c->inventory->linemate = 0;
   c->inventory->deraumere = 0;
   c->inventory->sibur = 0;

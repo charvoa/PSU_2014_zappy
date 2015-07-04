@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Fri Jul  3 19:28:14 2015 Serge Heitzler
+** Last update Sat Jul  4 14:52:56 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -37,6 +37,7 @@ void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
 {
   s->map->objects[moved->pos->y][moved->pos->x]->ids =
     remove_id(s->map->objects[moved->pos->y][moved->pos->x], moved->fd);
+  s->map->objects[moved->pos->y][moved->pos->x]->nb_clients--;
   if (caller->orientation == NORD)
     moved->pos->y = caller->pos->y - 1;
   else if (caller->orientation == EST)
@@ -47,9 +48,10 @@ void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
     moved->pos->x = caller->pos->x + 1;
   s->map->objects[moved->pos->y][moved->pos->x]->ids =
     add_id(s->map->objects[moved->pos->y][moved->pos->x], moved->fd);
+  s->map->objects[moved->pos->y][moved->pos->x]->nb_clients++;
   cmd_ppo(s, moved, "protocole", GUI);
 }
-// envoi de ok et ko à la suite ??
+
 int		cmd_kick(t_server *s, t_client *c,
 			 char *cmd, e_client_type type)
 {
@@ -75,7 +77,6 @@ int		cmd_kick(t_server *s, t_client *c,
   	    }
       i++;
     }
-  send_data(c->fd, "ko\n");
   free(final);
   return (SUCCESS);
 }
