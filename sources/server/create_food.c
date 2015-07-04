@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 10:57:41 2015 Serge Heitzler
-** Last update Sat Jul  4 14:21:55 2015 Audibert Louis
+** Last update Sat Jul  4 15:10:11 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -24,7 +24,7 @@ int		create_food(t_server *s)
     {
       x = rand() % s->map->size->width;
       y = rand() % s->map->size->height;
-      if (s->map->objects[y][x]->food >= 20)
+      if (s->map->objects[y][x]->food <= 20)
 	s->map->objects[y][x]->food++;
       i++;
     }
