@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Sat Jul  4 14:17:24 2015 Audibert Louis
+** Last update Sun Jul  5 00:06:34 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -52,7 +52,6 @@ int		*remove_id(t_block *block, int id)
 
   i = 0;
   j = 0;
-  printf("block->ids[0] = %d\n", block->ids[0]);
   if (block->ids[0] == id)
     {
       block->ids[0] = -1;

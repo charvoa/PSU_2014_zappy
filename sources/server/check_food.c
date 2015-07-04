@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jul  1 13:05:17 2015 Serge Heitzler
-** Last update Sat Jul  4 23:07:41 2015 Serge Heitzler
+** Last update Sun Jul  5 01:09:08 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -15,7 +15,7 @@ void		d_inferior(t_server *s, long ns_delay, int billion)
   if (s->next.tv_nsec + ns_delay > billion)
     {
       s->next.tv_sec++;
-      ns_delay = s->next.tv_nsec + ns_delay - billion;
+      s->next.tv_nsec = s->next.tv_nsec + ns_delay - billion;
     }
   else
     s->next.tv_nsec += ns_delay;

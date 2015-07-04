@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Fri Jul  3 19:20:44 2015 Serge Heitzler
+** Last update Sun Jul  5 01:09:24 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -15,7 +15,7 @@ void		delay_inf(t_egg *e, int billion, long ns_delay)
   if (e->eclos.tv_nsec + ns_delay > billion)
     {
       e->eclos.tv_sec++;
-      ns_delay = e->eclos.tv_nsec + ns_delay - billion;
+      e->eclos.tv_nsec = e->eclos.tv_nsec + ns_delay - billion;
     }
   else
     e->eclos.tv_nsec += ns_delay;
