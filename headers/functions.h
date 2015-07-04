@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jul  4 08:50:27 2015 Serge Heitzler
+** Last update Sat Jul  4 18:48:05 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -291,6 +291,9 @@ int		cmd_take_object(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		is_a_team(t_server *s, char *team);
 int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n);
 int		cmd_team(t_server *s, t_client *c, char *cmd, e_client_type type);
+
+/* Function(s) in file cmd_tin.c */
+int		cmd_tin(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_tna.c */
 void	        send_all_teams(t_server *s, t_client *c);
