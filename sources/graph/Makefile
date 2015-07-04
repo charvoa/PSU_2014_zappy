@@ -5,10 +5,12 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Wed Jul  1 10:57:54 2015 Nicolas Girardot
+## Last update Fri Jul  3 18:06:29 2015 Antoine Garcia
 ##
 
 MAIN		=	zappy_graph
+
+RUN		=	run.sh
 
 EXEC		=	$(MAIN)
 
@@ -21,6 +23,7 @@ SRC		+=	GameEngine.cpp					\
 			IACharacter.cpp					\
 			Case.cpp					\
 			Egg.cpp						\
+			./Sound/SoundManager.cpp			
 
 SRC_MAIN	=	$(SRC) main.cpp
 

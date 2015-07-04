@@ -4,9 +4,9 @@ class InterpretClass():
 
     """ A class that interpret messages received """
 
-    x = 0
-    y = 0
-    nbr_client = 0
+    self.x = 0
+    self.y = 0
+    self.nbr_client = 0
 
     def interpret_bienvenue(self, s, rec, p):
         if (p.getVerbose()):

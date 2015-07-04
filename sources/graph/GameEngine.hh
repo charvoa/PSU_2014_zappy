@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Fri Jul  3 15:57:55 2015 Nicolas Girardot
+// Last update Fri Jul  3 18:13:59 2015 Antoine Garcia
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -31,7 +31,7 @@
 #include "Position.hpp"
 #include "Egg.hh"
 #include "HUD.hh"
-
+#include "./Sound/SoundManager.hh"
 class Socket;
 
 
@@ -74,12 +74,14 @@ public:
   void	deletePlayer(int);
   void	updateLvl(int, int);
   void	updateTime(int);
-  void	run();
+  void	run(const char *, int  );
   bool		isEventOnMap(int, int);
   void	getSpeed(int);
+  void	endGame(std::string &);
   std::pair <int, int>determinePosClicked(std::pair<int,int> &, int, int);
   std::pair <int, int>determinePosClickedOnGUI(int, int);
 private:
+  static Sound&	_sound;
   std::vector<std::vector<Case*> > _cases;
   std::list<IACharacter *> _players;
   std::list<Egg *>		_eggs;

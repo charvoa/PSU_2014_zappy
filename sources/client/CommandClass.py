@@ -102,6 +102,7 @@ class CommandClass():
         mess.sendMessage(s, var)
         #rec = mess.readMessage(s)
         rec = self.check_message(s, p, mess)
+        print('voir: ', rec)
         if (p.getVerbose()):
             print(rec)
         if ('ko' in rec):

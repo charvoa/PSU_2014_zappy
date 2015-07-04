@@ -4,6 +4,7 @@ import subprocess
 import string
 import re
 import sys
+import math
 from array import *
 from CommandClass import *
 from MoveClass import *
@@ -18,8 +19,7 @@ class IAClass():
         self.mess = mess
         self.cc = CommandClass()
         self.move = MoveClass()
-        self.rocksTab = ['linemate', 'deraumere', 'sibur', 'mendiane', 'phiras',
-                                    'thystame']
+        self.rocksTab = ['linemate', 'deraumere', 'sibur', 'mendiane', 'phiras', 'thystame']
         self.linemate = 0
         self.deraumere = 0
         self.sibur = 0
@@ -44,6 +44,8 @@ class IAClass():
         self.hasTarget = False
         self.needState = False
         self.whereState = False
+        self.moveState = True
+        self.distMax = math.sqrt(((x/2)*(x/2) + (y/2)*(y/2))
         print('Here is my id : ', self.uid)
 
     def getMessage(self, rec):
@@ -119,6 +121,9 @@ class IAClass():
         print('Case ou on doit aller : ', case)
         if (case == 0):
             print('ON est ensemble')
+            self.dropRocks()
+            if (self.cc.broadcast_cmd(self.s, self.p, self.mess) != -1):
+                self.moveState = True
             sys.exit(0)
         self.whereState = True
         if (senderId == self.target):
@@ -132,7 +137,7 @@ class IAClass():
         self.targets.append(senderId)
         if (len(self.targets) >= self.getNbPlayerRequired()):
             self.cc.broadcast_cmd(self.s, self.p, self.mess, self.whereisIaTarget())
-
+            self.moveState = False
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage()
         check = 4
@@ -285,6 +290,7 @@ class IAClass():
                                         self.cc.broadcast_cmd(self.s, self.p, self.mess, \
                                                               self.buildMessageForBroadcast())
                                 else:
+                                    print('je peux incanter')
                                     self.dropRocks()
                                     if (self.cc.incantation_cmd(self.s, self.p, self.mess) != 1):
                                         self.takeEvery()
@@ -370,7 +376,7 @@ class IAClass():
             self.checkSurvival()
             self.changeItemsNeed()
             self.checkNeedMode()
-            if (self.whereState == False):
+            if (self.whereState == False && self.moveState == False):
                 x, y = self.move.getMovements(self.checkBestCase())
             self.takeRocks()
             if (self.getLevel() > 1):
