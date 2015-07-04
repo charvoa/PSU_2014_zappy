@@ -5,14 +5,17 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Sat Jul  4 13:35:42 2015 Nicolas Girardot
+// Last update Fri Jul  3 18:37:50 2015 Antoine Garcia
 //
 
 #include "GameEngine.hh"
 #include <SDL/SDL_image.h>
 
+Sound&	GameEngine::_sound = Sound::getInstance();
 GameEngine::GameEngine() {
   _gMap = NULL;
+  _sound.initialize();
+  _sound.registerSound("./Sound/main_theme.mp3", "main");
 }
 
 GameEngine::~GameEngine() {
@@ -194,6 +197,7 @@ bool	GameEngine::initialize()
   TTF_Init();
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
+  _sound.playMusic("main", 1);
   _socket->writeOnSocket("sgt\r\n");
   return true;
 }
