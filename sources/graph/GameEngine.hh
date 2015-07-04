@@ -5,7 +5,7 @@
 // Login   <florian@epitech.eu>
 //
 // Started on  Wed May  6 15:12:05 2015 Florian PERU
-// Last update Fri Jul  3 15:57:55 2015 Nicolas Girardot
+// Last update Sat Jul  4 13:35:30 2015 Nicolas Girardot
 //
 
 #ifndef GAMEENGINE_HPP_
@@ -74,9 +74,10 @@ public:
   void	deletePlayer(int);
   void	updateLvl(int, int);
   void	updateTime(int);
-  void	run();
+  void	run(const char *, int  );
   bool		isEventOnMap(int, int);
   void	getSpeed(int);
+  void	endGame(std::string &);
   std::pair <int, int>determinePosClicked(std::pair<int,int> &, int, int);
   std::pair <int, int>determinePosClickedOnGUI(int, int);
 private:

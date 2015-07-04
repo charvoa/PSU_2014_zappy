@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Fri Jul  3 15:56:17 2015 Nicolas Girardot
+// Last update Sat Jul  4 11:43:20 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -204,13 +204,9 @@ void Command::pfk(std::string cmd, GameEngine *game)
 
 void Command::seg(std::string cmd, GameEngine *game)
 {
-  (void)game;
+  std::string		teamName(cmd.begin() + 4, cmd.end());
 
-  std::string		str(cmd.begin() + 4, cmd.end());
-  std::istringstream	ss(str);
-  int			id;
-
-  ss >> id;
+  game->endGame(teamName);
 }
 
 void Command::pbc(std::string cmd, GameEngine *game)

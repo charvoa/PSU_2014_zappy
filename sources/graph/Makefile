@@ -5,10 +5,12 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:27:24 2015 Serge Heitzler
-## Last update Wed Jul  1 10:57:54 2015 Nicolas Girardot
+## Last update Sat Jul  4 16:22:41 2015 Nicolas Girardot
 ##
 
 MAIN		=	zappy_graph
+
+RUN		=	run.sh
 
 EXEC		=	$(MAIN)
 

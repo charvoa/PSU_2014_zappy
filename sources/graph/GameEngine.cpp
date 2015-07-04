@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Fri Jul  3 15:57:48 2015 Nicolas Girardot
+// Last update Sat Jul  4 13:35:42 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -76,6 +76,16 @@ void	GameEngine::addEgg(std::vector<int> &att)
   result = sstm.str();
   _hud->update_info(result);
   _eggs.push_back(egg);
+}
+
+void	GameEngine::endGame(std::string &team)
+{
+  std::stringstream sstm;
+
+  sstm << "Team " << team << " has won the game : GeeeeGeeee";
+  std::string result;
+  result = sstm.str();
+  _hud->update_info(result);
 }
 
 void	GameEngine::deleteEgg(int id, int i)
@@ -366,9 +376,9 @@ void	GameEngine::draw()
   SDL_RenderPresent(_renderer);
 }
 
-void	GameEngine::run()
+void	GameEngine::run(const char *ip, int port)
 {
-  this->_socket = new Socket("127.0.0.1", 4242, this);
+  this->_socket = new Socket(ip, port, this);
   _socket->writeOnSocket("GRAPHIC\n");
   initialize();
   while (this->update())

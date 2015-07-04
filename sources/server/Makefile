@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sat Jul  4 08:49:43 2015 Serge Heitzler
+## Last update Sat Jul  4 15:24:46 2015 Nicolas Girardot
 ##
 
 CC		= 	gcc
