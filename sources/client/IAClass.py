@@ -250,22 +250,28 @@ class IAClass():
         return case
 
     def checkSurvival(self):
-        save = 0
-        survivalBool = False
-        if (self.food < 3):
-            survivalBool = True
-            print('I\'m in survival mode')
-            i = 0
-            for p in self.inFrontOfMe:
-                if ('nourriture' in p):
-                    save = i
-            i+=1
-        if ((save == 0 and survivalBool == False) or self.whereState == False):
-            save = random.randint(1, 81)
-        x, y = self.move.getMovements(save)
-        self.moveAI(x, y)
-        self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
-
+        try:
+            save = 0
+            survivalBool = False
+            if (self.food < 3):
+                survivalBool = True
+                print('I\'m in survival mode')
+                i = 0
+                for p in self.inFrontOfMe:
+                    if ('nourriture' in p):
+                        save = i
+                i+=1
+            if ((save == 0 and survivalBool == False) or self.whereState == False):
+                save = random.randint(1, 81)
+            x, y = self.move.getMovements(save)
+            self.moveAI(x, y)
+            self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
+        except:
+            if ((save == 0 and survivalBool == False) or self.whereState == False):
+                save = random.randint(1, 81)
+            x, y = self.move.getMovements(save)
+            self.moveAI(x, y)
+            self.cc.prend_cmd(self.s, self.p, self.mess, 'nourriture')
 
     def checkNeedMode(self):
         if (self.linemate >= self.itemsNeeded[1]):
