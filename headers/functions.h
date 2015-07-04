@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jul  4 08:50:27 2015 Serge Heitzler
+** Last update Sat Jul  4 16:43:37 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -212,6 +212,7 @@ int		is_incantation_possible(t_server *s, t_client *c, char *cmd, e_client_type 
 
 /* Function(s) in file cmd_incantation_support.c */
 void		reset_block(t_block *b);
+void		send_level(t_client *c);
 
 /* Function(s) in file cmd_inventory.c */
 char		*get_objects_from_inventory(t_inventory *i);

@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Thu Jul  2 11:12:47 2015 Audibert Louis
+** Last update Sat Jul  4 14:41:29 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -46,7 +46,7 @@ int	accept_server(t_server *s, char **argv)
   s->addrlen = sizeof(s->clientaddr);
   if ((s->newfd = accept(s->listener, (struct sockaddr *)&(s->clientaddr),
 			 (socklen_t*)&(s->addrlen))) == -1)
-      perror("Server-accept() error !");
+    perror("Server-accept() error !");
   else
     {
       printf("Server-accept() is OK...\n");
