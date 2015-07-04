@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Fri Jun 19 17:00:46 2015 Nicolas Girardot
-// Last update Thu Jul  2 14:47:03 2015 Nicolas Girardot
+// Last update Sat Jul  4 13:44:21 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -122,9 +122,9 @@ void	GraphMap::draw(SDL_Renderer *renderer, Position &focus, std::vector<std::ve
 		  rect.x = (230 + (i - focus._x + 3) * _squareSize);
 		  SDL_RenderCopy(renderer, _rock4t, NULL, &rect);
 		}
+	      rect.y = (170 + (j - focus._y + 3) * _squareSize);
 	      if (map.at(j).at(i)->get(Case::PHIRAS) >= 1)
 		{
-		  rect.y = (170 + (j - focus._y + 3) * _squareSize);
 		  rect.x = (150 + (i - focus._x + 3) * _squareSize);
 		  SDL_RenderCopy(renderer, _rock5t, NULL, &rect);
 		}

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu May  7 11:34:34 2015 Audibert Louis
-** Last update Wed Jul  1 14:28:34 2015 Audibert Louis
+** Last update Sat Jul  4 17:44:48 2015 Audibert Louis
 */
 
 #include <ctype.h>
@@ -52,15 +52,27 @@ int	opt_nb_client(t_server *s)
   if (is_number(s->o->optarg) != -1)
     set_slot_for_team(s->teams, "slot_max", atoi(s->o->optarg));
   else
-    return (-1);
+    {
+      printf("-c set to 10 (default value)\n");
+      return (-1);
+    }
   return (0);
 }
 
 int	opt_time_action(t_server *s)
 {
   if (is_number(s->o->optarg) != -1)
-    s->time_action = atoi(s->o->optarg);
+    {
+      if (atoi(s->o->optarg) <= 0)
+	return (-1);
+      else if (atoi(s->o->optarg) > 10000)
+	return (-1);
+      s->time_action = atoi(s->o->optarg);
+    }
   else
-    return (-1);
+    {
+      printf("-t set to 100 (default value)\n");
+      return (-1);
+    }
   return (0);
 }

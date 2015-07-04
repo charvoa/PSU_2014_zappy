@@ -102,10 +102,11 @@ class CommandClass():
         mess.sendMessage(s, var)
         #rec = mess.readMessage(s)
         rec = self.check_message(s, p, mess)
+        print('voir: ', rec)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ko\n'):
-            return 0
+        if ('ko' in rec):
+            return -1
         elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)
@@ -121,10 +122,11 @@ class CommandClass():
         var = 'inventaire\r\n'
         mess.sendMessage(s, var)
         rec = mess.readMessage(s)
+        print('inventaire : ', rec)
         if (p.getVerbose()):
             print(rec)
-        if (rec == 'ko\n'):
-            return []
+        if ('ko' in rec):
+            return -1
         elif ('mort' in rec):
             print('You died\n')
             sys.exit(0)

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:07:21 2015 Audibert Louis
-** Last update Sat Jul  4 23:27:49 2015 Serge Heitzler
+** Last update Sat Jul  4 23:35:54 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -68,6 +68,6 @@ t_server	*fill_struct_serv(int argc, char **argv)
     }
   launch_init_map(s);
   set_slot_for_team(s->teams, "slot_rest", 10);
-  set_slot_for_team(s->teams, "slot_team", 10);
+  set_slot_for_team(s->teams, "slot_max", 10);
   return (s);
 }

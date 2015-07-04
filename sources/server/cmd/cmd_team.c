@@ -5,11 +5,11 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Fri Jul  3 19:48:57 2015 Serge Heitzler
+** Last update Sat Jul  4 17:34:30 2015 Audibert Louis
 */
 
 #include "functions.h"
-// Send_data team doesnt exist ?
+
 int		is_a_team(t_server *s, char *team)
 {
   t_node	*tmp;
