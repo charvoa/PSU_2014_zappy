@@ -285,14 +285,17 @@ class IAClass():
                                         self.cc.broadcast_cmd(self.s, self.p, self.mess, \
                                                               self.buildMessageForBroadcast())
                                 else:
-                                    print('Je peux incanter')
                                     self.dropRocks()
                                     if (self.cc.incantation_cmd(self.s, self.p, self.mess) != 1):
                                         self.takeEvery()
 
 
     def takeEvery(self):
-        tmp = self.cc.voir_cmd(self.s, self.p, self.mess)[0]
+        while 1:
+            voir = self.cc.voir_cmd(self.s, self.p, self.mess)
+            if (voir != -1):
+                tmp = voir[0]
+                break
         tmp.strip()
         tab = tmp.split(' ')
         for i in tab:
@@ -345,7 +348,9 @@ class IAClass():
     def run(self):
         i = 1
         while (i == 1):
-            self.cc.inventaire_cmd(self.s, self.p, self.mess)
+            while 1:
+                if (self.cc.inventaire_cmd(self.s, self.p, self.mess) != -1):
+                    break
             self.linemate = self.cc.getLinemate()
             self.deraumere = self.cc.getDeraumere()
             self.sibur = self.cc.getSibur()
@@ -356,7 +361,10 @@ class IAClass():
             print('i got : ', self.linemate, ' linemate ', self.deraumere, 'deraumere', \
                   self.sibur, ' sibur ', self.mendiane, ' mendiane ', self.phiras, ' phiras', \
                   self.thystame, ' thystame ', self.food, ' food')
-            self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
+            while 1:
+                self.inFrontOfMe = self.cc.voir_cmd(self.s, self.p, self.mess)
+                if (self.inFrontOfMe != -1):
+                    break
             self.itemsNeeded = self.defineWhatWeNeedMost()
             self.itemsNeededStill = self.defineWhatWeNeedMost()
             self.checkSurvival()
