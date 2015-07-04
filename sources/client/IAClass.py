@@ -45,7 +45,7 @@ class IAClass():
         self.needState = False
         self.whereState = False
         self.moveState = True
-        self.distMax = math.sqrt(((x/2)*(x/2) + (y/2)*(y/2))
+#        self.distMax = math.sqrt(((x/2)*(x/2) + (y/2)*(y/2)))
         print('Here is my id : ', self.uid)
 
     def getMessage(self, rec):
@@ -376,7 +376,7 @@ class IAClass():
             self.checkSurvival()
             self.changeItemsNeed()
             self.checkNeedMode()
-            if (self.whereState == False && self.moveState == False):
+            if (self.whereState == False and self.moveState == False):
                 x, y = self.move.getMovements(self.checkBestCase())
             self.takeRocks()
             if (self.getLevel() > 1):
