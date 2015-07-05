@@ -5,28 +5,29 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sun Jul  5 14:12:14 2015 Audibert Louis
+** Last update Sun Jul  5 14:58:56 2015 Audibert Louis
 */
 
 #include "functions.h"
+
 // Free rock tab ?
 int		check_rock(char *rock)
 {
-  char	**rocks;
+  char	**rock_tab;
   int	i;
 
-  rocks = xmalloc(7 * sizeof(char *));
-  rocks[0] = "linemate";
-  rocks[1] = "deraumere";
-  rocks[2] = "sibur";
-  rocks[3] = "mendiane";
-  rocks[4] = "phiras";
-  rocks[5] = "thystame";
-  rocks[6] = NULL;
+  rock_tab = xmalloc(7 * sizeof(char *));
+  rock_tab[0] = "linemate";
+  rock_tab[1] = "deraumere";
+  rock_tab[2] = "sibur";
+  rock_tab[3] = "mendiane";
+  rock_tab[4] = "phiras";
+  rock_tab[5] = "thystame";
+  rock_tab[6] = NULL;
   i = 0;
-  while (rocks[i])
+  while (rock_tab[i])
     {
-      if (strncmp(rock, rocks[i], strlen(rock)) == 0)
+      if (strncmp(rock, rock_tab[i], strlen(rock)) == 0)
 	return (i);
       i++;
     }
@@ -37,22 +38,13 @@ int		launch_func_block(t_block *block,
 				  int rock_type, e_flag_rock flag)
 {
   int		i;
-  t_objects	rocks[6] =
-    {
-      {"linemate", &block_linemate},
-      {"deraumere", &block_deraumere},
-      {"sibur", &block_sibur},
-      {"mendiane", &block_mendiane},
-      {"phiras", &block_phiras},
-      {"thystame", &block_thystame},
-    };
 
   i = 0;
   while (i < 6)
     {
       if (i == rock_type)
 	{
-	  if (rocks[i].ptr_func(block, flag) == SUCCESS)
+	  if (g_rocks[i].ptr_func(block, flag) == SUCCESS)
 	    return (SUCCESS);
 	  return (ERROR);
 	}
@@ -90,17 +82,8 @@ int		take_food(t_server *s, t_client *c)
   return (SUCCESS);
 }
 
-int		cmd_take_object(t_server *s, t_client *c,
-				char *cmd, e_client_type type)
+int		do_take_object(t_server *s, t_client *c, char *item)
 {
-  (void)type;
-  char		*item;
-
-  if (c->state == CHILD)
-    return (ERROR);
-  item = xmalloc((strlen(cmd) - 5) * sizeof(char));
-  bzero(item, strlen(cmd) - 5);
-  sscanf(cmd, "prend %s", item);
   if (strcmp(item, "nourriture") == 0)
     {
       if (take_food(s, c) == ERROR)
@@ -117,6 +100,22 @@ int		cmd_take_object(t_server *s, t_client *c,
 	  return (ERROR);
 	}
     }
+  return (SUCCESS);
+}
+
+int		cmd_take_object(t_server *s, t_client *c,
+				char *cmd, e_client_type type)
+{
+  (void)type;
+  char		*item;
+
+  if (c->state == CHILD)
+    return (ERROR);
+  item = xmalloc((strlen(cmd) - 5) * sizeof(char));
+  bzero(item, strlen(cmd) - 5);
+  sscanf(cmd, "prend %s", item);
+  if (do_take_object(s, c, item) == ERROR)
+    return (ERROR);
   send_data(c->fd, "ok\n");
   return (SUCCESS);
 }

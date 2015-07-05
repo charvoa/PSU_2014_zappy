@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Tue May 26 23:55:47 2015 Serge Heitzler
-** Last update Fri Jul  3 18:42:47 2015 Serge Heitzler
+** Last update Sun Jul  5 15:00:13 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -39,7 +39,7 @@ int		remove_at_index(t_list *list, int index)
   tmp = list->start;
   while (i < index)
     {
-      tmp = tmp->next;      
+      tmp = tmp->next;
       i++;
     }
   tmp->prev->next = tmp->next;

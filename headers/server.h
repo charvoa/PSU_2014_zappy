@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sat Jul  4 18:45:48 2015 Audibert Louis
+** Last update Sun Jul  5 14:58:16 2015 Audibert Louis
 */
 
 #ifndef			SERVER_H_
@@ -123,5 +123,6 @@ extern int		g_fdmax;
 extern t_objects	g_objects[8];
 extern t_cmds		g_cmds[23];
 extern t_incantation   	g_incantation[7];
+extern t_objects	g_rocks[6];
 
 #endif /* !SERVER_H_ */
