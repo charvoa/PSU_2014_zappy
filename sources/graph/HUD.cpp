@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:00 2015 Nicolas Girardot
-// Last update Thu Jul  2 14:37:46 2015 Nicolas Girardot
+// Last update Sun Jul  5 00:40:23 2015 Nicolas Girardot
 //
 
 #include "HUD.hh"
@@ -76,7 +76,15 @@ HUD::HUD(SDL_Renderer *renderer)
   this->_playerIDt = SDL_CreateTextureFromSurface(renderer, this->_playerID);
   this->_spritet = SDL_CreateTextureFromSurface(renderer, this->_sprite);
 
-  //Right
+  //Left
+
+  this->_teamLeft = TTF_RenderText_Solid(_font, "1", _white);
+  this->_nbrPlayer = TTF_RenderText_Solid(_font, "2", _white);
+  this->_nbrPlayer8 = TTF_RenderText_Solid(_font, "1", _white);
+
+  this->_teamLeftt = SDL_CreateTextureFromSurface(renderer, this->_teamLeft);
+  this->_nbrPlayert = SDL_CreateTextureFromSurface(renderer, this->_nbrPlayer);
+  this->_nbrPlayer8t = SDL_CreateTextureFromSurface(renderer, this->_nbrPlayer8);
 
   this->_backgroundt = SDL_CreateTextureFromSurface(renderer, this->_background);
   this->_caseCurrentt = SDL_CreateTextureFromSurface(renderer, this->_caseCurrent);
@@ -92,6 +100,28 @@ void	HUD::updateCase(Position &pos)
   result = sstm.str();
   this->_caseCurrent = TTF_RenderText_Solid(_font, result.c_str(), _black);
   this->_caseCurrentt = SDL_CreateTextureFromSurface(_renderer, this->_caseCurrent);
+}
+
+void	HUD::updateTeamInfo(std::string &a, int b, int c)
+{
+  std::string result;
+  std::stringstream sstm;
+  sstm << c;
+  result = sstm.str();
+  this->_nbrPlayer8 = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_nbrPlayer8t = SDL_CreateTextureFromSurface(_renderer, this->_nbrPlayer8);
+  sstm.str("");
+  sstm.clear();
+  sstm << b;
+  result = sstm.str();
+  this->_nbrPlayer = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_nbrPlayert = SDL_CreateTextureFromSurface(_renderer, this->_nbrPlayer);
+  sstm.str("");
+  sstm.clear();
+  sstm << a;
+  result = sstm.str();
+  this->_teamLeft = TTF_RenderText_Solid(_font, result.c_str(), _white);
+  this->_teamLeftt = SDL_CreateTextureFromSurface(_renderer, this->_teamLeft);
 }
 
 void	HUD::updateInventory(IACharacter *charac)
@@ -248,9 +278,30 @@ void	HUD::draw(SDL_Renderer* renderer)
   _drawer.w = 1000;
   _drawer.h = 1000;
   SDL_RenderCopy(renderer, _backgroundt, NULL, &_drawer);
+  drawHUDLeft(renderer);
   drawHUDRight(renderer);
   drawHUDTop(renderer);
   drawHUDBottom(renderer);
+}
+
+void	HUD::drawHUDLeft(SDL_Renderer *renderer)
+{
+   SDL_Rect _drawer;
+
+  _drawer.x = 5;
+  _drawer.y = 225;
+  _drawer.w = 15 * 9;
+  _drawer.h = 20;
+
+  SDL_RenderCopy(renderer, _teamLeftt, NULL, &_drawer);
+
+  _drawer.x = 50;
+  _drawer.y = 425;
+  _drawer.w = 20;
+  _drawer.h = 20;
+  SDL_RenderCopy(renderer, _nbrPlayert, NULL, &_drawer);
+  _drawer.y = 625;
+  SDL_RenderCopy(renderer, _nbrPlayer8t, NULL, &_drawer);
 }
 
 void	HUD::drawHUDBottom(SDL_Renderer *renderer)
