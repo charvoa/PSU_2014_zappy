@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Fri Jul  3 19:05:52 2015 Serge Heitzler
+** Last update Sun Jul  5 14:12:00 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -73,6 +73,8 @@ int		cmd_drop_object(t_server *s, t_client *c,
   (void)type;
   char		*item;
 
+  if (c->state == CHILD)
+    return (ERROR);
   item = xmalloc((strlen(cmd) - 4) * sizeof(char));
   bzero(item, strlen(cmd) - 4);
   sscanf(cmd, "pose %s", item);

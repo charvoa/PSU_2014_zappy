@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:37 2015 Serge Heitzler
-** Last update Sun Jul  5 01:09:24 2015 Serge Heitzler
+** Last update Sun Jul  5 14:10:34 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -59,6 +59,8 @@ int		cmd_fork(t_server *s, t_client *c,
   t_egg		*egg;
   t_team	*team;
 
+  if (c->state == CHILD)
+    return (ERROR);
   cmd_pfk(c, s->clients);
   team = get_team_by_name(s->teams, c->team_name);
   team->slot_rest++;

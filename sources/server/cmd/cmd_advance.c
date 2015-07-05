@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:03:06 2015 Serge Heitzler
-** Last update Sun Jul  5 10:30:23 2015 Serge Heitzler
+** Last update Sun Jul  5 14:04:41 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -26,6 +26,8 @@ int			cmd_advance(t_server *s, t_client *c,
   (void)cmd;
   void			(*advance[5])(t_size *, t_client *);
 
+  if (c->state == CHILD)
+    return (ERROR);
   init_advance(advance);
   s->map->objects[c->pos->y][c->pos->x]->ids =
     remove_id(s->map->objects[c->pos->y][c->pos->x], c->fd);

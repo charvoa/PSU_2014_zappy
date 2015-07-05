@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 17:10:37 2015 Audibert Louis
-** Last update Fri Jul  3 19:06:55 2015 Serge Heitzler
+** Last update Sun Jul  5 14:10:17 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -18,6 +18,8 @@ int		cmd_connect_nbr(t_server *s, t_client *c,
   t_team	*team;
   char		*trame;
 
+  if (c->state == CHILD)
+    return (ERROR);
   if (is_a_team(s, c->team_name) == 0)
     {
       team = get_team_by_name(s->teams, c->team_name);

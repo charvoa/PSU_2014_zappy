@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Sat Jul  4 14:52:56 2015 Audibert Louis
+** Last update Sun Jul  5 14:10:48 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -61,6 +61,8 @@ int		cmd_kick(t_server *s, t_client *c,
   char		*final;
   int		i;
 
+  if (c->state == CHILD)
+    return (ERROR);
   i = 0;
   final = get_trame_deplacement(c);
   cmd_pex(c, s->clients);
