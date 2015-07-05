@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:03:06 2015 Serge Heitzler
-** Last update Sun Jul  5 17:28:02 2015 Serge Heitzler
+** Last update Sun Jul  5 17:38:02 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -29,14 +29,14 @@ int			cmd_advance(t_server *s, t_client *c,
   if (c->state == CHILD)
     return (ERROR);
   init_advance(advance);
+  s->map->objects[c->pos->y][c->pos->x]->nb_clients--;
   s->map->objects[c->pos->y][c->pos->x]->ids =
     remove_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
-  s->map->objects[c->pos->y][c->pos->x]->nb_clients--;
   advance[c->orientation - 1](s->map->size, c);
   cmd_ppo(s, c, NULL, GUI);
+  s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
   s->map->objects[c->pos->y][c->pos->x]->ids =
     add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
-  s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
   send_data(c->fd, "ok\n");
   return (SUCCESS);
 }
