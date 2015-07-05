@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:21 2015 Nicolas Girardot
-// Last update Sat Jul  4 11:43:20 2015 Nicolas Girardot
+// Last update Sun Jul  5 16:35:31 2015 Nicolas Girardot
 //
 
 #include "Command.hh"
@@ -187,7 +187,6 @@ void Command::pdi(std::string cmd, GameEngine *game)
   int			id;
 
   ss >> id;
-  std::cout << "Deleted id is " << id << std::endl;
   game->deletePlayer(id);
 }
 
@@ -316,6 +315,20 @@ void Command::pex(std::string cmd, GameEngine *game)
   val = val;
 }
 
+void Command::tin(std::string cmd, GameEngine *game)
+{
+  std::string		str(cmd.begin() + 4, cmd.end());
+  std::istringstream	ss(str);
+  std::string		teamName;
+  int			nbr;
+  int			nbr8;
+
+  ss >> teamName;
+  ss >> nbr;
+  ss >> nbr8;
+  game->updateTeamInfo(teamName, nbr, nbr8);
+}
+
 void Command::enw(std::string cmd, GameEngine *game)
 {
   (void)game;
@@ -331,9 +344,7 @@ void Command::enw(std::string cmd, GameEngine *game)
   ss >> e;
   ss >> nbis;
   nbis.erase(0, 1);
-  std::cout << nbis << std::endl;
   n = stoi(nbis);
-  std::cout << n << std::endl;
   ss >> x;
   ss >> y;
   vec.push_back(e);
@@ -369,13 +380,13 @@ void Command::Exec()
   _functions["pex"] = &Command::pex;
   _functions["enw"] = &Command::enw;
   _functions["sgt"] = &Command::sgt;
+  _functions["tin"] = &Command::tin;
   /* faire de même pour chaque fonctions */
 }
 
 void Command::Parse(std::string command, GameEngine *game)
 {
   std::string cmd(command, 0, 3);
-  std::cout << command << std::endl;
   for (std::map<std::string, funcs>::iterator it = _functions.begin(); it!=_functions.end(); ++it)
     {
       if (it->first == cmd)
