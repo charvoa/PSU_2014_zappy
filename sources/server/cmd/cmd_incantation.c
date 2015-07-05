@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sun Jul  5 14:38:44 2015 Serge Heitzler
+** Last update Sun Jul  5 15:14:30 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -40,13 +40,17 @@ int		get_nb_players_of_my_level(t_server *s,
   return (nb);
 }
 
-void		push_incantation_in_front(t_server *s, t_client *c)
+void		push_incantation_in_front(t_server *s, t_client *c, int x)
 {
   int		ret;
   t_cmd		*cmd;
 
   cmd = xmalloc(sizeof(t_cmd));
   cmd->label = strdup("incantation");
+  if (x == (g_incantation[c->level - 1].player - 1))
+    cmd->opt = 7;
+  else
+    cmd->opt = 17;
   clock_gettime(CLOCK_REALTIME, &cmd->exec_at);
   if ((ret = (is_cmd(cmd->label))) != NO)
     manage_time(s, cmd, ret);
@@ -61,9 +65,9 @@ void		send_incantation(t_server *s, t_client *c)
   int		i;
 
   x = 1;
-  i = -1;
+  i = 0;
   final = send_once_final_and_get_it(c);
-  while (++i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
+  while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
 	 && x < g_incantation[c->level - 1].player)
     {
       client = get_client_by_id(s->clients,
@@ -73,8 +77,9 @@ void		send_incantation(t_server *s, t_client *c)
       else if (c->level == client->level)
 	{
 	  send_data(client->fd, final);
-	  push_incantation_in_front(s, client);
+	  push_incantation_in_front(s, client, x);
 	  x++;
+	  i++;
 	}
     }
   free(final);
@@ -105,13 +110,6 @@ int		is_incantation_possible(t_server *s, t_client *c,
   else
     {
       printf("Incantation request" RED " [REFUSED]" RESET "\n");
-      printf("joueur ? block | [%d] - [%d] | level\n", get_nb_players_of_my_level(s, c, b), g_incantation[c->level - 1].player);
-      printf("linemate ? block | [%d] - [%d] | level\n", b->linemate, g_incantation[c->level - 1].linemate);
-      printf("deraumere ? block | [%d] - [%d] | level\n", b->deraumere, g_incantation[c->level - 1].deraumere);
-      printf("sibur ? block | [%d] - [%d] | level\n", b->sibur, g_incantation[c->level - 1].sibur);
-      printf("mendiane ? block | [%d] - [%d] | level\n", b->mendiane, g_incantation[c->level - 1].mendiane);
-      printf("phiras ? block | [%d] - [%d] | level\n", b->phiras, g_incantation[c->level - 1].phiras);
-      printf("thystame ? block | [%d] - [%d] | level\n", b->thystame, g_incantation[c->level - 1].thystame);
       send_data(c->fd, "ko\n");
       return (NO);
     }
@@ -120,32 +118,18 @@ int		is_incantation_possible(t_server *s, t_client *c,
 int		cmd_incantation(t_server *s, t_client *c,
 			        char *cmd, e_client_type type)
 {
-  t_client	*client;
+  t_cmd		*s_cmd;
   int		i;
-  int		x;
 
   (void)i;
   i = -1;
-  x = 1;
   send_level(c);
-  send_pie_and_plv(s, c, cmd, type);
-  printf("nb_client = %d | player_needed = %d\n", s->map->objects[c->pos->y][c->pos->x]->nb_clients, g_incantation[c->level - 2].player);
-  while (++i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
-  	 && x < g_incantation[c->level - 2].player)
-    {
-      client = get_client_by_id(s->clients,
-  				s->map->objects[c->pos->y][c->pos->x]->ids[i]);
-      printf("i = %d | x = %d\n", i, x);
-      printf("c->fd = %d | client->fd = %d\n", c->fd, client->fd);
-      if (client->fd == c->fd)
-  	i++;
-      else if (c->level == client->level)
-  	{
-  	  client->level++;
-	  cmd_plv(s, client, cmd, GUI);
-	  x++;
-    	}
-    }
-  cmd_bct(s, c, cmd, GUI);
+  s_cmd = c->cmds->start->data;
+  if (s_cmd->opt != 17 && s_cmd->opt != 7)
+    send_pie_and_plv(s, c, cmd, type);
+  else
+    cmd_plv(s, c, cmd, GUI);
+  if (s_cmd->opt == 7)
+    cmd_bct(s, c, cmd, GUI);
   return (SUCCESS);
 }

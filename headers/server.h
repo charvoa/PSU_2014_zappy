@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Sun May  3 11:28:52 2015 Serge Heitzler
-** Last update Sat Jul  4 18:45:48 2015 Audibert Louis
+** Last update Sun Jul  5 15:16:52 2015 Serge Heitzler
 */
 
 #ifndef			SERVER_H_
@@ -34,6 +34,7 @@
 # include		"client.h"
 # include		"map.h"
 # include		"ressources.h"
+# include		"cmd.h"
 
 # define		RED "\x1b[31m"
 # define		BLUE "\x1b[36m"
@@ -69,16 +70,6 @@ typedef struct		s_cmds
   float			delay;
 }			t_cmds;
 
-typedef struct		s_cmd
-{
-  /* "delay" à diviser par t au moment du calcul
-     du delay si changement de t par le client */
-  char		       	*label;
-  long			delay;
-  struct timespec       exec_at;
-  long			precision;
-}			t_cmd;
-
 typedef struct		s_opt
 {
   char			*optarg;
@@ -91,13 +82,10 @@ typedef struct		s_opt
 
 typedef struct		s_server
 {
-  // Loulou's Work
-  unsigned int		port; // -p
-  float			time_action; // -t
+  unsigned int		port;
+  float			time_action;
   t_opt			*o;
   int			map_set[2];
-
-  // Charvo's struct
   fd_set		master;
   fd_set		read_fds;
   struct sockaddr_in	serveraddr;
@@ -107,8 +95,6 @@ typedef struct		s_server
   int			newfd;
   int			addrlen;
   char			*home;
-
-  // Pontoise's Work
   t_map			*map;
   t_list		*clients;
   t_list		*teams;
