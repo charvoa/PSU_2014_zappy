@@ -5,30 +5,31 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Sun Jul  5 14:12:00 2015 Audibert Louis
+** Last update Sun Jul  5 14:58:46 2015 Audibert Louis
 */
 
 #include "functions.h"
 
+t_objects	g_rocks[6] =
+  {
+    {"linemate", &inventory_linemate},
+    {"deraumere", &inventory_deraumere},
+    {"sibur", &inventory_sibur},
+    {"mendiane", &inventory_mendiane},
+    {"phiras", &inventory_phiras},
+    {"thystame", &inventory_thystame},
+  };
+
 int		launch_func_inventory(t_client *c, int rock, e_flag_rock flag)
 {
   int		i;
-  t_objects	rocks[6] =
-    {
-      {"linemate", &inventory_linemate},
-      {"deraumere", &inventory_deraumere},
-      {"sibur", &inventory_sibur},
-      {"mendiane", &inventory_mendiane},
-      {"phiras", &inventory_phiras},
-      {"thystame", &inventory_thystame},
-    };
 
   i = 0;
   while (i < 6)
     {
       if (i == rock)
 	{
-	  if (rocks[i].ptr_func(c->inventory, flag) == SUCCESS)
+	  if (g_rocks[i].ptr_func(c->inventory, flag) == SUCCESS)
 	    return (SUCCESS);
 	  else
 	    return (ERROR);
@@ -67,17 +68,8 @@ int		drop_food(t_server *s, t_client *c)
   return (SUCCESS);
 }
 
-int		cmd_drop_object(t_server *s, t_client *c,
-				char *cmd, e_client_type type)
+int		do_drop_object(t_server *s, t_client *c, char *item)
 {
-  (void)type;
-  char		*item;
-
-  if (c->state == CHILD)
-    return (ERROR);
-  item = xmalloc((strlen(cmd) - 4) * sizeof(char));
-  bzero(item, strlen(cmd) - 4);
-  sscanf(cmd, "pose %s", item);
   if (strcmp(item, "nourriture") == 0)
     {
       if (drop_food(s, c) == ERROR)
@@ -94,6 +86,22 @@ int		cmd_drop_object(t_server *s, t_client *c,
 	  return (ERROR);
 	}
     }
+  return (SUCCESS);
+}
+
+int		cmd_drop_object(t_server *s, t_client *c,
+				char *cmd, e_client_type type)
+{
+  (void)type;
+  char		*item;
+
+  if (c->state == CHILD)
+    return (ERROR);
+  item = xmalloc((strlen(cmd) - 4) * sizeof(char));
+  bzero(item, strlen(cmd) - 4);
+  sscanf(cmd, "pose %s", item);
+  if (do_drop_object(s, c, item) == ERROR)
+    return (ERROR);
   send_data(c->fd, "ok\n");
   free(item);
   return (SUCCESS);
