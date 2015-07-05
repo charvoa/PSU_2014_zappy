@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Wed Jun 24 11:00:23 2015 Serge Heitzler
-** Last update Sat Jul  4 15:14:52 2015 Audibert Louis
+** Last update Sun Jul  5 18:38:01 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -14,21 +14,18 @@ void		add_objects(t_block *b, int x, int y)
 {
   int		r;
 
-  r = (rand() + (rand() * x) + (rand() * y) + x + y) % 18;
-  /* if (r == 0 || (r > 6 && r <= 12)) */
-  /*   b->food++; */
-  b->linemate++;
-  if (r == 1)
+  r = (rand() + (rand() * x) + (rand() * y) + x + y) % 100;
+  if (r >= 0 && r <= 40)
     b->linemate++;
-  if (r == 2)
+  if (r > 40 && r <= 60)
     b->deraumere++;
-  if (r == 3)
+  if (r > 60 && r <= 75)
     b->sibur++;
-  if (r == 3)
+  if (r > 75 && r <= 85)
     b->mendiane++;
-  if (r == 5)
+  if (r > 85 && r <= 95)
     b->phiras++;
-  if (r == 6)
+  if (r > 95 && r <= 100)
     b->thystame++;
 }
 

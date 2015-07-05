@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jul  3 18:08:32 2015 Serge Heitzler
-** Last update Fri Jul  3 19:19:41 2015 Serge Heitzler
+** Last update Sun Jul  5 18:53:38 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -18,15 +18,16 @@ void		generate_broadcast(t_server *s, t_client *c,
   int		l;
   int		w;
   int		sound;
-  
+
   sound = 0;
   l = get_l(s->map, c->pos->x, cli->pos->x);
   w = get_w(s->map, c->pos->y, cli->pos->y);
   sound = determine_last_case(c, cli, l, w);
-  size_malloc = 10 + istm(sound) + strlen(msg);
+  size_malloc = 11 + istm(sound) + strlen(msg);
   tmp = xmalloc(sizeof(char) * size_malloc);
   bzero(tmp, size_malloc);
-  sprintf(tmp, "message %d, %s", sound, msg);
+  sprintf(tmp, "message %d,%s\n", sound, msg);
+  printf("%s", tmp);
   send_data(cli->fd, tmp);
   free(tmp);
 }

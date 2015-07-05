@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Sun Jul  5 14:09:55 2015 Audibert Louis
+** Last update Sun Jul  5 18:54:51 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -99,18 +99,20 @@ int		cmd_broadcast(t_server *s, t_client *c,
 
   if (c->state == CHILD)
     return (ERROR);
-  msg = xmalloc(sizeof(char) * (strlen(cmd) - 10));
-  bzero(msg, (strlen(cmd) - 10));
+  printf("ALLO BROADCAST AVANT\n");
+  msg = xmalloc(sizeof(char) * (strlen(cmd) - 9));
+  bzero(msg, (strlen(cmd) - 9));
   sscanf(cmd, "broadcast %4050[^\n]", msg);
   tmp_n = s->clients->start;
   while (tmp_n)
     {
       cli = tmp_n->data;
-      if (cli->state == ADULT && cli->type == IA)
+      if (cli->state == ADULT && cli->type == IA && cli->fd != c->fd)
 	generate_broadcast(s, c, cli, msg);
       tmp_n = tmp_n->next;
     }
   cmd_pbc(s, c, cmd, type);
   free(msg);
+  printf("ALLO BROADCAST APRES\n");
   return (SUCCESS);
 }

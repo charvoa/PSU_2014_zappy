@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 23:30:52 2015 Serge Heitzler
-** Last update Fri Jul  3 19:30:11 2015 Serge Heitzler
+** Last update Sun Jul  5 18:20:28 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -18,8 +18,8 @@ int		cmd_pbc(t_server *s, t_client *c,
   char		*final;
   char		*tmp;
 
-  tmp = xmalloc(sizeof(char) * (strlen(cmd) - 10));
-  bzero(tmp, (strlen(cmd) - 10));
+  tmp = xmalloc(sizeof(char) * (strlen(cmd) - 9));
+  bzero(tmp, (strlen(cmd) - 9));
   sscanf(cmd, "broadcast %4050[^\n]", tmp);
   size_final = 8 + istm(c->fd) + strlen(tmp);
   final = xmalloc(sizeof(char) * size_final);
