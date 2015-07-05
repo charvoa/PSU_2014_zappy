@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sat Jul  4 23:59:58 2015 Serge Heitzler
+** Last update Sun Jul  5 07:50:01 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -65,7 +65,7 @@ void		loop_server(t_server *s, char **argv)
     {
       s->read_fds = s->master;
       check_food(s);
-      check_death(s);
+      /* check_death(s); */
       check_end_game(s);
       check_eggs(s);
       tv.tv_usec = 1000000 / s->time_action;

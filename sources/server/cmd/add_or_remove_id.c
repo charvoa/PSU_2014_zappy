@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Sun Jul  5 00:06:34 2015 Serge Heitzler
+** Last update Sun Jul  5 10:28:16 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -32,7 +32,7 @@ int		*add_id(t_block *block, int id)
   i = 0;
   if (block->ids[0] != -1)
     {
-      while (i < block->nb_clients)
+      while (i < block->nb_clients - 1)
 	{
 	  newtab[i] = block->ids[i];
 	  i++;
@@ -52,10 +52,11 @@ int		*remove_id(t_block *block, int id)
 
   i = 0;
   j = 0;
-  if (block->ids[0] == id)
+  if (block->nb_clients == 1)
     {
-      block->ids[0] = -1;
-      return (block->ids);
+      newtab = xmalloc(sizeof(int));
+      newtab[0] = -1;
+      return (newtab);
     }
   newtab = xmalloc((block->nb_clients) * sizeof(int));
   while (i < block->nb_clients)

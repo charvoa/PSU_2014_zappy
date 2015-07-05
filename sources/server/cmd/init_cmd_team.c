@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:21:57 2015 Audibert Louis
-** Last update Fri Jul  3 10:14:48 2015 Audibert Louis
+** Last update Sun Jul  5 07:58:27 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -36,6 +36,8 @@ int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   c->state = ADULT;
   c->pos->x = rand() % s->map->size->width;
   c->pos->y = rand() % s->map->size->height;
+  c->pos->x = 3;
+  c->pos->y = 3;
   s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
   s->map->objects[c->pos->y][c->pos->x]->ids =
     add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);

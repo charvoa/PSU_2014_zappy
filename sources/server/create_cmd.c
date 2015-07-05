@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Sun Jun 28 00:07:48 2015 Serge Heitzler
-** Last update Sun Jul  5 01:10:02 2015 Serge Heitzler
+** Last update Sun Jul  5 01:14:27 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -76,7 +76,7 @@ void		create_cmd(t_server *s, t_client *c)
   if ((ret = (is_cmd(s_cmd->label))) != NO)
     manage_time(s, s_cmd, ret);
   push_back(c->cmds, s_cmd, CMD);
-  printf("cmd n°[%d] received %ld,%ld - exec_prevision %ld,%ld\n", i, s->now.tv_sec, s->now.tv_nsec, s_cmd->exec_at.tv_sec, s_cmd->exec_at.tv_nsec);
   free(tmp);
+  printf("%d\n", i);
   i++;
 }

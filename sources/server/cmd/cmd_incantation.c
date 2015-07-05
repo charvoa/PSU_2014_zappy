@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sun Jul  5 01:06:59 2015 Serge Heitzler
+** Last update Sun Jul  5 08:08:53 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -98,6 +98,14 @@ int		is_incantation_possible(t_server *s, t_client *c,
   /*     && b->thystame == g_incantation[c->level - 1].thystame */
   /*     && c->level < 8) */
   /*   { */
+
+
+  printf("NB players sur block %d\n", b->nb_clients);
+  printf("0 -> %d\n", b->ids[0]);
+  printf("1 -> %d\n", b->ids[1]);
+  // Test à supprimer juste au dessus entre les deux commentaires
+
+
       cmd_pic(s, c, cmd, type);
       printf("Starting incantation id[%d]-level[%d]\n", c->fd, c->level);
       send_incantation(s, c);
