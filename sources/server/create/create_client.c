@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sun Jul  5 16:38:15 2015 Serge Heitzler
+** Last update Sun Jul  5 17:50:21 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -20,15 +20,13 @@ void		init_orientation(void (*orientation[4])(t_client *))
 
 void		init_inventory(t_client *c, int food)
 {
-  // REINIT COMME IL FAUT
-  (void)food;
-  c->inventory->food = 10000;
-  c->inventory->linemate = 40;
-  c->inventory->deraumere = 40;
-  c->inventory->sibur = 40;
-  c->inventory->mendiane = 40;
-  c->inventory->phiras = 40;
-  c->inventory->thystame = 40;
+  c->inventory->food = food;
+  c->inventory->linemate = 0;
+  c->inventory->deraumere = 0;
+  c->inventory->sibur = 0;
+  c->inventory->mendiane = 0;
+  c->inventory->phiras = 0;
+  c->inventory->thystame = 0;
 }
 
 void		create_client_from_egg(t_server *s, t_egg *egg, int index)
