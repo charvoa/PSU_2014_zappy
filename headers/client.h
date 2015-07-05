@@ -5,13 +5,13 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:41:12 2015 Audibert Louis
-** Last update Sun Jul  5 00:30:36 2015 Serge Heitzler
+** Last update Sun Jul  5 19:10:39 2015 Serge Heitzler
 */
 
 #ifndef _CLIENT_H_
 # define _CLIENT_H_
 
-#include "team.h"
+# include "team.h"
 
 typedef enum		e_orientation
   {

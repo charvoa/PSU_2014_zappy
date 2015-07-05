@@ -2,4 +2,4 @@
 
 Bienvenue sur notre Zappy.
 
-Par Nicolas Charvoz, Antoine Garcia, Nicolas Girardot, Serge Heitzler, Louis Audibert et Florian Peru.
+Par Nicolas Charvoz, Antoine Garcia, Nicolas Girardot, Serge Heitzler, Louis Audibert.

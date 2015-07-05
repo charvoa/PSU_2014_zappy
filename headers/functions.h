@@ -5,13 +5,13 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sun Jul  5 15:05:34 2015 Audibert Louis
+** Last update Sun Jul  5 19:11:20 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
 # define _FUNCTIONS_H_
 
-# include		"server.h"
+# include	"server.h"
 
 /* Function(s) in file check_death.c */
 void		check_death(t_server *s);
