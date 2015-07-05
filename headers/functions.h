@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sun Jul  5 14:16:31 2015 Serge Heitzler
+** Last update Sun Jul  5 15:05:34 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
