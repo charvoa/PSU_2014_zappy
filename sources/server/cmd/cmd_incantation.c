@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sun Jul  5 17:43:43 2015 Audibert Louis
+** Last update Sun Jul  5 17:59:28 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -32,7 +32,6 @@ int		get_nb_players_of_my_level(t_server *s,
   nb = 0;
   while (i < b->nb_clients)
     {
-      printf("b->ids[%d] = %d\n", i, b->ids[i]);
       if ((cli = get_client_by_id(s->clients, b->ids[i])) == NULL)
 	return (0);
       if (cli->fd == c->fd)
@@ -117,6 +116,13 @@ int		is_incantation_possible(t_server *s, t_client *c,
   else
     {
       printf("Incantation request" RED " [REFUSED]" RESET "\n");
+      printf("Player, BLOCK [%d] - [%d] LEVEL\n", get_nb_players_of_my_level(s, c, b), g_incantation[c->level - 1].player);
+      printf("Linemate, BLOCK [%d] - [%d] LEVEL\n", b->linemate, g_incantation[c->level - 1].linemate);
+      printf("Deraumere, BLOCK [%d] - [%d] LEVEL\n", b->deraumere, g_incantation[c->level - 1].deraumere);
+      printf("Sibur, BLOCK [%d] - [%d] LEVEL\n", b->sibur, g_incantation[c->level - 1].sibur);
+      printf("Mendiane, BLOCK [%d] - [%d] LEVEL\n", b->mendiane, g_incantation[c->level - 1].mendiane);
+      printf("Phiras, BLOCK [%d] - [%d] LEVEL\n", b->phiras, g_incantation[c->level - 1].phiras);
+      printf("Thystame, BLOCK [%d] - [%d] LEVEL\n", b->thystame, g_incantation[c->level - 1].thystame);
       send_data(c->fd, "ko\n");
       return (NO);
     }
