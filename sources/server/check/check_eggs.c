@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Tue Jun 30 14:23:33 2015 Audibert Louis
-** Last update Sun Jul  5 14:15:12 2015 Audibert Louis
+** Last update Sun Jul  5 15:56:03 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -35,16 +35,15 @@ void		check_eggs(t_server *s)
   t_egg		*egg;
   int		i;
 
-  tmp = s->eggs->start;
   i = 0;
-  while (tmp)
+  tmp = s->eggs->start;
+  while (i < s->eggs->length)
     {
       egg = tmp->data;
       if (egg->eclos.tv_sec < s->now.tv_sec ||
 	  ((egg->eclos.tv_sec == s->now.tv_sec) &&
 	   (egg->eclos.tv_nsec <= s->now.tv_nsec)))
 	{
-	  printf("TIME FOR ECLOSION\n");
 	  if (egg->fd != -1)
 	    create_client_from_egg(s, egg, i);
 	  else
@@ -54,6 +53,7 @@ void		check_eggs(t_server *s)
 	    }
 	}
       i++;
-      tmp = tmp->next;
+      if (i < s->eggs->length)
+	tmp = tmp->next;
     }
 }
