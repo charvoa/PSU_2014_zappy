@@ -140,6 +140,7 @@ class IAClass():
             self.moveState = False
     def parseBroadCastMessage(self):
         mess = self.cc.getMessage()
+        print('mess >>', mess)
         check = 4
         var1 = 0
         var2 = 0
@@ -305,7 +306,7 @@ class IAClass():
         tmp.strip()
         tab = tmp.split(' ')
         for i in tab:
-            if (i != 'joueur' and i != ''):
+            if (i != 'joueur' and i != '' and i != 'nourriture'):
                 while (1):
                     if (self.cc.prend_cmd(self.s, self.p, self.mess, i) == 0):
                         break
@@ -440,16 +441,20 @@ class IAClass():
     def moveAI(self, x, y):
         while (y > 0):
             if (self.cc.avance_cmd(self.s, self.p, self.mess) == 1):
+                self.takeRocks()
                 y -= 1
         if (x > 0):
             if (self.cc.droite_cmd(self.s, self.p, self.mess) == 1):
                 while (x > 0):
                     if (self.cc.avance_cmd(self.s, self.p, self.mess) == 1):
+                        self.takeRocks()
                         x -= 1
         elif (x < 0):
             if (self.cc.gauche_cmd(self.s, self.p, self.mess) == 1):
+                self.takeRocks()
                 while (x < 0):
                     if (self.cc.avance_cmd(self.s, self.p, self.mess) == 1):
+                        self.takeRocks()
                         x += 1
 
     def getLevel(self) -> int:
