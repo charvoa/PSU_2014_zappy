@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 21 20:09:44 2015 Serge Heitzler
-** Last update Fri Jul  3 18:47:09 2015 Serge Heitzler
+** Last update Sat Jul  4 18:47:23 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -79,19 +79,24 @@ char		*fill_final_string(t_server *s, int size_malloc,
 
 int		get_size_malloc_at_position(t_server* s, int x, int y)
 {
+  int		total;
   int		size_malloc;
   t_block	*b;
 
   size_malloc = 0;
   b = s->map->objects[y][x];
-  size_malloc = (b->food * (strlen(g_objects[0].label) + 1))
-    + (b->nb_clients * (strlen(g_objects[1].label) + 1))
-    + (b->linemate * (strlen(g_objects[2].label) + 1))
-    + (b->deraumere * (strlen(g_objects[3].label) + 1))
-    + (b->sibur * (strlen(g_objects[4].label) + 1))
-    + (b->mendiane * (strlen(g_objects[5].label) + 1))
-    + (b->phiras * (strlen(g_objects[6].label) + 1))
-    + (b->thystame * (strlen(g_objects[7].label) + 1));
+  size_malloc = (b->food * (strlen(g_objects[0].label)))
+    + (b->nb_clients * (strlen(g_objects[1].label)))
+    + (b->linemate * (strlen(g_objects[2].label)))
+    + (b->deraumere * (strlen(g_objects[3].label)))
+    + (b->sibur * (strlen(g_objects[4].label)))
+    + (b->mendiane * (strlen(g_objects[5].label)))
+    + (b->phiras * (strlen(g_objects[6].label)))
+    + (b->thystame * (strlen(g_objects[7].label)));
+  total = b->food + b->nb_clients + b->linemate + b->deraumere
+    + b->sibur + b->mendiane + b->phiras + b->thystame;
+  if (total > 0)
+    size_malloc += total;
   return (size_malloc);
 }
 

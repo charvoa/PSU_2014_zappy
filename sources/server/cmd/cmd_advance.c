@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Thu May 21 21:03:06 2015 Serge Heitzler
-** Last update Thu Jul  2 15:24:46 2015 Serge Heitzler
+** Last update Sat Jul  4 22:43:53 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -35,6 +35,6 @@ int			cmd_advance(t_server *s, t_client *c,
   s->map->objects[c->pos->y][c->pos->x]->ids =
     add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
   s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
-  send_data(c->fd, "ok\n");
+  send_data(c->fd, "ok avance\n");
   return (SUCCESS);
 }

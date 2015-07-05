@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sat May 16 18:32:59 2015 Serge Heitzler
-** Last update Sat Jul  4 21:22:54 2015 Audibert Louis
+** Last update Sat Jul  4 23:39:45 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -60,7 +60,6 @@ void		loop_server(t_server *s, char **argv)
   struct timeval tv;
 
   tv.tv_sec = 0;
-  tv.tv_usec = 1000000 / s->time_action;
   clock_gettime(CLOCK_REALTIME, &s->next);
   while (42)
     {
@@ -69,6 +68,7 @@ void		loop_server(t_server *s, char **argv)
       check_death(s);
       check_end_game(s);
       check_eggs(s);
+      tv.tv_usec = 10000000 / s->time_action;
       signal(SIGINT, handler_ctrl_c);
       if (select(s->fdmax + 1, &(s->read_fds), NULL, NULL, &tv) == -1)
 	{

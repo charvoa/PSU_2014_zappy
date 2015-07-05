@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sat Jul  4 13:57:12 2015 Serge Heitzler
+** Last update Sat Jul  4 16:43:56 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -63,9 +63,9 @@ void		send_incantation(t_server *s, t_client *c)
 
   x = 1;
   i = -1;
-  size_malloc = 37 + istm(c->level);
+  size_malloc = 20;
   final = malloc_and_memset(size_malloc);
-  sprintf(final, "elevation en cours niveau actuel : %d\n", c->level);
+  sprintf(final, "elevation en cours\n");
   send_data(c->fd, final);
   while (++i < s->map->objects[c->pos->y][c->pos->x]->nb_clients
 	 && x < g_incantation[c->level - 1].player)
@@ -122,7 +122,7 @@ int		cmd_incantation(t_server *s, t_client *c,
 
   i = -1;
   x = 1;
-  c->level++;
+  send_level(c);
   cmd_pie(s, c, cmd, GUI);
   cmd_plv(s, c, cmd, GUI);
   while (++i < s->map->objects[c->pos->y][c->pos->x]->nb_clients

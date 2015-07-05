@@ -5,10 +5,22 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sat Jul  4 08:46:37 2015 Serge Heitzler
-** Last update Sat Jul  4 08:50:41 2015 Serge Heitzler
+** Last update Sat Jul  4 17:12:23 2015 Serge Heitzler
 */
 
 #include "functions.h"
+
+void		send_level(t_client *c)
+{
+  int		size_malloc;
+  char		*final;
+
+  c->level++;
+  size_malloc = 18 + istm(c->level);
+  final = malloc_and_memset(size_malloc);
+  sprintf(final, "niveau actuel : %d\n", c->level);
+  free(final);
+}
 
 void		reset_block(t_block *b)
 {
