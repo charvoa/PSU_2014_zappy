@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Thu May  7 16:30:08 2015 Audibert Louis
-** Last update Sat Jul  4 17:34:30 2015 Audibert Louis
+** Last update Sun Jul  5 16:42:28 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -56,7 +56,10 @@ void		do_team(t_server *s, char *name, t_client *c)
   if (team->slot_rest >= 1)
     {
       if (fill_ia_client(s, c, team, name) == 1)
-	cmd_pnw(s, c, NULL, NORMAL);
+	{
+	  c->team_name = strdup(name);
+	  cmd_pnw(s, c, NULL, NORMAL);
+	}
     }
   else
     send_data(c->fd, "ko\n");
