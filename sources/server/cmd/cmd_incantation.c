@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sun Jul  5 17:15:22 2015 Audibert Louis
+** Last update Sun Jul  5 17:43:43 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -32,6 +32,7 @@ int		get_nb_players_of_my_level(t_server *s,
   nb = 0;
   while (i < b->nb_clients)
     {
+      printf("b->ids[%d] = %d\n", i, b->ids[i]);
       if ((cli = get_client_by_id(s->clients, b->ids[i])) == NULL)
 	return (0);
       if (cli->fd == c->fd)
