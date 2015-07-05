@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sun Jul  5 16:02:37 2015 Audibert Louis
+** Last update Sun Jul  5 17:01:02 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -34,7 +34,7 @@ int		check_rock(char *rock)
 	}
       i++;
     }
-  free(rock_tab);
+  /* free(rock_tab); */
   return (ERROR);
 }
 // On a le droite déclarer un tableau comme ca dans une fonction à l'initialisation ?

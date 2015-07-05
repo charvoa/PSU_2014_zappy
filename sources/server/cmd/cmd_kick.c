@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Sun Jul  5 14:10:48 2015 Audibert Louis
+** Last update Sun Jul  5 17:28:40 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -35,9 +35,9 @@ char		*get_trame_deplacement(t_client *c)
 
 void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
 {
+  s->map->objects[moved->pos->y][moved->pos->x]->nb_clients--;
   s->map->objects[moved->pos->y][moved->pos->x]->ids =
     remove_id(s->map->objects[moved->pos->y][moved->pos->x], moved->fd);
-  s->map->objects[moved->pos->y][moved->pos->x]->nb_clients--;
   if (caller->orientation == NORD)
     moved->pos->y = caller->pos->y - 1;
   else if (caller->orientation == EST)
@@ -46,9 +46,9 @@ void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
     moved->pos->y = caller->pos->y + 1;
   else
     moved->pos->x = caller->pos->x + 1;
+  s->map->objects[moved->pos->y][moved->pos->x]->nb_clients++;
   s->map->objects[moved->pos->y][moved->pos->x]->ids =
     add_id(s->map->objects[moved->pos->y][moved->pos->x], moved->fd);
-  s->map->objects[moved->pos->y][moved->pos->x]->nb_clients++;
   cmd_ppo(s, moved, "protocole", GUI);
 }
 
