@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed Jun 24 09:27:23 2015 Nicolas Girardot
-// Last update Sat Jul  4 15:13:09 2015 Nicolas Girardot
+// Last update Sat Jul  4 23:53:08 2015 Nicolas Girardot
 //
 
 #ifndef _HUD_HH_
@@ -96,32 +96,14 @@ private:
 
   //HUD Left
 
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
+  SDL_Surface *_teamLeft = NULL;
+  SDL_Texture *_teamLeftt = NULL;
 
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
+  SDL_Surface *_nbrPlayer = NULL;
+  SDL_Texture *_nbrPlayert = NULL;
 
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
-
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
-
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
-
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
-
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
-
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
-
-  // SDL_Surface * = NULL;
-  // SDL_Texture * = NULL;
+  SDL_Surface *_nbrPlayer8 = NULL;
+  SDL_Texture *_nbrPlayer8t = NULL;
 
   //Color
 
@@ -132,12 +114,14 @@ public:
   HUD(SDL_Renderer*);
   ~HUD();
   void	update();
+  void	updateTeamInfo(std::string &, int ,int);
   void	updateCase(Position &);
   void	updateLocked(int, int, Case *);
   void	updateInventory(IACharacter *);
   void	draw(SDL_Renderer *);
   void	update_info(std::string &);
   void	drawHUDRight(SDL_Renderer *);
+  void	drawHUDLeft(SDL_Renderer *);
   void	drawHUDBottom(SDL_Renderer *);
   void	drawHUDTop(SDL_Renderer *);
 };

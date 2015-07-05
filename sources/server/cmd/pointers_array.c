@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:28:38 2015 Serge Heitzler
-** Last update Sat Jul  4 23:36:00 2015 Serge Heitzler
+** Last update Sun Jul  5 01:05:16 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -57,7 +57,6 @@ void		exec_cmd(t_server *s, t_client *c)
   int		ret;
 
   cmd = c->cmds->start->data;
-  printf("----!----3\n");
   if ((ret = is_cmd(cmd->label)) != NO)
     {
       printf(BLUE "IA [%d] execute cmd [%s]\n" RESET, c->fd, cmd->label);

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:41:12 2015 Audibert Louis
-** Last update Wed Jul  1 23:02:57 2015 Serge Heitzler
+** Last update Sun Jul  5 00:30:36 2015 Serge Heitzler
 */
 
 #ifndef _CLIENT_H_
@@ -57,7 +57,6 @@ typedef struct		s_client
   t_inventory		*inventory;
   t_list		*cmds;
   e_client_state	state;
-
   t_ring_buffer		*buffer;
 }			t_client;
 

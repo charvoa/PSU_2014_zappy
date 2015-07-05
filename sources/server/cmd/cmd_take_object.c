@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sat Jul  4 23:48:02 2015 Audibert Louis
+** Last update Sun Jul  5 12:25:39 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -103,7 +103,7 @@ int		cmd_take_object(t_server *s, t_client *c,
     {
       if (take_food(s, c) == ERROR)
 	{
-	  send_data(c->fd, "ko prend\n");
+	  send_data(c->fd, "ko\n");
 	  return (ERROR);
 	}
     }
@@ -111,10 +111,10 @@ int		cmd_take_object(t_server *s, t_client *c,
     {
       if (take_rock(s, c, item) == ERROR)
 	{
-	  send_data(c->fd, "ko prend\n");
+	  send_data(c->fd, "ko\n");
 	  return (ERROR);
 	}
     }
-  send_data(c->fd, "ok prend\n");
+  send_data(c->fd, "ok\n");
   return (SUCCESS);
 }

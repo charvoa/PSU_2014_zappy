@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 15:59:28 2015 Audibert Louis
-** Last update Thu Jul  2 16:57:25 2015 Audibert Louis
+** Last update Sun Jul  5 10:25:15 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -46,19 +46,23 @@ static void		free_delete_fds(t_server *s, int **fds)
 void		delete_players(t_server *s, int **fds, int len)
 {
   int		i;
-  char		*trame;
+  t_client	*c;
+  t_block	*b;
   t_team	*team;
+  char		*trame;
 
   i = 0;
   while (i < len)
     {
-      team = get_team_by_name(s->teams,
-			      get_client_by_id(s->clients, fds[i][1])->team_name);
+      c = get_client_by_id(s->clients, fds[i][1]);
+      b = s->map->objects[c->pos->y][c->pos->x];
+      b->ids = remove_id(s->map->objects[c->pos->y][c->pos->x], fds[i][1]);
+      b->nb_clients--;
+      team = get_team_by_name(s->teams, c->team_name);
       trame = xmalloc(sizeof(char) * (7 + istm(fds[i][1])));
       bzero(trame, (7 + istm(fds[i][1])));
       sprintf(trame, "pdi #%d\n", fds[i][1]);
       send_data_to_gui(s->clients, trame);
-      printf("%s", trame);
       free(trame);
       team->slot_rest++;
       remove_at_index(s->clients, fds[i][0]);

@@ -5,13 +5,14 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Fri Jul  3 18:37:50 2015 Antoine Garcia
+// Last update Sun Jul  5 00:55:38 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
 #include <SDL/SDL_image.h>
 
 Sound&	GameEngine::_sound = Sound::getInstance();
+
 GameEngine::GameEngine() {
   _gMap = NULL;
   _sound.initialize();
@@ -66,6 +67,11 @@ void	GameEngine::updateLvl(int id, int lvl)
 	  (*it)->setLVL(lvl);
 	}
     }
+}
+
+void	GameEngine::updateTeamInfo(std::string &name, int a, int b)
+{
+  _hud->updateTeamInfo(name, a, b);
 }
 
 void	GameEngine::addEgg(std::vector<int> &att)
@@ -155,6 +161,7 @@ void	GameEngine::addPlayer(std::vector<int> &args, std::string &teamName)
 
 void	GameEngine::updateInventory(std::vector<int> &inv)
 {
+  std::cout << inv.at(0) << std::endl;
   for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
     {
       if (inv.at(0) == (*it)->getId())
@@ -162,7 +169,6 @@ void	GameEngine::updateInventory(std::vector<int> &inv)
 	  (*it)->updateInventory(inv);
 	  if (inv.at(0) == _idFocus)
 	    {
-	      std::cout << "inventory Updated" << std::endl;
 	      _hud->updateInventory((*it));
 	    }
 	}
@@ -199,6 +205,8 @@ bool	GameEngine::initialize()
   _hud = new HUD(_renderer);
   _sound.playMusic("main", 1);
   _socket->writeOnSocket("sgt\r\n");
+  std::string string("hello");
+  _hud->updateTeamInfo(string, 1, 1);
   return true;
 }
 
@@ -209,12 +217,18 @@ void	GameEngine::updateTime(int i)
   sstm.clear();
   if (i == 1)
     {
-      sstm << "sst " << _speed + 10 << "\r\n";
+      if (_speed == 1)
+	sstm << "sst " << 10 << "\r\n";
+      else
+	sstm << "sst " << _speed + 10 << "\r\n";
       _socket->writeOnSocket(sstm.str());
     }
   else
     {
-      sstm << "sst " << _speed - 10 << "\r\n";
+      if (_speed <= 10)
+	sstm << "sst " << 1 << "\r\n";
+      else
+	sstm << "sst " << _speed - 10 << "\r\n";
       _socket->writeOnSocket(sstm.str());
     }
   std::cout << "Speed is " << _speed << std::endl;

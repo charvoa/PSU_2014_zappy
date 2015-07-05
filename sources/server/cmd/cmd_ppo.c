@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:54 2015 Serge Heitzler
-** Last update Sat Jul  4 14:03:27 2015 Audibert Louis
+** Last update Sun Jul  5 00:05:43 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -35,7 +35,6 @@ int		cmd_ppo(t_server *s, t_client *c,
     send_data_to_gui(s->clients, final);
   else
     send_data(c->fd, final);
-  printf("%s\n", final);
   free(final);
   return (SUCCESS);
 }
