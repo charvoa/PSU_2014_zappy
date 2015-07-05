@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:21:57 2015 Audibert Louis
-** Last update Sun Jul  5 14:39:33 2015 Serge Heitzler
+** Last update Sun Jul  5 16:39:57 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -16,7 +16,7 @@ void		init_fill_ia_client(void (*orientation[4])(t_client *),
   init_orientation(orientation);
   orientation[rand() % 4](c);
   c->type = IA;
-  c->level = 2; // Changer en niveau 1 !!
+  c->level = 2; // REINIT level 1
   c->team_name = strdup(n);
   t->slot_rest--;
 }
@@ -38,8 +38,6 @@ int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   c->state = ADULT;
   c->pos->x = rand() % s->map->size->width;
   c->pos->y = rand() % s->map->size->height;
-  c->pos->x = 3;
-  c->pos->y = 3;
   s->map->objects[c->pos->y][c->pos->x]->nb_clients++;
   s->map->objects[c->pos->y][c->pos->x]->ids =
     add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
