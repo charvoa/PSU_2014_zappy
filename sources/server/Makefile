@@ -5,7 +5,7 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sat Jul  4 18:49:28 2015 Audibert Louis
+## Last update Sun Jul  5 16:01:44 2015 Serge Heitzler
 ##
 
 CC		= 	gcc
@@ -23,35 +23,32 @@ CMD_DIR		=	./cmd/
 
 LIST_DIR	=	./list/
 
-FREE_DIR	=	./free_cmd/
+FREE_DIR	=	./free/
+
+CREATE_DIR	=	./create/
+
+CHECK_DIR	=	./check/
+
+OPT_DIR		=	./options/
+
+UTIL_DIR	=	./utilities/
 
 SRCS		= 	main.c	 				\
-			ring_buffer.c				\
-			count_teams.c				\
-			create_map.c				\
-			create_cmd.c				\
-			create_client.c				\
-			create_food.c				\
-			create_team.c				\
-			create_objects.c			\
-			protocole_connexion.c			\
-			check_exec.c				\
-			check_end_game.c			\
-			check_death.c				\
-			check_food.c				\
-			distances.c				\
-			my_printf.c				\
-			options.c				\
-			options2.c				\
-			rand_orientations.c			\
-			send_data.c				\
-			set_options.c				\
 			server.c				\
-			utilis.c				\
-			size_of_tab.c				\
-			check_eggs.c				\
 			fill_struct_serv.c			\
-			width_and_length.c			\
+			protocole_connexion.c			\
+			$(UTIL_DIR)ring_buffer.c		\
+			$(UTIL_DIR)count_teams.c		\
+			$(UTIL_DIR)distances.c			\
+			$(UTIL_DIR)my_printf.c			\
+			$(UTIL_DIR)rand_orientations.c		\
+			$(UTIL_DIR)send_data.c			\
+			$(UTIL_DIR)utilis.c			\
+			$(UTIL_DIR)size_of_tab.c		\
+			$(UTIL_DIR)width_and_length.c		\
+			$(OPT_DIR)options.c			\
+			$(OPT_DIR)options2.c			\
+			$(OPT_DIR)set_options.c			\
 			$(X_DIR)xmalloc.c	 		\
 			$(X_DIR)xlisten.c	 		\
 			$(X_DIR)xbind.c		 		\
@@ -125,6 +122,17 @@ SRCS		= 	main.c	 				\
 			$(LIST_DIR)remove_at_index.c		\
 			$(LIST_DIR)remove_front.c		\
 			$(LIST_DIR)remove_back.c		\
+			$(CREATE_DIR)create_map.c		\
+			$(CREATE_DIR)create_cmd.c		\
+			$(CREATE_DIR)create_client.c		\
+			$(CREATE_DIR)create_food.c		\
+			$(CREATE_DIR)create_team.c		\
+			$(CREATE_DIR)create_objects.c		\
+			$(CHECK_DIR)check_exec.c		\
+			$(CHECK_DIR)check_end_game.c		\
+			$(CHECK_DIR)check_death.c		\
+			$(CHECK_DIR)check_food.c		\
+			$(CHECK_DIR)check_eggs.c		\
 			$(FREE_DIR)free_struct_cmd.c
 
 NAME		= 	zappy_server
