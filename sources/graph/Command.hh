@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Wed May 20 15:23:17 2015 Nicolas Girardot
-// Last update Thu Jul  2 16:15:44 2015 Nicolas Girardot
+// Last update Sun Jul  5 16:16:50 2015 Nicolas Girardot
 //
 
 #ifndef COMMAND_HH_
@@ -56,6 +56,7 @@ public:
   void	edi(std::string, GameEngine *);
   void	pex(std::string, GameEngine *);
   void	enw(std::string, GameEngine *);
+  void	tin(std::string, GameEngine *);
   void	sgt(std::string, GameEngine *);
 };
 

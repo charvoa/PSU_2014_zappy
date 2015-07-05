@@ -5,7 +5,7 @@
 // Login   <girard_s@epitech.net>
 //
 // Started on  Mon Jun 22 17:36:22 2015 Nicolas Girardot
-// Last update Sun Jul  5 00:55:38 2015 Nicolas Girardot
+// Last update Sun Jul  5 16:37:51 2015 Nicolas Girardot
 //
 
 #include "GameEngine.hh"
@@ -76,11 +76,9 @@ void	GameEngine::updateTeamInfo(std::string &name, int a, int b)
 
 void	GameEngine::addEgg(std::vector<int> &att)
 {
-  std::cout << "Laying egg " << std::endl;
   Egg *egg = new Egg(att);
   std::string result;
   std::stringstream sstm;
-  std::cout << " egggg " << att.at(2) << " " << att.at(3);
   sstm << "Player" << att.at(1) << " laid an Egg";
   result = sstm.str();
   _hud->update_info(result);
@@ -161,7 +159,6 @@ void	GameEngine::addPlayer(std::vector<int> &args, std::string &teamName)
 
 void	GameEngine::updateInventory(std::vector<int> &inv)
 {
-  std::cout << inv.at(0) << std::endl;
   for(std::list<IACharacter *>::iterator it = _players.begin(); it != _players.end() ; it++)
     {
       if (inv.at(0) == (*it)->getId())
@@ -187,7 +184,6 @@ void	GameEngine::updatePlayer(std::vector<int> &args)
 	    {
 	      _focus = (*it)->getPosition();
 	    }
-	  std::cout << _focus._x << " POS IS " << _focus._y << std::endl;
 	}
     }
 }
@@ -204,9 +200,7 @@ bool	GameEngine::initialize()
   _mousePos = Position(10, 10);
   _hud = new HUD(_renderer);
   _sound.playMusic("main", 1);
-  _socket->writeOnSocket("sgt\r\n");
-  std::string string("hello");
-  _hud->updateTeamInfo(string, 1, 1);
+  _socket->writeOnSocket("sgt\r\n");;
   return true;
 }
 
@@ -231,7 +225,6 @@ void	GameEngine::updateTime(int i)
 	sstm << "sst " << _speed - 10 << "\r\n";
       _socket->writeOnSocket(sstm.str());
     }
-  std::cout << "Speed is " << _speed << std::endl;
 }
 
 bool	GameEngine::update()
@@ -249,7 +242,6 @@ bool	GameEngine::update()
 	      return false;
 	      break;
 	    case SDLK_UP:
-	      std::cout << _idFocus << std::endl;
 	      _idFocus = -1;
 	      if (_focus._y <= 0)
 		_focus._y = _gMap->getHeight() - 1;
@@ -330,6 +322,7 @@ void	GameEngine::setLocked()
   int	b;
   SDL_GetMouseState(&a, &b);
   Position pos(a, b);
+  std::stringstream sstm;
   if (isEventOnMap(a, b) == true)
     {
       std::pair<int, int> posfocus(_focus._x, _focus._y);
@@ -341,6 +334,8 @@ void	GameEngine::setLocked()
 	      _idFocus = (*it)->getId();
 	      _focus = (*it)->getPosition();
 	      _hud->updateInventory(*it);
+	      sstm << "tin " << (*it)->getTeam() << "\r\n";
+	      _socket->writeOnSocket(sstm.str());
 	    }
 	}
       _hud->updateLocked(pai.first, pai.second, _cases.at(pai.second).at(pai.first));
