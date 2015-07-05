@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:07:21 2015 Audibert Louis
-** Last update Sun Jul  5 12:24:21 2015 Audibert Louis
+** Last update Sun Jul  5 14:05:33 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -33,7 +33,7 @@ void		init_everything(t_server *s, int argc, char **argv)
   s->teams = create_list();
   s->o = xmalloc(sizeof(*s->o));
   s->port = 4242;
-  s->time_action = 100;
+  s->time_action = 10;
   s->map_set[0] = 0;
   s->map_set[1] = 0;
   s->clients = create_list();

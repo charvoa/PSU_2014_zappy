@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:29 2015 Serge Heitzler
-** Last update Fri Jul  3 19:07:23 2015 Serge Heitzler
+** Last update Sun Jul  5 14:09:55 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -97,6 +97,8 @@ int		cmd_broadcast(t_server *s, t_client *c,
   t_node	*tmp_n;
   t_client	*cli;
 
+  if (c->state == CHILD)
+    return (ERROR);
   msg = xmalloc(sizeof(char) * (strlen(cmd) - 10));
   bzero(msg, (strlen(cmd) - 10));
   sscanf(cmd, "broadcast %4050[^\n]", msg);

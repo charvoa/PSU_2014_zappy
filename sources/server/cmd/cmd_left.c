@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sun May 17 11:30:51 2015 Serge Heitzler
-** Last update Sat Jul  4 22:43:58 2015 Serge Heitzler
+** Last update Sun Jul  5 14:05:06 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -18,6 +18,8 @@ int		cmd_left(t_server *s, t_client *c,
   (void)cmd;
   void	(*orientation[4])(t_client *);
 
+  if (c->state == CHILD)
+    return (ERROR);
   init_orientation(orientation);
   if (c->orientation == 1)
     orientation[(c->orientation + 2)](c);

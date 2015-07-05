@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Fri Jun 19 11:29:07 2015 Serge Heitzler
-** Last update Sun Jul  5 08:08:53 2015 Serge Heitzler
+** Last update Sun Jul  5 14:11:48 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -88,6 +88,8 @@ int		is_incantation_possible(t_server *s, t_client *c,
 {
   t_block	*b;
 
+  if (c->state == CHILD)
+    return (ERROR);
   b = s->map->objects[c->pos->y][c->pos->x];
   /* if (get_nb_players_of_my_level(s, c, b) >= g_incantation[c->level - 1].player */
   /*     && b->linemate == g_incantation[c->level - 1].linemate */

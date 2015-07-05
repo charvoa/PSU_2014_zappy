@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:21:57 2015 Audibert Louis
-** Last update Sun Jul  5 07:58:27 2015 Serge Heitzler
+** Last update Sun Jul  5 13:59:01 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -26,9 +26,13 @@ int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   void		(*orientation[4])(t_client *);
   char		trame[21];
 
+  printf("FILL IA CLIENT\n");
   init_fill_ia_client(orientation, c, t, n);
+  sprintf(trame, "%d", t->slot_rest);
+  send_data(c->fd, trame);
   if (is_there_an_egg(s->eggs, n, c->fd) == SUCCESS)
     {
+      printf("THERE IS AN EGG\n");
       c->state = CHILD;
       init_inventory(c, 10);
       return (0);
@@ -42,8 +46,8 @@ int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
   s->map->objects[c->pos->y][c->pos->x]->ids =
     add_id(s->map->objects[c->pos->y][c->pos->x], c->fd);
   init_inventory(c, 10);
-  sprintf(trame, "%d", t->slot_rest);
-  send_data(c->fd, trame);
+  /* sprintf(trame, "%d", t->slot_rest); */
+  /* send_data(c->fd, trame); */
   bzero(c->team_name, strlen(n));
   return (1);
 }

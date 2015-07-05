@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 **
 ** Started on  Sun May 17 10:54:26 2015 Serge Heitzler
-** Last update Sat Jul  4 22:43:56 2015 Serge Heitzler
+** Last update Sun Jul  5 14:09:46 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -18,6 +18,8 @@ int		cmd_right(t_server *s, t_client *c,
   (void)type;
   void	(*orientation[4])(t_client *);
 
+  if (c->state == CHILD)
+    return (ERROR);
   init_orientation(orientation);
   orientation[(c->orientation) % 4](c);
   cmd_ppo(s, c, NULL, GUI);

@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Thu May  7 14:50:39 2015 Serge Heitzler
-** Last update Sat Jul  4 15:12:11 2015 Nicolas Charvoz
+** Last update Sun Jul  5 12:34:07 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -33,6 +33,7 @@ void		create_client_from_egg(t_server *s, t_egg *egg, int index)
 {
   t_client	*client;
 
+  printf("CREATE CLIENT FROM EGG\n");
   client = get_client_by_id(s->clients, egg->fd);
   client->pos->x = egg->pos->x;
   client->pos->y = egg->pos->y;
