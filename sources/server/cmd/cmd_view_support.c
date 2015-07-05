@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:15:48 2015 Serge Heitzler
-** Last update Sat Jul  4 23:35:43 2015 Serge Heitzler
+** Last update Sun Jul  5 19:21:48 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -37,7 +37,8 @@ char		*create_final_support(t_server *s, t_client *c,
       size = get_size_malloc_at_position(s, *x, *y);
       tmp = malloc_and_memset(size);
       tmp = show_items_at_position(s, *x, *y);
-      if (i == (get_number_of_visible_space(c->level) - 1) && size != 0)
+      if (i == (get_number_of_visible_space(c->level) - 1)
+	  && size != 0)
       	sprintf(final, "%s %s", final, tmp);
       else if (size == 0)
 	final = special_case(c, final);

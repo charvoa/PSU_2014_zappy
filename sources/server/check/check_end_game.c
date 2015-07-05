@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Wed Jul  1 11:14:16 2015 Audibert Louis
-** Last update Fri Jul  3 15:26:17 2015 Audibert Louis
+** Last update Sun Jul  5 19:19:04 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -35,10 +35,9 @@ void		check_end_game(t_server *s)
 	{
 	  client = tmp_client->data;
 	  if (client->type == IA)
-	    {
-	      if (client->level == 8 && strcmp(client->team_name, team->name) == 0)
-		team->pro++;
-	    }
+	    if (client->level == 8
+		&& strcmp(client->team_name, team->name) == 0)
+	      team->pro++;
 	  tmp_client = tmp_client->next;
 	}
       if (team->pro >= 6)

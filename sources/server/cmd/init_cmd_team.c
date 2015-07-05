@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:21:57 2015 Audibert Louis
-** Last update Sun Jul  5 17:50:44 2015 Serge Heitzler
+** Last update Sun Jul  5 19:21:16 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -21,7 +21,8 @@ void		init_fill_ia_client(void (*orientation[4])(t_client *),
   t->slot_rest--;
 }
 
-int		fill_ia_client(t_server *s, t_client *c, t_team *t, char *n)
+int		fill_ia_client(t_server *s, t_client *c, t_team *t,
+			       char *n)
 {
   void		(*orientation[4])(t_client *);
   char		trame[21];

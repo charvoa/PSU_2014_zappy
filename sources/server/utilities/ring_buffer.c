@@ -5,19 +5,20 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Wed Jun 17 12:34:05 2015 Audibert Louis
-** Last update Sat Jun 27 11:13:22 2015 Serge Heitzler
+** Last update Sun Jul  5 19:46:49 2015 Audibert Louis
 */
 
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "xfuncs.h"
 #include "functions.h"
 
 t_ring_buffer	*ring_buffer_create(int length)
 {
-  t_ring_buffer *buffer = calloc(1, sizeof(t_ring_buffer));
+  t_ring_buffer *buffer;
+
+  buffer = calloc(1, sizeof(t_ring_buffer));
   buffer->length = length + 1;
   buffer->start = 0;
   buffer->end = 0;
@@ -29,13 +30,14 @@ void		ring_buffer_destroy(t_ring_buffer *buffer)
 {
   if (buffer)
     {
-      /* free(buffer->buffer); */
-      /* free(buffer); */
+      free(buffer->buffer);
+      free(buffer);
     }
   printf("ring buffer destroyed.\n");
 }
 
-int		ring_buffer_write(t_ring_buffer *buffer, char *data, int length)
+int		ring_buffer_write(t_ring_buffer *buffer, char *data,
+				  int length)
 {
   if (ring_buffer_available_data(buffer) == 0)
     buffer->start = buffer->end = 0;
@@ -54,7 +56,8 @@ int		ring_buffer_write(t_ring_buffer *buffer, char *data, int length)
   return (length);
 }
 
-int		ring_buffer_read(t_ring_buffer *buffer, char *target, int amount)
+int		ring_buffer_read(t_ring_buffer *buffer, char *target,
+				 int amount)
 {
   if (amount > ring_buffer_available_data(buffer))
     {
@@ -71,42 +74,6 @@ int		ring_buffer_read(t_ring_buffer *buffer, char *target, int amount)
   if (buffer->end == buffer->start)
     buffer->start = buffer->end = 0;
   return (amount);
-}
-
-char		*ring_buffer_gets(t_ring_buffer *buffer, int amount)
-{
-  char		*result;
-
-  if (amount < 0)
-    {
-      fprintf(stderr, "Need more than 0 for gets, you gave: %d ", amount);
-      return (NULL);
-    }
-  if (amount > ring_buffer_available_data(buffer))
-    {
-      fprintf(stderr, "Not enough in the buffer.");
-      return (NULL);
-    }
-  result = xmalloc((strlen(ring_buffer_starts_at(buffer)) + amount)
-		   * sizeof(char));
-  if (result == NULL)
-    {
-      fprintf(stderr, "Failed to create gets result.");
-      return (NULL);
-    }
-  bzero(result, (strlen(ring_buffer_starts_at(buffer)) + amount));
-  if (memcpy(result, ring_buffer_starts_at(buffer), amount) == NULL)
-    {
-      fprintf(stderr, "Failed to write buffer into result.");
-      return (NULL);
-    }
-  if ((int)strlen(result) != amount)
-    {
-      fprintf(stderr, "Wrong result length.");
-      return (NULL);
-    }
-  ring_buffer_commit_read(buffer, amount);
-  return (result);
 }
 
 char		*ring_buffer_get_next_command(t_ring_buffer *buffer)
@@ -126,11 +93,4 @@ char		*ring_buffer_get_next_command(t_ring_buffer *buffer)
       ring_buffer_commit_read(buffer, (strlen(cmd) + 2));
     }
   return (cmd);
-}
-
-int		ring_buffer_expand(t_ring_buffer *buffer, int size)
-{
-  (void) buffer;
-  (void) size;
-  return (0);
 }

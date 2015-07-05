@@ -5,14 +5,14 @@
 ## Login   <heitzl_s@epitech.net>
 ##
 ## Started on  Sun May  3 11:26:21 2015 Serge Heitzler
-## Last update Sun Jul  5 16:01:44 2015 Serge Heitzler
+## Last update Sun Jul  5 19:51:31 2015 Audibert Louis
 ##
 
 CC		= 	gcc
 
 RM		= 	rm -rf
 
-CFLAGS		+= 	-W -Wall -Werror -Wextra -g3
+CFLAGS		+= 	-W -Wall -Werror -Wextra
 CFLAGS		+= 	-I ../../headers/
 
 EXTERNLIB	=	-lm
@@ -38,6 +38,7 @@ SRCS		= 	main.c	 				\
 			fill_struct_serv.c			\
 			protocole_connexion.c			\
 			$(UTIL_DIR)ring_buffer.c		\
+			$(UTIL_DIR)ring_buffer_support.c	\
 			$(UTIL_DIR)count_teams.c		\
 			$(UTIL_DIR)distances.c			\
 			$(UTIL_DIR)my_printf.c			\
@@ -62,6 +63,7 @@ SRCS		= 	main.c	 				\
 			$(CMD_DIR)cmd_advance.c			\
 			$(CMD_DIR)cmd_inventory.c		\
 			$(CMD_DIR)cmd_take_object.c		\
+			$(CMD_DIR)cmd_take_object_support.c	\
 			$(CMD_DIR)inventory_rocks.c		\
 			$(CMD_DIR)inventory_rocks2.c		\
 			$(CMD_DIR)block_rocks.c			\

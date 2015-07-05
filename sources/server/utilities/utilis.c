@@ -5,7 +5,7 @@
 ** Login   <nicolaschr@epitech.net>
 **
 ** Started on  Mon Mar  9 16:38:51 2015 Nicolas Charvoz
-** Last update Sun Jul  5 01:05:57 2015 Serge Heitzler
+** Last update Sun Jul  5 19:44:12 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -65,7 +65,8 @@ int	accept_server(t_server *s, char **argv)
   return (SUCCESS);
 }
 
-void		destroy_socket(t_server *s, t_client *c, int i, char **argv)
+void		destroy_socket(t_server *s, t_client *c, int i,
+			       char **argv)
 {
   cmd_pdi(s, c);
   ring_buffer_destroy(c->buffer);

@@ -5,7 +5,7 @@
 ** Login   <heitzls@epitech.net>
 ** 
 ** Started on  Sun May 17 11:39:43 2015 Serge Heitzler
-** Last update Tue Jun 30 20:40:53 2015 Serge Heitzler
+** Last update Sun Jul  5 19:44:23 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -27,7 +27,8 @@ int	calcul_limit(int len)
   return (((len / 2) + 1));
 }
 
-float		give_me_distance(t_map *map, t_position *f_pos, t_position *s_pos)
+float		give_me_distance(t_map *map, t_position *f_pos,
+				 t_position *s_pos)
 {
   int	limit;
   int	l;

@@ -5,12 +5,11 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Tue May 26 18:33:20 2015 Serge Heitzler
-** Last update Wed Jun 24 16:39:09 2015 Audibert Louis
+** Last update Sun Jul  5 19:41:22 2015 Audibert Louis
 */
 
 #include "server.h"
 
-/* Possible memory leak dans cette fonction, node et tmp pas free. */
 int		push_at_index(t_list *list, void *data, e_node_type type, int index)
 {
   t_node	*node;

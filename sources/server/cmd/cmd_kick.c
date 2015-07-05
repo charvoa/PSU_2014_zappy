@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:12 2015 Serge Heitzler
-** Last update Sun Jul  5 17:28:40 2015 Audibert Louis
+** Last update Sun Jul  5 19:27:00 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -33,7 +33,8 @@ char		*get_trame_deplacement(t_client *c)
   return (trame);
 }
 
-void		move_client_from_ori(t_server *s, t_client *caller, t_client *moved)
+void		move_client_from_ori(t_server *s, t_client *caller,
+				     t_client *moved)
 {
   s->map->objects[moved->pos->y][moved->pos->x]->nb_clients--;
   s->map->objects[moved->pos->y][moved->pos->x]->ids =
@@ -63,10 +64,10 @@ int		cmd_kick(t_server *s, t_client *c,
 
   if (c->state == CHILD)
     return (ERROR);
-  i = 0;
+  i = -1;
   final = get_trame_deplacement(c);
   cmd_pex(c, s->clients);
-  while (i < s->map->objects[c->pos->y][c->pos->x]->nb_clients)
+  while (++i < s->map->objects[c->pos->y][c->pos->x]->nb_clients)
     {
       client = get_client_by_id(s->clients,
 				s->map->objects[c->pos->y][c->pos->x]->ids[i]);
@@ -77,7 +78,6 @@ int		cmd_kick(t_server *s, t_client *c,
   	      send_data(client->fd, final);
   	      send_data(c->fd, "ok\n");
   	    }
-      i++;
     }
   free(final);
   return (SUCCESS);

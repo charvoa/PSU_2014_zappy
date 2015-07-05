@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:29:33 2015 Serge Heitzler
-** Last update Sun Jul  5 14:58:46 2015 Audibert Louis
+** Last update Sun Jul  5 19:27:23 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -20,7 +20,8 @@ t_objects	g_rocks[6] =
     {"thystame", &inventory_thystame},
   };
 
-int		launch_func_inventory(t_client *c, int rock, e_flag_rock flag)
+int		launch_func_inventory(t_client *c, int rock,
+				      e_flag_rock flag)
 {
   int		i;
 

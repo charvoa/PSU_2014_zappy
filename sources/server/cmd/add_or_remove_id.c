@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Fri Jun 26 09:18:17 2015 Audibert Louis
-** Last update Sun Jul  5 17:34:45 2015 Audibert Louis
+** Last update Sun Jul  5 19:30:13 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -59,16 +59,8 @@ int		*remove_id(t_block *block, int id)
       return (newtab);
     }
   newtab = xmalloc((block->nb_clients) * sizeof(int));
-  printf("block->nb_clients = %d\n", block->nb_clients);
   while (i < block->nb_clients)
     {
-      printf("block->ids[%d] = %d\n", i, block->ids[i]);
-      i++;
-    }
-  i = 0;
-  while (i < block->nb_clients)
-    {
-      printf("i = %d\n", i);
       if (block->ids[i] == id)
 	i++;
       else

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sun Jul  5 19:11:20 2015 Serge Heitzler
+** Last update Sun Jul  5 19:50:25 2015 Audibert Louis
 */
 
 #ifndef _FUNCTIONS_H_
@@ -98,9 +98,12 @@ t_ring_buffer	*ring_buffer_create(int length);
 void		ring_buffer_destroy(t_ring_buffer *buffer);
 int		ring_buffer_write(t_ring_buffer *buffer, char *data, int length);
 int		ring_buffer_read(t_ring_buffer *buffer, char *target, int amount);
-char		*ring_buffer_gets(t_ring_buffer *buffer, int amount);
 char		*ring_buffer_get_next_command(t_ring_buffer *buffer);
 int		ring_buffer_expand(t_ring_buffer *buffer, int size);
+
+/* Function(s) in file ring_buffer_support.c */
+char		*ring_buffer_gets(t_ring_buffer *buffer, int amount);
+char		*ring_buffer_gets_check(t_ring_buffer *buffer, int amount);
 
 /* Function(s) in file send_data.c */
 int		send_data(int socket, char *buffer);
@@ -288,6 +291,9 @@ int		launch_func_block(t_block *block, int rock_type, e_flag_rock flag);
 int		take_rock(t_server *s, t_client *c, char *item);
 int		take_food(t_server *s, t_client *c);
 int		cmd_take_object(t_server *s, t_client *c, char *cmd, e_client_type type);
+
+/* Function(s) in file cmd_take_object_support.c */
+int		do_take_object(t_server *s, t_client *c, char *item);
 
 /* Function(s) in file cmd_team.c */
 int		is_a_team(t_server *s, char *team);

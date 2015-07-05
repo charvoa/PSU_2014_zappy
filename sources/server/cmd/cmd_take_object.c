@@ -5,12 +5,11 @@
 ** Login   <sergeheitzler@epitech.net>
 **
 ** Started on  Fri Jun 19 11:30:02 2015 Serge Heitzler
-** Last update Sun Jul  5 17:01:02 2015 Audibert Louis
+** Last update Sun Jul  5 19:33:50 2015 Audibert Louis
 */
 
 #include "functions.h"
 
-// Free rock tab ?
 int		check_rock(char *rock)
 {
   char	**rock_tab;
@@ -34,12 +33,13 @@ int		check_rock(char *rock)
 	}
       i++;
     }
-  /* free(rock_tab); */
+  free(rock_tab);
   return (ERROR);
 }
-// On a le droite déclarer un tableau comme ca dans une fonction à l'initialisation ?
+
 int		launch_func_block(t_block *block,
-				  int rock_type, e_flag_rock flag)
+				  int rock_type,
+				  e_flag_rock flag)
 {
   int		i;
 
@@ -83,27 +83,6 @@ int		take_food(t_server *s, t_client *c)
   cmd_pgt(c, s->clients, 0);
   cmd_pin(s, c, "protocole", GUI);
   cmd_bct(s, c, "protocole", GUI);
-  return (SUCCESS);
-}
-
-int		do_take_object(t_server *s, t_client *c, char *item)
-{
-  if (strcmp(item, "nourriture") == 0)
-    {
-      if (take_food(s, c) == ERROR)
-	{
-	  send_data(c->fd, "ko\n");
-	  return (ERROR);
-	}
-    }
-  else
-    {
-      if (take_rock(s, c, item) == ERROR)
-	{
-	  send_data(c->fd, "ko\n");
-	  return (ERROR);
-	}
-    }
   return (SUCCESS);
 }
 

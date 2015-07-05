@@ -5,7 +5,7 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Sun Jul  5 17:51:07 2015 Serge Heitzler
+** Last update Sun Jul  5 19:39:42 2015 Audibert Louis
 */
 
 #include "functions.h"
@@ -24,7 +24,8 @@ void		init_block(t_block *b)
   b->nb_clients = 0;
 }
 
-void		init_map(t_server *s, unsigned int width, unsigned int height)
+void		init_map(t_server *s, unsigned int width,
+			 unsigned int height)
 {
   unsigned int	x;
   unsigned int	y;
