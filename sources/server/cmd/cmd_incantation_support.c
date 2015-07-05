@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sat Jul  4 08:46:37 2015 Serge Heitzler
-** Last update Sun Jul  5 12:50:31 2015 Serge Heitzler
+** Last update Sun Jul  5 18:06:10 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -39,6 +39,7 @@ void		send_level(t_client *c)
   size_malloc = 18 + istm(c->level);
   final = malloc_and_memset(size_malloc);
   sprintf(final, "niveau actuel : %d\n", c->level);
+  send_data(c->fd, final);
   free(final);
 }
 
