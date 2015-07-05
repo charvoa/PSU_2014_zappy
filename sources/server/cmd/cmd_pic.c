@@ -5,7 +5,7 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sun Jun 28 23:26:08 2015 Serge Heitzler
-** Last update Sat Jul  4 13:36:34 2015 Serge Heitzler
+** Last update Sun Jul  5 11:39:00 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -27,13 +27,15 @@ int		*get_fds(t_server *s, t_client *c,
   b = s->map->objects[c->pos->y][c->pos->x];
   while (i < b->nb_clients)
     {
-      cli = get_client_by_id(s->clients, b->ids[i]);
-      if (cli->level == c->level && cli->fd != c->fd)
+      if (b->ids[i] == c->fd)
+	i++;
+      else
 	{
+	  cli = get_client_by_id(s->clients, b->ids[i]);
 	  res[o] = cli->fd;
 	  o++;
+	  i++;
 	}
-      i++;
     }
   return (res);
 }
@@ -46,23 +48,18 @@ char		*get_other_fds(t_server *s, t_client *c,
   int		*fds;
   int		i;
 
-  i = 0;
+  i = -1;
   size_malloc = 0;
   fds = get_fds(s, c, cmd, type);
-  while (i < g_incantation[c->level - 1].player - 1)
-    {      
-      size_malloc += (2 + istm(fds[i]));
-      i++;
-    }
-  i = 1;
+  while (++i < g_incantation[c->level - 1].player - 1)
+    size_malloc += (2 + istm(fds[i]));
+  i = 0;
+  size_malloc++;
   final = xmalloc(sizeof(char) * size_malloc);
   bzero(final, size_malloc);
   sprintf(final, " #%d", fds[0]);
-  while (i < g_incantation[c->level - 1].player - 1)
-    {
-      sprintf(final, "%s #%d", final, fds[i]);
-      i++;
-    }
+  while (++i < g_incantation[c->level - 1].player - 1)
+    sprintf(final, "%s #%d", final, fds[i]);
   return (final);
 }
 

@@ -5,10 +5,30 @@
 ** Login   <sergeheitzler@epitech.net>
 ** 
 ** Started on  Sat Jul  4 08:46:37 2015 Serge Heitzler
-** Last update Sat Jul  4 17:12:23 2015 Serge Heitzler
+** Last update Sun Jul  5 12:50:31 2015 Serge Heitzler
 */
 
 #include "functions.h"
+
+char		*send_once_final_and_get_it(t_client *c)
+{
+  int		size_malloc;
+  char		*final;
+
+  size_malloc = 20;
+  final = malloc_and_memset(size_malloc);
+  sprintf(final, "elevation en cours\n");
+  send_data(c->fd, final);
+  return (final);
+}
+
+void		send_pie_and_plv(t_server *s, t_client *c,
+			        char *cmd, e_client_type type)
+{
+  (void)type;
+  cmd_pie(s, c, cmd, GUI);
+  cmd_plv(s, c, cmd, GUI);
+}
 
 void		send_level(t_client *c)
 {

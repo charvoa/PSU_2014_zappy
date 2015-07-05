@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Thu Jul  2 11:21:57 2015 Audibert Louis
-** Last update Sun Jul  5 07:58:27 2015 Serge Heitzler
+** Last update Sun Jul  5 14:10:26 2015 Serge Heitzler
 */
 
 #include "functions.h"
@@ -16,7 +16,7 @@ void		init_fill_ia_client(void (*orientation[4])(t_client *),
   init_orientation(orientation);
   orientation[rand() % 4](c);
   c->type = IA;
-  c->level = 1;
+  c->level = 2; // Changer en niveau 1 !!
   c->team_name = strdup(n);
   t->slot_rest--;
 }

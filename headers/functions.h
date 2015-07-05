@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 **
 ** Started on  Sat Jun 27 09:51:35 2015 Audibert Louis
-** Last update Sat Jul  4 23:35:38 2015 Serge Heitzler
+** Last update Sun Jul  5 14:16:31 2015 Serge Heitzler
 */
 
 #ifndef _FUNCTIONS_H_
@@ -42,7 +42,6 @@ int		create_client(t_server *, int);
 int		create_food(t_server *s);
 
 /* Function(s) in file create_map.c */
-char		**init_full_tab(int width, int height);
 void		init_map(t_server *s, unsigned int width, unsigned int height);
 void		launch_init_map(t_server *s);
 
@@ -209,10 +208,12 @@ int		cmd_graphic(t_server *s, t_client *c, char *cmd, e_client_type type);
 /* Function(s) in file cmd_incantation.c */
 int		cmd_incantation(t_server *s, t_client *c, char *cmd, e_client_type type);
 int		is_incantation_possible(t_server *s, t_client *c, char *cmd, e_client_type type);
+void		send_pie_and_plv(t_server *s, t_client *c, char *cmd, e_client_type type);
 
 /* Function(s) in file cmd_incantation_support.c */
 void		reset_block(t_block *b);
 void		send_level(t_client *c);
+char		*send_once_final_and_get_it(t_client *c);
 
 /* Function(s) in file cmd_inventory.c */
 char		*get_objects_from_inventory(t_inventory *i);

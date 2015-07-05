@@ -5,36 +5,19 @@
 ** Login   <heitzl_s@epitech.net>
 **
 ** Started on  Wed May  6 19:35:46 2015 Serge Heitzler
-** Last update Wed Jul  1 13:53:55 2015 Audibert Louis
+** Last update Sun Jul  5 14:17:38 2015 Serge Heitzler
 */
 
 #include "functions.h"
-
-char		**init_full_tab(int width, int height)
-{
-  char		**tab;
-  int		y;
-
-  y = 0;
-  tab = xmalloc((height + 1) * sizeof(char *));
-  while (y <= (height - 1))
-    {
-      tab[y] = xmalloc((width + 1) * sizeof(char));
-      memset(tab[y], 0, width + 1);
-      y++;
-    }
-  tab[y] = NULL;
-  return (tab);
-}
 
 void		init_block(t_block *b)
 {
   b->ids = xmalloc(sizeof(int));
   b->ids[0] = -1;
   b->food = 0;
-  b->linemate = 0;
-  b->deraumere = 0;
-  b->sibur = 0;
+  b->linemate = 1;
+  b->deraumere = 1; // reinit tout à 0
+  b->sibur = 1;
   b->mendiane = 0;
   b->phiras = 0;
   b->thystame = 0;
@@ -67,7 +50,6 @@ void		init_map(t_server *s, unsigned int width, unsigned int height)
       y++;
     }
   s->map->objects[y] = NULL;
-  s->map->full = init_full_tab(width, height);
 }
 
 void		launch_init_map(t_server *s)

@@ -5,7 +5,7 @@
 ** Login   <audibe_l@epitech.net>
 ** 
 ** Started on  Sat Jun 27 09:44:55 2015 Audibert Louis
-** Last update Sat Jun 27 17:40:02 2015 Audibert Louis
+** Last update Sun Jul  5 14:15:54 2015 Serge Heitzler
 */
 
 #ifndef _MAP_H_
@@ -39,7 +39,6 @@ typedef struct		s_size
 typedef struct		s_map
 {
   t_size		*size;
-  char			**full;
   t_block		***objects;
 }			t_map;
 
